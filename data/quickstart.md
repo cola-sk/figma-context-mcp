@@ -1,82 +1,27 @@
-## Getting started
+# Quickstart Guide
 
-Flowbite can be easily integrated into your project through NPM. It functions as a plugin for Tailwind CSS and offers both a data attributes interface and a JavaScript API for powering interactive UI components.
+This guide explains how to use the Flowbite MCP Server with your built-in design system `skills`.
 
-### Install using NPM
+## Using the Figma to Code Tool
 
-Make sure that you have <a href="https://nodejs.org/en/" rel="nofollow" target="_blank">Node.js</a> and <a href="https://tailwindcss.com/docs/installation/using-postcss" rel="nofollow" target="_blank">Tailwind CSS</a> installed. This guide works with Tailwind v4.
+The main tool of this server is `convert-figma-to-code`. It takes a Figma design node URL and provides the context needed to generate code.
 
-1. Install Flowbite as a dependency using NPM by running the following command:
+### Step-by-Step
 
-```bash
-npm install flowbite
-```
+1. **Invoke the Tool**: Run `convert-figma-to-code` with a complete Figma node URL.
+2. **Analyze the Data**: Use the provided image preview and simplified JSON node data.
+3. **Apply Skills**: Match the design elements in the Figma JSON to your internal component definitions (e.g., `TiComponents`).
+4. **Produce Code**: Generate clean HTML/Tailwind CSS markup based on the design source.
 
-2. Import the default theme variables from Flowbite inside your main `input.css` CSS file:
+## Examples
 
-```css
-/* choose one of the following */
+- **Logo/Header**: Match a header group to a `Navbar` component.
+- **Card Layout**: Look for bounding boxes and image nodes, then apply a `Card` component.
+- **Form Elements**: Identify text nodes and shapes as inputs or buttons.
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-@import "flowbite/src/themes/default";
+## Important Note
 
-/* MINIMAL THEME
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-@import "flowbite/src/themes/minimal";
-*/
-
-/* ENTERPRISE THEME
-@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-@import "flowbite/src/themes/enterprise";
-*/
-
-/* PLAYFUL THEME
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap');
-@import "flowbite/src/themes/playful";
-*/
-
-/* MONO THEME
-@import "flowbite/src/themes/mono";
-*/
-```
-
-3. Import the Flowbite plugin file in your CSS:
-
-```css
-@plugin "flowbite/plugin";
-```
-
-4. Configure the source files of Flowbite in your CSS:
-
-```css
-@source "../node_modules/flowbite";
-```
-
-5. Include the JavaScript code that powers the interactive elements before the end of your `<body>` tag:
-
-```html
-<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
-```
-
-Learn more about the Flowbite JavaScript API and functionalities in the [JavaScript section](https://flowbite.com/docs/getting-started/javascript/).
-
-If you have and old project with Tailwind CSS v3 then [check out this guide](#tailwind-css-v3-to-v4) to learn how to upgrade to v4.
-
-### Include using CDN
-
-The quickest way to get started working with Flowbite is to include the CSS and JS into your project via CDN.
-
-Require the following minified stylesheet inside the `head` tag:
-
-```html
-<link href="https://cdn.jsdelivr.net/npm/flowbite/dist/flowbite.min.css" rel="stylesheet" />
-```
-
-And include the following JavaScript file before the end of the `body` element:
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/flowbite/dist/flowbite.min.js"></script>
-```
+This server focuses on design data extraction. It does not provide the underlying component source code; you should use your predefined component skills for the actual implementation.
 
 Please remember that the best way to work with Tailwind CSS and Flowbite is by purging the CSS classes.
 

@@ -1,11 +1,15 @@
 # Flowbite MCP Server Overview
 
-This MCP server provides access to Flowbite's extensive library of Tailwind CSS components and theme generation capabilities.
+This MCP server provides a streamlined Figma-to-code conversion tool designed to work with AI agents that have predefined design system components (via `skills`).
 
 ## Features
 
-- resources that have access to the full Flowbite component library including the open source components, plugins, and typography
-- tools to allow the generation of UI components, layouts and the theme file that allow customization
+- **Figma to Code Tool**: Fetches real Figma node data and renders image previews, providing simplified JSON structures and optimized prompts for AI agents.
+- **Reference Resources**: Provides overview and quickstart documentation to help agents understand how to apply their component skills to Figma designs.
+
+## Design System Logic
+
+Unlike traditional MCP servers, this server does not bundle raw component code. Instead, it acts as a bridge between Figma design files and an agent's internal knowledge of a design system (like TiComponents or standard Flowbite).
 
 ## Supporting Flowbite
 
