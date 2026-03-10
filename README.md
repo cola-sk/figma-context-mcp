@@ -30,6 +30,7 @@ Update `claude_desktop_config.json`:
 {
   "mcpServers": {
     "figma": {
+      "type": "stdio",
       "command": "node",
       "args": ["/Users/xxxx/figma-mcp/build/index.js"],
       "env": {
@@ -47,8 +48,9 @@ Update `mcp.json`:
 {
   "mcpServers": {
     "figma": {
+      "type": "stdio",
       "command": "node",
-      "args": ["/Users/liuzhe.x/coding/flowbite-mcp/build/index.js"],
+      "args": ["/Users/xxxx/figma-mcp/build/index.js"],
       "env": {
         "FIGMA_ACCESS_TOKEN": "YOUR_PERSONAL_FIGMA_ACCESS_TOKEN"
       }
