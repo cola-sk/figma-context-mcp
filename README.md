@@ -1,38 +1,56 @@
-# Figma MCP
+# figma-context-mcp
 
-An [MCP server](https://modelcontextprotocol.io/) that enables AI assistants to convert Figma designs to high-quality frontend code. Simply provide a Figma node URL and get clean, production-ready HTML markup with Tailwind CSS.
+An [MCP server](https://modelcontextprotocol.io/) that enables AI assistants to convert Figma designs to production-ready frontend code. Simply provide a Figma node URL and get clean HTML markup with Tailwind CSS.
 
 ## Features
 
-- **🎨 Figma to Code** - Convert Figma designs to clean HTML + Tailwind CSS code
-- **🔑 Figma API Integration** - Extracts layout, colors, typography, and effects from Figma designs
-- **🚀 Dual Transport** - Works with stdio (Claude Desktop, Cursor) and HTTP server
+- **Figma to Code** - Convert Figma designs to clean HTML + Tailwind CSS
+- **Figma API Integration** - Extracts layout, colors, typography, spacing, and effects from Figma nodes
+- **Dual Transport** - Works with stdio (Claude Desktop, Cursor) and HTTP server mode
 
 ## Quickstart
 
-### 1. Build the project
+### 1. Clone and build
 
 ```bash
-git clone https://github.com/yourusername/figma-mcp.git
-cd figma-mcp
+git clone https://github.com/cola-sk/figma-mcp.git
+cd figma-context-mcp
 npm install
 npm run build
 ```
 
 ### 2. Set your Figma access token
 
-Get your [Figma personal access token](https://help.figma.com/hc/en-us/articles/8085703771159-Manage-personal-access-tokens) and update your MCP client configuration.
+Get your [Figma personal access token](https://help.figma.com/hc/en-us/articles/8085703771159-Manage-personal-access-tokens), then configure your MCP client.
+
+#### GitHub Copilot (VS Code)
+
+Edit `.vscode/mcp.json` in your project root:
+```json
+{
+  "servers": {
+    "figma-context-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/path/to/figma-context-mcp/build/index.js"],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": "YOUR_PERSONAL_FIGMA_ACCESS_TOKEN"
+      }
+    }
+  }
+}
+```
 
 #### Claude Desktop
 
-Update `claude_desktop_config.json`:
+Edit `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "figma": {
+    "figma-context-mcp": {
       "type": "stdio",
       "command": "node",
-      "args": ["/Users/xxxx/figma-mcp/build/index.js"],
+      "args": ["/path/to/figma-context-mcp/build/index.js"],
       "env": {
         "FIGMA_ACCESS_TOKEN": "YOUR_PERSONAL_FIGMA_ACCESS_TOKEN"
       }
@@ -43,14 +61,14 @@ Update `claude_desktop_config.json`:
 
 #### Cursor
 
-Update `mcp.json`:
+Edit `mcp.json`:
 ```json
 {
   "mcpServers": {
-    "figma": {
+    "figma-context-mcp": {
       "type": "stdio",
       "command": "node",
-      "args": ["/Users/xxxx/figma-mcp/build/index.js"],
+      "args": ["/path/to/figma-context-mcp/build/index.js"],
       "env": {
         "FIGMA_ACCESS_TOKEN": "YOUR_PERSONAL_FIGMA_ACCESS_TOKEN"
       }
@@ -61,21 +79,21 @@ Update `mcp.json`:
 
 ### 3. Usage
 
-Simply provide a Figma design URL to the AI assistant:
+Paste a Figma node URL into your AI assistant:
 
 ```
 Convert this Figma design: https://www.figma.com/design/FILE_KEY/MyFile?node-id=123-456
 ```
 
-The AI will analyze the design and generate clean HTML markup with Tailwind CSS.
+The assistant will fetch the design data and generate clean HTML + Tailwind CSS code.
 
 ## Development
 
 ### Local setup
 
 ```bash
-git clone https://github.com/yourusername/figma-mcp.git
-cd figma-mcp
+git clone https://github.com/cola-sk/figma-mcp.git
+cd figma-context-mcp
 npm install
 npm run build
 npm start
@@ -83,7 +101,7 @@ npm start
 
 ### Run modes
 
-**Default (stdio mode for Claude Desktop/Cursor):**
+**stdio mode (Claude Desktop / Cursor):**
 ```bash
 npm start
 ```
@@ -93,11 +111,10 @@ npm start
 npm start -- --mode http --port 3000
 ```
 
-Then access at `http://localhost:3000/mcp`.
+Server available at `http://localhost:3000/mcp`.
 
 ### MCP Inspector
 
-Debug with the MCP Inspector:
 ```bash
 npm run inspector
 ```
@@ -105,18 +122,17 @@ npm run inspector
 ## Project structure
 
 ```
-figma-mcp/
+figma-context-mcp/
 ├── src/
-│   ├── index.ts              # Main entry point
-│   └── server-runner.ts      # HTTP transport
+│   ├── index.ts              # Main entry point & MCP tool definitions
+│   └── server-runner.ts      # HTTP transport (Express)
+├── data/
+│   ├── overview.md           # Server overview resource
+│   └── quickstart.md         # Quickstart guide resource
 ├── build/                    # Compiled output
 └── package.json
 ```
 
-## Contributing
-
-Contributions welcome! Please submit a Pull Request.
-
 ## License
 
-MIT - See [LICENSE](LICENSE) file for details.
+MIT

@@ -1,16 +1,28 @@
 # Flowbite MCP Server Overview
 
-This MCP server provides a streamlined Figma-to-code conversion tool designed to work with AI agents that have predefined design system components (via `skills`).
+This MCP server is a **Figma-to-code bridge** for AI agents. It extracts structured design data from Figma and provides it as context so the agent can generate production-ready UI code using a company-specific component library (via agent `skills`).
 
-## Features
+## How It Works
 
-- **Figma to Code Tool**: Fetches real Figma node data and renders image previews, providing simplified JSON structures and optimized prompts for AI agents.
-- **Reference Resources**: Provides overview and quickstart documentation to help agents understand how to apply their component skills to Figma designs.
+1. **Design Extraction** — The `convert-figma-to-code` tool fetches a Figma node's structure (layout, dimensions, text, colors) and renders a visual preview image.
+2. **Context Delivery** — The simplified JSON and image are passed to the agent as tool output, giving it a precise understanding of the design intent.
+3. **Skill-Driven Code Generation** — The agent maps the extracted design elements to components defined in its loaded skill (e.g., `TiComponents`), and generates clean, framework-specific code.
 
-## Design System Logic
+This server does **not** bundle component source code. Component implementations are owned by the agent's skill layer.
 
-Unlike traditional MCP servers, this server does not bundle raw component code. Instead, it acts as a bridge between Figma design files and an agent's internal knowledge of a design system (like TiComponents or standard Flowbite).
+## Key Capability
 
-## Supporting Flowbite
+| Tool | Purpose |
+|------|---------|
+| `convert-figma-to-code` | Extract Figma node data + render preview image, return structured context for code generation |
 
-To support the open-source development of Flowbite please consider purchasing the [Pro version of Flowbite](https://flowbite.com/pro/#pricing) to get access to hundreds of premium building blocks, a Figma design system, and other templates like dashboard layouts and marketing websites.
+## Agent Integration
+
+When an agent has a component-library skill installed (e.g., `ti-component-skills`), the workflow is:
+
+- Agent receives Figma node context from this MCP tool
+- Agent reads design structure (layout mode, spacing, element types)
+- Agent selects matching components from the skill's component catalog
+- Agent produces complete, runnable page code (Vue 3, HTML, etc.)
+
+No manual component lookup is needed — the design data and skill knowledge are combined automatically.

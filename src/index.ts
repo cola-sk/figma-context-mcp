@@ -19,10 +19,10 @@ const args = process.argv.slice(2);
 if (args.includes('--version') || args.includes('-v')) {
   try {
     const packageJson = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf-8'));
-    console.error(`Flowbite MCP Server v${packageJson.version}`);
+    console.error(`figma-context-mcp v${packageJson.version}`);
     process.exit(0);
   } catch (error) {
-    console.error('Flowbite MCP Server (version unknown)');
+    console.error('figma-context-mcp (version unknown)');
     process.exit(0);
   }
 }
@@ -30,11 +30,11 @@ if (args.includes('--version') || args.includes('-v')) {
 // Handle --help flag
 if (args.includes('--help') || args.includes('-h')) {
   console.error(`
-Flowbite MCP Server - AI-powered Figma to Code conversion
+figma-context-mcp - AI-powered Figma to Code conversion
 
 Usage:
-  flowbite-mcp [options]
-  npx flowbite-mcp [options]
+  figma-context-mcp [options]
+  npx figma-context-mcp [options]
 
 Options:
   --mode <stdio|http>   Transport mode (default: stdio)
@@ -44,16 +44,13 @@ Options:
 
 Examples:
   # Run in stdio mode (for Claude Desktop, Cursor)
-  npx flowbite-mcp
+  npx figma-context-mcp
 
   # Run in HTTP server mode on port 3000
-  npx flowbite-mcp --mode http --port 3000
+  npx figma-context-mcp --mode http --port 3000
 
   # Show version
-  npx flowbite-mcp --version
-
-Documentation:
-  https://github.com/themesberg/flowbite-mcp#readme
+  npx figma-context-mcp --version
 `);
   process.exit(0);
 }
@@ -64,7 +61,7 @@ const portIndex = args.indexOf('--port');
 const TRANSPORT_MODE = modeIndex !== -1 ? args[modeIndex + 1] : process.env.MCP_TRANSPORT_MODE || 'stdio';
 const PORT = portIndex !== -1 ? parseInt(args[portIndex + 1]) : parseInt(process.env.MCP_PORT || '3000');
 
-console.error(`Initializing Flowbite MCP Server in ${TRANSPORT_MODE} mode${TRANSPORT_MODE === 'http' ? ` on port ${PORT}` : ''}`)
+console.error(`Initializing figma-context-mcp in ${TRANSPORT_MODE} mode${TRANSPORT_MODE === 'http' ? ` on port ${PORT}` : ''}`)
 
 // Helper function to get data directory path
 const getDataPath = (relativePath: string): string => {
@@ -83,11 +80,11 @@ const getDataPath = (relativePath: string): string => {
 const setupServer = (server: McpServer) => {
 
     server.resource(
-      "flowbite_overview",
-      "flowbite://overview/file",
+      "figma_overview",
+      "figma://overview/file",
       {
-        description: "Overview of the Flowbite MCP server and its capabilities.",
-        title: "Flowbite Overview",
+        description: "Overview of the convert-figma-to-code MCP server and its capabilities.",
+        title: "Overview",
         mimeType: "text/markdown",
       },
       async (uri) => {
@@ -106,11 +103,11 @@ const setupServer = (server: McpServer) => {
     );
   
     server.resource(
-      "flowbite_quickstart",
-      "flowbite://quickstart/file",
+      "figma_quickstart",
+      "figma://quickstart/file",
       {
-        description: "Quickstart guide for using the Flowbite MCP server for Figma to code conversion.",
-        title: "Flowbite Quickstart",
+        description: "Quickstart guide for using convert-figma-to-code MCP server.",
+        title: "Quickstart",
         mimeType: "text/markdown",
       },
       async (uri) => {
@@ -414,7 +411,7 @@ Node data was retrieved successfully.`,
                 text: `# Figma Design Data
 
 ## Context
-You are an AI agent with access to a Flowbite design system via a \`skills\` definition. Use these skills to convert the following Figma design into high-quality code.
+You are an AI agent. Convert the following Figma design into high-quality, production-ready code.
 
 ### File Information
 - **File Key**: ${fileKey}
@@ -439,12 +436,10 @@ ${JSON.stringify(simplifiedNodeData, null, 2)}
 ## Instructions
 
 1. **Analyze Design**: Use the image and JSON data to understand the hierarchy, layout, and intent.
-2. **Apply Skills**: Reference your \`skills\` for Flowbite components. Match visual patterns to the best-fitting Flowbite components.
-3. **Generate Code**:
+2. **Generate Code**:
    - Use Tailwind CSS utility classes.
-   - Use Flowbite CSS variables (\`var(--color-brand-500)\`, etc.) or Tailwind brand classes (\`bg-brand\`, \`rounded-base\`) when possible.
    - Ensure the code is responsive and accessible.
-4. **Output Format**:
+3. **Output Format**:
    - ONLY output the component HTML markup.
    - NO \`<html>\`, \`<head>\`, or \`<body>\` tags.
    - NO external library imports (\`<link>\` or \`<script>\`).`,
@@ -475,10 +470,10 @@ Please check:
 // Start server based on transport mode
 if (TRANSPORT_MODE === 'stdio') {
   // Standard I/O mode for local development and CLI integrations
-  console.error('Starting Flowbite MCP Server in stdio mode...');
+  console.error('Starting figma-context-mcp in stdio mode...');
   
   const server = new McpServer({
-    name: "flowbite-mcp",
+    name: "figma-context-mcp",
     version: "1.0.0",
   }, {
     capabilities: {
@@ -495,21 +490,21 @@ if (TRANSPORT_MODE === 'stdio') {
     process.exit(1);
   });
 
-  console.error('Flowbite MCP Server running in stdio mode');
+  console.error('figma-context-mcp running in stdio mode');
   console.error('Ready to accept requests via standard I/O');
   
 } else if (TRANSPORT_MODE === 'http') {
   // HTTP Streamable mode for server/production deployments
-  console.error(`Starting Flowbite MCP Server in HTTP mode on port ${PORT}...`);
+  console.error(`Starting figma-context-mcp in HTTP mode on port ${PORT}...`);
   
   ExpressHttpStreamableMcpServer(
     {
-      name: "flowbite-mcp",
+      name: "figma-context-mcp",
     },
     setupServer
   );
   
-  console.error(`Flowbite MCP Server running in HTTP mode`);
+  console.error(`figma-context-mcp running in HTTP mode`);
   console.error(`Server listening on http://localhost:${PORT}`);
   console.error(`Health check: http://localhost:${PORT}/health`);
   console.error(`MCP endpoint: http://localhost:${PORT}/mcp`);

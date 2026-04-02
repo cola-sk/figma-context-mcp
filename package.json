@@ -1,12 +1,11 @@
 {
-  "name": "flowbite-mcp",
-  "version": "1.1.5",
-  "mcpName": "io.github.themesberg/flowbite-mcp",
-  "description": "MCP server to convert Figma designs to Flowbite UI components in Tailwind CSS",
+  "name": "figma-context-mcp",
+  "version": "1.0.0",
+  "description": "MCP server that converts Figma designs to production-ready HTML + Tailwind CSS code",
   "main": "build/index.js",
   "type": "module",
   "bin": {
-    "flowbite-mcp": "build/index.js"
+    "figma-context-mcp": "build/index.js"
   },
   "files": [
     "build",
@@ -30,30 +29,29 @@
     "docker:run": "docker run -p 3000:3000 flowbite-mcp",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    "test:npx": "npm pack && tar -xzf flowbite-mcp-*.tgz && node package/build/index.js --version || true && rm -rf package flowbite-mcp-*.tgz"
+    "test:npx": "npm pack && tar -xzf figma-context-mcp-*.tgz && node package/build/index.js --version || true && rm -rf package figma-context-mcp-*.tgz"
   },
   "keywords": [
-    "flowbite",
+    "figma",
+    "figma-to-code",
     "mcp",
     "model-context-protocol",
     "tailwind",
     "tailwindcss",
-    "ui-components",
-    "theme-generator",
     "ai",
     "claude",
     "cursor"
   ],
-  "author": "Themesberg",
+  "author": "",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/themesberg/flowbite-mcp.git"
+    "url": "git+https://github.com/cola-sk/figma-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/themesberg/flowbite-mcp/issues"
+    "url": "https://github.com/cola-sk/figma-mcp/issues"
   },
-  "homepage": "https://github.com/themesberg/flowbite-mcp#readme",
+  "homepage": "https://github.com/cola-sk/figma-mcp#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.22.0",
     "dotenv": "^17.2.3",
