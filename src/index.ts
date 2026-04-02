@@ -19,10 +19,10 @@ const args = process.argv.slice(2);
 if (args.includes('--version') || args.includes('-v')) {
   try {
     const packageJson = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf-8'));
-    console.error(`figma-context-mcp v${packageJson.version}`);
+    console.error(`@sk/figma-context-mcp v${packageJson.version}`);
     process.exit(0);
   } catch (error) {
-    console.error('figma-context-mcp (version unknown)');
+    console.error('@sk/figma-context-mcp (version unknown)');
     process.exit(0);
   }
 }
@@ -30,11 +30,11 @@ if (args.includes('--version') || args.includes('-v')) {
 // Handle --help flag
 if (args.includes('--help') || args.includes('-h')) {
   console.error(`
-figma-context-mcp - AI-powered Figma to Code conversion
+@sk/figma-context-mcp - AI-powered Figma to Code conversion
 
 Usage:
   figma-context-mcp [options]
-  npx figma-context-mcp [options]
+  npx @sk/figma-context-mcp [options]
 
 Options:
   --mode <stdio|http>   Transport mode (default: stdio)
@@ -44,10 +44,10 @@ Options:
 
 Examples:
   # Run in stdio mode (for Claude Desktop, Cursor)
-  npx figma-context-mcp
+  npx @sk/figma-context-mcp
 
   # Run in HTTP server mode on port 3000
-  npx figma-context-mcp --mode http --port 3000
+  npx @sk/figma-context-mcp --mode http --port 3000
 
   # Show version
   npx figma-context-mcp --version

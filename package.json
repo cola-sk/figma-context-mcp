@@ -1,5 +1,5 @@
 {
-  "name": "figma-context-mcp",
+  "name": "@sk/figma-context-mcp",
   "version": "1.0.1",
   "description": "MCP server that converts Figma designs to prompt context for AI agents",
   "main": "build/index.js",
@@ -29,7 +29,7 @@
     "docker:run": "docker run -p 3000:3000 flowbite-mcp",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    "test:npx": "npm pack && tar -xzf figma-context-mcp-*.tgz && node package/build/index.js --version || true && rm -rf package figma-context-mcp-*.tgz"
+    "test:npx": "npm pack && tar -xzf sk-figma-context-mcp-*.tgz && node package/build/index.js --version || true && rm -rf package sk-figma-context-mcp-*.tgz"
   },
   "keywords": [
     "figma",
