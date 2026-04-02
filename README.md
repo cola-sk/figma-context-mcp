@@ -30,7 +30,7 @@ npm install -g @sking7/figma-context-mcp
 
 **或从源代码构建：**
 ```bash
-git clone https://github.com/cola-sk/figma-mcp.git
+git clone https://github.com/cola-sk/figma-context-mcp
 cd figma-context-mcp
 npm install
 npm run build
@@ -166,7 +166,7 @@ npm run build
 ### 本地设置
 
 ```bash
-git clone https://github.com/cola-sk/figma-mcp.git
+git clone https://github.com/cola-sk/figma-context-mcp
 cd figma-context-mcp
 npm install
 npm run build

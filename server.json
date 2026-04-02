@@ -1,10 +1,10 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
-  "name": "io.github.cola-sk/figma-mcp",
+  "name": "io.github.cola-sk/figma-context-mcp",
   "description": "MCP server that converts Figma designs to production-ready HTML + Tailwind CSS code",
-  "websiteUrl": "https://github.com/cola-sk/figma-mcp",
+  "websiteUrl": "https://github.com/cola-sk/figma-context-mcp",
   "repository": {
-    "url": "https://github.com/cola-sk/figma-mcp",
+    "url": "https://github.com/cola-sk/figma-context-mcp",
     "source": "github"
   },
   "version": "1.0.0",

@@ -1,6 +1,6 @@
 {
   "name": "@sking7/figma-context-mcp",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "MCP server that converts Figma designs to prompt context for AI agents",
   "main": "build/index.js",
   "type": "module",
@@ -47,12 +47,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cola-sk/figma-mcp.git"
+    "url": "git+https://github.com/cola-sk/figma-context-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/cola-sk/figma-mcp/issues"
+    "url": "https://github.com/cola-sk/figma-context-mcp/issues"
   },
-  "homepage": "https://github.com/cola-sk/figma-mcp#readme",
+  "homepage": "https://github.com/cola-sk/figma-context-mcp#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.22.0",
     "dotenv": "^17.2.3",
