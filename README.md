@@ -1,23 +1,34 @@
-# figma-context-mcp
+# Figma Context MCP
 
-An [MCP server](https://modelcontextprotocol.io/) that enables AI assistants to convert Figma designs to production-ready frontend code. Simply provide a Figma node URL and get clean HTML markup with Tailwind CSS.
+一个 [MCP 服务器](https://modelcontextprotocol.io/)，用于将 Figma 设计转换为结构化代码上下文，支持 AI 代理生成生产级前端代码。
 
-## Features
+通过提供 Figma 节点 URL，服务器会提取设计数据并生成代码所需的完整上下文信息。
 
-- **Figma to Code** - Convert Figma designs to clean HTML + Tailwind CSS
-- **Figma API Integration** - Extracts layout, colors, typography, spacing, and effects from Figma nodes
-- **Dual Transport** - Works with stdio (Claude Desktop, Cursor) and HTTP server mode
+## 功能
 
-## Quickstart
+- **设计结构提取** - 从 Figma 节点提取布局、尺寸、文本、颜色等设计结构
+- **视觉预览渲染** - 生成设计的图片预览，帮助 AI 代理准确理解设计意图
+- **代理集成** - 与 AI 代理的技能库（如 `component-skills`）无缝配合
+- **多种传输模式** - 支持 stdio（Claude Desktop、Cursor）和 HTTP 服务器模式
 
-### 1. Install
+## 工作流程
 
-**Global install (recommended):**
-```bash
-npm install -g @sking7/figma-context-mcp --registry=https://registry.npmjs.org/
+```
+Figma 设计 → MCP 工具提取 → 结构化数据 + 预览图 → AI 代理
+                                                     ↓
+                                          映射到组件库 → 生成代码
 ```
 
-**Or clone and build locally:**
+## 快速开始
+
+### 1. 安装
+
+**全局安装（推荐）：**
+```bash
+npm install -g @sking7/figma-context-mcp
+```
+
+**或从源代码构建：**
 ```bash
 git clone https://github.com/cola-sk/figma-mcp.git
 cd figma-context-mcp
@@ -25,13 +36,15 @@ npm install
 npm run build
 ```
 
-### 2. Set your Figma access token
+### 2. 配置 Figma 访问令牌
 
-Get your [Figma personal access token](https://help.figma.com/hc/en-us/articles/8085703771159-Manage-personal-access-tokens), then configure your MCP client.
+获取 [Figma 个人访问令牌](https://help.figma.com/hc/en-us/articles/8085703771159-Manage-personal-access-tokens)，然后配置你的 MCP 客户端。
 
 #### GitHub Copilot (VS Code)
 
-Edit `.vscode/mcp.json` in your project root:
+编辑项目根目录的 `.vscode/mcp.json`：
+
+**全局安装版本：**
 ```json
 {
   "servers": {
@@ -39,16 +52,36 @@ Edit `.vscode/mcp.json` in your project root:
       "type": "stdio",
       "command": "figma-context-mcp",
       "env": {
-        "FIGMA_ACCESS_TOKEN": "YOUR_PERSONAL_FIGMA_ACCESS_TOKEN"
+        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN"
       }
     }
   }
 }
 ```
+
+**本地开发版本（使用 git 代码构建）：**
+```json
+{
+  "servers": {
+    "figma-context-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/path/to/figma-mcp/build/index.js"],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN"
+      }
+    }
+  }
+}
+```
+
+> 将 `/path/to/figma-mcp` 替换为你克隆的项目路径，确保已执行 `npm run build`
 
 #### Claude Desktop
 
-Edit `claude_desktop_config.json`:
+编辑 `claude_desktop_config.json`：
+
+**全局安装版本：**
 ```json
 {
   "mcpServers": {
@@ -56,16 +89,36 @@ Edit `claude_desktop_config.json`:
       "type": "stdio",
       "command": "figma-context-mcp",
       "env": {
-        "FIGMA_ACCESS_TOKEN": "YOUR_PERSONAL_FIGMA_ACCESS_TOKEN"
+        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN"
       }
     }
   }
 }
 ```
+
+**本地开发版本（使用 git 代码构建）：**
+```json
+{
+  "mcpServers": {
+    "figma-context-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/path/to/figma-mcp/build/index.js"],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN"
+      }
+    }
+  }
+}
+```
+
+> 将 `/path/to/figma-mcp` 替换为你克隆的项目路径
 
 #### Cursor
 
-Edit `mcp.json`:
+编辑 `mcp.json`：
+
+**全局安装版本：**
 ```json
 {
   "mcpServers": {
@@ -73,26 +126,44 @@ Edit `mcp.json`:
       "type": "stdio",
       "command": "figma-context-mcp",
       "env": {
-        "FIGMA_ACCESS_TOKEN": "YOUR_PERSONAL_FIGMA_ACCESS_TOKEN"
+        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN"
       }
     }
   }
 }
 ```
 
-### 3. Usage
+**本地开发版本（使用 git 代码构建）：**
+```json
+{
+  "mcpServers": {
+    "figma-context-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/path/to/figma-mcp/build/index.js"],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN"
+      }
+    }
+  }
+}
+```
 
-Paste a Figma node URL into your AI assistant:
+> 将 `/path/to/figma-mcp` 替换为你克隆的项目路径
+
+### 3. 使用
+
+向 AI 助手提供 Figma 节点 URL：
 
 ```
-Convert this Figma design: https://www.figma.com/design/FILE_KEY/MyFile?node-id=123-456
+提取这个 Figma 设计的代码上下文：https://www.figma.com/design/FILE_KEY/MyFile?node-id=123-456
 ```
 
-The assistant will fetch the design data and generate clean HTML + Tailwind CSS code.
+助手将获取设计数据并根据其技能库生成对应的代码。
 
-## Development
+## 开发
 
-### Local setup
+### 本地设置
 
 ```bash
 git clone https://github.com/cola-sk/figma-mcp.git
@@ -102,19 +173,19 @@ npm run build
 npm start
 ```
 
-### Run modes
+### 运行模式
 
-**stdio mode (Claude Desktop / Cursor):**
+**stdio 模式（Claude Desktop / Cursor）：**
 ```bash
 npm start
 ```
 
-**HTTP server mode:**
+**HTTP 服务器模式：**
 ```bash
 npm start -- --mode http --port 3000
 ```
 
-Server available at `http://localhost:3000/mcp`.
+服务器地址：`http://localhost:3000/mcp`
 
 ### MCP Inspector
 
@@ -122,20 +193,27 @@ Server available at `http://localhost:3000/mcp`.
 npm run inspector
 ```
 
-## Project structure
+### 开发监控
+
+```bash
+npm run dev
+```
+
+## 项目结构
 
 ```
 figma-context-mcp/
 ├── src/
-│   ├── index.ts              # Main entry point & MCP tool definitions
-│   └── server-runner.ts      # HTTP transport (Express)
+│   ├── index.ts              # MCP 服务器入口和工具定义
+│   └── server-runner.ts      # HTTP 传输层（Express）
 ├── data/
-│   ├── overview.md           # Server overview resource
-│   └── quickstart.md         # Quickstart guide resource
-├── build/                    # Compiled output
+│   ├── overview.md           # 服务器概览资源
+│   └── quickstart.md         # 快速开始指南
+├── build/                    # 编译输出
+├── mcp-config.json           # MCP 服务器配置
 └── package.json
 ```
 
-## License
+## 许可证
 
 MIT

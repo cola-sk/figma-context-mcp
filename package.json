@@ -1,6 +1,6 @@
 {
   "name": "@sking7/figma-context-mcp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "MCP server that converts Figma designs to prompt context for AI agents",
   "main": "build/index.js",
   "type": "module",
