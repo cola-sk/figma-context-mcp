@@ -14,7 +14,7 @@ An [MCP server](https://modelcontextprotocol.io/) that enables AI assistants to 
 
 **Global install (recommended):**
 ```bash
-npm install -g figma-context-mcp
+npm install -g @sking7/figma-context-mcp --registry=https://registry.npmjs.org/
 ```
 
 **Or clone and build locally:**
