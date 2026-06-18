@@ -346,6 +346,74 @@ token 文件路径的推导规则是：
 }
 ```
 
+## 简化 JSON 字段裁剪说明
+
+工具返回的不是 Figma 原始 API JSON，而是经过简化处理的节点数据。以下说明哪些字段会在什么情况下被删除或转换，以及原因。
+
+### 始终删除：空值与默认值
+
+| 字段 / 条件 | 删除时机 | 原因 |
+| --- | --- | --- |
+| 任何值为 `null`、`undefined`、`[]`、`{}` 的字段 | 始终 | 消除深层嵌套对象中的噪声 |
+| `opacity` | 值为 `1`（Figma 默认）时 | 默认值，无需生成 CSS |
+| `blendMode` | 值为 `PASS_THROUGH` 或 `NORMAL` 时 | 均为默认混合模式 |
+| `constraints` | `vertical = TOP` 且 `horizontal = LEFT` 时 | Figma 默认约束，不影响布局 |
+| `isMask` | 值为 `false` 时 | 默认状态 |
+| `rotation` | 绝对值 ≤ 0.001° 时 | 浮点舍入误差，实际为零 |
+| `layoutPositioning`（输出为 `positioning`） | 值为 `AUTO` 时 | 自动布局默认定位方式；非 `AUTO` 时才记录为 `positioning` |
+| `cornerSmoothing` | 值为 `0` 时 | 默认值 |
+| `clipsContent` | 值为 `false` 时 | 默认状态 |
+
+### 画板数组（fills / strokes / effects）
+
+| 条件 | 处理方式 | 原因 |
+| --- | --- | --- |
+| `fill.visible === false` | 该 fill 条目从数组中移除 | 隐藏的 paint 不影响渲染结果 |
+| `stroke.visible === false` | 该 stroke 条目从数组中移除 | 同上 |
+| `effect.visible === false` | 该 effect 条目从数组中移除 | 同上 |
+
+### 颜色值归一化
+
+| 转换 | 原因 |
+| --- | --- |
+| `r / g / b` 浮点数（0.0 – 1.0）→ 整数（0 – 255） | Figma API 以分数编码颜色；整数更符合代码生成惯例 |
+| `a` 保留 2 位小数 | 保持透明度可读，同时不损失精度 |
+
+### 变量 / token 相关字段
+
+| 字段 | 默认行为 | 如何覆盖 | 原因 |
+| --- | --- | --- | --- |
+| `boundVariables` | **完全删除** | 设置 `includeVariables: true` | 原始变量数据体积大；`tokenBindings` 已包含解析后的值 |
+| `explicitVariableModes` | **完全删除** | 设置 `includeVariables: true` | 同上 |
+| `boundVariables` 中的每条 alias（`includeVariables: true` 时） | 精简为 `{ type, id }` — 其余字段删除 | — | alias 的名称、描述等元数据不用于代码生成；`tokenBindings` 已承载可读信息 |
+
+### Token bindings / gaps（仅配置了 token 源时生效）
+
+| 字段 | `compact`（默认） | `full` | compact 模式下字段被删除的原因 |
+| --- | --- | --- | --- |
+| `tokenBindings[]` | `sourcePath`、`property`、`cssVariable`、`codeValue` | 额外包含 `reference`、`resolvedValue`、`resolvedType`、`chain` | 调试元数据，代码生成不需要 |
+| `tokenGaps[]` | `sourcePath`、`property`、`reason` | 额外包含 `variableName`、`collection` | 同上 |
+
+非 `Semantic` / 非 `Component` 集合的变量绑定（如 `Primitive` 集合）**永远不会**被提升为 `tokenBindings`，始终以 `tokenGaps` 形式输出，`reason` 为 `"not a Semantic or Component variable"`。这确保了业务代码只引用 Semantic 或 Component token。
+
+### `position` 字段
+
+当父节点有自动布局（`layoutMode = HORIZONTAL | VERTICAL`）**且**当前节点使用自动定位（`layoutPositioning = AUTO`）时，`position`（相对父节点的 x/y 偏移）会被**省略**。仅在父节点无自动布局、或节点明确使用绝对定位时才输出。原因：自动布局中坐标由布局引擎控制，在 CSS 中硬编码会与布局冲突。
+
+### fills / strokes 中的 `literalFallback`
+
+`literalFallback`（原始 hex / rgba 颜色字符串）**仅在** `styleStrategy = preferTokens` 时输出，`tokensOnly` 模式下**完全省略**。原因：防止 agent 在要求纯 token 输出时默默使用字面量颜色值。
+
+### 向量路径
+
+`vectorPaths` 默认**删除**，除非设置 `includeVectorPaths: true`（或环境变量 `FIGMA_INCLUDE_VECTOR_PATHS=true`）。原因：路径数据体积大，组件库代码生成几乎不需要。
+
+### 顶层 components / styles 映射表
+
+节点响应中的 `components`、`componentSets`、`styles` 映射表会被精简为只保留 `{ key, name, description, componentSetId, styleType }`，其余所有元数据（文档链接、remote 标记等）均删除。原因：组件映射只需要名称和 key。
+
+---
+
 ## 开发
 
 ### 本地设置
