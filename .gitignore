@@ -4,4 +4,3 @@ build/
 .env*
 .DS_Store
 .npmrc
-.claude

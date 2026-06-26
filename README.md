@@ -8,17 +8,15 @@
 
 - **设计结构提取** - 从 Figma 节点提取布局、尺寸、文本、颜色等设计结构
 - **视觉预览渲染** - 生成设计的图片预览，帮助 AI 代理准确理解设计意图
-- **Token-aware 样式生成** - 读取 `ti-d-variables-token.json`，把 Figma `boundVariables` 解析成可用于代码生成的 Semantic / Component token
-- **样式策略控制** - 支持 `preferTokens`（token 优先）和 `tokensOnly`（token 强制）两种策略
 - **代理集成** - 与 AI 代理的技能库（如 `component-skills`）无缝配合
 - **多种传输模式** - 支持 stdio（Claude Desktop、Cursor）和 HTTP 服务器模式
 
 ## 工作流程
 
 ```
-Figma 设计 → MCP 工具提取 → 结构化数据 + 预览图 + tokenBindings → AI 代理
-                                                                    ↓
-                                      Semantic / Component token + CSS variable → 生成代码
+Figma 设计 → MCP 工具提取 → 结构化数据 + 预览图 → AI 代理
+                                                     ↓
+                                          映射到组件库 → 生成代码
 ```
 
 ## 快速开始
@@ -38,141 +36,9 @@ npm install
 npm run build
 ```
 
-### 2. 配置 MCP 环境变量
+### 2. 配置 Figma 访问令牌
 
 获取 [Figma 个人访问令牌](https://help.figma.com/hc/en-us/articles/8085703771159-Manage-personal-access-tokens)，然后配置你的 MCP 客户端。
-
-最小可用配置只需要 Figma token：
-
-```json
-{
-  "env": {
-    "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN"
-  }
-}
-```
-
-如果要让 MCP 把 Figma `boundVariables` 解析成项目里的 CSS variables，推荐同时配置 token 仓库：
-
-```json
-{
-  "env": {
-    "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN",
-    "TI_DESIGN_TOKEN_DIR": "/Users/YOUR_NAME/coding/ti-d-design-token",
-    "TI_TOKEN_SET": "d"
-  }
-}
-```
-
-`TI_DESIGN_TOKEN_DIR` 建议始终使用绝对路径，因为不同 editor / agent 启动 MCP server 时的当前工作目录不一定相同。MCP 会根据 `TI_TOKEN_SET` 自动读取 token 仓库 `manifest.json`，推导出 token 变量文件、CSS variable metadata 和远程变量 alias 映射文件。
-
-#### 环境变量说明
-
-| 环境变量 | 必填 | 默认值 | 作用 |
-| --- | --- | --- | --- |
-| `FIGMA_ACCESS_TOKEN` | 是 | 无 | Figma Personal Access Token。用于调用 Figma node API 和 image API。 |
-| `TI_DESIGN_TOKEN_DIR` | 否 | 无 | `ti-d-design-token` 仓库的绝对路径。配置后 MCP 会从该仓库读取 token 文件，并把 Figma 变量绑定解析成 `tokenBindings` / `tokenGaps`。不配置时仍会返回设计结构，但不会生成 token-backed CSS variable 上下文。 |
-| `TI_TOKEN_SET` | 否 | `d` | token set id，例如 `d` 或 `b`。仅在配置了 `TI_DESIGN_TOKEN_DIR`，且工具调用没有传 `tokenSetId` 时生效。 |
-| `TOKEN_SET_ID` | 否 | `d` | `TI_TOKEN_SET` 的兼容别名。优先级低于工具参数 `tokenSetId` 和 `TI_TOKEN_SET`。 |
-| `FIGMA_STYLE_STRATEGY` | 否 | `preferTokens` | 工具调用没有传 `styleStrategy` 时的默认样式策略。有效值只有 `preferTokens` 和 `tokensOnly`；其他值会被当成 `preferTokens`。 |
-| `FIGMA_TOKEN_DETAIL` | 否 | `compact` | token 元数据输出详细程度。`compact` 只保留代码生成需要的 `sourcePath`、`property`、`cssVariable`、`codeValue`；`full` 会额外输出 token reference、resolved value、chain 等调试信息。只有配置了 token registry 时生效。 |
-| `FIGMA_INCLUDE_VARIABLES` | 否 | `false` | 是否在简化 JSON 中输出 Figma 原始 `boundVariables` / `explicitVariableModes`。只有字符串 `1` 或 `true` 会开启。日常生成代码建议关闭，排查 Figma 是否返回变量绑定时再打开。 |
-| `FIGMA_INCLUDE_VECTOR_PATHS` | 否 | `false` | 是否请求并输出 raw vector path 数据。只有字符串 `1` 或 `true` 会开启。开启后 Figma node API 会追加 `geometry=paths`，响应体可能明显变大。 |
-| `FIGMA_VARIABLES_TOKEN_FILE` | 否 | 由 `TI_DESIGN_TOKEN_DIR` + `TI_TOKEN_SET` 推导 | 高级覆盖项，直接指定 `ti-*-variables-token.json` 绝对路径。优先级高于从 token 仓库推导的路径。 |
-| `FIGMA_CSS_VARIABLES_FILE` | 否 | 由 `TI_DESIGN_TOKEN_DIR` + `TI_TOKEN_SET` 推导 | 高级覆盖项，直接指定 CSS variable metadata 文件，例如 `ti-d-css-variables.json`。用于把 token 映射成 `var(--...)`。 |
-| `FIGMA_VARIABLE_ALIAS_FILE` | 否 | 由 `TI_DESIGN_TOKEN_DIR` + `TI_TOKEN_SET` 推导 | 高级覆盖项，直接指定 `remote-variable-aliases.json`。用于把 Figma remote variable id 映射到本地 token variable id。 |
-
-#### 工具参数说明
-
-这些参数是在 agent 调用 `convert-figma-to-code` 工具时传入的。工具参数优先级高于环境变量。
-
-| 工具参数 | 必填 | 默认值 | 对应 env | 作用 |
-| --- | --- | --- | --- | --- |
-| `figmaNodeUrl` | 是 | 无 | 无 | Figma 节点 URL，必须包含 `node-id`。 |
-| `styleStrategy` | 否 | `FIGMA_STYLE_STRATEGY`，再回退到 `preferTokens` | `FIGMA_STYLE_STRATEGY` | 控制生成提示对 token 的要求。`preferTokens` 表示有 token 就用 token，没 token 才允许 `literalFallback`；`tokensOnly` 表示样式必须来自 token，缺失时输出 `tokenGaps` 并要求 agent 先报告缺口。 |
-| `tokenDetail` | 否 | `FIGMA_TOKEN_DETAIL`，再回退到 `compact` | `FIGMA_TOKEN_DETAIL` | 控制 token 元数据体积。日常代码生成使用默认 `compact`；排查 token 映射链路时使用 `full`。 |
-| `designTokenDir` | 否 | `TI_DESIGN_TOKEN_DIR` | `TI_DESIGN_TOKEN_DIR` | 覆盖 token 仓库路径。 |
-| `tokenSetId` | 否 | `TI_TOKEN_SET` / `TOKEN_SET_ID`，再回退到 `d` | `TI_TOKEN_SET` / `TOKEN_SET_ID` | 覆盖 token set id。 |
-| `includeVariables` | 否 | `FIGMA_INCLUDE_VARIABLES`，再回退到 `false` | `FIGMA_INCLUDE_VARIABLES` | 是否输出 compact raw `boundVariables`。不影响 MCP 内部 token 解析；只控制最终 JSON 是否带原始变量字段。 |
-| `includeVectorPaths` | 否 | `FIGMA_INCLUDE_VECTOR_PATHS`，再回退到 `false` | `FIGMA_INCLUDE_VECTOR_PATHS` | 是否请求并输出 raw vector path 数据。 |
-| `variablesTokenFile` | 否 | `FIGMA_VARIABLES_TOKEN_FILE`，再回退到自动推导路径 | `FIGMA_VARIABLES_TOKEN_FILE` | 覆盖变量 token 文件路径。 |
-| `cssVariablesFile` | 否 | `FIGMA_CSS_VARIABLES_FILE`，再回退到自动推导路径 | `FIGMA_CSS_VARIABLES_FILE` | 覆盖 CSS variable metadata 文件路径。 |
-| `variableAliasFile` | 否 | `FIGMA_VARIABLE_ALIAS_FILE`，再回退到自动推导路径 | `FIGMA_VARIABLE_ALIAS_FILE` | 覆盖 remote variable alias 映射文件路径。 |
-
-#### 优先级规则
-
-同一个配置项存在多种来源时，按下面顺序决定最终值：
-
-```text
-工具调用参数 > 环境变量 > 默认值
-```
-
-token 文件路径的推导规则是：
-
-```text
-显式文件参数 / 文件 env
-  > TI_DESIGN_TOKEN_DIR + manifest.json 中的 token set 配置
-  > TI_DESIGN_TOKEN_DIR/packages/{tokenSetId}/dist 或 mappings 的约定路径
-```
-
-#### 常见配置场景
-
-日常页面生成，推荐使用 token 但允许缺失项回退：
-
-```json
-{
-  "env": {
-    "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN",
-    "TI_DESIGN_TOKEN_DIR": "/Users/YOUR_NAME/coding/ti-d-design-token",
-    "TI_TOKEN_SET": "d",
-    "FIGMA_STYLE_STRATEGY": "preferTokens",
-    "FIGMA_INCLUDE_VARIABLES": "false",
-    "FIGMA_INCLUDE_VECTOR_PATHS": "false"
-  }
-}
-```
-
-检查设计稿 token 覆盖率，缺 token 时不希望 agent 写硬编码值：
-
-```json
-{
-  "env": {
-    "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN",
-    "TI_DESIGN_TOKEN_DIR": "/Users/YOUR_NAME/coding/ti-d-design-token",
-    "TI_TOKEN_SET": "d",
-    "FIGMA_STYLE_STRATEGY": "tokensOnly"
-  }
-}
-```
-
-排查 Figma 是否真的返回变量绑定：
-
-```json
-{
-  "env": {
-    "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN",
-    "TI_DESIGN_TOKEN_DIR": "/Users/YOUR_NAME/coding/ti-d-design-token",
-    "TI_TOKEN_SET": "d",
-    "FIGMA_INCLUDE_VARIABLES": "true"
-  }
-}
-```
-
-只读取设计结构，不做 token 解析：
-
-```json
-{
-  "env": {
-    "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN",
-    "FIGMA_INCLUDE_VARIABLES": "false",
-    "FIGMA_INCLUDE_VECTOR_PATHS": "false"
-  }
-}
-```
-
-这种配置不要设置 `TI_DESIGN_TOKEN_DIR`、`FIGMA_VARIABLES_TOKEN_FILE`、`FIGMA_CSS_VARIABLES_FILE` 或 `FIGMA_VARIABLE_ALIAS_FILE`。
-
-不配置 token registry 时，MCP 会把 token resolution 视为 disabled，不输出 `tokenBindings` / `tokenGaps`，避免把“当前没有 token 文件可解析”当成设计稿 token 覆盖缺口传给 LLM。
 
 #### GitHub Copilot (VS Code)
 
@@ -186,9 +52,7 @@ token 文件路径的推导规则是：
       "type": "stdio",
       "command": "figma-context-mcp",
       "env": {
-        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN",
-        "TI_DESIGN_TOKEN_DIR": "/Users/YOUR_NAME/coding/ti-d-design-token",
-        "TI_TOKEN_SET": "d"
+        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN"
       }
     }
   }
@@ -204,9 +68,7 @@ token 文件路径的推导规则是：
       "command": "node",
       "args": ["/path/to/figma-mcp/build/index.js"],
       "env": {
-        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN",
-        "TI_DESIGN_TOKEN_DIR": "/Users/YOUR_NAME/coding/ti-d-design-token",
-        "TI_TOKEN_SET": "d"
+        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN"
       }
     }
   }
@@ -227,9 +89,7 @@ token 文件路径的推导规则是：
       "type": "stdio",
       "command": "figma-context-mcp",
       "env": {
-        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN",
-        "TI_DESIGN_TOKEN_DIR": "/Users/YOUR_NAME/coding/ti-d-design-token",
-        "TI_TOKEN_SET": "d"
+        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN"
       }
     }
   }
@@ -245,9 +105,7 @@ token 文件路径的推导规则是：
       "command": "node",
       "args": ["/path/to/figma-mcp/build/index.js"],
       "env": {
-        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN",
-        "TI_DESIGN_TOKEN_DIR": "/Users/YOUR_NAME/coding/ti-d-design-token",
-        "TI_TOKEN_SET": "d"
+        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN"
       }
     }
   }
@@ -268,9 +126,7 @@ token 文件路径的推导规则是：
       "type": "stdio",
       "command": "figma-context-mcp",
       "env": {
-        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN",
-        "TI_DESIGN_TOKEN_DIR": "/Users/YOUR_NAME/coding/ti-d-design-token",
-        "TI_TOKEN_SET": "d"
+        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN"
       }
     }
   }
@@ -286,9 +142,7 @@ token 文件路径的推导规则是：
       "command": "node",
       "args": ["/path/to/figma-mcp/build/index.js"],
       "env": {
-        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN",
-        "TI_DESIGN_TOKEN_DIR": "/Users/YOUR_NAME/coding/ti-d-design-token",
-        "TI_TOKEN_SET": "d"
+        "FIGMA_ACCESS_TOKEN": "YOUR_TOKEN"
       }
     }
   }
@@ -306,45 +160,6 @@ token 文件路径的推导规则是：
 ```
 
 助手将获取设计数据并根据其技能库生成对应的代码。
-
-工具支持两个样式策略：
-
-```json
-{
-  "figmaNodeUrl": "https://www.figma.com/design/FILE_KEY/MyFile?node-id=123-456",
-  "styleStrategy": "preferTokens",
-  "tokenDetail": "compact"
-}
-```
-
-`preferTokens` 是默认策略：Figma 节点上有 Semantic 或 Component variable 绑定时，输出 `tokenBindings` 并要求代码使用变量；没有绑定时允许使用 `literalFallback`。`tokenDetail` 默认是 `compact`，会保留 CSS variable 代码生成所需的 `codeValue`，但省略调试字段。
-
-```json
-{
-  "figmaNodeUrl": "https://www.figma.com/design/FILE_KEY/MyFile?node-id=123-456",
-  "styleStrategy": "tokensOnly"
-}
-```
-
-`tokensOnly` 是强制策略：颜色、圆角、间距、描边、阴影、字体等样式值必须来自 Semantic 或 Component token。缺失绑定时，输出 `tokenGaps`，下游 agent 应先报告缺失 token，不生成最终页面代码，也不能写硬编码值。
-
-返回内容中的 `Token Usage Summary` 会同时区分“是否可以生成代码”和“是否可以生成纯 token 代码”：
-
-```text
-- Can generate code: yes
-- Can generate token-pure code: no
-```
-
-`preferTokens` 下即使存在 `tokenGaps`，也可能允许生成代码，因为缺失项可按策略使用 `literalFallback`；但只要存在 `tokenGaps`，就不能视为 token-pure。`tokensOnly` 下存在任何 `tokenGaps` 时，`Can generate code` 会是 `no`，agent 应先报告缺口。
-
-如果需要排查某个 Figma variable 到 CSS variable 的完整链路，可以临时使用：
-
-```json
-{
-  "figmaNodeUrl": "https://www.figma.com/design/FILE_KEY/MyFile?node-id=123-456",
-  "tokenDetail": "full"
-}
-```
 
 ## 开发
 
@@ -390,7 +205,6 @@ npm run dev
 figma-context-mcp/
 ├── src/
 │   ├── index.ts              # MCP 服务器入口和工具定义
-│   ├── token-utils.ts        # Figma variable 解析、token 策略和 CSS variable 映射
 │   └── server-runner.ts      # HTTP 传输层（Express）
 ├── data/
 │   ├── overview.md           # 服务器概览资源
