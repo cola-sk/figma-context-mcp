@@ -8,6 +8,11 @@ import { fileURLToPath } from 'url';
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import {
+  FIGMA_CONTEXT_CONFIG_FILE,
+  loadFigmaContextConfig,
+  TokenDetail,
+} from './config-utils.js';
+import {
   createStyleValue,
   createTokenUsageSummary,
   extractNodeTokenContext,
@@ -17,8 +22,6 @@ import {
   loadTokenRegistry,
   StyleStrategy,
 } from './token-utils.js';
-
-type TokenDetail = 'compact' | 'full';
 
 // Get __dirname equivalent in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -40,6 +43,33 @@ const getDefaultIncludeVectorPaths = (): boolean =>
 const getDefaultTokenDetail = (): TokenDetail => {
   const value = process.env.FIGMA_TOKEN_DETAIL;
   return value === 'full' ? 'full' : 'compact';
+};
+
+const getWorkspaceRootUris = async (server: McpServer): Promise<{
+  rootUris: string[];
+  warnings: string[];
+}> => {
+  if (!server.server.getClientCapabilities()?.roots) {
+    return {
+      rootUris: [],
+      warnings: [],
+    };
+  }
+
+  try {
+    const result = await server.server.listRoots(undefined, { timeout: 1000 });
+    return {
+      rootUris: result.roots.map((root) => root.uri),
+      warnings: [],
+    };
+  } catch (error) {
+    return {
+      rootUris: [],
+      warnings: [
+        `Unable to list MCP workspace roots while searching ${FIGMA_CONTEXT_CONFIG_FILE}; falling back to server cwd: ${error instanceof Error ? error.message : String(error)}`,
+      ],
+    };
+  }
 };
 
 const isEmptyValue = (value: unknown): boolean =>
@@ -263,15 +293,15 @@ const setupServer = (server: McpServer) => {
       'Fetches a Figma node and rendered image from the Figma API, resolves bound Figma variables through the configured token file, and returns token-aware code generation context.',
       {
         figmaNodeUrl: z.string().describe('The URL of the Figma node (e.g., https://www.figma.com/design/fileKey/fileName?node-id=123-456)'),
-        styleStrategy: z.enum(['preferTokens', 'tokensOnly']).optional().describe('Controls generated style guidance. preferTokens uses token variables when available and falls back to literals. tokensOnly requires token variables and reports token gaps instead of allowing literal style values. Defaults to FIGMA_STYLE_STRATEGY, then preferTokens.'),
-        tokenDetail: z.enum(['compact', 'full']).optional().describe('Controls token metadata verbosity in the returned JSON. compact keeps code-generation essentials; full includes references, resolved values, and token chains for debugging. Defaults to FIGMA_TOKEN_DETAIL, then compact.'),
-        designTokenDir: z.string().optional().describe('Optional absolute path to the ti-d-design-token repository. Defaults to TI_DESIGN_TOKEN_DIR.'),
-        tokenSetId: z.string().optional().describe('Optional token set id such as d or b. Defaults to TI_TOKEN_SET, then d.'),
-        includeVariables: z.boolean().optional().describe('Includes compact raw Figma boundVariables in the simplified JSON for debugging. Defaults to FIGMA_INCLUDE_VARIABLES.'),
-        includeVectorPaths: z.boolean().optional().describe('Whether to request and include raw vector path data. Defaults to FIGMA_INCLUDE_VECTOR_PATHS.'),
-        variablesTokenFile: z.string().optional().describe('Advanced override: absolute path to packages/d/dist/ti-d-variables-token.json. Defaults to FIGMA_VARIABLES_TOKEN_FILE, then TI_DESIGN_TOKEN_DIR + TI_TOKEN_SET.'),
-        cssVariablesFile: z.string().optional().describe('Advanced override: absolute path to packages/d/dist/ti-d-css-variables.json or packages/d/mappings/css-variable-map.json. Defaults to FIGMA_CSS_VARIABLES_FILE, then TI_DESIGN_TOKEN_DIR + TI_TOKEN_SET.'),
-        variableAliasFile: z.string().optional().describe('Advanced override: absolute path to remote-variable-aliases.json. Defaults to FIGMA_VARIABLE_ALIAS_FILE, then TI_DESIGN_TOKEN_DIR + TI_TOKEN_SET.'),
+        styleStrategy: z.enum(['preferTokens', 'tokensOnly']).optional().describe('Controls generated style guidance. preferTokens uses token variables when available and falls back to literals. tokensOnly requires token variables and reports token gaps instead of allowing literal style values. Defaults to .figma-context-mcp.json, then FIGMA_STYLE_STRATEGY, then preferTokens.'),
+        tokenDetail: z.enum(['compact', 'full']).optional().describe('Controls token metadata verbosity in the returned JSON. compact keeps code-generation essentials; full includes references, resolved values, and token chains for debugging. Defaults to .figma-context-mcp.json, then FIGMA_TOKEN_DETAIL, then compact.'),
+        designTokenDir: z.string().optional().describe('Optional absolute path to the ti-d-design-token repository. Defaults to .figma-context-mcp.json, then TI_DESIGN_TOKEN_DIR.'),
+        tokenSetId: z.string().optional().describe('Optional token set id such as d or b. Defaults to .figma-context-mcp.json, then TI_TOKEN_SET, then d.'),
+        includeVariables: z.boolean().optional().describe('Includes compact raw Figma boundVariables in the simplified JSON for debugging. Defaults to .figma-context-mcp.json, then FIGMA_INCLUDE_VARIABLES.'),
+        includeVectorPaths: z.boolean().optional().describe('Whether to request and include raw vector path data. Defaults to .figma-context-mcp.json, then FIGMA_INCLUDE_VECTOR_PATHS.'),
+        variablesTokenFile: z.string().optional().describe('Advanced override: absolute path to packages/d/dist/ti-d-variables-token.json. Defaults to .figma-context-mcp.json, then FIGMA_VARIABLES_TOKEN_FILE, then TI_DESIGN_TOKEN_DIR + tokenSetId.'),
+        cssVariablesFile: z.string().optional().describe('Advanced override: absolute path to packages/d/dist/ti-d-css-variables.json or packages/d/mappings/css-variable-map.json. Defaults to .figma-context-mcp.json, then FIGMA_CSS_VARIABLES_FILE, then TI_DESIGN_TOKEN_DIR + tokenSetId.'),
+        variableAliasFile: z.string().optional().describe('Advanced override: absolute path to remote-variable-aliases.json. Defaults to .figma-context-mcp.json, then FIGMA_VARIABLE_ALIAS_FILE, then TI_DESIGN_TOKEN_DIR + tokenSetId.'),
       },
       async ({
         figmaNodeUrl,
@@ -324,17 +354,28 @@ Example for your MCP config:
             };
           }
 
-          const effectiveStyleStrategy = styleStrategy || getDefaultStyleStrategy();
-          const effectiveTokenDetail = tokenDetail || getDefaultTokenDetail();
-          const shouldIncludeVariables = includeVariables ?? getDefaultIncludeVariables();
-          const shouldIncludeVectorPaths = includeVectorPaths ?? getDefaultIncludeVectorPaths();
+          const workspaceRoots = await getWorkspaceRootUris(server);
+          const figmaContextConfig = loadFigmaContextConfig(workspaceRoots.rootUris);
+          const projectConfig = figmaContextConfig.config;
+          const configWarnings = [
+            ...workspaceRoots.warnings,
+            ...figmaContextConfig.warnings,
+          ];
+          const effectiveStyleStrategy = styleStrategy || projectConfig.styleStrategy || getDefaultStyleStrategy();
+          const effectiveTokenDetail = tokenDetail || projectConfig.tokenDetail || getDefaultTokenDetail();
+          const shouldIncludeVariables = includeVariables ?? projectConfig.includeVariables ?? getDefaultIncludeVariables();
+          const shouldIncludeVectorPaths = includeVectorPaths ?? projectConfig.includeVectorPaths ?? getDefaultIncludeVectorPaths();
           const tokenLoadResult = loadTokenRegistry({
-            designTokenDir,
-            tokenSetId,
-            variablesTokenFile,
-            cssVariablesFile,
-            variableAliasFile,
+            designTokenDir: designTokenDir || projectConfig.designTokenDir,
+            tokenSetId: tokenSetId || projectConfig.tokenSetId,
+            variablesTokenFile: variablesTokenFile || projectConfig.variablesTokenFile,
+            cssVariablesFile: cssVariablesFile || projectConfig.cssVariablesFile,
+            variableAliasFile: variableAliasFile || projectConfig.variableAliasFile,
           });
+          const tokenWarnings = [
+            ...configWarnings,
+            ...tokenLoadResult.warnings,
+          ];
           const tokenRegistry = tokenLoadResult.registry;
 
           if (!tokenRegistry && effectiveStyleStrategy === 'tokensOnly') {
@@ -354,7 +395,7 @@ Advanced override:
 FIGMA_VARIABLES_TOKEN_FILE=/path/to/ti-d-design-token/packages/d/dist/ti-d-variables-token.json
 
 Details:
-${tokenLoadResult.warnings.map((warning) => `- ${warning}`).join('\n')}`,
+${tokenWarnings.map((warning) => `- ${warning}`).join('\n')}`,
                 },
               ],
             };
@@ -826,7 +867,7 @@ Node data was retrieved successfully.`,
 
           const tokenUsageSummary = createTokenUsageSummary(
             simplifiedNodeData,
-            tokenLoadResult.warnings,
+            tokenWarnings,
           );
           const prettyNodeData = JSON.stringify(simplifiedNodeData, null, 2);
           const nodeDataJson = prettyNodeData.length > 200000
@@ -848,12 +889,14 @@ Node data was retrieved successfully.`,
 
           const tokenMetadataLines = tokenRegistry
             ? `- **Token Detail**: ${effectiveTokenDetail}
+- **Project Config**: ${figmaContextConfig.configPath || 'Not found'}
 - **Token Set**: ${tokenRegistry.tokenSetId || 'Not configured'}
 - **Design Token Dir**: ${tokenRegistry.designTokenDir || 'Not configured'}
 - **Token File**: ${tokenRegistry.sourceFile || 'Not configured'}
 - **CSS Variable Metadata**: ${tokenRegistry.cssVariablesFile || 'Not configured'}
 - **Remote Variable Alias Map**: ${tokenRegistry.variableAliasFile || 'Not configured'}`
             : `- **Token Resolution**: disabled
+- **Project Config**: ${figmaContextConfig.configPath || 'Not found'}
 - **Reason**: no usable design token registry is configured`;
 
           const tokenGuidanceSection = tokenRegistry

@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 12px;
+      }
+
+      body {
+        margin: 0;
+        background: var(--figma-color-bg);
+        color: var(--figma-color-text);
+      }
+
+      .shell {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 650;
+      }
+
+      .meta,
+      .status,
+      .summary {
+        color: var(--figma-color-text-secondary);
+        line-height: 18px;
+      }
+
+      .panel {
+        border: 1px solid var(--figma-color-border);
+        border-radius: 6px;
+        padding: 12px;
+        display: grid;
+        gap: 10px;
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        line-height: 18px;
+      }
+
+      .field {
+        display: grid;
+        gap: 6px;
+      }
+
+      select,
+      input[type="number"],
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid var(--figma-color-border);
+        border-radius: 4px;
+        background: var(--figma-color-bg);
+        color: var(--figma-color-text);
+        font: inherit;
+      }
+
+      select,
+      input[type="number"] {
+        height: 30px;
+        padding: 0 8px;
+      }
+
+      textarea {
+        min-height: 180px;
+        padding: 8px;
+        resize: vertical;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 11px;
+        line-height: 16px;
+      }
+
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .secondary-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      button {
+        height: 32px;
+        border: 1px solid var(--figma-color-border);
+        border-radius: 6px;
+        background: var(--figma-color-bg-secondary);
+        color: var(--figma-color-text);
+        font: inherit;
+        cursor: pointer;
+      }
+
+      button.primary {
+        border-color: var(--figma-color-bg-brand);
+        background: var(--figma-color-bg-brand);
+        color: var(--figma-color-text-onbrand);
+      }
+
+      button:disabled {
+        cursor: default;
+        opacity: 0.55;
+      }
+
+      .error {
+        color: var(--figma-color-text-danger);
+        line-height: 18px;
+      }
+
+      .progress-track {
+        width: 100%;
+        height: 8px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: var(--figma-color-bg-secondary);
+      }
+
+      .progress-bar {
+        width: 0%;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--figma-color-bg-brand);
+        transition: width 160ms ease;
+      }
+
+      .progress-detail {
+        display: grid;
+        gap: 4px;
+        color: var(--figma-color-text-secondary);
+        line-height: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div>
+        <h1>Component Registry Exporter</h1>
+        <div id="meta" class="meta">读取文件信息中...</div>
+      </div>
+
+      <div class="panel">
+        <div class="field">
+          <label for="exportType">导出类型</label>
+          <select id="exportType">
+            <option value="registry">组件注册表 registry</option>
+            <option value="design-spec">设计规格 design-spec</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="scope">扫描范围</label>
+          <select id="scope">
+            <option value="current-page">当前页</option>
+            <option value="selection">当前选中</option>
+            <option value="all-pages">全文件</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="exportRegistry" class="primary">导出 JSON</button>
+      </div>
+
+      <div class="panel">
+        <div class="progress-track">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+        <div id="progressText" class="progress-detail">
+          <div>等待导出</div>
+          <div id="progressStats"></div>
+        </div>
+      </div>
+
+      <div class="secondary-actions">
+        <button id="copy" disabled>复制 JSON</button>
+        <button id="download" disabled>下载 JSON</button>
+      </div>
+
+      <div id="status" class="status">准备就绪</div>
+      <div id="summary" class="summary"></div>
+      <div id="error" class="error"></div>
+      <textarea id="output" spellcheck="false" placeholder="导出结果会显示在这里"></textarea>
+    </div>
+
+    <script>
+      const state = {
+        lastJson: '',
+        fileName: 'figma-component-export.json',
+        running: false,
+      }
+
+      const nodes = {
+        meta: document.getElementById('meta'),
+        exportType: document.getElementById('exportType'),
+        scope: document.getElementById('scope'),
+        exportRegistry: document.getElementById('exportRegistry'),
+        progressBar: document.getElementById('progressBar'),
+        progressText: document.getElementById('progressText'),
+        progressStats: document.getElementById('progressStats'),
+        copy: document.getElementById('copy'),
+        download: document.getElementById('download'),
+        status: document.getElementById('status'),
+        summary: document.getElementById('summary'),
+        error: document.getElementById('error'),
+        output: document.getElementById('output'),
+      }
+
+      nodes.exportRegistry.onclick = () => sendExport('EXPORT_REGISTRY')
+      nodes.copy.onclick = copyJson
+      nodes.download.onclick = downloadJson
+
+      window.onmessage = (event) => {
+        const message = event.data.pluginMessage
+        if (!message) return
+
+        if (message.type === 'READY') {
+          const info = message.payload
+          nodes.meta.textContent = `${info.fileName} / ${info.currentPage} / 已选 ${info.selectionCount} 个节点`
+          return
+        }
+
+        if (message.type === 'STATUS') {
+          nodes.status.textContent = message.message
+          return
+        }
+
+        if (message.type === 'PROGRESS') {
+          updateProgress(message.progress)
+          return
+        }
+
+        if (message.type === 'ERROR') {
+          setRunning(false)
+          nodes.error.textContent = message.message
+          nodes.status.textContent = '导出失败'
+          return
+        }
+
+        if (message.type === 'RESULT') {
+          setRunning(false)
+          state.fileName = message.fileName || state.fileName
+          state.lastJson = JSON.stringify(message.payload, null, 2)
+          nodes.output.value = state.lastJson
+          nodes.summary.textContent = formatSummary(message.summary)
+          nodes.status.textContent = `导出完成：${state.fileName}`
+          nodes.error.textContent = ''
+          updateSecondaryActions()
+        }
+      }
+
+      function sendExport(type) {
+        setRunning(true)
+        nodes.error.textContent = ''
+        nodes.summary.textContent = ''
+        nodes.status.textContent = '准备导出...'
+        parent.postMessage({
+          pluginMessage: {
+            type,
+            options: getOptions(),
+          },
+        }, '*')
+      }
+
+      function getOptions() {
+        return {
+          exportType: nodes.exportType.value,
+          scope: nodes.scope.value,
+        }
+      }
+
+      function setRunning(value) {
+        state.running = value
+        nodes.exportRegistry.disabled = value
+      }
+
+      function updateSecondaryActions() {
+        const hasJson = Boolean(state.lastJson)
+        nodes.copy.disabled = !hasJson
+        nodes.download.disabled = !hasJson
+      }
+
+      async function copyJson() {
+        if (!state.lastJson) return
+        await navigator.clipboard.writeText(state.lastJson)
+        nodes.status.textContent = '已复制 JSON'
+      }
+
+      function downloadJson() {
+        if (!state.lastJson) return
+        const blob = new Blob([state.lastJson], { type: 'application/json;charset=utf-8' })
+        const url = URL.createObjectURL(blob)
+        const link = document.createElement('a')
+        link.href = url
+        link.download = state.fileName
+        document.body.appendChild(link)
+        link.click()
+        link.remove()
+        URL.revokeObjectURL(url)
+      }
+
+      function formatSummary(summary) {
+        if (!summary || typeof summary !== 'object') return ''
+        return Object.entries(summary)
+          .filter(([, value]) => value !== undefined && value !== null)
+          .map(([key, value]) => `${key}: ${value}`)
+          .join(' / ')
+      }
+
+      function updateProgress(progress) {
+        if (!progress || typeof progress !== 'object') return
+
+        const total = Number(progress.total) || 0
+        const value = Number(progress.value) || 0
+        const percent = total > 0 ? Math.max(0, Math.min(100, Math.round((value / total) * 100))) : 0
+        nodes.progressBar.style.width = `${percent}%`
+
+        const label = progress.label || '处理中'
+        nodes.progressText.firstElementChild.textContent = `${label} (${percent}%)`
+
+        const detail = progress.detail
+        if (detail) {
+          const parts = []
+          if (detail.currentPage) parts.push(`当前: ${detail.currentPage}`)
+          if (detail.pageComponentSetCount !== undefined) parts.push(`本页组件集: ${detail.pageComponentSetCount}`)
+          if (detail.pageLooseComponentCount !== undefined) parts.push(`本页独立组件: ${detail.pageLooseComponentCount}`)
+          if (detail.totalComponentSetCount !== undefined) parts.push(`累计组件集: ${detail.totalComponentSetCount}`)
+          if (detail.totalLooseComponentCount !== undefined) parts.push(`累计独立组件: ${detail.totalLooseComponentCount}`)
+          nodes.progressStats.textContent = parts.join(' / ')
+        } else {
+          nodes.progressStats.textContent = total > 0 ? `${value}/${total}` : ''
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,283 @@
+{
+  "_meta": {
+    "description": "Mapping from Figma componentId to TiComponents (or Element Plus fallback). Keyed by Figma componentId (stable across renames). When the MCP serves a Figma node tree, it looks up each INSTANCE's componentId here and injects a `tiComponent` field into the simplified JSON. Entries with `tiComponent: null` and `gap: true` are unresolved — the LLM must declare them as unmapped and not silently hand-roll equivalents.",
+    "keyedBy": "componentId",
+    "fallbackCatalog": "references/component-catalog.md (Element Plus 回退对照表)",
+    "fallbackRule": "If a Figma component is a basic/atomic UI primitive (Button, Checkbox, Radio, Input, etc.) and TiComponents catalog has no Ti* equivalent, fall back to the matching Element Plus basic component (el-button, el-checkbox, el-radio, el-input). The Element Plus 回退对照表 in the skill is a partial list; this rule generalizes it.",
+    "designSystemFile": {
+      "fileKey": "khgCmG4dhk4eEi7eGDhSTw",
+      "name": "主题开发者平台-Design-System",
+      "url": "https://www.figma.com/design/khgCmG4dhk4eEi7eGDhSTw/"
+    },
+    "legend": {
+      "tiComponent": "Target component name (Ti* or el-*). null = unresolved gap.",
+      "gap": "true = unresolved, must surface to LLM as unmapped.",
+      "internal": "true = nested inside another instance, do not render separately.",
+      "variantToProps": "Figma variant name -> target component props (merged when instance has multiple variants set).",
+      "nameHints": "Figma instance names this componentId has been seen under.",
+      "docs": "Relative path under ti-component-skills/ to load for API details."
+    }
+  },
+
+  "327:4203": {
+    "tiComponent": "TiTabs",
+    "matchBy": "componentId",
+    "nameHints": ["Basic Tabs"],
+    "variantToProps": {
+      "Property 1": {
+        "Basic Tabs_default": { "type": "card" },
+        "Basic Tabs_focus":   { "type": "card" }
+      }
+    },
+    "docs": "docs/TiTabs/index.md",
+    "notes": "Use tabPaneArr prop for tab items; active state is governed by value, not by the Figma _focus/_default variant — both map to the same TiTabs type. Render tab panels via named slots matching `name`."
+  },
+
+  "327:4201": {
+    "tiComponent": "TiTabs",
+    "matchBy": "componentId",
+    "nameHints": ["Basic Tabs"],
+    "variantToProps": {
+      "Property 1": {
+        "Basic Tabs_default": { "type": "card" },
+        "Basic Tabs_focus":   { "type": "card" }
+      }
+    },
+    "docs": "docs/TiTabs/index.md",
+    "notes": "Sibling variant of 327:4203. Treat identically."
+  },
+
+  "327:5420": {
+    "tiComponent": "TiSvgIcon",
+    "matchBy": "componentId",
+    "nameHints": ["Icon/business_close"],
+    "variantToProps": {},
+    "docs": "docs/TiSvgIcon/index.md",
+    "notes": "Close icon. URL must come from project icon registry; fill color uses --ti-d-component-containers-and-separators-icon token (already emitted by MCP)."
+  },
+
+  "327:5450": {
+    "tiComponent": "el-button",
+    "matchBy": "componentId",
+    "nameHints": ["Button"],
+    "variantToProps": {
+      "按钮": {
+        "Primary":   { "type": "primary" },
+        "Secondary": { "type": "default" },
+        "Tertiary":  { "type": "text" }
+      },
+      "状态": {
+        "default":  {},
+        "hover":    {},
+        "disabled": { "disabled": true }
+      }
+    },
+    "docs": null,
+    "fallbackReason": "TiComponents has no standalone button (only TiWeightButtonGroup for button groups). Per fallback rule, basic primitive → Element Plus el-button. Confirm 按钮=Secondary/Tertiary mapping with designer — assumed based on common naming.",
+    "notes": "1 instance on this page. el-button inherits Element Plus defaults; size/loading come from context, not Figma variants."
+  },
+
+  "2551:4054": {
+    "tiComponent": "el-tag",
+    "matchBy": "componentId",
+    "nameHints": ["Tag-不带点的"],
+    "variantToProps": {
+      "Property 1": {
+        "white":  { "effect": "plain" },
+        "green":  { "type": "success" },
+        "gray":   { "type": "info" },
+        "blue":   { "type": "primary" },
+        "red":    { "type": "danger" },
+        "orange": { "type": "warning" }
+      }
+    },
+    "docs": null,
+    "fallbackReason": "TiComponents has no Tag component; references/component-catalog.md mandates el-tag.",
+    "notes": "28 instances on 凭证-查看. Variants derived from design system Tag component set (file khgCmG4dhk4eEi7eGDhSTw, node 3288-24966) which declares 6 color variants. ⚠️ This componentId (2551:4054) does NOT appear in the current design system file — likely a stale reference from an older Tag version. Verify by re-linking the business page to the current design system Tag (COMPONENT_SET 10518:58)."
+  },
+
+  "1193:2005": {
+    "tiComponent": "el-tag",
+    "matchBy": "componentId",
+    "nameHints": ["Tag-不带点的"],
+    "variantToProps": {
+      "Property 1": {
+        "white":  { "effect": "plain" },
+        "green":  { "type": "success" },
+        "gray":   { "type": "info" },
+        "blue":   { "type": "primary" },
+        "red":    { "type": "danger" },
+        "orange": { "type": "warning" }
+      }
+    },
+    "docs": null,
+    "fallbackReason": "See 2551:4054.",
+    "notes": "14 instances. Distinct componentId from 2551:4054 — verify against current design system (same stale-reference concern)."
+  },
+
+  "1922:3566": {
+    "tiComponent": "el-tag",
+    "matchBy": "componentId",
+    "nameHints": ["Tag-不带点的"],
+    "variantToProps": {
+      "Property 1": {
+        "Variant13": { "_warning": "opaque variant name from stale component version — open in Figma to identify color, then fill type/effect" }
+      }
+    },
+    "docs": null,
+    "fallbackReason": "See 2551:4054.",
+    "notes": "3 instances. Variant13 is an auto-generated name from an older component snapshot. Do NOT guess the color — must be visually verified in Figma and back-filled here."
+  },
+
+  "4:8698": {
+    "tiComponent": "el-checkbox",
+    "matchBy": "componentId",
+    "nameHints": ["Checkbox"],
+    "variantToProps": {
+      "Type": {
+        "Checkbox": {},
+        "Radio": { "_warning": "Type=Radio should route to el-radio, not el-checkbox — see 4:8678" }
+      },
+      "Checked": { "True": { "modelValue": true }, "False": { "modelValue": false } },
+      "Indeterminate": { "True": { "indeterminate": true }, "False": {} },
+      "Size": { "sm": { "size": "small" } },
+      "State": { "Hover": {}, "Default": {}, "Disabled": { "disabled": true } }
+    },
+    "docs": null,
+    "fallbackReason": "TiComponents catalog has no TiCheckbox; basic primitive → Element Plus el-checkbox per fallback rule. Fallback table in skill does not list Checkbox explicitly — this entry extends the rule.",
+    "notes": "6 instances (Type=Checkbox variant). Branch on Type: Checkbox→el-checkbox, Radio→el-radio (see 4:8678/4:8700). State=Hover is a visual state, not a prop — skip. The `_Checkbox base` child instance (4:8399) is the inner graphic; do not render separately."
+  },
+
+  "4:8674": {
+    "tiComponent": "el-checkbox",
+    "matchBy": "componentId",
+    "nameHints": ["Checkbox"],
+    "variantToProps": {
+      "Checked": { "True": { "modelValue": true }, "False": { "modelValue": false } },
+      "Type": { "Checkbox": {} }
+    },
+    "docs": null,
+    "fallbackReason": "See 4:8698.",
+    "notes": "3 instances, Checked=True variant. Same el-checkbox mapping."
+  },
+
+  "4:8678": {
+    "tiComponent": "el-radio",
+    "matchBy": "componentId",
+    "nameHints": ["Checkbox"],
+    "variantToProps": {
+      "Checked": { "True": { "modelValue": true }, "False": { "modelValue": false } },
+      "Type": { "Radio": {} }
+    },
+    "docs": null,
+    "fallbackReason": "TiComponents has TiRadioGroup (a group container) but no single TiRadio. Per fallback rule, basic primitive → Element Plus el-radio. Use el-radio for a single radio; use TiRadioGroup only when there is an actual radio group on the page.",
+    "notes": "3 instances, Type=Radio Checked=True. Figma reuses the same Checkbox component for radio visuals — branch on Type to pick el-radio vs el-checkbox."
+  },
+
+  "4:8700": {
+    "tiComponent": "el-radio",
+    "matchBy": "componentId",
+    "nameHints": ["Checkbox"],
+    "variantToProps": {
+      "Checked": { "True": { "modelValue": true }, "False": { "modelValue": false } },
+      "Type": { "Radio": {} }
+    },
+    "docs": null,
+    "fallbackReason": "See 4:8678.",
+    "notes": "3 instances, Type=Radio Checked=False. Same el-radio mapping."
+  },
+
+  "4:8399": {
+    "tiComponent": null,
+    "internal": true,
+    "matchBy": "componentId",
+    "nameHints": ["_Checkbox base"],
+    "variantToProps": {},
+    "docs": null,
+    "notes": "Internal sub-component nested inside Checkbox instances (4:8698 etc.) — the box+checkmark graphic itself. Do NOT render as a separate component; it is part of the parent Checkbox instance's visual."
+  },
+
+  "4:8419": {
+    "tiComponent": null,
+    "internal": true,
+    "matchBy": "componentId",
+    "nameHints": ["_Checkbox base"],
+    "variantToProps": {},
+    "docs": null,
+    "notes": "Internal sub-component of 4:8674. See 4:8399."
+  },
+
+  "4:8423": {
+    "tiComponent": null,
+    "internal": true,
+    "matchBy": "componentId",
+    "nameHints": ["_Checkbox base"],
+    "variantToProps": {},
+    "docs": null,
+    "notes": "Internal sub-component of 4:8678. See 4:8399."
+  },
+
+  "4:8400": {
+    "tiComponent": null,
+    "internal": true,
+    "matchBy": "componentId",
+    "nameHints": ["_Checkbox base"],
+    "variantToProps": {},
+    "docs": null,
+    "notes": "Internal sub-component of 4:8700. See 4:8399."
+  },
+
+  "4:3671": {
+    "tiComponent": "TiSvgIcon",
+    "matchBy": "componentId",
+    "nameHints": ["chevron-down"],
+    "variantToProps": {},
+    "docs": "docs/TiSvgIcon/index.md",
+    "notes": "Atomic SVG icon. URL from project icon registry. 6 instances on this page — likely used as a select/dropdown chevron; if so, consider whether the parent is actually a TiSearchSelect/TiMultipleSelect and the icon is just its visual part (don't render separately)."
+  },
+
+  "4:1302": {
+    "tiComponent": "TiSvgIcon",
+    "matchBy": "componentId",
+    "nameHints": ["help-circle"],
+    "variantToProps": {},
+    "docs": "docs/TiSvgIcon/index.md",
+    "notes": "Atomic help-icon SVG. When nested inside 4:5483 (Help icon with tooltip), do NOT render separately — the tooltip wrapper owns it."
+  },
+
+  "4:3047": {
+    "tiComponent": "TiSvgIcon",
+    "matchBy": "componentId",
+    "nameHints": ["check"],
+    "variantToProps": {},
+    "docs": "docs/TiSvgIcon/index.md",
+    "notes": "Atomic checkmark SVG. Nested inside Checkbox instances as the checked indicator — do NOT render separately; TiCheckbox/el-checkbox draws its own checkmark."
+  },
+
+  "4:5483": {
+    "tiComponent": "el-tooltip",
+    "matchBy": "componentId",
+    "nameHints": ["Help icon"],
+    "variantToProps": {
+      "Tooltip": {
+        "Top no arrow": { "placement": "top", "showArrow": false }
+      },
+      "Open": { "False": null, "True": null }
+    },
+    "docs": null,
+    "fallbackReason": "TiComponents has no Tooltip; references/component-catalog.md mandates el-tooltip.",
+    "notes": "Wraps a help-circle icon (4:1302) inside an el-tooltip. Render as <el-tooltip placement=\"top\" :show-arrow=\"false\"><TiSvgIcon url=.../></el-tooltip>. The Cursor/Open/Supporting text variants are interactive states — not all need to become props."
+  },
+
+  "23:404": {
+    "tiComponent": "el-scrollbar",
+    "matchBy": "componentId",
+    "nameHints": ["滚动条"],
+    "variantToProps": {
+      "Property 1": { "vertical": {}, "horizontal": {} }
+    },
+    "docs": null,
+    "fallbackReason": "TiComponents has no Scrollbar; basic primitive → Element Plus el-scrollbar per fallback rule. Note: many business pages use native overflow:auto on the parent container — only emit el-scrollbar when the Figma node is explicitly rendered as a styled scrollbar, not when it is a visual hint for scrollability.",
+    "notes": "1 instance. If the parent container already has overflow:auto, skip emitting el-scrollbar — the visual 滚动条 component is just a rendering hint, not a real component to mount."
+  }
+}
