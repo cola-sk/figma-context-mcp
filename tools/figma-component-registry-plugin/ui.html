@@ -91,7 +91,7 @@
 
       .secondary-actions {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 8px;
       }
 
@@ -143,6 +143,69 @@
         color: var(--figma-color-text-secondary);
         line-height: 18px;
       }
+
+      .page-selector {
+        display: grid;
+        gap: 8px;
+      }
+
+      .page-selector-toolbar {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .page-selector-toolbar button {
+        width: 64px;
+      }
+
+      .page-list {
+        display: grid;
+        gap: 4px;
+        max-height: 150px;
+        overflow: auto;
+        padding: 6px;
+        border: 1px solid var(--figma-color-border);
+        border-radius: 4px;
+      }
+
+      .page-row {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 8px;
+        min-height: 24px;
+      }
+
+      .page-separator {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 8px;
+        min-height: 28px;
+        padding: 6px 4px 4px;
+        border-top: 1px solid var(--figma-color-border);
+        color: var(--figma-color-text);
+        font-weight: 600;
+      }
+
+      .page-separator:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .page-separator button {
+        width: 64px;
+        height: 26px;
+      }
+
+      .page-row span,
+      .page-separator span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     </style>
   </head>
   <body>
@@ -161,18 +224,18 @@
           </select>
         </div>
 
-        <div class="field">
-          <label for="scope">扫描范围</label>
-          <select id="scope">
-            <option value="current-page">当前页</option>
-            <option value="selection">当前选中</option>
-            <option value="all-pages">全文件</option>
-          </select>
+        <div id="pageSelector" class="page-selector">
+          <div class="page-selector-toolbar">
+            <div id="pageCount" class="meta">未选择页面</div>
+            <button id="selectAllPages" type="button">全选</button>
+            <button id="clearPages" type="button">清空</button>
+          </div>
+          <div id="pageList" class="page-list"></div>
         </div>
       </div>
 
       <div class="actions">
-        <button id="exportRegistry" class="primary">导出 JSON</button>
+        <button id="exportRegistry" class="primary">导出 ZIP</button>
       </div>
 
       <div class="panel">
@@ -186,8 +249,7 @@
       </div>
 
       <div class="secondary-actions">
-        <button id="copy" disabled>复制 JSON</button>
-        <button id="download" disabled>下载 JSON</button>
+        <button id="download" disabled>下载 ZIP</button>
       </div>
 
       <div id="status" class="status">准备就绪</div>
@@ -199,19 +261,24 @@
     <script>
       const state = {
         lastJson: '',
+        lastPayload: null,
         fileName: 'figma-component-export.json',
         running: false,
+        pages: [],
       }
 
       const nodes = {
         meta: document.getElementById('meta'),
         exportType: document.getElementById('exportType'),
-        scope: document.getElementById('scope'),
+        pageSelector: document.getElementById('pageSelector'),
+        pageList: document.getElementById('pageList'),
+        pageCount: document.getElementById('pageCount'),
+        selectAllPages: document.getElementById('selectAllPages'),
+        clearPages: document.getElementById('clearPages'),
         exportRegistry: document.getElementById('exportRegistry'),
         progressBar: document.getElementById('progressBar'),
         progressText: document.getElementById('progressText'),
         progressStats: document.getElementById('progressStats'),
-        copy: document.getElementById('copy'),
         download: document.getElementById('download'),
         status: document.getElementById('status'),
         summary: document.getElementById('summary'),
@@ -220,8 +287,9 @@
       }
 
       nodes.exportRegistry.onclick = () => sendExport('EXPORT_REGISTRY')
-      nodes.copy.onclick = copyJson
       nodes.download.onclick = downloadJson
+      nodes.selectAllPages.onclick = () => setAllPagesChecked(true)
+      nodes.clearPages.onclick = () => setAllPagesChecked(false)
 
       window.onmessage = (event) => {
         const message = event.data.pluginMessage
@@ -230,6 +298,8 @@
         if (message.type === 'READY') {
           const info = message.payload
           nodes.meta.textContent = `${info.fileName} / ${info.currentPage} / 已选 ${info.selectionCount} 个节点`
+          state.pages = Array.isArray(info.pages) ? info.pages : []
+          renderPageOptions()
           return
         }
 
@@ -253,6 +323,7 @@
         if (message.type === 'RESULT') {
           setRunning(false)
           state.fileName = message.fileName || state.fileName
+          state.lastPayload = message.payload
           state.lastJson = JSON.stringify(message.payload, null, 2)
           nodes.output.value = state.lastJson
           nodes.summary.textContent = formatSummary(message.summary)
@@ -278,7 +349,8 @@
       function getOptions() {
         return {
           exportType: nodes.exportType.value,
-          scope: nodes.scope.value,
+          scope: 'selected-pages',
+          pageIds: getSelectedPageIds(),
         }
       }
 
@@ -289,28 +361,360 @@
 
       function updateSecondaryActions() {
         const hasJson = Boolean(state.lastJson)
-        nodes.copy.disabled = !hasJson
         nodes.download.disabled = !hasJson
+        nodes.download.textContent = '下载 ZIP'
       }
 
-      async function copyJson() {
-        if (!state.lastJson) return
-        await navigator.clipboard.writeText(state.lastJson)
-        nodes.status.textContent = '已复制 JSON'
-      }
+      async function downloadJson() {
+        if (!state.lastJson || !state.lastPayload) return
 
-      function downloadJson() {
-        if (!state.lastJson) return
-        const blob = new Blob([state.lastJson], { type: 'application/json;charset=utf-8' })
+        const artifact = createZipArtifact(state.lastPayload, state.fileName)
+
+        const blob = artifact.blob
         const url = URL.createObjectURL(blob)
         const link = document.createElement('a')
         link.href = url
-        link.download = state.fileName
+        link.download = artifact.fileName
         document.body.appendChild(link)
         link.click()
         link.remove()
         URL.revokeObjectURL(url)
       }
+
+      function renderPageOptions() {
+        nodes.pageList.innerHTML = ''
+
+        for (let index = 0; index < state.pages.length; index++) {
+          const page = state.pages[index]
+          if (isPageSeparator(page.name)) {
+            const row = document.createElement('div')
+            row.className = 'page-separator'
+
+            const text = document.createElement('span')
+            text.textContent = page.name
+
+            const button = document.createElement('button')
+            button.type = 'button'
+            button.dataset.groupStart = String(index)
+            button.onclick = () => togglePageGroup(index)
+
+            row.appendChild(text)
+            row.appendChild(button)
+            nodes.pageList.appendChild(row)
+            continue
+          }
+
+          const row = document.createElement('label')
+          row.className = 'page-row'
+
+          const input = document.createElement('input')
+          input.type = 'checkbox'
+          input.value = page.id
+          input.dataset.pageIndex = String(index)
+          input.checked = Boolean(page.current)
+          input.onchange = updatePageCount
+
+          const text = document.createElement('span')
+          text.textContent = page.name
+
+          row.appendChild(input)
+          row.appendChild(text)
+          nodes.pageList.appendChild(row)
+        }
+
+        updatePageCount()
+      }
+
+      function getSelectedPageIds() {
+        return Array.from(nodes.pageList.querySelectorAll('input[type="checkbox"]:checked'))
+          .map((input) => input.value)
+      }
+
+      function setAllPagesChecked(checked) {
+        for (const input of nodes.pageList.querySelectorAll('input[type="checkbox"]')) {
+          input.checked = checked
+        }
+        updatePageCount()
+      }
+
+      function togglePageGroup(startIndex) {
+        const groupInputs = getPageGroupInputs(startIndex)
+        if (groupInputs.length === 0) return
+
+        const shouldCheck = groupInputs.some((input) => !input.checked)
+        for (const input of groupInputs) {
+          input.checked = shouldCheck
+        }
+        updatePageCount()
+      }
+
+      function getPageGroupInputs(startIndex) {
+        const inputs = []
+        for (let index = startIndex + 1; index < state.pages.length; index++) {
+          if (isPageSeparator(state.pages[index].name)) break
+
+          const input = nodes.pageList.querySelector(`input[data-page-index="${index}"]`)
+          if (input) inputs.push(input)
+        }
+        return inputs
+      }
+
+      function isPageSeparator(name) {
+        return !String(name || '').trim().startsWith('↳')
+      }
+
+      function updatePageCount() {
+        const selectedCount = getSelectedPageIds().length
+        const selectableCount = state.pages.filter((page) => !isPageSeparator(page.name)).length
+        nodes.pageCount.textContent = selectedCount > 0
+          ? `已选择 ${selectedCount}/${selectableCount} 个页面`
+          : `未选择页面 / 共 ${selectableCount} 个`
+
+        for (const button of nodes.pageList.querySelectorAll('button[data-group-start]')) {
+          const inputs = getPageGroupInputs(Number(button.dataset.groupStart))
+          const allChecked = inputs.length > 0 && inputs.every((input) => input.checked)
+          button.textContent = allChecked ? '清空' : '全选'
+          button.disabled = inputs.length === 0
+        }
+      }
+
+      function createZipArtifact(payload, fileName) {
+        const baseName = fileName.replace(/\.json$/i, '')
+        const pageFiles = splitPayloadByPage(payload)
+        const index = {
+          schemaVersion: `${payload.schemaVersion}-zip-index`,
+          source: payload.source,
+          exportedAt: payload.exportedAt,
+          stats: payload.stats,
+          files: pageFiles.map((file) => ({
+            fileName: file.name,
+            page: file.page,
+            stats: file.payload.stats,
+          })),
+        }
+        const files = [
+          {
+            name: 'index.json',
+            text: JSON.stringify(index, null, 2),
+          },
+          {
+            name: 'all.json',
+            text: JSON.stringify(payload, null, 2),
+          },
+          ...pageFiles.map((file) => ({
+            name: file.name,
+            text: JSON.stringify(file.payload, null, 2),
+          })),
+        ]
+
+        return {
+          blob: createZipBlob(files),
+          fileName: `${baseName}.zip`,
+        }
+      }
+
+      function splitPayloadByPage(payload) {
+        const pageNames = []
+        const seen = {}
+        const componentSets = Array.isArray(payload.componentSets) ? payload.componentSets : []
+        const looseComponents = Array.isArray(payload.looseComponents) ? payload.looseComponents : []
+
+        for (const item of componentSets.concat(looseComponents)) {
+          const page = item.page || '_unknown'
+          if (!seen[page]) {
+            seen[page] = true
+            pageNames.push(page)
+          }
+        }
+
+        return pageNames.map((page, index) => {
+          const pageComponentSets = componentSets.filter((item) => (item.page || '_unknown') === page)
+          const pageLooseComponents = looseComponents.filter((item) => (item.page || '_unknown') === page)
+          const pagePayload = {
+            schemaVersion: payload.schemaVersion,
+            source: {
+              ...payload.source,
+              scope: 'page',
+              page,
+            },
+            exportedAt: payload.exportedAt,
+            stats: {
+              componentSetCount: pageComponentSets.length,
+              looseComponentCount: pageLooseComponents.length,
+              componentCount: pageComponentSets.reduce((sum, set) => sum + (Array.isArray(set.components) ? set.components.length : 0), 0)
+                + pageLooseComponents.length,
+            },
+            componentSets: pageComponentSets,
+            looseComponents: pageLooseComponents,
+            indexes: buildIndexes(pageComponentSets, pageLooseComponents),
+          }
+
+          return {
+            page,
+            name: `pages/${String(index + 1).padStart(3, '0')}-${safeFileName(page)}.json`,
+            payload: pagePayload,
+          }
+        })
+      }
+
+      function buildIndexes(componentSets, looseComponents) {
+        const componentSetByKey = {}
+        const componentByKey = {}
+
+        for (const set of componentSets) {
+          if (set.key) {
+            componentSetByKey[set.key] = {
+              id: set.id,
+              name: set.name,
+              componentKeys: (set.components || []).map((component) => component.key).filter(Boolean),
+            }
+          }
+          for (const component of set.components || []) {
+            if (component.key) {
+              componentByKey[component.key] = {
+                id: component.id,
+                name: component.name,
+                componentSetKey: set.key,
+                componentSetName: set.name,
+                variantProperties: component.variantProperties || component.variantPropertiesFromName || {},
+              }
+            }
+          }
+        }
+
+        for (const component of looseComponents) {
+          if (component.key) {
+            componentByKey[component.key] = {
+              id: component.id,
+              name: component.name,
+              componentSetKey: null,
+              componentSetName: null,
+              variantProperties: component.variantProperties || component.variantPropertiesFromName || {},
+            }
+          }
+        }
+
+        return {
+          componentSetByKey,
+          componentByKey,
+        }
+      }
+
+      function safeFileName(value) {
+        return String(value || 'unknown')
+          .replace(/[\\/:*?"<>|]+/g, '-')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-')
+          .replace(/^-|-$/g, '')
+          .slice(0, 80) || 'unknown'
+      }
+
+      function createZipBlob(files) {
+        const encoder = new TextEncoder()
+        const localParts = []
+        const centralParts = []
+        let offset = 0
+
+        for (const file of files) {
+          const nameBytes = encoder.encode(file.name)
+          const data = encoder.encode(file.text)
+          const crc = crc32(data)
+          const localHeader = createZipLocalHeader(nameBytes, data.length, crc)
+          const centralHeader = createZipCentralHeader(nameBytes, data.length, crc, offset)
+
+          localParts.push(localHeader, nameBytes, data)
+          centralParts.push(centralHeader, nameBytes)
+          offset += localHeader.length + nameBytes.length + data.length
+        }
+
+        const centralOffset = offset
+        const centralSize = centralParts.reduce((sum, part) => sum + part.length, 0)
+        const end = createZipEndRecord(files.length, centralSize, centralOffset)
+        return new Blob([...localParts, ...centralParts, end], { type: 'application/zip' })
+      }
+
+      function createZipLocalHeader(nameBytes, size, crc) {
+        const view = new DataView(new ArrayBuffer(30))
+        writeZipHeaderCommon(view, 0x04034b50, crc, size, nameBytes.length)
+        return new Uint8Array(view.buffer)
+      }
+
+      function createZipCentralHeader(nameBytes, size, crc, offset) {
+        const view = new DataView(new ArrayBuffer(46))
+        writeUint32(view, 0, 0x02014b50)
+        writeUint16(view, 4, 20)
+        writeUint16(view, 6, 20)
+        writeUint16(view, 8, 0x0800)
+        writeUint16(view, 10, 0)
+        writeUint16(view, 12, 0)
+        writeUint16(view, 14, 0)
+        writeUint32(view, 16, crc)
+        writeUint32(view, 20, size)
+        writeUint32(view, 24, size)
+        writeUint16(view, 28, nameBytes.length)
+        writeUint16(view, 30, 0)
+        writeUint16(view, 32, 0)
+        writeUint16(view, 34, 0)
+        writeUint16(view, 36, 0)
+        writeUint32(view, 38, 0)
+        writeUint32(view, 42, offset)
+        return new Uint8Array(view.buffer)
+      }
+
+      function createZipEndRecord(fileCount, centralSize, centralOffset) {
+        const view = new DataView(new ArrayBuffer(22))
+        writeUint32(view, 0, 0x06054b50)
+        writeUint16(view, 4, 0)
+        writeUint16(view, 6, 0)
+        writeUint16(view, 8, fileCount)
+        writeUint16(view, 10, fileCount)
+        writeUint32(view, 12, centralSize)
+        writeUint32(view, 16, centralOffset)
+        writeUint16(view, 20, 0)
+        return new Uint8Array(view.buffer)
+      }
+
+      function writeZipHeaderCommon(view, signature, crc, size, nameLength) {
+        writeUint32(view, 0, signature)
+        writeUint16(view, 4, 20)
+        writeUint16(view, 6, 0x0800)
+        writeUint16(view, 8, 0)
+        writeUint16(view, 10, 0)
+        writeUint16(view, 12, 0)
+        writeUint32(view, 14, crc)
+        writeUint32(view, 18, size)
+        writeUint32(view, 22, size)
+        writeUint16(view, 26, nameLength)
+        writeUint16(view, 28, 0)
+      }
+
+      function writeUint16(view, offset, value) {
+        view.setUint16(offset, value, true)
+      }
+
+      function writeUint32(view, offset, value) {
+        view.setUint32(offset, value >>> 0, true)
+      }
+
+      function crc32(bytes) {
+        let crc = 0xffffffff
+        for (let i = 0; i < bytes.length; i++) {
+          crc = (crc >>> 8) ^ crcTable[(crc ^ bytes[i]) & 0xff]
+        }
+        return (crc ^ 0xffffffff) >>> 0
+      }
+
+      const crcTable = (() => {
+        const table = new Uint32Array(256)
+        for (let i = 0; i < 256; i++) {
+          let c = i
+          for (let k = 0; k < 8; k++) {
+            c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1
+          }
+          table[i] = c >>> 0
+        }
+        return table
+      })()
 
       function formatSummary(summary) {
         if (!summary || typeof summary !== 'object') return ''

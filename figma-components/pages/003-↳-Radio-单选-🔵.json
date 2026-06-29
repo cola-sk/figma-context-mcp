@@ -1,0 +1,432 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "主题开发者平台 Design System",
+    "currentPage": "      ↳ Side Nav. 左侧菜单 🔵",
+    "scope": "page",
+    "page": "      ↳ Radio 单选  🔵"
+  },
+  "exportedAt": "2026-06-29T03:12:55.937Z",
+  "stats": {
+    "componentSetCount": 3,
+    "looseComponentCount": 0,
+    "componentCount": 12
+  },
+  "componentSets": [
+    {
+      "id": "12441:1182",
+      "key": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
+      "name": "radio",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Radio 单选  🔵",
+      "path": "      ↳ Radio 单选  🔵 / radio",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "default",
+          "variantOptions": [
+            "default",
+            "hover",
+            "focus",
+            "disable",
+            "disable-select"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "12441:1178",
+          "key": "f71c5fb5190af7bd8ab4340ae53d657ff079a64c",
+          "name": "Property 1=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Radio 单选  🔵",
+          "path": "      ↳ Radio 单选  🔵 / radio / Property 1=default",
+          "componentSetId": "12441:1182",
+          "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
+          "componentSetName": "radio",
+          "variantProperties": {
+            "Property 1": "default"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "default"
+          }
+        },
+        {
+          "id": "12441:1179",
+          "key": "a1fbeff2d05fe7d79cedd97b629524dd35153282",
+          "name": "Property 1=hover",
+          "type": "COMPONENT",
+          "page": "      ↳ Radio 单选  🔵",
+          "path": "      ↳ Radio 单选  🔵 / radio / Property 1=hover",
+          "componentSetId": "12441:1182",
+          "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
+          "componentSetName": "radio",
+          "variantProperties": {
+            "Property 1": "hover"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "hover"
+          }
+        },
+        {
+          "id": "12441:1180",
+          "key": "80327ceef7c3f7843d390aed2f857dbac1cbfe44",
+          "name": "Property 1=focus",
+          "type": "COMPONENT",
+          "page": "      ↳ Radio 单选  🔵",
+          "path": "      ↳ Radio 单选  🔵 / radio / Property 1=focus",
+          "componentSetId": "12441:1182",
+          "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
+          "componentSetName": "radio",
+          "variantProperties": {
+            "Property 1": "focus"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "focus"
+          }
+        },
+        {
+          "id": "12441:1181",
+          "key": "9e8ed3a688c2c9de6ff25254708bd0dcaf3e992a",
+          "name": "Property 1=disable",
+          "type": "COMPONENT",
+          "page": "      ↳ Radio 单选  🔵",
+          "path": "      ↳ Radio 单选  🔵 / radio / Property 1=disable",
+          "componentSetId": "12441:1182",
+          "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
+          "componentSetName": "radio",
+          "variantProperties": {
+            "Property 1": "disable"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "disable"
+          }
+        },
+        {
+          "id": "17368:273",
+          "key": "751d1886963606194da17c7a651f6418dc53292c",
+          "name": "Property 1=disable-select",
+          "type": "COMPONENT",
+          "page": "      ↳ Radio 单选  🔵",
+          "path": "      ↳ Radio 单选  🔵 / radio / Property 1=disable-select",
+          "componentSetId": "12441:1182",
+          "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
+          "componentSetName": "radio",
+          "variantProperties": {
+            "Property 1": "disable-select"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "disable-select"
+          }
+        }
+      ]
+    },
+    {
+      "id": "12441:1254",
+      "key": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
+      "name": "radio+描述",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Radio 单选  🔵",
+      "path": "      ↳ Radio 单选  🔵 / radio+描述",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "default",
+          "variantOptions": [
+            "default",
+            "hover",
+            "disable",
+            "focus",
+            "Variant5"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "12441:1239",
+          "key": "ec57ebbaf3a51a824920813a638c0233c2061469",
+          "name": "Property 1=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Radio 单选  🔵",
+          "path": "      ↳ Radio 单选  🔵 / radio+描述 / Property 1=default",
+          "componentSetId": "12441:1254",
+          "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
+          "componentSetName": "radio+描述",
+          "variantProperties": {
+            "Property 1": "default"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "default"
+          }
+        },
+        {
+          "id": "12441:1251",
+          "key": "229549437b35f8711aba25d12266f2a0f2ef609b",
+          "name": "Property 1=hover",
+          "type": "COMPONENT",
+          "page": "      ↳ Radio 单选  🔵",
+          "path": "      ↳ Radio 单选  🔵 / radio+描述 / Property 1=hover",
+          "componentSetId": "12441:1254",
+          "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
+          "componentSetName": "radio+描述",
+          "variantProperties": {
+            "Property 1": "hover"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "hover"
+          }
+        },
+        {
+          "id": "12441:1252",
+          "key": "548b62e071037e1239406c351d3f6721755a4b84",
+          "name": "Property 1=disable",
+          "type": "COMPONENT",
+          "page": "      ↳ Radio 单选  🔵",
+          "path": "      ↳ Radio 单选  🔵 / radio+描述 / Property 1=disable",
+          "componentSetId": "12441:1254",
+          "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
+          "componentSetName": "radio+描述",
+          "variantProperties": {
+            "Property 1": "disable"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "disable"
+          }
+        },
+        {
+          "id": "16240:714",
+          "key": "1e9b87e874a3bc7f0156fac39e0181d5fe949eaf",
+          "name": "Property 1=Variant5",
+          "type": "COMPONENT",
+          "page": "      ↳ Radio 单选  🔵",
+          "path": "      ↳ Radio 单选  🔵 / radio+描述 / Property 1=Variant5",
+          "componentSetId": "12441:1254",
+          "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
+          "componentSetName": "radio+描述",
+          "variantProperties": {
+            "Property 1": "Variant5"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Variant5"
+          }
+        },
+        {
+          "id": "12441:1240",
+          "key": "9d6a26e9fb6b666f8a77707fe6ddd7cda79badcc",
+          "name": "Property 1=focus",
+          "type": "COMPONENT",
+          "page": "      ↳ Radio 单选  🔵",
+          "path": "      ↳ Radio 单选  🔵 / radio+描述 / Property 1=focus",
+          "componentSetId": "12441:1254",
+          "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
+          "componentSetName": "radio+描述",
+          "variantProperties": {
+            "Property 1": "focus"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "focus"
+          }
+        }
+      ]
+    },
+    {
+      "id": "12474:611",
+      "key": "bb7eb4ddb5c046fc64658866f74295c6d064baee",
+      "name": "radio组合使用",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Radio 单选  🔵",
+      "path": "      ↳ Radio 单选  🔵 / radio组合使用",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "radio limit",
+          "variantOptions": [
+            "radio limit",
+            "radio much"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "12474:551",
+          "key": "b129717a573d8e669748060b0dfb2e1768105778",
+          "name": "Property 1=radio limit",
+          "type": "COMPONENT",
+          "page": "      ↳ Radio 单选  🔵",
+          "path": "      ↳ Radio 单选  🔵 / radio组合使用 / Property 1=radio limit",
+          "componentSetId": "12474:611",
+          "componentSetKey": "bb7eb4ddb5c046fc64658866f74295c6d064baee",
+          "componentSetName": "radio组合使用",
+          "variantProperties": {
+            "Property 1": "radio limit"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "radio limit"
+          }
+        },
+        {
+          "id": "12474:552",
+          "key": "8cc2a8b2becb50b63fa7a422e5320a7e8473f342",
+          "name": "Property 1=radio much",
+          "type": "COMPONENT",
+          "page": "      ↳ Radio 单选  🔵",
+          "path": "      ↳ Radio 单选  🔵 / radio组合使用 / Property 1=radio much",
+          "componentSetId": "12474:611",
+          "componentSetKey": "bb7eb4ddb5c046fc64658866f74295c6d064baee",
+          "componentSetName": "radio组合使用",
+          "variantProperties": {
+            "Property 1": "radio much"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "radio much"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "4b8bc4cde40aeb3f793354e60187b8c2f7505374": {
+        "id": "12441:1182",
+        "name": "radio",
+        "componentKeys": [
+          "f71c5fb5190af7bd8ab4340ae53d657ff079a64c",
+          "a1fbeff2d05fe7d79cedd97b629524dd35153282",
+          "80327ceef7c3f7843d390aed2f857dbac1cbfe44",
+          "9e8ed3a688c2c9de6ff25254708bd0dcaf3e992a",
+          "751d1886963606194da17c7a651f6418dc53292c"
+        ]
+      },
+      "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9": {
+        "id": "12441:1254",
+        "name": "radio+描述",
+        "componentKeys": [
+          "ec57ebbaf3a51a824920813a638c0233c2061469",
+          "229549437b35f8711aba25d12266f2a0f2ef609b",
+          "548b62e071037e1239406c351d3f6721755a4b84",
+          "1e9b87e874a3bc7f0156fac39e0181d5fe949eaf",
+          "9d6a26e9fb6b666f8a77707fe6ddd7cda79badcc"
+        ]
+      },
+      "bb7eb4ddb5c046fc64658866f74295c6d064baee": {
+        "id": "12474:611",
+        "name": "radio组合使用",
+        "componentKeys": [
+          "b129717a573d8e669748060b0dfb2e1768105778",
+          "8cc2a8b2becb50b63fa7a422e5320a7e8473f342"
+        ]
+      }
+    },
+    "componentByKey": {
+      "f71c5fb5190af7bd8ab4340ae53d657ff079a64c": {
+        "id": "12441:1178",
+        "name": "Property 1=default",
+        "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
+        "componentSetName": "radio",
+        "variantProperties": {
+          "Property 1": "default"
+        }
+      },
+      "a1fbeff2d05fe7d79cedd97b629524dd35153282": {
+        "id": "12441:1179",
+        "name": "Property 1=hover",
+        "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
+        "componentSetName": "radio",
+        "variantProperties": {
+          "Property 1": "hover"
+        }
+      },
+      "80327ceef7c3f7843d390aed2f857dbac1cbfe44": {
+        "id": "12441:1180",
+        "name": "Property 1=focus",
+        "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
+        "componentSetName": "radio",
+        "variantProperties": {
+          "Property 1": "focus"
+        }
+      },
+      "9e8ed3a688c2c9de6ff25254708bd0dcaf3e992a": {
+        "id": "12441:1181",
+        "name": "Property 1=disable",
+        "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
+        "componentSetName": "radio",
+        "variantProperties": {
+          "Property 1": "disable"
+        }
+      },
+      "751d1886963606194da17c7a651f6418dc53292c": {
+        "id": "17368:273",
+        "name": "Property 1=disable-select",
+        "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
+        "componentSetName": "radio",
+        "variantProperties": {
+          "Property 1": "disable-select"
+        }
+      },
+      "ec57ebbaf3a51a824920813a638c0233c2061469": {
+        "id": "12441:1239",
+        "name": "Property 1=default",
+        "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
+        "componentSetName": "radio+描述",
+        "variantProperties": {
+          "Property 1": "default"
+        }
+      },
+      "229549437b35f8711aba25d12266f2a0f2ef609b": {
+        "id": "12441:1251",
+        "name": "Property 1=hover",
+        "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
+        "componentSetName": "radio+描述",
+        "variantProperties": {
+          "Property 1": "hover"
+        }
+      },
+      "548b62e071037e1239406c351d3f6721755a4b84": {
+        "id": "12441:1252",
+        "name": "Property 1=disable",
+        "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
+        "componentSetName": "radio+描述",
+        "variantProperties": {
+          "Property 1": "disable"
+        }
+      },
+      "1e9b87e874a3bc7f0156fac39e0181d5fe949eaf": {
+        "id": "16240:714",
+        "name": "Property 1=Variant5",
+        "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
+        "componentSetName": "radio+描述",
+        "variantProperties": {
+          "Property 1": "Variant5"
+        }
+      },
+      "9d6a26e9fb6b666f8a77707fe6ddd7cda79badcc": {
+        "id": "12441:1240",
+        "name": "Property 1=focus",
+        "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
+        "componentSetName": "radio+描述",
+        "variantProperties": {
+          "Property 1": "focus"
+        }
+      },
+      "b129717a573d8e669748060b0dfb2e1768105778": {
+        "id": "12474:551",
+        "name": "Property 1=radio limit",
+        "componentSetKey": "bb7eb4ddb5c046fc64658866f74295c6d064baee",
+        "componentSetName": "radio组合使用",
+        "variantProperties": {
+          "Property 1": "radio limit"
+        }
+      },
+      "8cc2a8b2becb50b63fa7a422e5320a7e8473f342": {
+        "id": "12474:552",
+        "name": "Property 1=radio much",
+        "componentSetKey": "bb7eb4ddb5c046fc64658866f74295c6d064baee",
+        "componentSetName": "radio组合使用",
+        "variantProperties": {
+          "Property 1": "radio much"
+        }
+      }
+    }
+  }
+}

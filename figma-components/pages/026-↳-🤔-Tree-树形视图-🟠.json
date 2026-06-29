@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "主题开发者平台 Design System",
+    "currentPage": "      ↳ Side Nav. 左侧菜单 🔵",
+    "scope": "page",
+    "page": "      ↳ 🤔 Tree 树形视图   🟠 "
+  },
+  "exportedAt": "2026-06-29T03:12:55.937Z",
+  "stats": {
+    "componentSetCount": 0,
+    "looseComponentCount": 2,
+    "componentCount": 2
+  },
+  "componentSets": [],
+  "looseComponents": [
+    {
+      "id": "10027:894",
+      "key": "fdf21c7683083e910de38ccad1d982ce191a7165",
+      "name": "Tree",
+      "type": "COMPONENT",
+      "page": "      ↳ 🤔 Tree 树形视图   🟠 ",
+      "path": "      ↳ 🤔 Tree 树形视图   🟠  / Tree"
+    },
+    {
+      "id": "10238:1106",
+      "key": "f0d140b29d9e2ab8e780c47c959f6531b938f28c",
+      "name": "Select-tree",
+      "type": "COMPONENT",
+      "page": "      ↳ 🤔 Tree 树形视图   🟠 ",
+      "path": "      ↳ 🤔 Tree 树形视图   🟠  / Select-tree"
+    }
+  ],
+  "indexes": {
+    "componentSetByKey": {},
+    "componentByKey": {
+      "fdf21c7683083e910de38ccad1d982ce191a7165": {
+        "id": "10027:894",
+        "name": "Tree",
+        "componentSetKey": null,
+        "componentSetName": null,
+        "variantProperties": {}
+      },
+      "f0d140b29d9e2ab8e780c47c959f6531b938f28c": {
+        "id": "10238:1106",
+        "name": "Select-tree",
+        "componentSetKey": null,
+        "componentSetName": null,
+        "variantProperties": {}
+      }
+    }
+  }
+}

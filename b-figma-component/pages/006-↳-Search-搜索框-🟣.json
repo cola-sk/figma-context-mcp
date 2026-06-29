@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "【内部公开版】 Titan Design System",
+    "currentPage": "Cover",
+    "scope": "page",
+    "page": "      ↳ Search 搜索框  🟣"
+  },
+  "exportedAt": "2026-06-29T08:39:15.326Z",
+  "stats": {
+    "componentSetCount": 1,
+    "looseComponentCount": 0,
+    "componentCount": 2
+  },
+  "componentSets": [
+    {
+      "id": "10002:521",
+      "key": "1add49ace26995ad14281996eb7c725226048251",
+      "name": "Search 搜索框",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Search 搜索框  🟣",
+      "path": "      ↳ Search 搜索框  🟣 / Search 搜索框",
+      "componentPropertyDefinitions": {
+        "Search": {
+          "type": "VARIANT",
+          "defaultValue": "搜索",
+          "variantOptions": [
+            "搜索",
+            "带切换的搜索"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "10002:520",
+          "key": "55adcf753012538893bfe04c90728deeb82726da",
+          "name": "Search=搜索",
+          "type": "COMPONENT",
+          "page": "      ↳ Search 搜索框  🟣",
+          "path": "      ↳ Search 搜索框  🟣 / Search 搜索框 / Search=搜索",
+          "componentSetId": "10002:521",
+          "componentSetKey": "1add49ace26995ad14281996eb7c725226048251",
+          "componentSetName": "Search 搜索框",
+          "variantProperties": {
+            "Search": "搜索"
+          },
+          "variantPropertiesFromName": {
+            "Search": "搜索"
+          }
+        },
+        {
+          "id": "10002:519",
+          "key": "cf2126af70a0fa6aefd4381d4984a727bf6df90a",
+          "name": "Search=带切换的搜索",
+          "type": "COMPONENT",
+          "page": "      ↳ Search 搜索框  🟣",
+          "path": "      ↳ Search 搜索框  🟣 / Search 搜索框 / Search=带切换的搜索",
+          "componentSetId": "10002:521",
+          "componentSetKey": "1add49ace26995ad14281996eb7c725226048251",
+          "componentSetName": "Search 搜索框",
+          "variantProperties": {
+            "Search": "带切换的搜索"
+          },
+          "variantPropertiesFromName": {
+            "Search": "带切换的搜索"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "1add49ace26995ad14281996eb7c725226048251": {
+        "id": "10002:521",
+        "name": "Search 搜索框",
+        "componentKeys": [
+          "55adcf753012538893bfe04c90728deeb82726da",
+          "cf2126af70a0fa6aefd4381d4984a727bf6df90a"
+        ]
+      }
+    },
+    "componentByKey": {
+      "55adcf753012538893bfe04c90728deeb82726da": {
+        "id": "10002:520",
+        "name": "Search=搜索",
+        "componentSetKey": "1add49ace26995ad14281996eb7c725226048251",
+        "componentSetName": "Search 搜索框",
+        "variantProperties": {
+          "Search": "搜索"
+        }
+      },
+      "cf2126af70a0fa6aefd4381d4984a727bf6df90a": {
+        "id": "10002:519",
+        "name": "Search=带切换的搜索",
+        "componentSetKey": "1add49ace26995ad14281996eb7c725226048251",
+        "componentSetName": "Search 搜索框",
+        "variantProperties": {
+          "Search": "带切换的搜索"
+        }
+      }
+    }
+  }
+}

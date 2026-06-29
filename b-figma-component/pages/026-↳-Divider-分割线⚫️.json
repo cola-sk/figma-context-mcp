@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "【内部公开版】 Titan Design System",
+    "currentPage": "Cover",
+    "scope": "page",
+    "page": "      ↳ Divider 分割线⚫️"
+  },
+  "exportedAt": "2026-06-29T08:39:15.326Z",
+  "stats": {
+    "componentSetCount": 0,
+    "looseComponentCount": 1,
+    "componentCount": 1
+  },
+  "componentSets": [],
+  "looseComponents": [
+    {
+      "id": "8546:600",
+      "key": "32d3c89ce776a0a54eb57b5ba46aa9fb75f9b8f2",
+      "name": "Divider",
+      "type": "COMPONENT",
+      "page": "      ↳ Divider 分割线⚫️",
+      "path": "      ↳ Divider 分割线⚫️ / Divider"
+    }
+  ],
+  "indexes": {
+    "componentSetByKey": {},
+    "componentByKey": {
+      "32d3c89ce776a0a54eb57b5ba46aa9fb75f9b8f2": {
+        "id": "8546:600",
+        "name": "Divider",
+        "componentSetKey": null,
+        "componentSetName": null,
+        "variantProperties": {}
+      }
+    }
+  }
+}

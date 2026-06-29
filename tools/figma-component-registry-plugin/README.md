@@ -11,11 +11,8 @@
 5. 选择导出类型：
    - `组件注册表 registry`：给 MCP / 代码生成用，只导出组件身份、key、variant 和索引。
    - `设计规格 design-spec`：给设计校验 / token 校验用，额外导出样式、变量绑定和内部节点树。
-6. 选择扫描范围：
-   - `当前页`：推荐默认方式，适合按组件分类页逐步导出。
-   - `当前选中`：只导出选中的组件集或组件。
-   - `全文件`：逐页加载并导出全部组件，会显示页级进度。
-7. 点击 `导出 JSON`。
+6. 勾选要扫描的 page。非 `↳` 开头的 page 会作为分隔行展示，不参与导出；分隔行右侧可一键选择到下一个分隔行之前的全部页面。
+7. 点击 `导出 ZIP`。
 
 ## 关联规则
 
@@ -65,7 +62,7 @@
   "source": {
     "fileName": "主题开发者平台 Design System",
     "currentPage": "Components",
-    "scope": "all-pages"
+    "scope": "selected-pages"
   },
   "stats": {
     "componentSetCount": 1,
@@ -89,7 +86,7 @@
   "source": {
     "fileName": "主题开发者平台 Design System",
     "currentPage": "Components",
-    "scope": "current-page"
+    "scope": "selected-pages"
   },
   "stats": {
     "componentSetCount": 1,
@@ -122,5 +119,9 @@
 - 插件运行在 Figma 内部，只负责导出当前打开文件里的 Design System 组件定义。
 - `registry` 不导出视觉样式，适合进入默认代码生成链路。
 - `design-spec` 会导出视觉样式、变量 key 和内部节点树，适合做设计 / token / 组件库一致性校验。
-- 全文件模式会逐页加载，并显示当前页、页内组件数和累计组件数。
-- 插件不会直接写入仓库文件；请使用 UI 中的复制或下载 JSON。
+- 页面选择模式会逐页加载，并显示当前页、页内组件数和累计组件数。
+- 点击下载时会生成 zip：
+  - `index.json`：zip 内文件索引和总统计。
+  - `all.json`：完整合并后的导出结果。
+  - `pages/*.json`：按 Figma page 拆分后的导出结果。
+- 插件不会直接写入仓库文件；请使用 UI 下载 ZIP。

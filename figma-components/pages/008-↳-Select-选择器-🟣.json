@@ -1,0 +1,376 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "主题开发者平台 Design System",
+    "currentPage": "      ↳ Side Nav. 左侧菜单 🔵",
+    "scope": "page",
+    "page": "      ↳ Select 选择器 🟣 "
+  },
+  "exportedAt": "2026-06-29T03:12:55.937Z",
+  "stats": {
+    "componentSetCount": 3,
+    "looseComponentCount": 0,
+    "componentCount": 10
+  },
+  "componentSets": [
+    {
+      "id": "16044:6893",
+      "key": "4317bbdc187251309e4ec4f252a2935741efe54b",
+      "name": "Select ",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Select 选择器 🟣 ",
+      "path": "      ↳ Select 选择器 🟣  / Select ",
+      "componentPropertyDefinitions": {
+        "Select": {
+          "type": "VARIANT",
+          "defaultValue": "default",
+          "variantOptions": [
+            "default",
+            "finished",
+            "hover",
+            "只读状态"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "16044:6894",
+          "key": "b7f32e0a93343d30335c17100cfb4b35aaee732d",
+          "name": "Select=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Select 选择器 🟣 ",
+          "path": "      ↳ Select 选择器 🟣  / Select  / Select=default",
+          "componentSetId": "16044:6893",
+          "componentSetKey": "4317bbdc187251309e4ec4f252a2935741efe54b",
+          "componentSetName": "Select ",
+          "variantProperties": {
+            "Select": "default"
+          },
+          "variantPropertiesFromName": {
+            "Select": "default"
+          }
+        },
+        {
+          "id": "16044:6901",
+          "key": "0bb315bb6964f7acc511c8828c7903c53e2358ed",
+          "name": "Select=hover",
+          "type": "COMPONENT",
+          "page": "      ↳ Select 选择器 🟣 ",
+          "path": "      ↳ Select 选择器 🟣  / Select  / Select=hover",
+          "componentSetId": "16044:6893",
+          "componentSetKey": "4317bbdc187251309e4ec4f252a2935741efe54b",
+          "componentSetName": "Select ",
+          "variantProperties": {
+            "Select": "hover"
+          },
+          "variantPropertiesFromName": {
+            "Select": "hover"
+          }
+        },
+        {
+          "id": "16044:6908",
+          "key": "7dfeae13a6d62d29b766f2fb8ea874376601d40e",
+          "name": "Select=finished",
+          "type": "COMPONENT",
+          "page": "      ↳ Select 选择器 🟣 ",
+          "path": "      ↳ Select 选择器 🟣  / Select  / Select=finished",
+          "componentSetId": "16044:6893",
+          "componentSetKey": "4317bbdc187251309e4ec4f252a2935741efe54b",
+          "componentSetName": "Select ",
+          "variantProperties": {
+            "Select": "finished"
+          },
+          "variantPropertiesFromName": {
+            "Select": "finished"
+          }
+        },
+        {
+          "id": "16044:6915",
+          "key": "b5f91a46c92ef6405e70bd2e36b1acb8232549e4",
+          "name": "Select=只读状态",
+          "type": "COMPONENT",
+          "page": "      ↳ Select 选择器 🟣 ",
+          "path": "      ↳ Select 选择器 🟣  / Select  / Select=只读状态",
+          "componentSetId": "16044:6893",
+          "componentSetKey": "4317bbdc187251309e4ec4f252a2935741efe54b",
+          "componentSetName": "Select ",
+          "variantProperties": {
+            "Select": "只读状态"
+          },
+          "variantPropertiesFromName": {
+            "Select": "只读状态"
+          }
+        }
+      ]
+    },
+    {
+      "id": "16044:6918",
+      "key": "f38d6172a93af1008e5540016f4dcb9ef9430684",
+      "name": "Select_Multi",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Select 选择器 🟣 ",
+      "path": "      ↳ Select 选择器 🟣  / Select_Multi",
+      "componentPropertyDefinitions": {
+        "Select_Multi": {
+          "type": "VARIANT",
+          "defaultValue": "default",
+          "variantOptions": [
+            "default",
+            "hover",
+            "finished"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "16044:6919",
+          "key": "c296b7cf3835458af803b11790ad0b558e2e1076",
+          "name": "Select_Multi=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Select 选择器 🟣 ",
+          "path": "      ↳ Select 选择器 🟣  / Select_Multi / Select_Multi=default",
+          "componentSetId": "16044:6918",
+          "componentSetKey": "f38d6172a93af1008e5540016f4dcb9ef9430684",
+          "componentSetName": "Select_Multi",
+          "variantProperties": {
+            "Select_Multi": "default"
+          },
+          "variantPropertiesFromName": {
+            "Select_Multi": "default"
+          }
+        },
+        {
+          "id": "16044:6928",
+          "key": "983a8c0963d42969b3b1f950a699fa7330502209",
+          "name": "Select_Multi=hover",
+          "type": "COMPONENT",
+          "page": "      ↳ Select 选择器 🟣 ",
+          "path": "      ↳ Select 选择器 🟣  / Select_Multi / Select_Multi=hover",
+          "componentSetId": "16044:6918",
+          "componentSetKey": "f38d6172a93af1008e5540016f4dcb9ef9430684",
+          "componentSetName": "Select_Multi",
+          "variantProperties": {
+            "Select_Multi": "hover"
+          },
+          "variantPropertiesFromName": {
+            "Select_Multi": "hover"
+          }
+        },
+        {
+          "id": "16044:6937",
+          "key": "819aa725bd0cfff98f46a41a905343eea8feaab6",
+          "name": "Select_Multi=finished",
+          "type": "COMPONENT",
+          "page": "      ↳ Select 选择器 🟣 ",
+          "path": "      ↳ Select 选择器 🟣  / Select_Multi / Select_Multi=finished",
+          "componentSetId": "16044:6918",
+          "componentSetKey": "f38d6172a93af1008e5540016f4dcb9ef9430684",
+          "componentSetName": "Select_Multi",
+          "variantProperties": {
+            "Select_Multi": "finished"
+          },
+          "variantPropertiesFromName": {
+            "Select_Multi": "finished"
+          }
+        }
+      ]
+    },
+    {
+      "id": "16044:6950",
+      "key": "c2b8c36bcfb028b625203efb63e6f8b229d17cec",
+      "name": "Select_Tag",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Select 选择器 🟣 ",
+      "path": "      ↳ Select 选择器 🟣  / Select_Tag",
+      "componentPropertyDefinitions": {
+        "Select_Tag": {
+          "type": "VARIANT",
+          "defaultValue": "default",
+          "variantOptions": [
+            "finished",
+            "hover",
+            "default"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "16044:6951",
+          "key": "2d3472d3b3394ebc1ee84cf0751d65cdaf6b83c6",
+          "name": "Select_Tag=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Select 选择器 🟣 ",
+          "path": "      ↳ Select 选择器 🟣  / Select_Tag / Select_Tag=default",
+          "componentSetId": "16044:6950",
+          "componentSetKey": "c2b8c36bcfb028b625203efb63e6f8b229d17cec",
+          "componentSetName": "Select_Tag",
+          "variantProperties": {
+            "Select_Tag": "default"
+          },
+          "variantPropertiesFromName": {
+            "Select_Tag": "default"
+          }
+        },
+        {
+          "id": "16044:6956",
+          "key": "3bb2dbff2df94445b1b8aa8d370c7069e6eb893c",
+          "name": "Select_Tag=hover",
+          "type": "COMPONENT",
+          "page": "      ↳ Select 选择器 🟣 ",
+          "path": "      ↳ Select 选择器 🟣  / Select_Tag / Select_Tag=hover",
+          "componentSetId": "16044:6950",
+          "componentSetKey": "c2b8c36bcfb028b625203efb63e6f8b229d17cec",
+          "componentSetName": "Select_Tag",
+          "variantProperties": {
+            "Select_Tag": "hover"
+          },
+          "variantPropertiesFromName": {
+            "Select_Tag": "hover"
+          }
+        },
+        {
+          "id": "16044:6961",
+          "key": "c541a6ccddba85cdc7dc2a1236a2a3740defaa82",
+          "name": "Select_Tag=finished",
+          "type": "COMPONENT",
+          "page": "      ↳ Select 选择器 🟣 ",
+          "path": "      ↳ Select 选择器 🟣  / Select_Tag / Select_Tag=finished",
+          "componentSetId": "16044:6950",
+          "componentSetKey": "c2b8c36bcfb028b625203efb63e6f8b229d17cec",
+          "componentSetName": "Select_Tag",
+          "variantProperties": {
+            "Select_Tag": "finished"
+          },
+          "variantPropertiesFromName": {
+            "Select_Tag": "finished"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "4317bbdc187251309e4ec4f252a2935741efe54b": {
+        "id": "16044:6893",
+        "name": "Select ",
+        "componentKeys": [
+          "b7f32e0a93343d30335c17100cfb4b35aaee732d",
+          "0bb315bb6964f7acc511c8828c7903c53e2358ed",
+          "7dfeae13a6d62d29b766f2fb8ea874376601d40e",
+          "b5f91a46c92ef6405e70bd2e36b1acb8232549e4"
+        ]
+      },
+      "f38d6172a93af1008e5540016f4dcb9ef9430684": {
+        "id": "16044:6918",
+        "name": "Select_Multi",
+        "componentKeys": [
+          "c296b7cf3835458af803b11790ad0b558e2e1076",
+          "983a8c0963d42969b3b1f950a699fa7330502209",
+          "819aa725bd0cfff98f46a41a905343eea8feaab6"
+        ]
+      },
+      "c2b8c36bcfb028b625203efb63e6f8b229d17cec": {
+        "id": "16044:6950",
+        "name": "Select_Tag",
+        "componentKeys": [
+          "2d3472d3b3394ebc1ee84cf0751d65cdaf6b83c6",
+          "3bb2dbff2df94445b1b8aa8d370c7069e6eb893c",
+          "c541a6ccddba85cdc7dc2a1236a2a3740defaa82"
+        ]
+      }
+    },
+    "componentByKey": {
+      "b7f32e0a93343d30335c17100cfb4b35aaee732d": {
+        "id": "16044:6894",
+        "name": "Select=default",
+        "componentSetKey": "4317bbdc187251309e4ec4f252a2935741efe54b",
+        "componentSetName": "Select ",
+        "variantProperties": {
+          "Select": "default"
+        }
+      },
+      "0bb315bb6964f7acc511c8828c7903c53e2358ed": {
+        "id": "16044:6901",
+        "name": "Select=hover",
+        "componentSetKey": "4317bbdc187251309e4ec4f252a2935741efe54b",
+        "componentSetName": "Select ",
+        "variantProperties": {
+          "Select": "hover"
+        }
+      },
+      "7dfeae13a6d62d29b766f2fb8ea874376601d40e": {
+        "id": "16044:6908",
+        "name": "Select=finished",
+        "componentSetKey": "4317bbdc187251309e4ec4f252a2935741efe54b",
+        "componentSetName": "Select ",
+        "variantProperties": {
+          "Select": "finished"
+        }
+      },
+      "b5f91a46c92ef6405e70bd2e36b1acb8232549e4": {
+        "id": "16044:6915",
+        "name": "Select=只读状态",
+        "componentSetKey": "4317bbdc187251309e4ec4f252a2935741efe54b",
+        "componentSetName": "Select ",
+        "variantProperties": {
+          "Select": "只读状态"
+        }
+      },
+      "c296b7cf3835458af803b11790ad0b558e2e1076": {
+        "id": "16044:6919",
+        "name": "Select_Multi=default",
+        "componentSetKey": "f38d6172a93af1008e5540016f4dcb9ef9430684",
+        "componentSetName": "Select_Multi",
+        "variantProperties": {
+          "Select_Multi": "default"
+        }
+      },
+      "983a8c0963d42969b3b1f950a699fa7330502209": {
+        "id": "16044:6928",
+        "name": "Select_Multi=hover",
+        "componentSetKey": "f38d6172a93af1008e5540016f4dcb9ef9430684",
+        "componentSetName": "Select_Multi",
+        "variantProperties": {
+          "Select_Multi": "hover"
+        }
+      },
+      "819aa725bd0cfff98f46a41a905343eea8feaab6": {
+        "id": "16044:6937",
+        "name": "Select_Multi=finished",
+        "componentSetKey": "f38d6172a93af1008e5540016f4dcb9ef9430684",
+        "componentSetName": "Select_Multi",
+        "variantProperties": {
+          "Select_Multi": "finished"
+        }
+      },
+      "2d3472d3b3394ebc1ee84cf0751d65cdaf6b83c6": {
+        "id": "16044:6951",
+        "name": "Select_Tag=default",
+        "componentSetKey": "c2b8c36bcfb028b625203efb63e6f8b229d17cec",
+        "componentSetName": "Select_Tag",
+        "variantProperties": {
+          "Select_Tag": "default"
+        }
+      },
+      "3bb2dbff2df94445b1b8aa8d370c7069e6eb893c": {
+        "id": "16044:6956",
+        "name": "Select_Tag=hover",
+        "componentSetKey": "c2b8c36bcfb028b625203efb63e6f8b229d17cec",
+        "componentSetName": "Select_Tag",
+        "variantProperties": {
+          "Select_Tag": "hover"
+        }
+      },
+      "c541a6ccddba85cdc7dc2a1236a2a3740defaa82": {
+        "id": "16044:6961",
+        "name": "Select_Tag=finished",
+        "componentSetKey": "c2b8c36bcfb028b625203efb63e6f8b229d17cec",
+        "componentSetName": "Select_Tag",
+        "variantProperties": {
+          "Select_Tag": "finished"
+        }
+      }
+    }
+  }
+}

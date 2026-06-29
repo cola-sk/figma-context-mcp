@@ -1,0 +1,348 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "【内部公开版】 Titan Design System",
+    "currentPage": "Cover",
+    "scope": "page",
+    "page": "      ↳ Tooltip 提示⚫️"
+  },
+  "exportedAt": "2026-06-29T08:39:15.326Z",
+  "stats": {
+    "componentSetCount": 3,
+    "looseComponentCount": 0,
+    "componentCount": 9
+  },
+  "componentSets": [
+    {
+      "id": "10002:2874",
+      "key": "12669898359db21e517ce5a949b2225d1b3b0865",
+      "name": "Tooltip",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Tooltip 提示⚫️",
+      "path": "      ↳ Tooltip 提示⚫️ / Tooltip",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "default",
+          "variantOptions": [
+            "widest",
+            "tallest",
+            "default"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "10002:2872",
+          "key": "68995ee3a7ae1802ba25507955c1cb799bcff33f",
+          "name": "Property 1=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Tooltip 提示⚫️",
+          "path": "      ↳ Tooltip 提示⚫️ / Tooltip / Property 1=default",
+          "componentSetId": "10002:2874",
+          "componentSetKey": "12669898359db21e517ce5a949b2225d1b3b0865",
+          "componentSetName": "Tooltip",
+          "variantProperties": {
+            "Property 1": "default"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "default"
+          }
+        },
+        {
+          "id": "10002:2871",
+          "key": "1ce86c9f35553edc90ebf4a43d0e57757c327f19",
+          "name": "Property 1=widest",
+          "type": "COMPONENT",
+          "page": "      ↳ Tooltip 提示⚫️",
+          "path": "      ↳ Tooltip 提示⚫️ / Tooltip / Property 1=widest",
+          "componentSetId": "10002:2874",
+          "componentSetKey": "12669898359db21e517ce5a949b2225d1b3b0865",
+          "componentSetName": "Tooltip",
+          "variantProperties": {
+            "Property 1": "widest"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "widest"
+          }
+        },
+        {
+          "id": "10002:2870",
+          "key": "6544bf3d40c96c910084450ffedc53ea9da0a035",
+          "name": "Property 1=tallest",
+          "type": "COMPONENT",
+          "page": "      ↳ Tooltip 提示⚫️",
+          "path": "      ↳ Tooltip 提示⚫️ / Tooltip / Property 1=tallest",
+          "componentSetId": "10002:2874",
+          "componentSetKey": "12669898359db21e517ce5a949b2225d1b3b0865",
+          "componentSetName": "Tooltip",
+          "variantProperties": {
+            "Property 1": "tallest"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "tallest"
+          }
+        }
+      ]
+    },
+    {
+      "id": "12653:3015",
+      "key": "35c0b75d7bb28b3506c7064704e3e66e2954d7d5",
+      "name": "Tooltip_Panel",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Tooltip 提示⚫️",
+      "path": "      ↳ Tooltip 提示⚫️ / Tooltip_Panel",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "default",
+          "variantOptions": [
+            "default",
+            "widest",
+            "tallest"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "12653:3012",
+          "key": "6dda989ca7b17e14e56f806862ac145716204f82",
+          "name": "Property 1=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Tooltip 提示⚫️",
+          "path": "      ↳ Tooltip 提示⚫️ / Tooltip_Panel / Property 1=default",
+          "componentSetId": "12653:3015",
+          "componentSetKey": "35c0b75d7bb28b3506c7064704e3e66e2954d7d5",
+          "componentSetName": "Tooltip_Panel",
+          "variantProperties": {
+            "Property 1": "default"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "default"
+          }
+        },
+        {
+          "id": "12653:3013",
+          "key": "81b70711a45fc871c594a6be0fd98a0e54258ef7",
+          "name": "Property 1=widest",
+          "type": "COMPONENT",
+          "page": "      ↳ Tooltip 提示⚫️",
+          "path": "      ↳ Tooltip 提示⚫️ / Tooltip_Panel / Property 1=widest",
+          "componentSetId": "12653:3015",
+          "componentSetKey": "35c0b75d7bb28b3506c7064704e3e66e2954d7d5",
+          "componentSetName": "Tooltip_Panel",
+          "variantProperties": {
+            "Property 1": "widest"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "widest"
+          }
+        },
+        {
+          "id": "12653:3014",
+          "key": "55d648e24ee823850ac0291b8db9264974429cf5",
+          "name": "Property 1=tallest",
+          "type": "COMPONENT",
+          "page": "      ↳ Tooltip 提示⚫️",
+          "path": "      ↳ Tooltip 提示⚫️ / Tooltip_Panel / Property 1=tallest",
+          "componentSetId": "12653:3015",
+          "componentSetKey": "35c0b75d7bb28b3506c7064704e3e66e2954d7d5",
+          "componentSetName": "Tooltip_Panel",
+          "variantProperties": {
+            "Property 1": "tallest"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "tallest"
+          }
+        }
+      ]
+    },
+    {
+      "id": "13556:2816",
+      "key": "2a7e9c4c0eb934ea4fda29ae9eb8d0af7ec04dba",
+      "name": "Tooltip_指标",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Tooltip 提示⚫️",
+      "path": "      ↳ Tooltip 提示⚫️ / Tooltip_指标",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "Tooltip_指标",
+          "variantOptions": [
+            "Tooltip_指标+按钮",
+            "Tooltip_指标_无阴影",
+            "Tooltip_指标"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "13556:2815",
+          "key": "1c34d5e38e5b2088d7313cd8520f741791e20cf4",
+          "name": "Property 1=Tooltip_指标_无阴影",
+          "type": "COMPONENT",
+          "page": "      ↳ Tooltip 提示⚫️",
+          "path": "      ↳ Tooltip 提示⚫️ / Tooltip_指标 / Property 1=Tooltip_指标_无阴影",
+          "componentSetId": "13556:2816",
+          "componentSetKey": "2a7e9c4c0eb934ea4fda29ae9eb8d0af7ec04dba",
+          "componentSetName": "Tooltip_指标",
+          "variantProperties": {
+            "Property 1": "Tooltip_指标_无阴影"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Tooltip_指标_无阴影"
+          }
+        },
+        {
+          "id": "13556:2814",
+          "key": "0effc44c50f58fdedf54bdeed0111a91fa28e9c1",
+          "name": "Property 1=Tooltip_指标+按钮",
+          "type": "COMPONENT",
+          "page": "      ↳ Tooltip 提示⚫️",
+          "path": "      ↳ Tooltip 提示⚫️ / Tooltip_指标 / Property 1=Tooltip_指标+按钮",
+          "componentSetId": "13556:2816",
+          "componentSetKey": "2a7e9c4c0eb934ea4fda29ae9eb8d0af7ec04dba",
+          "componentSetName": "Tooltip_指标",
+          "variantProperties": {
+            "Property 1": "Tooltip_指标+按钮"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Tooltip_指标+按钮"
+          }
+        },
+        {
+          "id": "13556:2776",
+          "key": "2ae82b5400a5048dad8ec44b0404080656282670",
+          "name": "Property 1=Tooltip_指标",
+          "type": "COMPONENT",
+          "page": "      ↳ Tooltip 提示⚫️",
+          "path": "      ↳ Tooltip 提示⚫️ / Tooltip_指标 / Property 1=Tooltip_指标",
+          "componentSetId": "13556:2816",
+          "componentSetKey": "2a7e9c4c0eb934ea4fda29ae9eb8d0af7ec04dba",
+          "componentSetName": "Tooltip_指标",
+          "variantProperties": {
+            "Property 1": "Tooltip_指标"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Tooltip_指标"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "12669898359db21e517ce5a949b2225d1b3b0865": {
+        "id": "10002:2874",
+        "name": "Tooltip",
+        "componentKeys": [
+          "68995ee3a7ae1802ba25507955c1cb799bcff33f",
+          "1ce86c9f35553edc90ebf4a43d0e57757c327f19",
+          "6544bf3d40c96c910084450ffedc53ea9da0a035"
+        ]
+      },
+      "35c0b75d7bb28b3506c7064704e3e66e2954d7d5": {
+        "id": "12653:3015",
+        "name": "Tooltip_Panel",
+        "componentKeys": [
+          "6dda989ca7b17e14e56f806862ac145716204f82",
+          "81b70711a45fc871c594a6be0fd98a0e54258ef7",
+          "55d648e24ee823850ac0291b8db9264974429cf5"
+        ]
+      },
+      "2a7e9c4c0eb934ea4fda29ae9eb8d0af7ec04dba": {
+        "id": "13556:2816",
+        "name": "Tooltip_指标",
+        "componentKeys": [
+          "1c34d5e38e5b2088d7313cd8520f741791e20cf4",
+          "0effc44c50f58fdedf54bdeed0111a91fa28e9c1",
+          "2ae82b5400a5048dad8ec44b0404080656282670"
+        ]
+      }
+    },
+    "componentByKey": {
+      "68995ee3a7ae1802ba25507955c1cb799bcff33f": {
+        "id": "10002:2872",
+        "name": "Property 1=default",
+        "componentSetKey": "12669898359db21e517ce5a949b2225d1b3b0865",
+        "componentSetName": "Tooltip",
+        "variantProperties": {
+          "Property 1": "default"
+        }
+      },
+      "1ce86c9f35553edc90ebf4a43d0e57757c327f19": {
+        "id": "10002:2871",
+        "name": "Property 1=widest",
+        "componentSetKey": "12669898359db21e517ce5a949b2225d1b3b0865",
+        "componentSetName": "Tooltip",
+        "variantProperties": {
+          "Property 1": "widest"
+        }
+      },
+      "6544bf3d40c96c910084450ffedc53ea9da0a035": {
+        "id": "10002:2870",
+        "name": "Property 1=tallest",
+        "componentSetKey": "12669898359db21e517ce5a949b2225d1b3b0865",
+        "componentSetName": "Tooltip",
+        "variantProperties": {
+          "Property 1": "tallest"
+        }
+      },
+      "6dda989ca7b17e14e56f806862ac145716204f82": {
+        "id": "12653:3012",
+        "name": "Property 1=default",
+        "componentSetKey": "35c0b75d7bb28b3506c7064704e3e66e2954d7d5",
+        "componentSetName": "Tooltip_Panel",
+        "variantProperties": {
+          "Property 1": "default"
+        }
+      },
+      "81b70711a45fc871c594a6be0fd98a0e54258ef7": {
+        "id": "12653:3013",
+        "name": "Property 1=widest",
+        "componentSetKey": "35c0b75d7bb28b3506c7064704e3e66e2954d7d5",
+        "componentSetName": "Tooltip_Panel",
+        "variantProperties": {
+          "Property 1": "widest"
+        }
+      },
+      "55d648e24ee823850ac0291b8db9264974429cf5": {
+        "id": "12653:3014",
+        "name": "Property 1=tallest",
+        "componentSetKey": "35c0b75d7bb28b3506c7064704e3e66e2954d7d5",
+        "componentSetName": "Tooltip_Panel",
+        "variantProperties": {
+          "Property 1": "tallest"
+        }
+      },
+      "1c34d5e38e5b2088d7313cd8520f741791e20cf4": {
+        "id": "13556:2815",
+        "name": "Property 1=Tooltip_指标_无阴影",
+        "componentSetKey": "2a7e9c4c0eb934ea4fda29ae9eb8d0af7ec04dba",
+        "componentSetName": "Tooltip_指标",
+        "variantProperties": {
+          "Property 1": "Tooltip_指标_无阴影"
+        }
+      },
+      "0effc44c50f58fdedf54bdeed0111a91fa28e9c1": {
+        "id": "13556:2814",
+        "name": "Property 1=Tooltip_指标+按钮",
+        "componentSetKey": "2a7e9c4c0eb934ea4fda29ae9eb8d0af7ec04dba",
+        "componentSetName": "Tooltip_指标",
+        "variantProperties": {
+          "Property 1": "Tooltip_指标+按钮"
+        }
+      },
+      "2ae82b5400a5048dad8ec44b0404080656282670": {
+        "id": "13556:2776",
+        "name": "Property 1=Tooltip_指标",
+        "componentSetKey": "2a7e9c4c0eb934ea4fda29ae9eb8d0af7ec04dba",
+        "componentSetName": "Tooltip_指标",
+        "variantProperties": {
+          "Property 1": "Tooltip_指标"
+        }
+      }
+    }
+  }
+}

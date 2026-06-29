@@ -1,0 +1,163 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "【内部公开版】 Titan Design System",
+    "currentPage": "Cover",
+    "scope": "page",
+    "page": "      ↳ Date-picker 日期选择器 🔵 "
+  },
+  "exportedAt": "2026-06-29T08:39:15.326Z",
+  "stats": {
+    "componentSetCount": 1,
+    "looseComponentCount": 2,
+    "componentCount": 5
+  },
+  "componentSets": [
+    {
+      "id": "10063:353",
+      "key": "6b4e2a15433dd63dafe8ecf2ba9bfe99398f99ff",
+      "name": "Date-picker",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Date-picker 日期选择器 🔵 ",
+      "path": "      ↳ Date-picker 日期选择器 🔵  / Date-picker",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "时间",
+          "variantOptions": [
+            "时间",
+            "时间-宽选择器",
+            "时间-窄选择器"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "10063:352",
+          "key": "3ebdb4b57aa312e916a5c0b937f84d8125d5981d",
+          "name": "Property 1=时间",
+          "type": "COMPONENT",
+          "page": "      ↳ Date-picker 日期选择器 🔵 ",
+          "path": "      ↳ Date-picker 日期选择器 🔵  / Date-picker / Property 1=时间",
+          "componentSetId": "10063:353",
+          "componentSetKey": "6b4e2a15433dd63dafe8ecf2ba9bfe99398f99ff",
+          "componentSetName": "Date-picker",
+          "variantProperties": {
+            "Property 1": "时间"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "时间"
+          }
+        },
+        {
+          "id": "14219:756",
+          "key": "7a61374d144c97d79edb00fee42c538d3c45df2b",
+          "name": "Property 1=时间-宽选择器",
+          "type": "COMPONENT",
+          "page": "      ↳ Date-picker 日期选择器 🔵 ",
+          "path": "      ↳ Date-picker 日期选择器 🔵  / Date-picker / Property 1=时间-宽选择器",
+          "componentSetId": "10063:353",
+          "componentSetKey": "6b4e2a15433dd63dafe8ecf2ba9bfe99398f99ff",
+          "componentSetName": "Date-picker",
+          "variantProperties": {
+            "Property 1": "时间-宽选择器"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "时间-宽选择器"
+          }
+        },
+        {
+          "id": "14219:833",
+          "key": "776ec58cf8bae734e19f83316419493252929a50",
+          "name": "Property 1=时间-窄选择器",
+          "type": "COMPONENT",
+          "page": "      ↳ Date-picker 日期选择器 🔵 ",
+          "path": "      ↳ Date-picker 日期选择器 🔵  / Date-picker / Property 1=时间-窄选择器",
+          "componentSetId": "10063:353",
+          "componentSetKey": "6b4e2a15433dd63dafe8ecf2ba9bfe99398f99ff",
+          "componentSetName": "Date-picker",
+          "variantProperties": {
+            "Property 1": "时间-窄选择器"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "时间-窄选择器"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [
+    {
+      "id": "14306:998",
+      "key": "c6f50c478ec91da69f05ab96207dfad27e8629f0",
+      "name": "日历",
+      "type": "COMPONENT",
+      "page": "      ↳ Date-picker 日期选择器 🔵 ",
+      "path": "      ↳ Date-picker 日期选择器 🔵  / 日历"
+    },
+    {
+      "id": "14307:2222",
+      "key": "1ca0fd685a5226813ae7c793693192ed0c9964ac",
+      "name": "日历-已过期",
+      "type": "COMPONENT",
+      "page": "      ↳ Date-picker 日期选择器 🔵 ",
+      "path": "      ↳ Date-picker 日期选择器 🔵  / 日历-已过期"
+    }
+  ],
+  "indexes": {
+    "componentSetByKey": {
+      "6b4e2a15433dd63dafe8ecf2ba9bfe99398f99ff": {
+        "id": "10063:353",
+        "name": "Date-picker",
+        "componentKeys": [
+          "3ebdb4b57aa312e916a5c0b937f84d8125d5981d",
+          "7a61374d144c97d79edb00fee42c538d3c45df2b",
+          "776ec58cf8bae734e19f83316419493252929a50"
+        ]
+      }
+    },
+    "componentByKey": {
+      "3ebdb4b57aa312e916a5c0b937f84d8125d5981d": {
+        "id": "10063:352",
+        "name": "Property 1=时间",
+        "componentSetKey": "6b4e2a15433dd63dafe8ecf2ba9bfe99398f99ff",
+        "componentSetName": "Date-picker",
+        "variantProperties": {
+          "Property 1": "时间"
+        }
+      },
+      "7a61374d144c97d79edb00fee42c538d3c45df2b": {
+        "id": "14219:756",
+        "name": "Property 1=时间-宽选择器",
+        "componentSetKey": "6b4e2a15433dd63dafe8ecf2ba9bfe99398f99ff",
+        "componentSetName": "Date-picker",
+        "variantProperties": {
+          "Property 1": "时间-宽选择器"
+        }
+      },
+      "776ec58cf8bae734e19f83316419493252929a50": {
+        "id": "14219:833",
+        "name": "Property 1=时间-窄选择器",
+        "componentSetKey": "6b4e2a15433dd63dafe8ecf2ba9bfe99398f99ff",
+        "componentSetName": "Date-picker",
+        "variantProperties": {
+          "Property 1": "时间-窄选择器"
+        }
+      },
+      "c6f50c478ec91da69f05ab96207dfad27e8629f0": {
+        "id": "14306:998",
+        "name": "日历",
+        "componentSetKey": null,
+        "componentSetName": null,
+        "variantProperties": {}
+      },
+      "1ca0fd685a5226813ae7c793693192ed0c9964ac": {
+        "id": "14307:2222",
+        "name": "日历-已过期",
+        "componentSetKey": null,
+        "componentSetName": null,
+        "variantProperties": {}
+      }
+    }
+  }
+}

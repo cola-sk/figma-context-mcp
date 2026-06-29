@@ -1,6 +1,6 @@
 figma.showUI(__html__, {
   width: 520,
-  height: 560,
+  height: 640,
   themeColors: true,
 })
 
@@ -41,16 +41,21 @@ function sendReady() {
       fileName: figma.root.name,
       currentPage: figma.currentPage.name,
       selectionCount: figma.currentPage.selection.length,
+      pages: figma.root.children.map((page) => ({
+        id: page.id,
+        name: page.name,
+        current: page.id === figma.currentPage.id,
+      })),
     },
   })
 }
 
 async function runExport(rawOptions) {
   const options = normalizeOptions(rawOptions)
-  const roots = await getScanRoots(options.scope)
+  const roots = await getScanRoots(options)
 
   if (roots.length === 0) {
-    throw new Error('没有可扫描的节点。请选择节点，或将扫描范围切换为当前页/全文件。')
+    throw new Error('没有可扫描的页面。请至少勾选一个页面。')
   }
 
   const isDesignSpec = options.exportType === 'design-spec'
@@ -73,40 +78,24 @@ async function runExport(rawOptions) {
 
 function normalizeOptions(rawOptions) {
   const options = rawOptions && typeof rawOptions === 'object' ? rawOptions : {}
+  const pageIds = Array.isArray(options.pageIds)
+    ? options.pageIds.filter((id) => typeof id === 'string' && id)
+    : []
+
   return {
-    scope: ['all-pages', 'current-page', 'selection'].includes(options.scope)
-      ? options.scope
-      : 'current-page',
+    scope: 'selected-pages',
+    pageIds,
     exportType: options.exportType === 'design-spec' ? 'design-spec' : 'registry',
   }
 }
 
-async function getScanRoots(scope) {
-  if (scope === 'selection') {
-    postProgress({
-      value: 1,
-      total: 1,
-      label: '使用当前选中节点',
-    })
-    return [...figma.currentPage.selection]
+async function getScanRoots(options) {
+  const pages = figma.root.children.filter((page) => options.pageIds.includes(page.id) && !isPageSeparator(page.name))
+
+  if (pages.length === 0) {
+    throw new Error('请选择至少一个页面。')
   }
 
-  if (scope === 'current-page') {
-    postProgress({
-      value: 0,
-      total: 1,
-      label: `加载当前页: ${figma.currentPage.name}`,
-    })
-    await loadPage(figma.currentPage)
-    postProgress({
-      value: 1,
-      total: 1,
-      label: `已加载当前页: ${figma.currentPage.name}`,
-    })
-    return [figma.currentPage]
-  }
-
-  const pages = [...figma.root.children]
   const loadedPages = []
   for (let index = 0; index < pages.length; index++) {
     const page = pages[index]
@@ -124,6 +113,10 @@ async function getScanRoots(scope) {
     })
   }
   return loadedPages
+}
+
+function isPageSeparator(name) {
+  return !String(name || '').trim().startsWith('↳')
 }
 
 async function loadPage(page) {
@@ -200,7 +193,7 @@ async function exportComponentData(roots, options) {
           name: component.name,
           componentSetKey: set.key,
           componentSetName: set.name,
-          variantProperties: component.variantProperties || {},
+          variantProperties: component.variantProperties || component.variantPropertiesFromName || {},
         }
       }
     }
@@ -213,7 +206,7 @@ async function exportComponentData(roots, options) {
         name: component.name,
         componentSetKey: null,
         componentSetName: null,
-        variantProperties: component.variantProperties || {},
+        variantProperties: component.variantProperties || component.variantPropertiesFromName || {},
       }
     }
   }
@@ -259,6 +252,7 @@ async function serializeRegistryComponentSet(node) {
 }
 
 async function serializeRegistryComponent(node, parentSet) {
+  const variantPropertiesResult = getVariantProperties(node)
   return compactObject({
     id: node.id,
     key: node.key,
@@ -270,8 +264,9 @@ async function serializeRegistryComponent(node, parentSet) {
     componentSetId: parentSet ? parentSet.id : (node.parent && node.parent.type === 'COMPONENT_SET' ? node.parent.id : undefined),
     componentSetKey: parentSet ? parentSet.key : (node.parent && node.parent.type === 'COMPONENT_SET' ? node.parent.key : undefined),
     componentSetName: parentSet ? parentSet.name : (node.parent && node.parent.type === 'COMPONENT_SET' ? node.parent.name : undefined),
-    variantProperties: normalizeRecord(node.variantProperties),
+    variantProperties: normalizeRecord(variantPropertiesResult.value),
     variantPropertiesFromName: parseVariantName(node.name),
+    warnings: variantPropertiesResult.warning ? [variantPropertiesResult.warning] : undefined,
     componentPropertyDefinitions: normalizeComponentPropertyDefinitions(getComponentPropertyDefinitions(node)),
   })
 }
@@ -299,6 +294,7 @@ async function serializeDesignSpecComponentSet(node) {
 }
 
 async function serializeDesignSpecComponent(node, parentSet) {
+  const variantPropertiesResult = getVariantProperties(node)
   return compactObject({
     id: node.id,
     key: node.key,
@@ -310,8 +306,9 @@ async function serializeDesignSpecComponent(node, parentSet) {
     componentSetId: parentSet ? parentSet.id : (node.parent && node.parent.type === 'COMPONENT_SET' ? node.parent.id : undefined),
     componentSetKey: parentSet ? parentSet.key : (node.parent && node.parent.type === 'COMPONENT_SET' ? node.parent.key : undefined),
     componentSetName: parentSet ? parentSet.name : (node.parent && node.parent.type === 'COMPONENT_SET' ? node.parent.name : undefined),
-    variantProperties: normalizeRecord(node.variantProperties),
+    variantProperties: normalizeRecord(variantPropertiesResult.value),
     variantPropertiesFromName: parseVariantName(node.name),
+    warnings: variantPropertiesResult.warning ? [variantPropertiesResult.warning] : undefined,
     componentPropertyDefinitions: normalizeComponentPropertyDefinitions(getComponentPropertyDefinitions(node)),
     design: await serializeDesignNode(node, 0),
   })
@@ -328,7 +325,7 @@ async function serializeDesignNode(node, depth) {
     componentId: node.componentId,
     componentProperties: normalizeComponentProperties(getComponentProperties(node).value),
     componentPropertyReferences: normalizeRecord(node.componentPropertyReferences),
-    variantProperties: normalizeRecord(node.variantProperties),
+    variantProperties: normalizeRecord(getVariantProperties(node).value),
     text: node.type === 'TEXT' ? node.characters : undefined,
     size: getSize(node),
     layout: getLayout(node),
@@ -447,6 +444,26 @@ function getComponentProperties(node) {
       value: undefined,
       warning: {
         code: 'componentProperties_unreadable',
+        nodeId: node.id,
+        nodeName: node.name,
+        message: error instanceof Error ? error.message : String(error),
+      },
+    }
+  }
+}
+
+function getVariantProperties(node) {
+  if (!node || !('variantProperties' in node)) {
+    return { value: undefined }
+  }
+
+  try {
+    return { value: node.variantProperties }
+  } catch (error) {
+    return {
+      value: undefined,
+      warning: {
+        code: 'variantProperties_unreadable',
         nodeId: node.id,
         nodeName: node.name,
         message: error instanceof Error ? error.message : String(error),

@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "主题开发者平台 Design System",
+    "currentPage": "      ↳ Side Nav. 左侧菜单 🔵",
+    "scope": "page",
+    "page": "      ↳ Transfer 穿梭框  🟠"
+  },
+  "exportedAt": "2026-06-29T03:12:55.937Z",
+  "stats": {
+    "componentSetCount": 1,
+    "looseComponentCount": 0,
+    "componentCount": 2
+  },
+  "componentSets": [
+    {
+      "id": "16045:142",
+      "key": "9eae6ee156cefd39971b7b0ec13f56891388b7ea",
+      "name": "Transfer",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Transfer 穿梭框  🟠",
+      "path": "      ↳ Transfer 穿梭框  🟠 / Transfer",
+      "componentPropertyDefinitions": {
+        "Transfer": {
+          "type": "VARIANT",
+          "defaultValue": "1列",
+          "variantOptions": [
+            "2列",
+            "1列"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "16045:143",
+          "key": "77391c5271084beb894726f4454a0576fff53cbf",
+          "name": "Transfer=2列",
+          "type": "COMPONENT",
+          "page": "      ↳ Transfer 穿梭框  🟠",
+          "path": "      ↳ Transfer 穿梭框  🟠 / Transfer / Transfer=2列",
+          "componentSetId": "16045:142",
+          "componentSetKey": "9eae6ee156cefd39971b7b0ec13f56891388b7ea",
+          "componentSetName": "Transfer",
+          "variantProperties": {
+            "Transfer": "2列"
+          },
+          "variantPropertiesFromName": {
+            "Transfer": "2列"
+          }
+        },
+        {
+          "id": "16045:343",
+          "key": "3a66c62d2cbcb647900817e16f5e81c8c83b7c69",
+          "name": "Transfer=1列",
+          "type": "COMPONENT",
+          "page": "      ↳ Transfer 穿梭框  🟠",
+          "path": "      ↳ Transfer 穿梭框  🟠 / Transfer / Transfer=1列",
+          "componentSetId": "16045:142",
+          "componentSetKey": "9eae6ee156cefd39971b7b0ec13f56891388b7ea",
+          "componentSetName": "Transfer",
+          "variantProperties": {
+            "Transfer": "1列"
+          },
+          "variantPropertiesFromName": {
+            "Transfer": "1列"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "9eae6ee156cefd39971b7b0ec13f56891388b7ea": {
+        "id": "16045:142",
+        "name": "Transfer",
+        "componentKeys": [
+          "77391c5271084beb894726f4454a0576fff53cbf",
+          "3a66c62d2cbcb647900817e16f5e81c8c83b7c69"
+        ]
+      }
+    },
+    "componentByKey": {
+      "77391c5271084beb894726f4454a0576fff53cbf": {
+        "id": "16045:143",
+        "name": "Transfer=2列",
+        "componentSetKey": "9eae6ee156cefd39971b7b0ec13f56891388b7ea",
+        "componentSetName": "Transfer",
+        "variantProperties": {
+          "Transfer": "2列"
+        }
+      },
+      "3a66c62d2cbcb647900817e16f5e81c8c83b7c69": {
+        "id": "16045:343",
+        "name": "Transfer=1列",
+        "componentSetKey": "9eae6ee156cefd39971b7b0ec13f56891388b7ea",
+        "componentSetName": "Transfer",
+        "variantProperties": {
+          "Transfer": "1列"
+        }
+      }
+    }
+  }
+}

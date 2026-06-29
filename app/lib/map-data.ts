@@ -1,0 +1,382 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { normalizeTargetLibrary, type TargetLibrary } from './mapping-constants';
+
+export type MappingStatus = 'mapped' | 'unresolved';
+export type MappingKind = 'component-set' | 'loose-component';
+export type VariantMode = 'inherit' | 'override' | 'unresolved';
+type VariantStatus = 'mapped-via-component-set' | 'mapped-override' | 'unresolved';
+
+type Target = {
+  library?: string;
+  component?: string;
+  docs?: string | null;
+  fallbackReason?: string;
+  evidence?: string[];
+} | null;
+
+type ComponentSetEntry = {
+  figma: {
+    id: string;
+    key: string;
+    name: string;
+    type: string;
+    page?: string;
+    path?: string;
+    componentCount?: number;
+    componentPropertyDefinitions?: Record<string, unknown>;
+  };
+  status: MappingStatus;
+  target: Target;
+  reason?: string;
+  variantToPropsStatus?: string;
+  variantToPropsReason?: string;
+  components?: Record<string, ComponentVariantEntry>;
+};
+
+type ComponentVariantEntry = {
+  figma: {
+    id: string;
+    key: string;
+    name: string;
+    type: string;
+    page?: string;
+    path?: string;
+    componentSetId?: string;
+    componentSetKey?: string;
+    componentSetName?: string;
+    variantProperties?: Record<string, string>;
+  };
+  status?: VariantStatus | string;
+  target?: Target;
+  targetRef?: string | null;
+  reason?: string;
+};
+
+type LooseComponentEntry = {
+  figma: {
+    id: string;
+    key: string;
+    name: string;
+    type: string;
+    page?: string;
+    path?: string;
+  };
+  status: MappingStatus;
+  target: Target;
+  reason?: string;
+  variantToPropsStatus?: string;
+};
+
+export type ComponentMap = {
+  schemaVersion: string;
+  generatedAt?: string;
+  sourceRegistry?: unknown;
+  mappingPolicy?: unknown;
+  stats: Record<string, number>;
+  componentSets: Record<string, ComponentSetEntry>;
+  looseComponents: Record<string, LooseComponentEntry>;
+};
+
+export type MapRow = {
+  rowId: string;
+  kind: MappingKind;
+  key: string;
+  figmaId: string;
+  name: string;
+  page: string;
+  status: MappingStatus;
+  targetLibrary: string;
+  targetComponent: string;
+  reason: string;
+  evidence: string[];
+  variantCount: number;
+  variants: MapVariant[];
+  raw: unknown;
+};
+
+export type MapVariant = {
+  key: string;
+  figmaId: string;
+  name: string;
+  status: string;
+  mode: VariantMode;
+  targetLibrary: string;
+  targetComponent: string;
+  reason: string;
+  variantProperties: Record<string, string>;
+};
+
+export type MapViewData = {
+  schemaVersion: string;
+  generatedAt?: string;
+  stats: Record<string, number>;
+  rows: MapRow[];
+  pages: string[];
+  targetComponents: string[];
+};
+
+export function getMapPath() {
+  return path.resolve(process.cwd(), '../mappings/figma-component-key-map.json');
+}
+
+function asText(value: unknown, fallback = '-') {
+  return typeof value === 'string' && value.trim() ? value : fallback;
+}
+
+function targetLabel(target: Target, field: 'library' | 'component') {
+  if (!target || typeof target[field] !== 'string' || !target[field]) return '-';
+  if (field === 'library') return normalizeTargetLibrary(target[field]) ?? target[field];
+  return target[field];
+}
+
+function optionalTargetLabel(target: Target | undefined, field: 'library' | 'component') {
+  return targetLabel(target ?? null, field);
+}
+
+function getEvidence(target: Target) {
+  return target && Array.isArray(target.evidence) ? target.evidence.filter((item): item is string => typeof item === 'string') : [];
+}
+
+export function loadComponentMap(): ComponentMap {
+  const mapPath = getMapPath();
+  const raw = fs.readFileSync(mapPath, 'utf8');
+  return JSON.parse(raw) as ComponentMap;
+}
+
+export function saveComponentMap(map: ComponentMap) {
+  fs.writeFileSync(getMapPath(), `${JSON.stringify(map, null, 2)}\n`, 'utf8');
+}
+
+function getVariantCount(entry: ComponentSetEntry) {
+  return entry.figma.componentCount ?? Object.keys(entry.components || {}).length;
+}
+
+function getVariantMode(variant: ComponentVariantEntry): VariantMode {
+  if (variant.status === 'mapped-override') return 'override';
+  if (variant.status === 'unresolved') return 'unresolved';
+  return 'inherit';
+}
+
+function isVariantMapped(variant: ComponentVariantEntry, componentSet: ComponentSetEntry) {
+  if (variant.status === 'mapped-override') return Boolean(optionalTargetLabel(variant.target, 'component') !== '-');
+  if (variant.status === 'unresolved') return false;
+  return componentSet.status === 'mapped';
+}
+
+function recomputeStats(map: ComponentMap) {
+  const componentSets = Object.values(map.componentSets || {});
+  const looseComponents = Object.values(map.looseComponents || {});
+  const mappedComponentCount = componentSets.reduce(
+    (total, entry) => total + Object.values(entry.components || {}).filter((variant) => isVariantMapped(variant, entry)).length,
+    0,
+  );
+  const componentVariantCount = componentSets.reduce((total, entry) => total + getVariantCount(entry), 0);
+
+  map.stats = {
+    ...map.stats,
+    componentSetCount: componentSets.length,
+    mappedComponentSetCount: componentSets.filter((entry) => entry.status === 'mapped').length,
+    unresolvedComponentSetCount: componentSets.filter((entry) => entry.status === 'unresolved').length,
+    looseComponentCount: looseComponents.length,
+    mappedLooseComponentCount: looseComponents.filter((entry) => entry.status === 'mapped').length,
+    unresolvedLooseComponentCount: looseComponents.filter((entry) => entry.status === 'unresolved').length,
+    mappedComponentCount,
+    unresolvedComponentCount: componentVariantCount - mappedComponentCount,
+    componentVariantCount,
+    totalExportedComponentCount: componentVariantCount + looseComponents.length,
+  };
+}
+
+export function updateMapEntry({
+  map,
+  kind,
+  key,
+  status,
+  target,
+}: {
+  map: ComponentMap;
+  kind: MappingKind;
+  key: string;
+  status: MappingStatus;
+  target?: { library: TargetLibrary; component: string } | null;
+}) {
+  const entry = kind === 'component-set' ? map.componentSets?.[key] : map.looseComponents?.[key];
+  if (!entry) {
+    throw new Error(`Mapping entry not found: ${kind}:${key}`);
+  }
+
+  if (status === 'mapped') {
+    if (!target?.component.trim()) {
+      throw new Error('Target component is required when status is mapped.');
+    }
+
+    entry.status = 'mapped';
+    entry.target = {
+      library: target.library,
+      component: target.component.trim(),
+      docs: null,
+      evidence: ['Manual mapping saved in Component Map Viewer.'],
+    };
+    entry.reason = 'Mapped manually in Component Map Viewer.';
+
+    if (kind === 'component-set') {
+      const componentSet = entry as ComponentSetEntry;
+      Object.values(componentSet.components || {}).forEach((component) => {
+        if (component.status === 'mapped-override') return;
+        Object.assign(component, {
+          status: 'mapped-via-component-set',
+          targetRef: `componentSets.${key}.target`,
+          reason: 'Concrete variant inherits the manually saved component-set mapping.',
+        });
+      });
+    }
+  } else {
+    entry.status = 'unresolved';
+    entry.target = null;
+    entry.reason = 'Marked unresolved manually in Component Map Viewer. Do not infer a replacement component.';
+
+    if (kind === 'component-set') {
+      const componentSet = entry as ComponentSetEntry;
+      Object.values(componentSet.components || {}).forEach((component) => {
+        if (component.status === 'mapped-override') return;
+        Object.assign(component, {
+          status: 'unresolved',
+          targetRef: null,
+          reason: 'Parent component set was marked unresolved manually.',
+        });
+      });
+    }
+  }
+
+  recomputeStats(map);
+}
+
+export function updateVariantEntry({
+  map,
+  componentSetKey,
+  variantKey,
+  mode,
+  target,
+}: {
+  map: ComponentMap;
+  componentSetKey: string;
+  variantKey: string;
+  mode: VariantMode;
+  target?: { library: TargetLibrary; component: string } | null;
+}) {
+  const componentSet = map.componentSets?.[componentSetKey];
+  const variant = componentSet?.components?.[variantKey];
+  if (!componentSet || !variant) {
+    throw new Error(`Variant entry not found: ${componentSetKey}:${variantKey}`);
+  }
+
+  if (mode === 'override') {
+    if (!target?.component.trim()) {
+      throw new Error('Target component is required when variant mode is override.');
+    }
+
+    variant.status = 'mapped-override';
+    variant.target = {
+      library: target.library,
+      component: target.component.trim(),
+      docs: null,
+      evidence: ['Manual variant override saved in Component Map Viewer.'],
+    };
+    variant.targetRef = null;
+    variant.reason = 'Variant target overrides its component-set mapping.';
+  } else if (mode === 'inherit') {
+    delete variant.target;
+    variant.targetRef = componentSet.status === 'mapped' ? `componentSets.${componentSetKey}.target` : null;
+    variant.status = componentSet.status === 'mapped' ? 'mapped-via-component-set' : 'unresolved';
+    variant.reason =
+      componentSet.status === 'mapped'
+        ? 'Concrete variant inherits the component-set mapping.'
+        : 'Concrete variant inherits an unresolved component-set mapping.';
+  } else {
+    variant.status = 'unresolved';
+    variant.target = null;
+    variant.targetRef = null;
+    variant.reason = 'Marked unresolved manually in Component Map Viewer. Do not infer a replacement component.';
+  }
+
+  recomputeStats(map);
+}
+
+function mapVariant(variant: ComponentVariantEntry, componentSet: ComponentSetEntry): MapVariant {
+  const mode = getVariantMode(variant);
+  const target = mode === 'override' ? variant.target : mode === 'inherit' ? componentSet.target : null;
+
+  return {
+    key: variant.figma.key,
+    figmaId: variant.figma.id,
+    name: variant.figma.name,
+    status: asText(variant.status),
+    mode,
+    targetLibrary: optionalTargetLabel(target, 'library'),
+    targetComponent: optionalTargetLabel(target, 'component'),
+    reason: asText(variant.reason),
+    variantProperties: variant.figma.variantProperties ?? {},
+  };
+}
+
+export function mapToViewData(parsed: ComponentMap): MapViewData {
+  const componentSetRows: MapRow[] = Object.entries(parsed.componentSets || {}).map(([key, entry]) => ({
+    rowId: `component-set:${key}`,
+    kind: 'component-set',
+    key,
+    figmaId: entry.figma.id,
+    name: entry.figma.name,
+    page: asText(entry.figma.page),
+    status: entry.status,
+    targetLibrary: targetLabel(entry.target, 'library'),
+    targetComponent: targetLabel(entry.target, 'component'),
+    reason: asText(entry.reason),
+    evidence: getEvidence(entry.target),
+    variantCount: entry.figma.componentCount ?? Object.keys(entry.components || {}).length,
+    variants: Object.values(entry.components || {}).map((variant) => mapVariant(variant, entry)),
+    raw: entry,
+  }));
+
+  const looseRows: MapRow[] = Object.entries(parsed.looseComponents || {}).map(([key, entry]) => ({
+    rowId: `loose-component:${key}`,
+    kind: 'loose-component',
+    key,
+    figmaId: entry.figma.id,
+    name: entry.figma.name,
+    page: asText(entry.figma.page),
+    status: entry.status,
+    targetLibrary: targetLabel(entry.target, 'library'),
+    targetComponent: targetLabel(entry.target, 'component'),
+    reason: asText(entry.reason),
+    evidence: getEvidence(entry.target),
+    variantCount: 1,
+    variants: [],
+    raw: entry,
+  }));
+
+  const rows = [...componentSetRows, ...looseRows].sort((a, b) => {
+    const page = a.page.localeCompare(b.page, 'zh-CN');
+    if (page !== 0) return page;
+    return a.name.localeCompare(b.name, 'zh-CN');
+  });
+
+  return {
+    schemaVersion: parsed.schemaVersion,
+    generatedAt: parsed.generatedAt,
+    stats: parsed.stats,
+    rows,
+    pages: Array.from(new Set(rows.map((row) => row.page))).sort((a, b) => a.localeCompare(b, 'zh-CN')),
+    targetComponents: Array.from(
+      new Set(
+        rows
+          .flatMap((row) => [row.targetComponent, ...row.variants.map((variant) => variant.targetComponent)])
+          .filter((item) => item !== '-'),
+      ),
+    ).sort(),
+  };
+}
+
+export function loadMapViewData(): MapViewData {
+  return mapToViewData(loadComponentMap());
+}

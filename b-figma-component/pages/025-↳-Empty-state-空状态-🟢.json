@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "【内部公开版】 Titan Design System",
+    "currentPage": "Cover",
+    "scope": "page",
+    "page": "      ↳ Empty-state 空状态 🟢"
+  },
+  "exportedAt": "2026-06-29T08:39:15.326Z",
+  "stats": {
+    "componentSetCount": 1,
+    "looseComponentCount": 0,
+    "componentCount": 6
+  },
+  "componentSets": [
+    {
+      "id": "10002:3587",
+      "key": "30c224a229ddd47340e941800179128cf2b4640a",
+      "name": "Empty-state",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Empty-state 空状态 🟢",
+      "path": "      ↳ Empty-state 空状态 🟢 / Empty-state",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "General",
+          "variantOptions": [
+            "No Personnel Information",
+            "No Configuration Information",
+            "No Search Keywords",
+            "No Detailed Information",
+            "General",
+            "Variant6"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "10002:3576",
+          "key": "ed1054d09f7b467eda803a54b5da82c54cf152db",
+          "name": "Property 1=General",
+          "type": "COMPONENT",
+          "page": "      ↳ Empty-state 空状态 🟢",
+          "path": "      ↳ Empty-state 空状态 🟢 / Empty-state / Property 1=General",
+          "componentSetId": "10002:3587",
+          "componentSetKey": "30c224a229ddd47340e941800179128cf2b4640a",
+          "componentSetName": "Empty-state",
+          "variantProperties": {
+            "Property 1": "General"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "General"
+          }
+        },
+        {
+          "id": "10002:3580",
+          "key": "65a0719f6bebe581b8c55b046832d3393705ca82",
+          "name": "Property 1=No Personnel Information",
+          "type": "COMPONENT",
+          "page": "      ↳ Empty-state 空状态 🟢",
+          "path": "      ↳ Empty-state 空状态 🟢 / Empty-state / Property 1=No Personnel Information",
+          "componentSetId": "10002:3587",
+          "componentSetKey": "30c224a229ddd47340e941800179128cf2b4640a",
+          "componentSetName": "Empty-state",
+          "variantProperties": {
+            "Property 1": "No Personnel Information"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "No Personnel Information"
+          }
+        },
+        {
+          "id": "10002:3579",
+          "key": "87323081d6fe0774400f762fbfcc75207074ef86",
+          "name": "Property 1=No Detailed Information",
+          "type": "COMPONENT",
+          "page": "      ↳ Empty-state 空状态 🟢",
+          "path": "      ↳ Empty-state 空状态 🟢 / Empty-state / Property 1=No Detailed Information",
+          "componentSetId": "10002:3587",
+          "componentSetKey": "30c224a229ddd47340e941800179128cf2b4640a",
+          "componentSetName": "Empty-state",
+          "variantProperties": {
+            "Property 1": "No Detailed Information"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "No Detailed Information"
+          }
+        },
+        {
+          "id": "14325:720",
+          "key": "aaba2b3bc9fb3f243fa72460f161de4c885ec2e8",
+          "name": "Property 1=Variant6",
+          "type": "COMPONENT",
+          "page": "      ↳ Empty-state 空状态 🟢",
+          "path": "      ↳ Empty-state 空状态 🟢 / Empty-state / Property 1=Variant6",
+          "componentSetId": "10002:3587",
+          "componentSetKey": "30c224a229ddd47340e941800179128cf2b4640a",
+          "componentSetName": "Empty-state",
+          "variantProperties": {
+            "Property 1": "Variant6"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Variant6"
+          }
+        },
+        {
+          "id": "10002:3578",
+          "key": "458c6614523124536b9928fe3a7fbe022d61c58e",
+          "name": "Property 1=No Search Keywords",
+          "type": "COMPONENT",
+          "page": "      ↳ Empty-state 空状态 🟢",
+          "path": "      ↳ Empty-state 空状态 🟢 / Empty-state / Property 1=No Search Keywords",
+          "componentSetId": "10002:3587",
+          "componentSetKey": "30c224a229ddd47340e941800179128cf2b4640a",
+          "componentSetName": "Empty-state",
+          "variantProperties": {
+            "Property 1": "No Search Keywords"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "No Search Keywords"
+          }
+        },
+        {
+          "id": "10002:3577",
+          "key": "2072f96a51aab2207e561ffc8ce3719ce5a475cb",
+          "name": "Property 1=No Configuration Information",
+          "type": "COMPONENT",
+          "page": "      ↳ Empty-state 空状态 🟢",
+          "path": "      ↳ Empty-state 空状态 🟢 / Empty-state / Property 1=No Configuration Information",
+          "componentSetId": "10002:3587",
+          "componentSetKey": "30c224a229ddd47340e941800179128cf2b4640a",
+          "componentSetName": "Empty-state",
+          "variantProperties": {
+            "Property 1": "No Configuration Information"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "No Configuration Information"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "30c224a229ddd47340e941800179128cf2b4640a": {
+        "id": "10002:3587",
+        "name": "Empty-state",
+        "componentKeys": [
+          "ed1054d09f7b467eda803a54b5da82c54cf152db",
+          "65a0719f6bebe581b8c55b046832d3393705ca82",
+          "87323081d6fe0774400f762fbfcc75207074ef86",
+          "aaba2b3bc9fb3f243fa72460f161de4c885ec2e8",
+          "458c6614523124536b9928fe3a7fbe022d61c58e",
+          "2072f96a51aab2207e561ffc8ce3719ce5a475cb"
+        ]
+      }
+    },
+    "componentByKey": {
+      "ed1054d09f7b467eda803a54b5da82c54cf152db": {
+        "id": "10002:3576",
+        "name": "Property 1=General",
+        "componentSetKey": "30c224a229ddd47340e941800179128cf2b4640a",
+        "componentSetName": "Empty-state",
+        "variantProperties": {
+          "Property 1": "General"
+        }
+      },
+      "65a0719f6bebe581b8c55b046832d3393705ca82": {
+        "id": "10002:3580",
+        "name": "Property 1=No Personnel Information",
+        "componentSetKey": "30c224a229ddd47340e941800179128cf2b4640a",
+        "componentSetName": "Empty-state",
+        "variantProperties": {
+          "Property 1": "No Personnel Information"
+        }
+      },
+      "87323081d6fe0774400f762fbfcc75207074ef86": {
+        "id": "10002:3579",
+        "name": "Property 1=No Detailed Information",
+        "componentSetKey": "30c224a229ddd47340e941800179128cf2b4640a",
+        "componentSetName": "Empty-state",
+        "variantProperties": {
+          "Property 1": "No Detailed Information"
+        }
+      },
+      "aaba2b3bc9fb3f243fa72460f161de4c885ec2e8": {
+        "id": "14325:720",
+        "name": "Property 1=Variant6",
+        "componentSetKey": "30c224a229ddd47340e941800179128cf2b4640a",
+        "componentSetName": "Empty-state",
+        "variantProperties": {
+          "Property 1": "Variant6"
+        }
+      },
+      "458c6614523124536b9928fe3a7fbe022d61c58e": {
+        "id": "10002:3578",
+        "name": "Property 1=No Search Keywords",
+        "componentSetKey": "30c224a229ddd47340e941800179128cf2b4640a",
+        "componentSetName": "Empty-state",
+        "variantProperties": {
+          "Property 1": "No Search Keywords"
+        }
+      },
+      "2072f96a51aab2207e561ffc8ce3719ce5a475cb": {
+        "id": "10002:3577",
+        "name": "Property 1=No Configuration Information",
+        "componentSetKey": "30c224a229ddd47340e941800179128cf2b4640a",
+        "componentSetName": "Empty-state",
+        "variantProperties": {
+          "Property 1": "No Configuration Information"
+        }
+      }
+    }
+  }
+}

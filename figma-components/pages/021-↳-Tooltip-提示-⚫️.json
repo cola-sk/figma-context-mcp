@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "主题开发者平台 Design System",
+    "currentPage": "      ↳ Side Nav. 左侧菜单 🔵",
+    "scope": "page",
+    "page": "      ↳ Tooltip 提示 ⚫️"
+  },
+  "exportedAt": "2026-06-29T03:12:55.937Z",
+  "stats": {
+    "componentSetCount": 1,
+    "looseComponentCount": 0,
+    "componentCount": 3
+  },
+  "componentSets": [
+    {
+      "id": "10002:2874",
+      "key": "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3",
+      "name": "Tooltip",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Tooltip 提示 ⚫️",
+      "path": "      ↳ Tooltip 提示 ⚫️ / Tooltip",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "default",
+          "variantOptions": [
+            "widest",
+            "tallest",
+            "default"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "10002:2872",
+          "key": "d582142c1f07a4f03329aa8bcf1766545561e404",
+          "name": "Property 1=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Tooltip 提示 ⚫️",
+          "path": "      ↳ Tooltip 提示 ⚫️ / Tooltip / Property 1=default",
+          "componentSetId": "10002:2874",
+          "componentSetKey": "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3",
+          "componentSetName": "Tooltip",
+          "variantProperties": {
+            "Property 1": "default"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "default"
+          }
+        },
+        {
+          "id": "10002:2871",
+          "key": "c24420630ea5e5a921a579f1b321368b89b72236",
+          "name": "Property 1=widest",
+          "type": "COMPONENT",
+          "page": "      ↳ Tooltip 提示 ⚫️",
+          "path": "      ↳ Tooltip 提示 ⚫️ / Tooltip / Property 1=widest",
+          "componentSetId": "10002:2874",
+          "componentSetKey": "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3",
+          "componentSetName": "Tooltip",
+          "variantProperties": {
+            "Property 1": "widest"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "widest"
+          }
+        },
+        {
+          "id": "10002:2870",
+          "key": "7d1423d5afc01a54f8fd37ea1551fb62645593b3",
+          "name": "Property 1=tallest",
+          "type": "COMPONENT",
+          "page": "      ↳ Tooltip 提示 ⚫️",
+          "path": "      ↳ Tooltip 提示 ⚫️ / Tooltip / Property 1=tallest",
+          "componentSetId": "10002:2874",
+          "componentSetKey": "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3",
+          "componentSetName": "Tooltip",
+          "variantProperties": {
+            "Property 1": "tallest"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "tallest"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3": {
+        "id": "10002:2874",
+        "name": "Tooltip",
+        "componentKeys": [
+          "d582142c1f07a4f03329aa8bcf1766545561e404",
+          "c24420630ea5e5a921a579f1b321368b89b72236",
+          "7d1423d5afc01a54f8fd37ea1551fb62645593b3"
+        ]
+      }
+    },
+    "componentByKey": {
+      "d582142c1f07a4f03329aa8bcf1766545561e404": {
+        "id": "10002:2872",
+        "name": "Property 1=default",
+        "componentSetKey": "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3",
+        "componentSetName": "Tooltip",
+        "variantProperties": {
+          "Property 1": "default"
+        }
+      },
+      "c24420630ea5e5a921a579f1b321368b89b72236": {
+        "id": "10002:2871",
+        "name": "Property 1=widest",
+        "componentSetKey": "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3",
+        "componentSetName": "Tooltip",
+        "variantProperties": {
+          "Property 1": "widest"
+        }
+      },
+      "7d1423d5afc01a54f8fd37ea1551fb62645593b3": {
+        "id": "10002:2870",
+        "name": "Property 1=tallest",
+        "componentSetKey": "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3",
+        "componentSetName": "Tooltip",
+        "variantProperties": {
+          "Property 1": "tallest"
+        }
+      }
+    }
+  }
+}

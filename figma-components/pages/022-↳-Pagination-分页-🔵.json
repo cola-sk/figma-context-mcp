@@ -1,0 +1,376 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "主题开发者平台 Design System",
+    "currentPage": "      ↳ Side Nav. 左侧菜单 🔵",
+    "scope": "page",
+    "page": "      ↳ Pagination 分页 🔵"
+  },
+  "exportedAt": "2026-06-29T03:12:55.937Z",
+  "stats": {
+    "componentSetCount": 3,
+    "looseComponentCount": 0,
+    "componentCount": 10
+  },
+  "componentSets": [
+    {
+      "id": "16037:4634",
+      "key": "e55eba2acab126c8fa2419b72d7fc918fe9f56df",
+      "name": "翻页页码",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Pagination 分页 🔵",
+      "path": "      ↳ Pagination 分页 🔵 / 翻页页码",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "page_default",
+          "variantOptions": [
+            "page_default",
+            "page_hover",
+            "page_focus"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "16037:4635",
+          "key": "7bea30b78e6ea1a46452365a37f81b8f1a9c7323",
+          "name": "Property 1=page_default",
+          "type": "COMPONENT",
+          "page": "      ↳ Pagination 分页 🔵",
+          "path": "      ↳ Pagination 分页 🔵 / 翻页页码 / Property 1=page_default",
+          "componentSetId": "16037:4634",
+          "componentSetKey": "e55eba2acab126c8fa2419b72d7fc918fe9f56df",
+          "componentSetName": "翻页页码",
+          "variantProperties": {
+            "Property 1": "page_default"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "page_default"
+          }
+        },
+        {
+          "id": "16037:4637",
+          "key": "0ffe32fbcd0d6b9b87af6ec9a6e2e4e32392ef86",
+          "name": "Property 1=page_hover",
+          "type": "COMPONENT",
+          "page": "      ↳ Pagination 分页 🔵",
+          "path": "      ↳ Pagination 分页 🔵 / 翻页页码 / Property 1=page_hover",
+          "componentSetId": "16037:4634",
+          "componentSetKey": "e55eba2acab126c8fa2419b72d7fc918fe9f56df",
+          "componentSetName": "翻页页码",
+          "variantProperties": {
+            "Property 1": "page_hover"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "page_hover"
+          }
+        },
+        {
+          "id": "16037:4639",
+          "key": "712f92ce6ef19636d7165f6330aac90b73aff6ff",
+          "name": "Property 1=page_focus",
+          "type": "COMPONENT",
+          "page": "      ↳ Pagination 分页 🔵",
+          "path": "      ↳ Pagination 分页 🔵 / 翻页页码 / Property 1=page_focus",
+          "componentSetId": "16037:4634",
+          "componentSetKey": "e55eba2acab126c8fa2419b72d7fc918fe9f56df",
+          "componentSetName": "翻页页码",
+          "variantProperties": {
+            "Property 1": "page_focus"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "page_focus"
+          }
+        }
+      ]
+    },
+    {
+      "id": "16037:4641",
+      "key": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
+      "name": "翻页箭头",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Pagination 分页 🔵",
+      "path": "      ↳ Pagination 分页 🔵 / 翻页箭头",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "chevron_left_dafault",
+          "variantOptions": [
+            "chevron_right_dafault",
+            "chevron_right_disable",
+            "chevron_left_disable",
+            "chevron_left_dafault"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "16037:4642",
+          "key": "848d21f6238fab9c1ba24f457fe2b6deaac6fc32",
+          "name": "Property 1=chevron_right_dafault",
+          "type": "COMPONENT",
+          "page": "      ↳ Pagination 分页 🔵",
+          "path": "      ↳ Pagination 分页 🔵 / 翻页箭头 / Property 1=chevron_right_dafault",
+          "componentSetId": "16037:4641",
+          "componentSetKey": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
+          "componentSetName": "翻页箭头",
+          "variantProperties": {
+            "Property 1": "chevron_right_dafault"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "chevron_right_dafault"
+          }
+        },
+        {
+          "id": "16037:4644",
+          "key": "f3544be97d5ed056877e22bc23de6e5dfcdc7995",
+          "name": "Property 1=chevron_right_disable",
+          "type": "COMPONENT",
+          "page": "      ↳ Pagination 分页 🔵",
+          "path": "      ↳ Pagination 分页 🔵 / 翻页箭头 / Property 1=chevron_right_disable",
+          "componentSetId": "16037:4641",
+          "componentSetKey": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
+          "componentSetName": "翻页箭头",
+          "variantProperties": {
+            "Property 1": "chevron_right_disable"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "chevron_right_disable"
+          }
+        },
+        {
+          "id": "16037:4646",
+          "key": "164649c3e56a640deecf32058e8d535f9ae52f89",
+          "name": "Property 1=chevron_left_disable",
+          "type": "COMPONENT",
+          "page": "      ↳ Pagination 分页 🔵",
+          "path": "      ↳ Pagination 分页 🔵 / 翻页箭头 / Property 1=chevron_left_disable",
+          "componentSetId": "16037:4641",
+          "componentSetKey": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
+          "componentSetName": "翻页箭头",
+          "variantProperties": {
+            "Property 1": "chevron_left_disable"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "chevron_left_disable"
+          }
+        },
+        {
+          "id": "16037:4648",
+          "key": "0a3dc45d5c638912abc13cb193bedc7de8b11849",
+          "name": "Property 1=chevron_left_dafault",
+          "type": "COMPONENT",
+          "page": "      ↳ Pagination 分页 🔵",
+          "path": "      ↳ Pagination 分页 🔵 / 翻页箭头 / Property 1=chevron_left_dafault",
+          "componentSetId": "16037:4641",
+          "componentSetKey": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
+          "componentSetName": "翻页箭头",
+          "variantProperties": {
+            "Property 1": "chevron_left_dafault"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "chevron_left_dafault"
+          }
+        }
+      ]
+    },
+    {
+      "id": "16037:4650",
+      "key": "aa2622af00f5a4e76e97bb3a969903fb3aa0a674",
+      "name": "Pagination",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Pagination 分页 🔵",
+      "path": "      ↳ Pagination 分页 🔵 / Pagination",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "Limited Pages",
+          "variantOptions": [
+            "Extensive Pages",
+            "Limited Pages",
+            "Pagination much"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "16037:4651",
+          "key": "67307a8b3b8e53deab6cf9fb873e6b906c540a6b",
+          "name": "Property 1=Extensive Pages",
+          "type": "COMPONENT",
+          "page": "      ↳ Pagination 分页 🔵",
+          "path": "      ↳ Pagination 分页 🔵 / Pagination / Property 1=Extensive Pages",
+          "componentSetId": "16037:4650",
+          "componentSetKey": "aa2622af00f5a4e76e97bb3a969903fb3aa0a674",
+          "componentSetName": "Pagination",
+          "variantProperties": {
+            "Property 1": "Extensive Pages"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Extensive Pages"
+          }
+        },
+        {
+          "id": "16037:4661",
+          "key": "619d54ae880e3602c7c14941f7897c825c23b6e7",
+          "name": "Property 1=Limited Pages",
+          "type": "COMPONENT",
+          "page": "      ↳ Pagination 分页 🔵",
+          "path": "      ↳ Pagination 分页 🔵 / Pagination / Property 1=Limited Pages",
+          "componentSetId": "16037:4650",
+          "componentSetKey": "aa2622af00f5a4e76e97bb3a969903fb3aa0a674",
+          "componentSetName": "Pagination",
+          "variantProperties": {
+            "Property 1": "Limited Pages"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Limited Pages"
+          }
+        },
+        {
+          "id": "16037:4665",
+          "key": "e49350fa3531b98d0b9beb42778dfc47f9a5f462",
+          "name": "Property 1=Pagination much",
+          "type": "COMPONENT",
+          "page": "      ↳ Pagination 分页 🔵",
+          "path": "      ↳ Pagination 分页 🔵 / Pagination / Property 1=Pagination much",
+          "componentSetId": "16037:4650",
+          "componentSetKey": "aa2622af00f5a4e76e97bb3a969903fb3aa0a674",
+          "componentSetName": "Pagination",
+          "variantProperties": {
+            "Property 1": "Pagination much"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Pagination much"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "e55eba2acab126c8fa2419b72d7fc918fe9f56df": {
+        "id": "16037:4634",
+        "name": "翻页页码",
+        "componentKeys": [
+          "7bea30b78e6ea1a46452365a37f81b8f1a9c7323",
+          "0ffe32fbcd0d6b9b87af6ec9a6e2e4e32392ef86",
+          "712f92ce6ef19636d7165f6330aac90b73aff6ff"
+        ]
+      },
+      "24e7ea9129cf4429e9982bae84a4b7721d7e65d7": {
+        "id": "16037:4641",
+        "name": "翻页箭头",
+        "componentKeys": [
+          "848d21f6238fab9c1ba24f457fe2b6deaac6fc32",
+          "f3544be97d5ed056877e22bc23de6e5dfcdc7995",
+          "164649c3e56a640deecf32058e8d535f9ae52f89",
+          "0a3dc45d5c638912abc13cb193bedc7de8b11849"
+        ]
+      },
+      "aa2622af00f5a4e76e97bb3a969903fb3aa0a674": {
+        "id": "16037:4650",
+        "name": "Pagination",
+        "componentKeys": [
+          "67307a8b3b8e53deab6cf9fb873e6b906c540a6b",
+          "619d54ae880e3602c7c14941f7897c825c23b6e7",
+          "e49350fa3531b98d0b9beb42778dfc47f9a5f462"
+        ]
+      }
+    },
+    "componentByKey": {
+      "7bea30b78e6ea1a46452365a37f81b8f1a9c7323": {
+        "id": "16037:4635",
+        "name": "Property 1=page_default",
+        "componentSetKey": "e55eba2acab126c8fa2419b72d7fc918fe9f56df",
+        "componentSetName": "翻页页码",
+        "variantProperties": {
+          "Property 1": "page_default"
+        }
+      },
+      "0ffe32fbcd0d6b9b87af6ec9a6e2e4e32392ef86": {
+        "id": "16037:4637",
+        "name": "Property 1=page_hover",
+        "componentSetKey": "e55eba2acab126c8fa2419b72d7fc918fe9f56df",
+        "componentSetName": "翻页页码",
+        "variantProperties": {
+          "Property 1": "page_hover"
+        }
+      },
+      "712f92ce6ef19636d7165f6330aac90b73aff6ff": {
+        "id": "16037:4639",
+        "name": "Property 1=page_focus",
+        "componentSetKey": "e55eba2acab126c8fa2419b72d7fc918fe9f56df",
+        "componentSetName": "翻页页码",
+        "variantProperties": {
+          "Property 1": "page_focus"
+        }
+      },
+      "848d21f6238fab9c1ba24f457fe2b6deaac6fc32": {
+        "id": "16037:4642",
+        "name": "Property 1=chevron_right_dafault",
+        "componentSetKey": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
+        "componentSetName": "翻页箭头",
+        "variantProperties": {
+          "Property 1": "chevron_right_dafault"
+        }
+      },
+      "f3544be97d5ed056877e22bc23de6e5dfcdc7995": {
+        "id": "16037:4644",
+        "name": "Property 1=chevron_right_disable",
+        "componentSetKey": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
+        "componentSetName": "翻页箭头",
+        "variantProperties": {
+          "Property 1": "chevron_right_disable"
+        }
+      },
+      "164649c3e56a640deecf32058e8d535f9ae52f89": {
+        "id": "16037:4646",
+        "name": "Property 1=chevron_left_disable",
+        "componentSetKey": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
+        "componentSetName": "翻页箭头",
+        "variantProperties": {
+          "Property 1": "chevron_left_disable"
+        }
+      },
+      "0a3dc45d5c638912abc13cb193bedc7de8b11849": {
+        "id": "16037:4648",
+        "name": "Property 1=chevron_left_dafault",
+        "componentSetKey": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
+        "componentSetName": "翻页箭头",
+        "variantProperties": {
+          "Property 1": "chevron_left_dafault"
+        }
+      },
+      "67307a8b3b8e53deab6cf9fb873e6b906c540a6b": {
+        "id": "16037:4651",
+        "name": "Property 1=Extensive Pages",
+        "componentSetKey": "aa2622af00f5a4e76e97bb3a969903fb3aa0a674",
+        "componentSetName": "Pagination",
+        "variantProperties": {
+          "Property 1": "Extensive Pages"
+        }
+      },
+      "619d54ae880e3602c7c14941f7897c825c23b6e7": {
+        "id": "16037:4661",
+        "name": "Property 1=Limited Pages",
+        "componentSetKey": "aa2622af00f5a4e76e97bb3a969903fb3aa0a674",
+        "componentSetName": "Pagination",
+        "variantProperties": {
+          "Property 1": "Limited Pages"
+        }
+      },
+      "e49350fa3531b98d0b9beb42778dfc47f9a5f462": {
+        "id": "16037:4665",
+        "name": "Property 1=Pagination much",
+        "componentSetKey": "aa2622af00f5a4e76e97bb3a969903fb3aa0a674",
+        "componentSetName": "Pagination",
+        "variantProperties": {
+          "Property 1": "Pagination much"
+        }
+      }
+    }
+  }
+}
