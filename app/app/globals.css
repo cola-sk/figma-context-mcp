@@ -750,9 +750,84 @@ td:nth-child(7) {
   border-bottom: 1px solid var(--border);
 }
 
+.imageLightboxHeader > div:first-child {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
 .imageLightboxHeader strong {
   min-width: 0;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.imageLightboxHeader span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.imageLightboxActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.imageLightboxActions .secondaryButton {
+  min-width: 34px;
+}
+
+.zoomValue {
+  min-width: 48px;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.imageLightboxBody {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  min-height: 0;
+}
+
+.imageLightboxRail {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  overflow: auto;
+  padding: 12px;
+  border-right: 1px solid var(--border);
+  background: #fff;
+}
+
+.imageLightboxRail button {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  height: auto;
+  padding: 6px;
+  border-radius: 6px;
+  background: #fff;
+  text-align: left;
+}
+
+.imageLightboxRail button.active,
+.imageLightboxRail button:hover {
+  border-color: var(--accent);
+  background: #eef6ff;
+}
+
+.imageLightboxRail img {
+  width: 100%;
+  height: 74px;
+  object-fit: contain;
+}
+
+.imageLightboxRail span {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 11px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -765,12 +840,23 @@ td:nth-child(7) {
   overflow: auto;
   padding: 16px;
   background: #f8fafc;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.imageLightboxStage.dragging {
+  cursor: grabbing;
 }
 
 .imageLightboxStage img {
   max-width: none;
   max-height: none;
   object-fit: contain;
+  transform-origin: center center;
+  transition: transform 120ms ease;
+  user-select: none;
+  will-change: transform;
 }
 
 @media (max-width: 720px) {
@@ -781,6 +867,20 @@ td:nth-child(7) {
   .imageLightboxInner {
     width: 100%;
     height: 94vh;
+  }
+
+  .imageLightboxBody {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .imageLightboxRail {
+    grid-auto-flow: column;
+    grid-auto-columns: 120px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
   }
 }
 

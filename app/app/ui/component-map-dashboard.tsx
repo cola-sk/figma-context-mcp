@@ -2,6 +2,7 @@
 
 import { Copy } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import type { PointerEvent, WheelEvent } from 'react';
 import { targetLibraries, type TargetLibrary } from '@/lib/mapping-constants';
 import type { MapRow, MapSystem, MapVariant, MapViewData, MappingKind, MappingStatus, VariantMode } from '@/lib/map-data';
 
@@ -10,7 +11,10 @@ type KindFilter = 'all' | MappingKind;
 type CategoryFilter = 'all' | TargetLibrary;
 type SaveState = 'idle' | 'saving' | 'saved' | 'error';
 type GroupBy = 'page' | 'category' | 'none';
-type ImagePreview = { url: string; name: string } | null;
+type ImagePreviewItem = { key: string; url: string; name: string; kind: string };
+type ImagePreview = { items: ImagePreviewItem[]; activeIndex: number } | null;
+type PanPosition = { x: number; y: number };
+type DragState = { pointerId: number; startX: number; startY: number; originX: number; originY: number };
 type GroupedRow =
   | {
       type: 'group';
@@ -144,6 +148,29 @@ function statusClass(status: MappingStatus) {
   return 'statusUnresolved';
 }
 
+function getRowPreviewItems(row: MapRow): ImagePreviewItem[] {
+  return [
+    row.previewUrl
+      ? {
+          key: row.key,
+          url: row.previewUrl,
+          name: row.name,
+          kind: kindLabels[row.kind],
+        }
+      : null,
+    ...row.variants.map((variant) =>
+      variant.previewUrl
+        ? {
+            key: variant.key,
+            url: variant.previewUrl,
+            name: variant.name,
+            kind: 'Variant',
+          }
+        : null,
+    ),
+  ].filter((item): item is ImagePreviewItem => Boolean(item));
+}
+
 export function ComponentMapDashboard({ data }: { data: MapViewData }) {
   const [viewData, setViewData] = useState(data);
   const [status, setStatus] = useState<StatusFilter>('all');
@@ -187,9 +214,9 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [imagePreview]);
 
-  function openPreview(url?: string, name?: string) {
-    if (!url) return;
-    setImagePreview({ url, name: name || 'Preview' });
+  function openPreview(items: ImagePreviewItem[], activeIndex = 0) {
+    if (items.length === 0) return;
+    setImagePreview({ items, activeIndex: Math.max(0, Math.min(activeIndex, items.length - 1)) });
   }
 
   const filteredRows = useMemo(() => {
@@ -247,15 +274,11 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
         <div className="navContainer">
           <div className="logoArea">
             <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="logoIcon">
-              <rect x="2" y="2" width="28" height="28" rx="8" fill="url(#logoGrad)" />
-              {/* Back Layer (Design) */}
-              <rect x="7" y="7" width="12" height="12" rx="2" stroke="white" strokeWidth="2" strokeOpacity="0.4" fill="none" />
-              {/* Front Layer (Code) */}
-              <rect x="13" y="13" width="12" height="12" rx="2" stroke="white" strokeWidth="2" fill="none" />
-              {/* Code Symbol inside Front Layer */}
-              <path d="M16 18l-1.5 1.5 1.5 1.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M22 18l1.5 1.5-1.5 1.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M20 17l-2 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+              <rect x="2" y="2" width="28" height="28" rx="5" fill="url(#logoGrad)" />
+              {/* Abstract Symmetrical Tech Core */}
+              <path d="M16 11L21 16L16 21L11 16Z" fill="white" />
+              <path d="M9 10L5 16L9 22" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              <path d="M23 10L27 16L23 22" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
               <defs>
                 <linearGradient id="logoGrad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
                   <stop stopColor="#6366f1" />
@@ -420,7 +443,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
                       onClick={() => setSelectedId(item.row.rowId)}
                     >
                       <td>
-                        <PreviewThumb url={item.row.previewUrl} name={item.row.name} onOpen={openPreview} />
+                        <PreviewThumb url={item.row.previewUrl} name={item.row.name} onOpen={() => openPreview(getRowPreviewItems(item.row), 0)} />
                       </td>
                       <td>
                         <span className={`statusPill ${statusClass(item.row.status)}`}>{statusLabels[item.row.status]}</span>
@@ -456,7 +479,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
   );
 }
 
-function PreviewThumb({ url, name, onOpen }: { url?: string; name: string; onOpen: (url?: string, name?: string) => void }) {
+function PreviewThumb({ url, name, onOpen }: { url?: string; name: string; onOpen: () => void }) {
   if (!url) {
     return <div className="previewThumb previewEmpty" aria-label="No preview" />;
   }
@@ -468,7 +491,7 @@ function PreviewThumb({ url, name, onOpen }: { url?: string; name: string; onOpe
       title="Open preview"
       onClick={(event) => {
         event.stopPropagation();
-        onOpen(url, name);
+        onOpen();
       }}
     >
       <img src={url} alt={`${name} preview`} loading="lazy" />
@@ -476,18 +499,159 @@ function PreviewThumb({ url, name, onOpen }: { url?: string; name: string; onOpe
   );
 }
 
-function ImageLightbox({ preview, onClose }: { preview: { url: string; name: string }; onClose: () => void }) {
+function ImageLightbox({ preview, onClose }: { preview: { items: ImagePreviewItem[]; activeIndex: number }; onClose: () => void }) {
+  const [activeIndex, setActiveIndex] = useState(preview.activeIndex);
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState<PanPosition>({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const dragRef = useRef<DragState | null>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const active = preview.items[activeIndex] ?? preview.items[0];
+
+  useEffect(() => {
+    setActiveIndex(preview.activeIndex);
+    resetView(1);
+  }, [preview]);
+
+  useEffect(() => {
+    fitToStage();
+
+    function handleResize() {
+      fitToStage();
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [active.url]);
+
+  function selectImage(index: number) {
+    setActiveIndex(index);
+    resetView(1);
+  }
+
+  function resetView(nextZoom = 1) {
+    setZoom(nextZoom);
+    setPan({ x: 0, y: 0 });
+    setIsDragging(false);
+    dragRef.current = null;
+  }
+
+  function fitToStage() {
+    const stage = stageRef.current;
+    const image = imageRef.current;
+    if (!stage || !image || !image.naturalWidth || !image.naturalHeight) return;
+
+    const padding = 32;
+    const availableWidth = Math.max(1, stage.clientWidth - padding);
+    const availableHeight = Math.max(1, stage.clientHeight - padding);
+    const fitZoom = Math.min(availableWidth / image.naturalWidth, availableHeight / image.naturalHeight, 1);
+    resetView(Number(fitZoom.toFixed(3)));
+  }
+
+  function zoomBy(delta: number) {
+    setZoom((value) => Math.max(0.2, Math.min(4, Number((value + delta).toFixed(2)))));
+  }
+
+  function handleWheel(event: WheelEvent<HTMLDivElement>) {
+    if (!event.metaKey) return;
+
+    event.preventDefault();
+    zoomBy(event.deltaY < 0 ? 0.12 : -0.12);
+  }
+
+  function handlePointerDown(event: PointerEvent<HTMLDivElement>) {
+    if (event.button !== 0) return;
+
+    event.currentTarget.setPointerCapture(event.pointerId);
+    dragRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      originX: pan.x,
+      originY: pan.y,
+    };
+    setIsDragging(true);
+  }
+
+  function handlePointerMove(event: PointerEvent<HTMLDivElement>) {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+
+    setPan({
+      x: drag.originX + event.clientX - drag.startX,
+      y: drag.originY + event.clientY - drag.startY,
+    });
+  }
+
+  function handlePointerEnd(event: PointerEvent<HTMLDivElement>) {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+
+    dragRef.current = null;
+    setIsDragging(false);
+  }
+
   return (
-    <div className="imageLightbox" role="dialog" aria-modal="true" aria-label={`${preview.name} preview`} onClick={onClose}>
+    <div className="imageLightbox" role="dialog" aria-modal="true" aria-label={`${active.name} preview`} onClick={onClose}>
       <div className="imageLightboxInner" onClick={(event) => event.stopPropagation()}>
         <div className="imageLightboxHeader">
-          <strong>{preview.name}</strong>
-          <button type="button" className="secondaryButton" onClick={onClose}>
-            Close
-          </button>
+          <div>
+            <strong>{active.name}</strong>
+            <span>{active.kind} · {activeIndex + 1}/{preview.items.length}</span>
+          </div>
+          <div className="imageLightboxActions">
+            <button type="button" className="secondaryButton" onClick={() => zoomBy(-0.2)}>
+              -
+            </button>
+            <span className="zoomValue">{Math.round(zoom * 100)}%</span>
+            <button type="button" className="secondaryButton" onClick={() => zoomBy(0.2)}>
+              +
+            </button>
+            <button type="button" className="secondaryButton" onClick={() => resetView(1)}>
+              100%
+            </button>
+            <button type="button" className="secondaryButton" onClick={fitToStage}>
+              Fit
+            </button>
+            <button type="button" className="secondaryButton" onClick={onClose}>
+              Close
+            </button>
+          </div>
         </div>
-        <div className="imageLightboxStage">
-          <img src={preview.url} alt={`${preview.name} preview`} />
+        <div className="imageLightboxBody">
+          <div className="imageLightboxRail">
+            {preview.items.map((item, index) => (
+              <button
+                key={item.key}
+                type="button"
+                className={index === activeIndex ? 'active' : ''}
+                title={item.name}
+                onClick={() => selectImage(index)}
+              >
+                <img src={item.url} alt={`${item.name} thumbnail`} />
+                <span>{item.kind}</span>
+              </button>
+            ))}
+          </div>
+          <div
+            ref={stageRef}
+            className={`imageLightboxStage ${isDragging ? 'dragging' : ''}`}
+            onWheel={handleWheel}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerEnd}
+            onPointerCancel={handlePointerEnd}
+          >
+            <img
+              ref={imageRef}
+              src={active.url}
+              alt={`${active.name} preview`}
+              draggable={false}
+              onLoad={fitToStage}
+              style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -518,7 +682,7 @@ function Detail({
   system: MapSystem;
   mapFile: string;
   onSaved: (data: MapViewData) => void;
-  onPreview: (url?: string, name?: string) => void;
+  onPreview: (items: ImagePreviewItem[], activeIndex?: number) => void;
 }) {
   const [draftStatus, setDraftStatus] = useState<MappingStatus>(row.status);
   const [draftLibrary, setDraftLibrary] = useState<TargetLibrary>(toEditableLibrary(row.targetLibrary));
@@ -593,7 +757,7 @@ function Detail({
         </button>
       </div>
 
-      <PreviewPanel url={row.previewUrl} name={row.name} onOpen={onPreview} />
+      <PreviewPanel row={row} onOpen={() => onPreview(getRowPreviewItems(row), 0)} />
 
       <dl className="kv">
         <div>
@@ -729,12 +893,12 @@ function Detail({
   );
 }
 
-function PreviewPanel({ url, name, onOpen }: { url?: string; name: string; onOpen: (url?: string, name?: string) => void }) {
+function PreviewPanel({ row, onOpen }: { row: MapRow; onOpen: () => void }) {
   return (
     <div className="previewPanel">
-      {url ? (
-        <button type="button" className="previewPanelButton" onClick={() => onOpen(url, name)}>
-          <img src={url} alt={`${name} design preview`} />
+      {row.previewUrl ? (
+        <button type="button" className="previewPanelButton" onClick={onOpen}>
+          <img src={row.previewUrl} alt={`${row.name} design preview`} />
         </button>
       ) : (
         <div className="previewPlaceholder">No preview exported</div>
@@ -760,7 +924,7 @@ function VariantEditor({
   variant: MapVariant;
   system: MapSystem;
   onSaved: (data: MapViewData) => void;
-  onPreview: (url?: string, name?: string) => void;
+  onPreview: (items: ImagePreviewItem[], activeIndex?: number) => void;
 }) {
   const [mode, setMode] = useState<VariantMode>(variant.mode);
   const [library, setLibrary] = useState<TargetLibrary>(toEditableLibrary(variant.targetLibrary));
@@ -830,7 +994,15 @@ function VariantEditor({
   return (
     <div className="variantItem">
       {variant.previewUrl ? (
-        <button type="button" className="variantPreview" onClick={() => onPreview(variant.previewUrl, variant.name)}>
+        <button
+          type="button"
+          className="variantPreview"
+          onClick={() => {
+            const items = getRowPreviewItems(parent);
+            const activeIndex = Math.max(0, items.findIndex((item) => item.key === variant.key));
+            onPreview(items, activeIndex);
+          }}
+        >
           <img src={variant.previewUrl} alt={`${variant.name} preview`} loading="lazy" />
         </button>
       ) : null}
