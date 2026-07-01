@@ -6,3 +6,4 @@ build/
 .DS_Store
 .npmrc
 .claude
+.waypoint-attachments
