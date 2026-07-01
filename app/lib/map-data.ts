@@ -90,6 +90,7 @@ export type MapRow = {
   kind: MappingKind;
   key: string;
   figmaId: string;
+  previewUrl?: string;
   name: string;
   page: string;
   status: MappingStatus;
@@ -106,6 +107,7 @@ export type MapRow = {
 export type MapVariant = {
   key: string;
   figmaId: string;
+  previewUrl?: string;
   name: string;
   status: string;
   mode: VariantMode;
@@ -165,6 +167,22 @@ function optionalTargetProps(target: Target | undefined): Record<string, string>
 
 function getEvidence(target: Target) {
   return target && Array.isArray(target.evidence) ? target.evidence.filter((item): item is string => typeof item === 'string') : [];
+}
+
+function loadPreviewIndex(system: MapSystem): Record<string, string> {
+  const indexPath = path.resolve(process.cwd(), `public/previews/${system}/index.json`);
+  if (!fs.existsSync(indexPath)) return {};
+
+  try {
+    const index = JSON.parse(fs.readFileSync(indexPath, 'utf8')) as { previews?: Record<string, { fileName?: string }> };
+    return Object.fromEntries(
+      Object.entries(index.previews || {})
+        .filter(([, preview]) => typeof preview.fileName === 'string' && preview.fileName)
+        .map(([key, preview]) => [key, `/previews/${system}/${preview.fileName}`]),
+    );
+  } catch {
+    return {};
+  }
 }
 
 export function loadComponentMap(system: MapSystem = 'd'): ComponentMap {
@@ -365,13 +383,14 @@ export function updateVariantEntry({
   recomputeStats(map);
 }
 
-function mapVariant(variant: ComponentVariantEntry, componentSet: ComponentSetEntry): MapVariant {
+function mapVariant(variant: ComponentVariantEntry, componentSet: ComponentSetEntry, previewUrls: Record<string, string>): MapVariant {
   const mode = getVariantMode(variant);
   const target = mode === 'override' ? variant.target : mode === 'inherit' ? componentSet.target : null;
 
   return {
     key: variant.figma.key,
     figmaId: variant.figma.id,
+    previewUrl: previewUrls[variant.figma.key],
     name: variant.figma.name,
     status: asText(variant.status),
     mode,
@@ -385,11 +404,13 @@ function mapVariant(variant: ComponentVariantEntry, componentSet: ComponentSetEn
 
 export function mapToViewData(parsed: ComponentMap, system: MapSystem = 'd'): MapViewData {
   const meta = getMapSystemMeta(system);
+  const previewUrls = loadPreviewIndex(system);
   const componentSetRows: MapRow[] = Object.entries(parsed.componentSets || {}).map(([key, entry]) => ({
     rowId: `component-set:${key}`,
     kind: 'component-set',
     key,
     figmaId: entry.figma.id,
+    previewUrl: previewUrls[key],
     name: entry.figma.name,
     page: asText(entry.figma.page),
     status: entry.status,
@@ -399,7 +420,7 @@ export function mapToViewData(parsed: ComponentMap, system: MapSystem = 'd'): Ma
     reason: asText(entry.reason),
     evidence: getEvidence(entry.target),
     variantCount: entry.figma.componentCount ?? Object.keys(entry.components || {}).length,
-    variants: Object.values(entry.components || {}).map((variant) => mapVariant(variant, entry)),
+    variants: Object.values(entry.components || {}).map((variant) => mapVariant(variant, entry, previewUrls)),
     raw: entry,
   }));
 
@@ -408,6 +429,7 @@ export function mapToViewData(parsed: ComponentMap, system: MapSystem = 'd'): Ma
     kind: 'loose-component',
     key,
     figmaId: entry.figma.id,
+    previewUrl: previewUrls[key],
     name: entry.figma.name,
     page: asText(entry.figma.page),
     status: entry.status,

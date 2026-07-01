@@ -18,13 +18,12 @@ const systems = [
   },
 ];
 
-const seedMap = readJson(seedMapPath);
-
 for (const system of systems) {
   const registry = readJson(path.join(root, system.registryDir, 'all.json'));
   const registryIndex = readJson(path.join(root, system.registryDir, 'index.json'));
-  const nextMap = buildMap({ system, registry, registryIndex, seedMap });
   const outputPath = path.join(root, system.output);
+  const seedMap = fs.existsSync(outputPath) ? readJson(outputPath) : readJson(seedMapPath);
+  const nextMap = buildMap({ system, registry, registryIndex, seedMap });
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, `${JSON.stringify(nextMap, null, 2)}\n`, 'utf8');
   console.log(`${system.id}: wrote ${system.output}`);

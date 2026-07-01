@@ -10,6 +10,7 @@ type KindFilter = 'all' | MappingKind;
 type CategoryFilter = 'all' | TargetLibrary;
 type SaveState = 'idle' | 'saving' | 'saved' | 'error';
 type GroupBy = 'page' | 'category' | 'none';
+type ImagePreview = { url: string; name: string } | null;
 type GroupedRow =
   | {
       type: 'group';
@@ -153,6 +154,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
   const [target, setTarget] = useState('all');
   const [query, setQuery] = useState('');
   const [selectedId, setSelectedId] = useState(data.rows[0]?.rowId ?? '');
+  const [imagePreview, setImagePreview] = useState<ImagePreview>(null);
   const detailPaneRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -171,6 +173,24 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
       detailPaneRef.current.scrollTop = 0;
     }
   }, [selectedId]);
+
+  useEffect(() => {
+    if (!imagePreview) return undefined;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setImagePreview(null);
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [imagePreview]);
+
+  function openPreview(url?: string, name?: string) {
+    if (!url) return;
+    setImagePreview({ url, name: name || 'Preview' });
+  }
 
   const filteredRows = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -222,182 +242,250 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
   }, [filteredRows, groupBy]);
 
   return (
-    <main className="appShell">
-      <header className="topBar">
-        <div>
-          <h1>Component Map Viewer</h1>
-          <p>
-            {viewData.systemLabel} · {viewData.schemaVersion} · generated {formatDate(viewData.generatedAt)}
-          </p>
-        </div>
-        <div className="topActions">
-          <div className="systemSwitch" aria-label="component system">
-            {systemOptions.map((option) => (
-              <a key={option.id} className={viewData.system === option.id ? 'active' : ''} href={`?system=${option.id}`}>
-                {option.label}
-              </a>
-            ))}
+    <div className="layoutWrapper">
+      <nav className="navBar" aria-label="Main Navigation">
+        <div className="navContainer">
+          <div className="logoArea">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="logoIcon">
+              <rect x="2" y="2" width="28" height="28" rx="8" fill="url(#logoGrad)" />
+              <path d="M11 21L7 16L11 11" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M21 11L25 16L21 21" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M18 9L14 23" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              <defs>
+                <linearGradient id="logoGrad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#6366f1" />
+                  <stop offset="1" stopColor="#ec4899" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <span className="logoText">FE/D Bridge</span>
+            <span className="logoBadge">Beta</span>
           </div>
-          <button
-            type="button"
-            className="iconButton"
-            title="Copy map path"
-            aria-label="Copy map path"
-            onClick={() => copyText(`mappings/${viewData.mapFile}`)}
-          >
-            <Copy size={16} aria-hidden="true" />
-          </button>
-        </div>
-      </header>
 
-      <section className="statsGrid" aria-label="mapping stats">
-        <Stat label="Component Sets" value={viewData.stats.componentSetCount} />
-        <Stat label="Mapped Sets" value={viewData.stats.mappedComponentSetCount} tone="good" />
-        <Stat label="Internal Sets" value={viewData.stats.internalComponentSetCount} />
-        <Stat label="Unresolved Sets" value={viewData.stats.unresolvedComponentSetCount} tone="bad" />
-        <Stat label="Loose Components" value={viewData.stats.looseComponentCount} />
-        <Stat label="Mapped Variants" value={viewData.stats.mappedComponentCount} tone="good" />
-        <Stat label="Internal Variants" value={viewData.stats.internalComponentCount} />
-        <Stat label="Unresolved Variants" value={viewData.stats.unresolvedComponentCount} tone="bad" />
-      </section>
-
-      <section className="toolbar" aria-label="filters">
-        <label>
-          Search
-          <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="name / key / target / reason" />
-        </label>
-        <label>
-          Status
-          <select value={status} onChange={(event) => setStatus(event.target.value as StatusFilter)}>
-            {Object.entries(statusLabels).map(([value, label]) => (
-              <option key={value} value={value}>
-                {label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Type
-          <select value={kind} onChange={(event) => setKind(event.target.value as KindFilter)}>
-            {Object.entries(kindLabels).map(([value, label]) => (
-              <option key={value} value={value}>
-                {label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Category
-          <select value={category} onChange={(event) => setCategory(event.target.value as CategoryFilter)}>
-            {Object.entries(categoryLabels).map(([value, label]) => (
-              <option key={value} value={value}>
-                {label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Group By
-          <select value={groupBy} onChange={(event) => setGroupBy(event.target.value as GroupBy)}>
-            {Object.entries(groupByLabels).map(([value, label]) => (
-              <option key={value} value={value}>
-                {label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Page
-          <select value={page} onChange={(event) => setPage(event.target.value)}>
-            <option value="all">全部页面</option>
-            {viewData.pages.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Target
-          <select value={target} onChange={(event) => setTarget(event.target.value)}>
-            <option value="all">全部组件</option>
-            {viewData.targetComponents.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </label>
-      </section>
-
-      <section className="contentGrid">
-        <div className="tablePane">
-          <div className="tableHeader">
-            <strong>{filteredRows.length}</strong>
-            <span>
-              shown · {mappedRows} mapped · {unresolvedRows} unresolved · {internalRows} internal · {groupByLabels[groupBy]}
-            </span>
+          <div className="navActions">
+            <div className="systemSwitch" aria-label="Component system">
+              {systemOptions.map((option) => (
+                <a key={option.id} className={viewData.system === option.id ? 'active' : ''} href={`?system=${option.id}`}>
+                  {option.label}
+                </a>
+              ))}
+            </div>
+            <button
+              type="button"
+              className="iconButton"
+              title="Copy map path"
+              aria-label="Copy map path"
+              onClick={() => copyText(`mappings/${viewData.mapFile}`)}
+            >
+              <Copy size={16} aria-hidden="true" />
+            </button>
           </div>
-          <div className="tableScroll">
-            <table>
-              <thead>
+        </div>
+      </nav>
+
+      <main className="appShell">
+        <header className="metadataBar">
+          <div className="metadataLeft">
+            <h2>{viewData.systemLabel} Component Map</h2>
+            <p>Schema: <code>{viewData.schemaVersion}</code> · Generated at {formatDate(viewData.generatedAt)}</p>
+          </div>
+          <div className="metadataRight">
+            <span className="fileBadge"><code>mappings/{viewData.mapFile}</code></span>
+          </div>
+        </header>
+
+        <section className="statsGrid" aria-label="mapping stats">
+          <Stat label="Component Sets" value={viewData.stats.componentSetCount} />
+          <Stat label="Mapped Sets" value={viewData.stats.mappedComponentSetCount} tone="good" />
+          <Stat label="Internal Sets" value={viewData.stats.internalComponentSetCount} />
+          <Stat label="Unresolved Sets" value={viewData.stats.unresolvedComponentSetCount} tone="bad" />
+          <Stat label="Loose Components" value={viewData.stats.looseComponentCount} />
+          <Stat label="Mapped Variants" value={viewData.stats.mappedComponentCount} tone="good" />
+          <Stat label="Internal Variants" value={viewData.stats.internalComponentCount} />
+          <Stat label="Unresolved Variants" value={viewData.stats.unresolvedComponentCount} tone="bad" />
+        </section>
+
+        <section className="toolbar" aria-label="filters">
+          <label>
+            Search
+            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="name / key / target / reason" />
+          </label>
+          <label>
+            Status
+            <select value={status} onChange={(event) => setStatus(event.target.value as StatusFilter)}>
+              {Object.entries(statusLabels).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Type
+            <select value={kind} onChange={(event) => setKind(event.target.value as KindFilter)}>
+              {Object.entries(kindLabels).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Category
+            <select value={category} onChange={(event) => setCategory(event.target.value as CategoryFilter)}>
+              {Object.entries(categoryLabels).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Group By
+            <select value={groupBy} onChange={(event) => setGroupBy(event.target.value as GroupBy)}>
+              {Object.entries(groupByLabels).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Page
+            <select value={page} onChange={(event) => setPage(event.target.value)}>
+              <option value="all">全部页面</option>
+              {viewData.pages.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Target
+            <select value={target} onChange={(event) => setTarget(event.target.value)}>
+              <option value="all">全部组件</option>
+              {viewData.targetComponents.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
+        </section>
+
+        <section className="contentGrid">
+          <div className="tablePane">
+            <div className="tableHeader">
+              <strong>{filteredRows.length}</strong>
+              <span>
+                shown · {mappedRows} mapped · {unresolvedRows} unresolved · {internalRows} internal · {groupByLabels[groupBy]}
+              </span>
+            </div>
+            <div className="tableScroll">
+              <table>
+                <thead>
                 <tr>
+                  <th>Preview</th>
                   <th>Status</th>
                   <th>Figma Component</th>
                   <th>Page</th>
-                  <th>Target</th>
-                  <th>Variants</th>
-                  <th>Key</th>
-                </tr>
-              </thead>
-              <tbody>
-                {groupedRows.map((item) =>
+                    <th>Target</th>
+                    <th>Variants</th>
+                    <th>Key</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {groupedRows.map((item) =>
                   item.type === 'group' ? (
                     <tr key={item.key} className="groupRow">
-                      <td colSpan={6}>
-                        <div className="groupTitle">
-                          <strong>{item.label}</strong>
-                          <span>
-                            {item.total} total · {item.mapped} mapped · {item.unresolved} unresolved · {item.internal} internal
-                          </span>
-                        </div>
-                      </td>
-                    </tr>
-                  ) : (
-                    <tr
-                      key={item.row.rowId}
-                      className={selected?.rowId === item.row.rowId ? 'selectedRow' : ''}
+                      <td colSpan={7}>
+                          <div className="groupTitle">
+                            <strong>{item.label}</strong>
+                            <span>
+                              {item.total} total · {item.mapped} mapped · {item.unresolved} unresolved · {item.internal} internal
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                    ) : (
+                      <tr
+                        key={item.row.rowId}
+                        className={selected?.rowId === item.row.rowId ? 'selectedRow' : ''}
                       onClick={() => setSelectedId(item.row.rowId)}
                     >
                       <td>
+                        <PreviewThumb url={item.row.previewUrl} name={item.row.name} onOpen={openPreview} />
+                      </td>
+                      <td>
                         <span className={`statusPill ${statusClass(item.row.status)}`}>{statusLabels[item.row.status]}</span>
-                      </td>
-                      <td>
-                        <div className="primaryCell">{item.row.name}</div>
-                        <div className="secondaryCell">{kindLabels[item.row.kind]}</div>
-                      </td>
-                      <td>{item.row.page}</td>
-                      <td>
-                        <div className="primaryCell">{item.row.targetComponent}</div>
-                        <div className="secondaryCell">{item.row.targetLibrary}</div>
-                      </td>
-                      <td>{item.row.variantCount}</td>
-                      <td>
-                        <code>{item.row.key.slice(0, 10)}...</code>
-                      </td>
-                    </tr>
-                  ),
-                )}
-              </tbody>
-            </table>
+                        </td>
+                        <td>
+                          <div className="primaryCell">{item.row.name}</div>
+                          <div className="secondaryCell">{kindLabels[item.row.kind]}</div>
+                        </td>
+                        <td>{item.row.page}</td>
+                        <td>
+                          <div className="primaryCell">{item.row.targetComponent}</div>
+                          <div className="secondaryCell">{item.row.targetLibrary}</div>
+                        </td>
+                        <td>{item.row.variantCount}</td>
+                        <td>
+                          <code>{item.row.key.slice(0, 10)}...</code>
+                        </td>
+                      </tr>
+                    ),
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
-        <aside ref={detailPaneRef} className="detailPane">
-          {selected ? <Detail row={selected} system={viewData.system} mapFile={viewData.mapFile} onSaved={setViewData} /> : <div className="emptyState">No rows match the current filters.</div>}
-        </aside>
-      </section>
-    </main>
+          <aside ref={detailPaneRef} className="detailPane">
+            {selected ? <Detail row={selected} system={viewData.system} mapFile={viewData.mapFile} onSaved={setViewData} onPreview={openPreview} /> : <div className="emptyState">No rows match the current filters.</div>}
+          </aside>
+        </section>
+      </main>
+      {imagePreview ? <ImageLightbox preview={imagePreview} onClose={() => setImagePreview(null)} /> : null}
+    </div>
+  );
+}
+
+function PreviewThumb({ url, name, onOpen }: { url?: string; name: string; onOpen: (url?: string, name?: string) => void }) {
+  if (!url) {
+    return <div className="previewThumb previewEmpty" aria-label="No preview" />;
+  }
+
+  return (
+    <button
+      type="button"
+      className="previewThumb previewButton"
+      title="Open preview"
+      onClick={(event) => {
+        event.stopPropagation();
+        onOpen(url, name);
+      }}
+    >
+      <img src={url} alt={`${name} preview`} loading="lazy" />
+    </button>
+  );
+}
+
+function ImageLightbox({ preview, onClose }: { preview: { url: string; name: string }; onClose: () => void }) {
+  return (
+    <div className="imageLightbox" role="dialog" aria-modal="true" aria-label={`${preview.name} preview`} onClick={onClose}>
+      <div className="imageLightboxInner" onClick={(event) => event.stopPropagation()}>
+        <div className="imageLightboxHeader">
+          <strong>{preview.name}</strong>
+          <button type="button" className="secondaryButton" onClick={onClose}>
+            Close
+          </button>
+        </div>
+        <div className="imageLightboxStage">
+          <img src={preview.url} alt={`${preview.name} preview`} />
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -414,7 +502,19 @@ function toEditableLibrary(value: string): TargetLibrary {
   return value === 'Ti Component' ? 'Ti Component' : 'Element Plus';
 }
 
-function Detail({ row, system, mapFile, onSaved }: { row: MapRow; system: MapSystem; mapFile: string; onSaved: (data: MapViewData) => void }) {
+function Detail({
+  row,
+  system,
+  mapFile,
+  onSaved,
+  onPreview,
+}: {
+  row: MapRow;
+  system: MapSystem;
+  mapFile: string;
+  onSaved: (data: MapViewData) => void;
+  onPreview: (url?: string, name?: string) => void;
+}) {
   const [draftStatus, setDraftStatus] = useState<MappingStatus>(row.status);
   const [draftLibrary, setDraftLibrary] = useState<TargetLibrary>(toEditableLibrary(row.targetLibrary));
   const [draftComponent, setDraftComponent] = useState(row.targetComponent === '-' ? '' : row.targetComponent);
@@ -487,6 +587,8 @@ function Detail({ row, system, mapFile, onSaved }: { row: MapRow; system: MapSys
           <Copy size={16} aria-hidden="true" />
         </button>
       </div>
+
+      <PreviewPanel url={row.previewUrl} name={row.name} onOpen={onPreview} />
 
       <dl className="kv">
         <div>
@@ -590,7 +692,7 @@ function Detail({ row, system, mapFile, onSaved }: { row: MapRow; system: MapSys
           <h3>Variants</h3>
           <div className="variantList">
             {row.variants.map((variant) => (
-              <VariantEditor key={variant.key} parent={row} variant={variant} system={system} onSaved={onSaved} />
+              <VariantEditor key={variant.key} parent={row} variant={variant} system={system} onSaved={onSaved} onPreview={onPreview} />
             ))}
           </div>
         </section>
@@ -622,13 +724,39 @@ function Detail({ row, system, mapFile, onSaved }: { row: MapRow; system: MapSys
   );
 }
 
+function PreviewPanel({ url, name, onOpen }: { url?: string; name: string; onOpen: (url?: string, name?: string) => void }) {
+  return (
+    <div className="previewPanel">
+      {url ? (
+        <button type="button" className="previewPanelButton" onClick={() => onOpen(url, name)}>
+          <img src={url} alt={`${name} design preview`} />
+        </button>
+      ) : (
+        <div className="previewPlaceholder">No preview exported</div>
+      )}
+    </div>
+  );
+}
+
 function formatVariantProperties(variant: MapVariant) {
   const entries = Object.entries(variant.variantProperties);
   if (entries.length === 0) return '-';
   return entries.map(([key, value]) => `${key}=${value}`).join(', ');
 }
 
-function VariantEditor({ parent, variant, system, onSaved }: { parent: MapRow; variant: MapVariant; system: MapSystem; onSaved: (data: MapViewData) => void }) {
+function VariantEditor({
+  parent,
+  variant,
+  system,
+  onSaved,
+  onPreview,
+}: {
+  parent: MapRow;
+  variant: MapVariant;
+  system: MapSystem;
+  onSaved: (data: MapViewData) => void;
+  onPreview: (url?: string, name?: string) => void;
+}) {
   const [mode, setMode] = useState<VariantMode>(variant.mode);
   const [library, setLibrary] = useState<TargetLibrary>(toEditableLibrary(variant.targetLibrary));
   const [component, setComponent] = useState(variant.targetComponent === '-' ? '' : variant.targetComponent);
@@ -696,6 +824,11 @@ function VariantEditor({ parent, variant, system, onSaved }: { parent: MapRow; v
 
   return (
     <div className="variantItem">
+      {variant.previewUrl ? (
+        <button type="button" className="variantPreview" onClick={() => onPreview(variant.previewUrl, variant.name)}>
+          <img src={variant.previewUrl} alt={`${variant.name} preview`} loading="lazy" />
+        </button>
+      ) : null}
       <div className="variantHeader">
         <div>
           <strong>{variant.name}</strong>

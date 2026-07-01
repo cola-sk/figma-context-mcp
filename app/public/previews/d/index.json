@@ -1,0 +1,31 @@
+{
+  "system": "d",
+  "fileKey": "khgCmG4dhk4eEi7eGDhSTw",
+  "generatedAt": "2026-07-01T10:21:28.989Z",
+  "previews": {
+    "c93c96eacadd729ad3a585361dcb168063c1ba90": {
+      "nodeId": "17033:1201",
+      "fileName": "c93c96eacadd729ad3a585361dcb168063c1ba90.png",
+      "kind": "component-set",
+      "name": "Table",
+      "scale": 2,
+      "exportedAt": "2026-07-01T10:21:26.056Z"
+    },
+    "480924288a59c4226d9ea1d0befdf932b4127d0a": {
+      "nodeId": "17033:1202",
+      "fileName": "480924288a59c4226d9ea1d0befdf932b4127d0a.png",
+      "kind": "variant",
+      "name": "Property 1=Table 表, Property 2=Frame 2036081378",
+      "scale": 2,
+      "exportedAt": "2026-07-01T10:21:28.580Z"
+    },
+    "17b8948e6968a6b6ad46481f55baabe246abbb63": {
+      "nodeId": "17033:1259",
+      "fileName": "17b8948e6968a6b6ad46481f55baabe246abbb63.png",
+      "kind": "variant",
+      "name": "Property 1=Frame 2036081378",
+      "scale": 2,
+      "exportedAt": "2026-07-01T10:21:28.989Z"
+    }
+  }
+}
