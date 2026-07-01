@@ -248,9 +248,14 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
           <div className="logoArea">
             <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="logoIcon">
               <rect x="2" y="2" width="28" height="28" rx="8" fill="url(#logoGrad)" />
-              <path d="M11 21L7 16L11 11" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M21 11L25 16L21 21" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M18 9L14 23" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              {/* Back Layer (Design) */}
+              <rect x="7" y="7" width="12" height="12" rx="2" stroke="white" strokeWidth="2" strokeOpacity="0.4" fill="none" />
+              {/* Front Layer (Code) */}
+              <rect x="13" y="13" width="12" height="12" rx="2" stroke="white" strokeWidth="2" fill="none" />
+              {/* Code Symbol inside Front Layer */}
+              <path d="M16 18l-1.5 1.5 1.5 1.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M22 18l1.5 1.5-1.5 1.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M20 17l-2 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
               <defs>
                 <linearGradient id="logoGrad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
                   <stop stopColor="#6366f1" />
