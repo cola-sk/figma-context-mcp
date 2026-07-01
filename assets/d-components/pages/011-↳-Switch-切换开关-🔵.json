@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "主题开发者平台 Design System",
+    "fileKey": "khgCmG4dhk4eEi7eGDhSTw",
+    "currentPage": "◆ Components",
+    "scope": "page",
+    "page": "      ↳ Switch 切换开关 🔵 "
+  },
+  "exportedAt": "2026-07-01T09:55:40.797Z",
+  "stats": {
+    "componentSetCount": 1,
+    "looseComponentCount": 0,
+    "componentCount": 3
+  },
+  "componentSets": [
+    {
+      "id": "16036:7961",
+      "key": "228a73ca49a6f9c054ad950877551dc8647ad670",
+      "name": "开关",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Switch 切换开关 🔵 ",
+      "path": "      ↳ Switch 切换开关 🔵  / 开关",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "on",
+          "variantOptions": [
+            "on",
+            "off",
+            "semi-on"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "16036:7962",
+          "key": "654e06308e8f2de6d1614e3a04d7efb39476f1d3",
+          "name": "Property 1=on",
+          "type": "COMPONENT",
+          "page": "      ↳ Switch 切换开关 🔵 ",
+          "path": "      ↳ Switch 切换开关 🔵  / 开关 / Property 1=on",
+          "componentSetId": "16036:7961",
+          "componentSetKey": "228a73ca49a6f9c054ad950877551dc8647ad670",
+          "componentSetName": "开关",
+          "variantProperties": {
+            "Property 1": "on"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "on"
+          }
+        },
+        {
+          "id": "16036:7964",
+          "key": "e8a80b9d0941cb394e38d8d83736127fce9268f7",
+          "name": "Property 1=off",
+          "type": "COMPONENT",
+          "page": "      ↳ Switch 切换开关 🔵 ",
+          "path": "      ↳ Switch 切换开关 🔵  / 开关 / Property 1=off",
+          "componentSetId": "16036:7961",
+          "componentSetKey": "228a73ca49a6f9c054ad950877551dc8647ad670",
+          "componentSetName": "开关",
+          "variantProperties": {
+            "Property 1": "off"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "off"
+          }
+        },
+        {
+          "id": "16036:7966",
+          "key": "00efed29f08fd44b95dd1977734dbc6740b79eac",
+          "name": "Property 1=semi-on",
+          "type": "COMPONENT",
+          "page": "      ↳ Switch 切换开关 🔵 ",
+          "path": "      ↳ Switch 切换开关 🔵  / 开关 / Property 1=semi-on",
+          "componentSetId": "16036:7961",
+          "componentSetKey": "228a73ca49a6f9c054ad950877551dc8647ad670",
+          "componentSetName": "开关",
+          "variantProperties": {
+            "Property 1": "semi-on"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "semi-on"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "228a73ca49a6f9c054ad950877551dc8647ad670": {
+        "id": "16036:7961",
+        "name": "开关",
+        "componentKeys": [
+          "654e06308e8f2de6d1614e3a04d7efb39476f1d3",
+          "e8a80b9d0941cb394e38d8d83736127fce9268f7",
+          "00efed29f08fd44b95dd1977734dbc6740b79eac"
+        ]
+      }
+    },
+    "componentByKey": {
+      "654e06308e8f2de6d1614e3a04d7efb39476f1d3": {
+        "id": "16036:7962",
+        "name": "Property 1=on",
+        "componentSetKey": "228a73ca49a6f9c054ad950877551dc8647ad670",
+        "componentSetName": "开关",
+        "variantProperties": {
+          "Property 1": "on"
+        }
+      },
+      "e8a80b9d0941cb394e38d8d83736127fce9268f7": {
+        "id": "16036:7964",
+        "name": "Property 1=off",
+        "componentSetKey": "228a73ca49a6f9c054ad950877551dc8647ad670",
+        "componentSetName": "开关",
+        "variantProperties": {
+          "Property 1": "off"
+        }
+      },
+      "00efed29f08fd44b95dd1977734dbc6740b79eac": {
+        "id": "16036:7966",
+        "name": "Property 1=semi-on",
+        "componentSetKey": "228a73ca49a6f9c054ad950877551dc8647ad670",
+        "componentSetName": "开关",
+        "variantProperties": {
+          "Property 1": "semi-on"
+        }
+      }
+    }
+  }
+}

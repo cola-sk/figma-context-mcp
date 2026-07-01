@@ -30,6 +30,7 @@
     "docker:run": "docker run -p 3000:3000 flowbite-mcp",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
+    "map:generate": "node scripts/generate-component-maps.mjs",
     "map-viewer:dev": "CI=true pnpm --dir app --config.confirmModulesPurge=false dev",
     "map-viewer:build": "CI=true pnpm --dir app --config.confirmModulesPurge=false build",
     "map-viewer:start": "CI=true pnpm --dir app --config.confirmModulesPurge=false start",

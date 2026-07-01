@@ -1,0 +1,217 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "主题开发者平台 Design System",
+    "fileKey": "khgCmG4dhk4eEi7eGDhSTw",
+    "currentPage": "◆ Components",
+    "scope": "page",
+    "page": "      ↳ Tag 标签 🟡"
+  },
+  "exportedAt": "2026-07-01T09:55:40.797Z",
+  "stats": {
+    "componentSetCount": 1,
+    "looseComponentCount": 0,
+    "componentCount": 6
+  },
+  "componentSets": [
+    {
+      "id": "10518:58",
+      "key": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
+      "name": "Tag-不带点的",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Tag 标签 🟡",
+      "path": "      ↳ Tag 标签 🟡 / Tag-不带点的",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "green",
+          "variantOptions": [
+            "blue",
+            "gray",
+            "green",
+            "orange",
+            "white",
+            "red"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "10022:179",
+          "key": "8fc6afa89ccdb4ffccd1956e25aa3abf76f04a73",
+          "name": "Property 1=green",
+          "type": "COMPONENT",
+          "page": "      ↳ Tag 标签 🟡",
+          "path": "      ↳ Tag 标签 🟡 / Tag-不带点的 / Property 1=green",
+          "componentSetId": "10518:58",
+          "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
+          "componentSetName": "Tag-不带点的",
+          "variantProperties": {
+            "Property 1": "green"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "green"
+          }
+        },
+        {
+          "id": "10022:178",
+          "key": "a38d61591de77a7af8a7e3364ee7293a048f97d2",
+          "name": "Property 1=gray",
+          "type": "COMPONENT",
+          "page": "      ↳ Tag 标签 🟡",
+          "path": "      ↳ Tag 标签 🟡 / Tag-不带点的 / Property 1=gray",
+          "componentSetId": "10518:58",
+          "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
+          "componentSetName": "Tag-不带点的",
+          "variantProperties": {
+            "Property 1": "gray"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "gray"
+          }
+        },
+        {
+          "id": "10022:177",
+          "key": "5d3cafadf5abec56ce34d2fbc6b8c72034186664",
+          "name": "Property 1=blue",
+          "type": "COMPONENT",
+          "page": "      ↳ Tag 标签 🟡",
+          "path": "      ↳ Tag 标签 🟡 / Tag-不带点的 / Property 1=blue",
+          "componentSetId": "10518:58",
+          "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
+          "componentSetName": "Tag-不带点的",
+          "variantProperties": {
+            "Property 1": "blue"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "blue"
+          }
+        },
+        {
+          "id": "10022:176",
+          "key": "31843047ca74b8251f153e8bf48da35ac85fdd7b",
+          "name": "Property 1=red",
+          "type": "COMPONENT",
+          "page": "      ↳ Tag 标签 🟡",
+          "path": "      ↳ Tag 标签 🟡 / Tag-不带点的 / Property 1=red",
+          "componentSetId": "10518:58",
+          "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
+          "componentSetName": "Tag-不带点的",
+          "variantProperties": {
+            "Property 1": "red"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "red"
+          }
+        },
+        {
+          "id": "10022:175",
+          "key": "4732a7ebd7065ba1794bb32c018fa77a2cc32290",
+          "name": "Property 1=orange",
+          "type": "COMPONENT",
+          "page": "      ↳ Tag 标签 🟡",
+          "path": "      ↳ Tag 标签 🟡 / Tag-不带点的 / Property 1=orange",
+          "componentSetId": "10518:58",
+          "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
+          "componentSetName": "Tag-不带点的",
+          "variantProperties": {
+            "Property 1": "orange"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "orange"
+          }
+        },
+        {
+          "id": "10022:174",
+          "key": "0609226f83594f3612ad89501718a442fd4f5c2c",
+          "name": "Property 1=white",
+          "type": "COMPONENT",
+          "page": "      ↳ Tag 标签 🟡",
+          "path": "      ↳ Tag 标签 🟡 / Tag-不带点的 / Property 1=white",
+          "componentSetId": "10518:58",
+          "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
+          "componentSetName": "Tag-不带点的",
+          "variantProperties": {
+            "Property 1": "white"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "white"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "54b9dd6a1f7f627de94bb09adce298ef84ea81b0": {
+        "id": "10518:58",
+        "name": "Tag-不带点的",
+        "componentKeys": [
+          "8fc6afa89ccdb4ffccd1956e25aa3abf76f04a73",
+          "a38d61591de77a7af8a7e3364ee7293a048f97d2",
+          "5d3cafadf5abec56ce34d2fbc6b8c72034186664",
+          "31843047ca74b8251f153e8bf48da35ac85fdd7b",
+          "4732a7ebd7065ba1794bb32c018fa77a2cc32290",
+          "0609226f83594f3612ad89501718a442fd4f5c2c"
+        ]
+      }
+    },
+    "componentByKey": {
+      "8fc6afa89ccdb4ffccd1956e25aa3abf76f04a73": {
+        "id": "10022:179",
+        "name": "Property 1=green",
+        "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
+        "componentSetName": "Tag-不带点的",
+        "variantProperties": {
+          "Property 1": "green"
+        }
+      },
+      "a38d61591de77a7af8a7e3364ee7293a048f97d2": {
+        "id": "10022:178",
+        "name": "Property 1=gray",
+        "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
+        "componentSetName": "Tag-不带点的",
+        "variantProperties": {
+          "Property 1": "gray"
+        }
+      },
+      "5d3cafadf5abec56ce34d2fbc6b8c72034186664": {
+        "id": "10022:177",
+        "name": "Property 1=blue",
+        "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
+        "componentSetName": "Tag-不带点的",
+        "variantProperties": {
+          "Property 1": "blue"
+        }
+      },
+      "31843047ca74b8251f153e8bf48da35ac85fdd7b": {
+        "id": "10022:176",
+        "name": "Property 1=red",
+        "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
+        "componentSetName": "Tag-不带点的",
+        "variantProperties": {
+          "Property 1": "red"
+        }
+      },
+      "4732a7ebd7065ba1794bb32c018fa77a2cc32290": {
+        "id": "10022:175",
+        "name": "Property 1=orange",
+        "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
+        "componentSetName": "Tag-不带点的",
+        "variantProperties": {
+          "Property 1": "orange"
+        }
+      },
+      "0609226f83594f3612ad89501718a442fd4f5c2c": {
+        "id": "10022:174",
+        "name": "Property 1=white",
+        "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
+        "componentSetName": "Tag-不带点的",
+        "variantProperties": {
+          "Property 1": "white"
+        }
+      }
+    }
+  }
+}

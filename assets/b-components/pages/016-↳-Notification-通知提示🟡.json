@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "【内部公开版】 Titan Design System",
+    "fileKey": "GwYZpatr4RGoRtPMEFONwk",
+    "currentPage": "Cover",
+    "scope": "page",
+    "page": "      ↳ Notification 通知提示🟡"
+  },
+  "exportedAt": "2026-07-01T09:58:55.860Z",
+  "stats": {
+    "componentSetCount": 1,
+    "looseComponentCount": 0,
+    "componentCount": 3
+  },
+  "componentSets": [
+    {
+      "id": "10004:2248",
+      "key": "69a573a8878bbbb2646ba7005519f20719633fdc",
+      "name": "Notification",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Notification 通知提示🟡",
+      "path": "      ↳ Notification 通知提示🟡 / Notification",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "成功提示",
+          "variantOptions": [
+            "警告提示",
+            "错误提示",
+            "成功提示"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "10004:2246",
+          "key": "6b37ee7a1b3d96daae8f72ccb831954f2f82d6ca",
+          "name": "Property 1=成功提示",
+          "type": "COMPONENT",
+          "page": "      ↳ Notification 通知提示🟡",
+          "path": "      ↳ Notification 通知提示🟡 / Notification / Property 1=成功提示",
+          "componentSetId": "10004:2248",
+          "componentSetKey": "69a573a8878bbbb2646ba7005519f20719633fdc",
+          "componentSetName": "Notification",
+          "variantProperties": {
+            "Property 1": "成功提示"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "成功提示"
+          }
+        },
+        {
+          "id": "10004:2245",
+          "key": "37c860cbe5682eaec68c14dcc2d439f33a5d8566",
+          "name": "Property 1=错误提示",
+          "type": "COMPONENT",
+          "page": "      ↳ Notification 通知提示🟡",
+          "path": "      ↳ Notification 通知提示🟡 / Notification / Property 1=错误提示",
+          "componentSetId": "10004:2248",
+          "componentSetKey": "69a573a8878bbbb2646ba7005519f20719633fdc",
+          "componentSetName": "Notification",
+          "variantProperties": {
+            "Property 1": "错误提示"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "错误提示"
+          }
+        },
+        {
+          "id": "10004:2244",
+          "key": "df948bf95fa1592ac867a9d68a386554bc5100b7",
+          "name": "Property 1=警告提示",
+          "type": "COMPONENT",
+          "page": "      ↳ Notification 通知提示🟡",
+          "path": "      ↳ Notification 通知提示🟡 / Notification / Property 1=警告提示",
+          "componentSetId": "10004:2248",
+          "componentSetKey": "69a573a8878bbbb2646ba7005519f20719633fdc",
+          "componentSetName": "Notification",
+          "variantProperties": {
+            "Property 1": "警告提示"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "警告提示"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "69a573a8878bbbb2646ba7005519f20719633fdc": {
+        "id": "10004:2248",
+        "name": "Notification",
+        "componentKeys": [
+          "6b37ee7a1b3d96daae8f72ccb831954f2f82d6ca",
+          "37c860cbe5682eaec68c14dcc2d439f33a5d8566",
+          "df948bf95fa1592ac867a9d68a386554bc5100b7"
+        ]
+      }
+    },
+    "componentByKey": {
+      "6b37ee7a1b3d96daae8f72ccb831954f2f82d6ca": {
+        "id": "10004:2246",
+        "name": "Property 1=成功提示",
+        "componentSetKey": "69a573a8878bbbb2646ba7005519f20719633fdc",
+        "componentSetName": "Notification",
+        "variantProperties": {
+          "Property 1": "成功提示"
+        }
+      },
+      "37c860cbe5682eaec68c14dcc2d439f33a5d8566": {
+        "id": "10004:2245",
+        "name": "Property 1=错误提示",
+        "componentSetKey": "69a573a8878bbbb2646ba7005519f20719633fdc",
+        "componentSetName": "Notification",
+        "variantProperties": {
+          "Property 1": "错误提示"
+        }
+      },
+      "df948bf95fa1592ac867a9d68a386554bc5100b7": {
+        "id": "10004:2244",
+        "name": "Property 1=警告提示",
+        "componentSetKey": "69a573a8878bbbb2646ba7005519f20719633fdc",
+        "componentSetName": "Notification",
+        "variantProperties": {
+          "Property 1": "警告提示"
+        }
+      }
+    }
+  }
+}

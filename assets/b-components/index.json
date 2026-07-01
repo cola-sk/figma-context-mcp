@@ -1,0 +1,260 @@
+{
+  "schemaVersion": "figma-component-registry/v1-zip-index",
+  "source": {
+    "fileName": "【内部公开版】 Titan Design System",
+    "fileKey": "GwYZpatr4RGoRtPMEFONwk",
+    "currentPage": "Cover",
+    "scope": "selected-pages"
+  },
+  "exportedAt": "2026-07-01T09:58:55.860Z",
+  "stats": {
+    "componentSetCount": 60,
+    "looseComponentCount": 27,
+    "componentCount": 240
+  },
+  "files": [
+    {
+      "fileName": "pages/001-↳-Button-按钮-🟢.json",
+      "page": "      ↳ Button 按钮 🟢",
+      "stats": {
+        "componentSetCount": 2,
+        "looseComponentCount": 0,
+        "componentCount": 27
+      }
+    },
+    {
+      "fileName": "pages/002-↳-Link-链接-🔵.json",
+      "page": "      ↳ Link 链接 🔵",
+      "stats": {
+        "componentSetCount": 2,
+        "looseComponentCount": 0,
+        "componentCount": 6
+      }
+    },
+    {
+      "fileName": "pages/003-↳-Radio-单选-🔵.json",
+      "page": "      ↳ Radio 单选  🔵",
+      "stats": {
+        "componentSetCount": 3,
+        "looseComponentCount": 0,
+        "componentCount": 11
+      }
+    },
+    {
+      "fileName": "pages/004-↳-Checkbox多选-🔵.json",
+      "page": "      ↳ Checkbox多选 🔵",
+      "stats": {
+        "componentSetCount": 3,
+        "looseComponentCount": 0,
+        "componentCount": 12
+      }
+    },
+    {
+      "fileName": "pages/005-↳-Input-输入框-🟣.json",
+      "page": "      ↳ Input 输入框 🟣",
+      "stats": {
+        "componentSetCount": 2,
+        "looseComponentCount": 0,
+        "componentCount": 6
+      }
+    },
+    {
+      "fileName": "pages/006-↳-Search-搜索框-🟣.json",
+      "page": "      ↳ Search 搜索框  🟣",
+      "stats": {
+        "componentSetCount": 1,
+        "looseComponentCount": 0,
+        "componentCount": 2
+      }
+    },
+    {
+      "fileName": "pages/007-↳-TextArea-文本域-🟣.json",
+      "page": "      ↳ TextArea 文本域 🟣",
+      "stats": {
+        "componentSetCount": 2,
+        "looseComponentCount": 0,
+        "componentCount": 8
+      }
+    },
+    {
+      "fileName": "pages/008-↳-Select-选择器-🟣.json",
+      "page": "      ↳ Select 选择器 🟣",
+      "stats": {
+        "componentSetCount": 5,
+        "looseComponentCount": 0,
+        "componentCount": 16
+      }
+    },
+    {
+      "fileName": "pages/009-↳-Dropdown下拉菜单-🟠.json",
+      "page": "      ↳ Dropdown下拉菜单 🟠",
+      "stats": {
+        "componentSetCount": 8,
+        "looseComponentCount": 0,
+        "componentCount": 15
+      }
+    },
+    {
+      "fileName": "pages/010-↳-Transfer-穿梭框-🟠.json",
+      "page": "      ↳ Transfer 穿梭框  🟠",
+      "stats": {
+        "componentSetCount": 1,
+        "looseComponentCount": 0,
+        "componentCount": 2
+      }
+    },
+    {
+      "fileName": "pages/011-↳-Switch-切换开关-🔵.json",
+      "page": "      ↳ Switch 切换开关 🔵",
+      "stats": {
+        "componentSetCount": 1,
+        "looseComponentCount": 0,
+        "componentCount": 3
+      }
+    },
+    {
+      "fileName": "pages/012-↳-Slide-Bar-滚动条-⚫️.json",
+      "page": "      ↳ Slide Bar 滚动条 ⚫️",
+      "stats": {
+        "componentSetCount": 1,
+        "looseComponentCount": 0,
+        "componentCount": 2
+      }
+    },
+    {
+      "fileName": "pages/013-↳-Date-picker-日期选择器-🔵.json",
+      "page": "      ↳ Date-picker 日期选择器 🔵 ",
+      "stats": {
+        "componentSetCount": 1,
+        "looseComponentCount": 2,
+        "componentCount": 5
+      }
+    },
+    {
+      "fileName": "pages/014-↳-File-uploader-文件上传器钮-🟢.json",
+      "page": "      ↳ File-uploader 文件上传器钮 🟢",
+      "stats": {
+        "componentSetCount": 3,
+        "looseComponentCount": 1,
+        "componentCount": 14
+      }
+    },
+    {
+      "fileName": "pages/015-↳-Modal-模态窗口-⚫️.json",
+      "page": "      ↳ Modal 模态窗口 ⚫️",
+      "stats": {
+        "componentSetCount": 1,
+        "looseComponentCount": 2,
+        "componentCount": 5
+      }
+    },
+    {
+      "fileName": "pages/016-↳-Notification-通知提示🟡.json",
+      "page": "      ↳ Notification 通知提示🟡",
+      "stats": {
+        "componentSetCount": 1,
+        "looseComponentCount": 0,
+        "componentCount": 3
+      }
+    },
+    {
+      "fileName": "pages/017-↳-Table-表-🟠.json",
+      "page": "      ↳ Table 表 🟠",
+      "stats": {
+        "componentSetCount": 2,
+        "looseComponentCount": 7,
+        "componentCount": 12
+      }
+    },
+    {
+      "fileName": "pages/018-↳-Tabs-标签页-🔵.json",
+      "page": "      ↳ Tabs 标签页 🔵 ",
+      "stats": {
+        "componentSetCount": 8,
+        "looseComponentCount": 0,
+        "componentCount": 30
+      }
+    },
+    {
+      "fileName": "pages/019-↳-Tag-标签-🟡.json",
+      "page": "      ↳ Tag 标签 🟡",
+      "stats": {
+        "componentSetCount": 1,
+        "looseComponentCount": 1,
+        "componentCount": 7
+      }
+    },
+    {
+      "fileName": "pages/020-↳-Tooltip-提示⚫️.json",
+      "page": "      ↳ Tooltip 提示⚫️",
+      "stats": {
+        "componentSetCount": 3,
+        "looseComponentCount": 0,
+        "componentCount": 9
+      }
+    },
+    {
+      "fileName": "pages/021-↳-Pagination-分页-🔵.json",
+      "page": "      ↳ Pagination 分页 🔵",
+      "stats": {
+        "componentSetCount": 3,
+        "looseComponentCount": 0,
+        "componentCount": 10
+      }
+    },
+    {
+      "fileName": "pages/022-↳-Nav.Menu-顶部导航菜单-🔵.json",
+      "page": "      ↳ Nav.Menu 顶部导航菜单 🔵",
+      "stats": {
+        "componentSetCount": 1,
+        "looseComponentCount": 8,
+        "componentCount": 10
+      }
+    },
+    {
+      "fileName": "pages/023-↳-Side-Nav.-左侧菜单-🔵.json",
+      "page": "      ↳ Side Nav. 左侧菜单 🔵",
+      "stats": {
+        "componentSetCount": 1,
+        "looseComponentCount": 3,
+        "componentCount": 9
+      }
+    },
+    {
+      "fileName": "pages/024-↳-Step-Bar-步骤条-🔵.json",
+      "page": "      ↳ Step Bar 步骤条 🔵",
+      "stats": {
+        "componentSetCount": 3,
+        "looseComponentCount": 0,
+        "componentCount": 7
+      }
+    },
+    {
+      "fileName": "pages/025-↳-Empty-state-空状态-🟢.json",
+      "page": "      ↳ Empty-state 空状态 🟢",
+      "stats": {
+        "componentSetCount": 1,
+        "looseComponentCount": 0,
+        "componentCount": 6
+      }
+    },
+    {
+      "fileName": "pages/026-↳-Divider-分割线⚫️.json",
+      "page": "      ↳ Divider 分割线⚫️",
+      "stats": {
+        "componentSetCount": 0,
+        "looseComponentCount": 1,
+        "componentCount": 1
+      }
+    },
+    {
+      "fileName": "pages/027-↳-Tree-树形视图-🟠.json",
+      "page": "      ↳ Tree 树形视图   🟠",
+      "stats": {
+        "componentSetCount": 0,
+        "looseComponentCount": 2,
+        "componentCount": 2
+      }
+    }
+  ]
+}

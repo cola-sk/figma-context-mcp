@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "主题开发者平台 Design System",
+    "fileKey": "khgCmG4dhk4eEi7eGDhSTw",
+    "currentPage": "◆ Components",
+    "scope": "page",
+    "page": "      ↳ Alert 提示 🟡"
+  },
+  "exportedAt": "2026-07-01T09:55:40.797Z",
+  "stats": {
+    "componentSetCount": 1,
+    "looseComponentCount": 0,
+    "componentCount": 2
+  },
+  "componentSets": [
+    {
+      "id": "17154:647",
+      "key": "3f6e35098a00a4c8de07a13cacbe08d19887e906",
+      "name": "Alert",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Alert 提示 🟡",
+      "path": "      ↳ Alert 提示 🟡 / Alert",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "错误提示",
+          "variantOptions": [
+            "警告提示",
+            "错误提示"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "17154:653",
+          "key": "90c2dd11ec2135c7c3de59c7efc77382a56d87d2",
+          "name": "Property 1=错误提示",
+          "type": "COMPONENT",
+          "page": "      ↳ Alert 提示 🟡",
+          "path": "      ↳ Alert 提示 🟡 / Alert / Property 1=错误提示",
+          "componentSetId": "17154:647",
+          "componentSetKey": "3f6e35098a00a4c8de07a13cacbe08d19887e906",
+          "componentSetName": "Alert",
+          "variantProperties": {
+            "Property 1": "错误提示"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "错误提示"
+          }
+        },
+        {
+          "id": "17154:658",
+          "key": "f4d2ed642cd5f0375ab503fdb1db59826de5d516",
+          "name": "Property 1=警告提示",
+          "type": "COMPONENT",
+          "page": "      ↳ Alert 提示 🟡",
+          "path": "      ↳ Alert 提示 🟡 / Alert / Property 1=警告提示",
+          "componentSetId": "17154:647",
+          "componentSetKey": "3f6e35098a00a4c8de07a13cacbe08d19887e906",
+          "componentSetName": "Alert",
+          "variantProperties": {
+            "Property 1": "警告提示"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "警告提示"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "3f6e35098a00a4c8de07a13cacbe08d19887e906": {
+        "id": "17154:647",
+        "name": "Alert",
+        "componentKeys": [
+          "90c2dd11ec2135c7c3de59c7efc77382a56d87d2",
+          "f4d2ed642cd5f0375ab503fdb1db59826de5d516"
+        ]
+      }
+    },
+    "componentByKey": {
+      "90c2dd11ec2135c7c3de59c7efc77382a56d87d2": {
+        "id": "17154:653",
+        "name": "Property 1=错误提示",
+        "componentSetKey": "3f6e35098a00a4c8de07a13cacbe08d19887e906",
+        "componentSetName": "Alert",
+        "variantProperties": {
+          "Property 1": "错误提示"
+        }
+      },
+      "f4d2ed642cd5f0375ab503fdb1db59826de5d516": {
+        "id": "17154:658",
+        "name": "Property 1=警告提示",
+        "componentSetKey": "3f6e35098a00a4c8de07a13cacbe08d19887e906",
+        "componentSetName": "Alert",
+        "variantProperties": {
+          "Property 1": "警告提示"
+        }
+      }
+    }
+  }
+}

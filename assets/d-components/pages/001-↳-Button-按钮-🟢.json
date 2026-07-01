@@ -1,0 +1,796 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "主题开发者平台 Design System",
+    "fileKey": "khgCmG4dhk4eEi7eGDhSTw",
+    "currentPage": "◆ Components",
+    "scope": "page",
+    "page": "      ↳ Button 按钮 🟢"
+  },
+  "exportedAt": "2026-07-01T09:55:40.797Z",
+  "stats": {
+    "componentSetCount": 3,
+    "looseComponentCount": 0,
+    "componentCount": 22
+  },
+  "componentSets": [
+    {
+      "id": "12091:756",
+      "key": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+      "name": "Button",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Button 按钮 🟢",
+      "path": "      ↳ Button 按钮 🟢 / Button",
+      "componentPropertyDefinitions": {
+        "按钮": {
+          "type": "VARIANT",
+          "defaultValue": "Primary",
+          "variantOptions": [
+            "Default",
+            "Primary Button with Icon",
+            "Primary",
+            "小尺寸 disable",
+            "secondary",
+            "small button",
+            "default",
+            "primary button with icon"
+          ]
+        },
+        "状态": {
+          "type": "VARIANT",
+          "defaultValue": "default",
+          "variantOptions": [
+            "default",
+            "disable",
+            "hover"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "12091:763",
+          "key": "566893f9c2f361b5804234328f1e657686079ebe",
+          "name": "按钮=Primary Button with Icon, 状态=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=Primary Button with Icon, 状态=default",
+          "componentSetId": "12091:756",
+          "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+          "componentSetName": "Button",
+          "variantProperties": {
+            "按钮": "Primary Button with Icon",
+            "状态": "default"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "Primary Button with Icon",
+            "状态": "default"
+          }
+        },
+        {
+          "id": "12091:769",
+          "key": "cb7f7cc9f109158b2b68720f1fb17bcbb28a1a60",
+          "name": "按钮=Primary Button with Icon, 状态=disable",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=Primary Button with Icon, 状态=disable",
+          "componentSetId": "12091:756",
+          "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+          "componentSetName": "Button",
+          "variantProperties": {
+            "按钮": "Primary Button with Icon",
+            "状态": "disable"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "Primary Button with Icon",
+            "状态": "disable"
+          }
+        },
+        {
+          "id": "12091:772",
+          "key": "098a5ee36081ba9501f8d8aeec22536facf6a69e",
+          "name": "按钮=Default, 状态=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=Default, 状态=default",
+          "componentSetId": "12091:756",
+          "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+          "componentSetName": "Button",
+          "variantProperties": {
+            "按钮": "Default",
+            "状态": "default"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "Default",
+            "状态": "default"
+          }
+        },
+        {
+          "id": "12091:778",
+          "key": "484f2e8cf2734b2fe05d979fb065f0f9c6dd03b6",
+          "name": "按钮=Default, 状态=disable",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=Default, 状态=disable",
+          "componentSetId": "12091:756",
+          "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+          "componentSetName": "Button",
+          "variantProperties": {
+            "按钮": "Default",
+            "状态": "disable"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "Default",
+            "状态": "disable"
+          }
+        },
+        {
+          "id": "12091:782",
+          "key": "2c7111723eff7fb3817c557c54c0122929958dbf",
+          "name": "按钮=Primary, 状态=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=Primary, 状态=default",
+          "componentSetId": "12091:756",
+          "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+          "componentSetName": "Button",
+          "variantProperties": {
+            "按钮": "Primary",
+            "状态": "default"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "Primary",
+            "状态": "default"
+          }
+        },
+        {
+          "id": "12091:786",
+          "key": "a8e31d6d51f59b7551542419942e80760c7d70ac",
+          "name": "按钮=Primary, 状态=disable",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=Primary, 状态=disable",
+          "componentSetId": "12091:756",
+          "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+          "componentSetName": "Button",
+          "variantProperties": {
+            "按钮": "Primary",
+            "状态": "disable"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "Primary",
+            "状态": "disable"
+          }
+        },
+        {
+          "id": "16193:511",
+          "key": "6d7db039d9178af70ecb7c5f7c81df1cb2f68eb9",
+          "name": "按钮=小尺寸 disable, 状态=disable",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=小尺寸 disable, 状态=disable",
+          "componentSetId": "12091:756",
+          "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+          "componentSetName": "Button",
+          "variantProperties": {
+            "按钮": "小尺寸 disable",
+            "状态": "disable"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "小尺寸 disable",
+            "状态": "disable"
+          }
+        },
+        {
+          "id": "16399:551",
+          "key": "08d6e81189d2c58c2a4b9ed4c3db1e496a61f2db",
+          "name": "按钮=secondary, 状态=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=secondary, 状态=default",
+          "componentSetId": "12091:756",
+          "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+          "componentSetName": "Button",
+          "variantProperties": {
+            "按钮": "secondary",
+            "状态": "default"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "secondary",
+            "状态": "default"
+          }
+        },
+        {
+          "id": "16402:51",
+          "key": "ce6dec8914c82d2eb4e7e7ce313cf4bf270ae70f",
+          "name": "按钮=secondary, 状态=disable",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=secondary, 状态=disable",
+          "componentSetId": "12091:756",
+          "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+          "componentSetName": "Button",
+          "variantProperties": {
+            "按钮": "secondary",
+            "状态": "disable"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "secondary",
+            "状态": "disable"
+          }
+        },
+        {
+          "id": "16407:7217",
+          "key": "073faa5eb2fd258b331cc782ef9315816930bc7f",
+          "name": "按钮=secondary, 状态=hover",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=secondary, 状态=hover",
+          "componentSetId": "12091:756",
+          "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+          "componentSetName": "Button",
+          "variantProperties": {
+            "按钮": "secondary",
+            "状态": "hover"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "secondary",
+            "状态": "hover"
+          }
+        },
+        {
+          "id": "16407:7222",
+          "key": "442a63f59152398cef363646194b7c8e4abf6d9e",
+          "name": "按钮=small button, 状态=hover",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=small button, 状态=hover",
+          "componentSetId": "12091:756",
+          "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+          "componentSetName": "Button",
+          "variantProperties": {
+            "按钮": "small button",
+            "状态": "hover"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "small button",
+            "状态": "hover"
+          }
+        },
+        {
+          "id": "16407:7227",
+          "key": "ac5f6f5c94c44f14348f83aeb900c4dba422233f",
+          "name": "按钮=Default, 状态=hover",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=Default, 状态=hover",
+          "componentSetId": "12091:756",
+          "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+          "componentSetName": "Button",
+          "variantProperties": {
+            "按钮": "Default",
+            "状态": "hover"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "Default",
+            "状态": "hover"
+          }
+        },
+        {
+          "id": "16407:7232",
+          "key": "e4bb5406f9848acd2ad0304f17140ba7e561129b",
+          "name": "按钮=default, 状态=hover",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=default, 状态=hover",
+          "componentSetId": "12091:756",
+          "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+          "componentSetName": "Button",
+          "variantProperties": {
+            "按钮": "default",
+            "状态": "hover"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "default",
+            "状态": "hover"
+          }
+        },
+        {
+          "id": "16407:7244",
+          "key": "39ab35529ffe34c8b06b0e3d92024acf1c081443",
+          "name": "按钮=primary button with icon, 状态=hover",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=primary button with icon, 状态=hover",
+          "componentSetId": "12091:756",
+          "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+          "componentSetName": "Button",
+          "variantProperties": {
+            "按钮": "primary button with icon",
+            "状态": "hover"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "primary button with icon",
+            "状态": "hover"
+          }
+        }
+      ]
+    },
+    {
+      "id": "17051:518",
+      "key": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
+      "name": "Button",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Button 按钮 🟢",
+      "path": "      ↳ Button 按钮 🟢 / Button",
+      "components": [
+        {
+          "id": "17051:525",
+          "key": "a177a0904794057f0633541515ef7f79a0386355",
+          "name": "按钮=Default, 状态=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=Default, 状态=default",
+          "componentSetId": "17051:518",
+          "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
+          "componentSetName": "Button",
+          "variantPropertiesFromName": {
+            "按钮": "Default",
+            "状态": "default"
+          },
+          "warnings": [
+            {
+              "code": "variantProperties_unreadable",
+              "nodeId": "17051:525",
+              "nodeName": "按钮=Default, 状态=default",
+              "message": "in get_variantProperties: Component set for node has existing errors"
+            }
+          ]
+        },
+        {
+          "id": "17051:527",
+          "key": "95764d0180784e21639bc72b7843ed84e113c578",
+          "name": "按钮=Default, 状态=disable",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=Default, 状态=disable",
+          "componentSetId": "17051:518",
+          "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
+          "componentSetName": "Button",
+          "variantPropertiesFromName": {
+            "按钮": "Default",
+            "状态": "disable"
+          },
+          "warnings": [
+            {
+              "code": "variantProperties_unreadable",
+              "nodeId": "17051:527",
+              "nodeName": "按钮=Default, 状态=disable",
+              "message": "in get_variantProperties: Component set for node has existing errors"
+            }
+          ]
+        },
+        {
+          "id": "17051:529",
+          "key": "281f572e5b6cd11acb544b942168de329802b073",
+          "name": "按钮=Primary, 状态=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=Primary, 状态=default",
+          "componentSetId": "17051:518",
+          "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
+          "componentSetName": "Button",
+          "variantPropertiesFromName": {
+            "按钮": "Primary",
+            "状态": "default"
+          },
+          "warnings": [
+            {
+              "code": "variantProperties_unreadable",
+              "nodeId": "17051:529",
+              "nodeName": "按钮=Primary, 状态=default",
+              "message": "in get_variantProperties: Component set for node has existing errors"
+            }
+          ]
+        },
+        {
+          "id": "17051:531",
+          "key": "bbc974b109783f4e5bee78e0e9ac732b45b15672",
+          "name": "按钮=Primary, 状态=disable",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=Primary, 状态=disable",
+          "componentSetId": "17051:518",
+          "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
+          "componentSetName": "Button",
+          "variantPropertiesFromName": {
+            "按钮": "Primary",
+            "状态": "disable"
+          },
+          "warnings": [
+            {
+              "code": "variantProperties_unreadable",
+              "nodeId": "17051:531",
+              "nodeName": "按钮=Primary, 状态=disable",
+              "message": "in get_variantProperties: Component set for node has existing errors"
+            }
+          ]
+        },
+        {
+          "id": "17051:535",
+          "key": "0cf934837c1947d028412f8f890367c7ef0e10d8",
+          "name": "按钮=Default, 状态=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / Button / 按钮=Default, 状态=default",
+          "componentSetId": "17051:518",
+          "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
+          "componentSetName": "Button",
+          "variantPropertiesFromName": {
+            "按钮": "Default",
+            "状态": "default"
+          },
+          "warnings": [
+            {
+              "code": "variantProperties_unreadable",
+              "nodeId": "17051:535",
+              "nodeName": "按钮=Default, 状态=default",
+              "message": "in get_variantProperties: Component set for node has existing errors"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "16415:13",
+      "key": "e0ba1401c82a6a3c0733f89f3c2c940df3087159",
+      "name": "others",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Button 按钮 🟢",
+      "path": "      ↳ Button 按钮 🟢 / others",
+      "componentPropertyDefinitions": {
+        "按钮": {
+          "type": "VARIANT",
+          "defaultValue": "icon Button S",
+          "variantOptions": [
+            "icon Button S"
+          ]
+        },
+        "状态": {
+          "type": "VARIANT",
+          "defaultValue": "default",
+          "variantOptions": [
+            "default",
+            "hover",
+            "disable"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "16415:10",
+          "key": "4ee87301f10a2b8d23de60cc15d14fa0b7d944d4",
+          "name": "按钮=icon Button S, 状态=default",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / others / 按钮=icon Button S, 状态=default",
+          "componentSetId": "16415:13",
+          "componentSetKey": "e0ba1401c82a6a3c0733f89f3c2c940df3087159",
+          "componentSetName": "others",
+          "variantProperties": {
+            "按钮": "icon Button S",
+            "状态": "default"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "icon Button S",
+            "状态": "default"
+          }
+        },
+        {
+          "id": "16415:11",
+          "key": "6cadec5a6059a47194ed05c6159010bd1ad32d8f",
+          "name": "按钮=icon Button S, 状态=hover",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / others / 按钮=icon Button S, 状态=hover",
+          "componentSetId": "16415:13",
+          "componentSetKey": "e0ba1401c82a6a3c0733f89f3c2c940df3087159",
+          "componentSetName": "others",
+          "variantProperties": {
+            "按钮": "icon Button S",
+            "状态": "hover"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "icon Button S",
+            "状态": "hover"
+          }
+        },
+        {
+          "id": "16415:12",
+          "key": "d5d08a59e846c40073c33bbf401651ae89678402",
+          "name": "按钮=icon Button S, 状态=disable",
+          "type": "COMPONENT",
+          "page": "      ↳ Button 按钮 🟢",
+          "path": "      ↳ Button 按钮 🟢 / others / 按钮=icon Button S, 状态=disable",
+          "componentSetId": "16415:13",
+          "componentSetKey": "e0ba1401c82a6a3c0733f89f3c2c940df3087159",
+          "componentSetName": "others",
+          "variantProperties": {
+            "按钮": "icon Button S",
+            "状态": "disable"
+          },
+          "variantPropertiesFromName": {
+            "按钮": "icon Button S",
+            "状态": "disable"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4": {
+        "id": "12091:756",
+        "name": "Button",
+        "componentKeys": [
+          "566893f9c2f361b5804234328f1e657686079ebe",
+          "cb7f7cc9f109158b2b68720f1fb17bcbb28a1a60",
+          "098a5ee36081ba9501f8d8aeec22536facf6a69e",
+          "484f2e8cf2734b2fe05d979fb065f0f9c6dd03b6",
+          "2c7111723eff7fb3817c557c54c0122929958dbf",
+          "a8e31d6d51f59b7551542419942e80760c7d70ac",
+          "6d7db039d9178af70ecb7c5f7c81df1cb2f68eb9",
+          "08d6e81189d2c58c2a4b9ed4c3db1e496a61f2db",
+          "ce6dec8914c82d2eb4e7e7ce313cf4bf270ae70f",
+          "073faa5eb2fd258b331cc782ef9315816930bc7f",
+          "442a63f59152398cef363646194b7c8e4abf6d9e",
+          "ac5f6f5c94c44f14348f83aeb900c4dba422233f",
+          "e4bb5406f9848acd2ad0304f17140ba7e561129b",
+          "39ab35529ffe34c8b06b0e3d92024acf1c081443"
+        ]
+      },
+      "a9efaa51fbcf5f081f8e524a79ef7a7769daf913": {
+        "id": "17051:518",
+        "name": "Button",
+        "componentKeys": [
+          "a177a0904794057f0633541515ef7f79a0386355",
+          "95764d0180784e21639bc72b7843ed84e113c578",
+          "281f572e5b6cd11acb544b942168de329802b073",
+          "bbc974b109783f4e5bee78e0e9ac732b45b15672",
+          "0cf934837c1947d028412f8f890367c7ef0e10d8"
+        ]
+      },
+      "e0ba1401c82a6a3c0733f89f3c2c940df3087159": {
+        "id": "16415:13",
+        "name": "others",
+        "componentKeys": [
+          "4ee87301f10a2b8d23de60cc15d14fa0b7d944d4",
+          "6cadec5a6059a47194ed05c6159010bd1ad32d8f",
+          "d5d08a59e846c40073c33bbf401651ae89678402"
+        ]
+      }
+    },
+    "componentByKey": {
+      "566893f9c2f361b5804234328f1e657686079ebe": {
+        "id": "12091:763",
+        "name": "按钮=Primary Button with Icon, 状态=default",
+        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "Primary Button with Icon",
+          "状态": "default"
+        }
+      },
+      "cb7f7cc9f109158b2b68720f1fb17bcbb28a1a60": {
+        "id": "12091:769",
+        "name": "按钮=Primary Button with Icon, 状态=disable",
+        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "Primary Button with Icon",
+          "状态": "disable"
+        }
+      },
+      "098a5ee36081ba9501f8d8aeec22536facf6a69e": {
+        "id": "12091:772",
+        "name": "按钮=Default, 状态=default",
+        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "Default",
+          "状态": "default"
+        }
+      },
+      "484f2e8cf2734b2fe05d979fb065f0f9c6dd03b6": {
+        "id": "12091:778",
+        "name": "按钮=Default, 状态=disable",
+        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "Default",
+          "状态": "disable"
+        }
+      },
+      "2c7111723eff7fb3817c557c54c0122929958dbf": {
+        "id": "12091:782",
+        "name": "按钮=Primary, 状态=default",
+        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "Primary",
+          "状态": "default"
+        }
+      },
+      "a8e31d6d51f59b7551542419942e80760c7d70ac": {
+        "id": "12091:786",
+        "name": "按钮=Primary, 状态=disable",
+        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "Primary",
+          "状态": "disable"
+        }
+      },
+      "6d7db039d9178af70ecb7c5f7c81df1cb2f68eb9": {
+        "id": "16193:511",
+        "name": "按钮=小尺寸 disable, 状态=disable",
+        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "小尺寸 disable",
+          "状态": "disable"
+        }
+      },
+      "08d6e81189d2c58c2a4b9ed4c3db1e496a61f2db": {
+        "id": "16399:551",
+        "name": "按钮=secondary, 状态=default",
+        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "secondary",
+          "状态": "default"
+        }
+      },
+      "ce6dec8914c82d2eb4e7e7ce313cf4bf270ae70f": {
+        "id": "16402:51",
+        "name": "按钮=secondary, 状态=disable",
+        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "secondary",
+          "状态": "disable"
+        }
+      },
+      "073faa5eb2fd258b331cc782ef9315816930bc7f": {
+        "id": "16407:7217",
+        "name": "按钮=secondary, 状态=hover",
+        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "secondary",
+          "状态": "hover"
+        }
+      },
+      "442a63f59152398cef363646194b7c8e4abf6d9e": {
+        "id": "16407:7222",
+        "name": "按钮=small button, 状态=hover",
+        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "small button",
+          "状态": "hover"
+        }
+      },
+      "ac5f6f5c94c44f14348f83aeb900c4dba422233f": {
+        "id": "16407:7227",
+        "name": "按钮=Default, 状态=hover",
+        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "Default",
+          "状态": "hover"
+        }
+      },
+      "e4bb5406f9848acd2ad0304f17140ba7e561129b": {
+        "id": "16407:7232",
+        "name": "按钮=default, 状态=hover",
+        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "default",
+          "状态": "hover"
+        }
+      },
+      "39ab35529ffe34c8b06b0e3d92024acf1c081443": {
+        "id": "16407:7244",
+        "name": "按钮=primary button with icon, 状态=hover",
+        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "primary button with icon",
+          "状态": "hover"
+        }
+      },
+      "a177a0904794057f0633541515ef7f79a0386355": {
+        "id": "17051:525",
+        "name": "按钮=Default, 状态=default",
+        "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "Default",
+          "状态": "default"
+        }
+      },
+      "95764d0180784e21639bc72b7843ed84e113c578": {
+        "id": "17051:527",
+        "name": "按钮=Default, 状态=disable",
+        "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "Default",
+          "状态": "disable"
+        }
+      },
+      "281f572e5b6cd11acb544b942168de329802b073": {
+        "id": "17051:529",
+        "name": "按钮=Primary, 状态=default",
+        "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "Primary",
+          "状态": "default"
+        }
+      },
+      "bbc974b109783f4e5bee78e0e9ac732b45b15672": {
+        "id": "17051:531",
+        "name": "按钮=Primary, 状态=disable",
+        "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "Primary",
+          "状态": "disable"
+        }
+      },
+      "0cf934837c1947d028412f8f890367c7ef0e10d8": {
+        "id": "17051:535",
+        "name": "按钮=Default, 状态=default",
+        "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
+        "componentSetName": "Button",
+        "variantProperties": {
+          "按钮": "Default",
+          "状态": "default"
+        }
+      },
+      "4ee87301f10a2b8d23de60cc15d14fa0b7d944d4": {
+        "id": "16415:10",
+        "name": "按钮=icon Button S, 状态=default",
+        "componentSetKey": "e0ba1401c82a6a3c0733f89f3c2c940df3087159",
+        "componentSetName": "others",
+        "variantProperties": {
+          "按钮": "icon Button S",
+          "状态": "default"
+        }
+      },
+      "6cadec5a6059a47194ed05c6159010bd1ad32d8f": {
+        "id": "16415:11",
+        "name": "按钮=icon Button S, 状态=hover",
+        "componentSetKey": "e0ba1401c82a6a3c0733f89f3c2c940df3087159",
+        "componentSetName": "others",
+        "variantProperties": {
+          "按钮": "icon Button S",
+          "状态": "hover"
+        }
+      },
+      "d5d08a59e846c40073c33bbf401651ae89678402": {
+        "id": "16415:12",
+        "name": "按钮=icon Button S, 状态=disable",
+        "componentSetKey": "e0ba1401c82a6a3c0733f89f3c2c940df3087159",
+        "componentSetName": "others",
+        "variantProperties": {
+          "按钮": "icon Button S",
+          "状态": "disable"
+        }
+      }
+    }
+  }
+}

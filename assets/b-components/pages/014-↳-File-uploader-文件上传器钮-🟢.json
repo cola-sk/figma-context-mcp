@@ -1,0 +1,477 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "【内部公开版】 Titan Design System",
+    "fileKey": "GwYZpatr4RGoRtPMEFONwk",
+    "currentPage": "Cover",
+    "scope": "page",
+    "page": "      ↳ File-uploader 文件上传器钮 🟢"
+  },
+  "exportedAt": "2026-07-01T09:58:55.860Z",
+  "stats": {
+    "componentSetCount": 3,
+    "looseComponentCount": 1,
+    "componentCount": 14
+  },
+  "componentSets": [
+    {
+      "id": "10043:353",
+      "key": "ea1581170e5089e3e12976ce92ab33220c1ef68e",
+      "name": "文件上传器-一排一个",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ File-uploader 文件上传器钮 🟢",
+      "path": "      ↳ File-uploader 文件上传器钮 🟢 / 文件上传器-一排一个",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Frame 2053143339",
+            "Frame 2053143344",
+            "Variant4",
+            "Variant5"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "10043:352",
+          "key": "a6220ad291410dbf374134ab3ab1b0c6b3b737eb",
+          "name": "Property 1=Default",
+          "type": "COMPONENT",
+          "page": "      ↳ File-uploader 文件上传器钮 🟢",
+          "path": "      ↳ File-uploader 文件上传器钮 🟢 / 文件上传器-一排一个 / Property 1=Default",
+          "componentSetId": "10043:353",
+          "componentSetKey": "ea1581170e5089e3e12976ce92ab33220c1ef68e",
+          "componentSetName": "文件上传器-一排一个",
+          "variantProperties": {
+            "Property 1": "Default"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Default"
+          }
+        },
+        {
+          "id": "10043:373",
+          "key": "f2da24203a885803a947596cc1f3f674fafdfeb0",
+          "name": "Property 1=Frame 2053143339",
+          "type": "COMPONENT",
+          "page": "      ↳ File-uploader 文件上传器钮 🟢",
+          "path": "      ↳ File-uploader 文件上传器钮 🟢 / 文件上传器-一排一个 / Property 1=Frame 2053143339",
+          "componentSetId": "10043:353",
+          "componentSetKey": "ea1581170e5089e3e12976ce92ab33220c1ef68e",
+          "componentSetName": "文件上传器-一排一个",
+          "variantProperties": {
+            "Property 1": "Frame 2053143339"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Frame 2053143339"
+          }
+        },
+        {
+          "id": "10043:374",
+          "key": "d5e38c758d7f5a582693e5c9332e5283a0e73a0d",
+          "name": "Property 1=Frame 2053143344",
+          "type": "COMPONENT",
+          "page": "      ↳ File-uploader 文件上传器钮 🟢",
+          "path": "      ↳ File-uploader 文件上传器钮 🟢 / 文件上传器-一排一个 / Property 1=Frame 2053143344",
+          "componentSetId": "10043:353",
+          "componentSetKey": "ea1581170e5089e3e12976ce92ab33220c1ef68e",
+          "componentSetName": "文件上传器-一排一个",
+          "variantProperties": {
+            "Property 1": "Frame 2053143344"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Frame 2053143344"
+          }
+        },
+        {
+          "id": "10043:447",
+          "key": "41a1f0dcdde111dd529345e9e1080e17ae710b68",
+          "name": "Property 1=Variant4",
+          "type": "COMPONENT",
+          "page": "      ↳ File-uploader 文件上传器钮 🟢",
+          "path": "      ↳ File-uploader 文件上传器钮 🟢 / 文件上传器-一排一个 / Property 1=Variant4",
+          "componentSetId": "10043:353",
+          "componentSetKey": "ea1581170e5089e3e12976ce92ab33220c1ef68e",
+          "componentSetName": "文件上传器-一排一个",
+          "variantProperties": {
+            "Property 1": "Variant4"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Variant4"
+          }
+        },
+        {
+          "id": "10043:459",
+          "key": "178556c15ff152b0c535dbcd9ac51f750fb7deab",
+          "name": "Property 1=Variant5",
+          "type": "COMPONENT",
+          "page": "      ↳ File-uploader 文件上传器钮 🟢",
+          "path": "      ↳ File-uploader 文件上传器钮 🟢 / 文件上传器-一排一个 / Property 1=Variant5",
+          "componentSetId": "10043:353",
+          "componentSetKey": "ea1581170e5089e3e12976ce92ab33220c1ef68e",
+          "componentSetName": "文件上传器-一排一个",
+          "variantProperties": {
+            "Property 1": "Variant5"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Variant5"
+          }
+        }
+      ]
+    },
+    {
+      "id": "10043:481",
+      "key": "b5674fa610cdc4616876885c58a545b24cd4e6e4",
+      "name": "文件上传器-一排两个",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ File-uploader 文件上传器钮 🟢",
+      "path": "      ↳ File-uploader 文件上传器钮 🟢 / 文件上传器-一排两个",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "Frame 2053143336",
+          "variantOptions": [
+            "Frame 2053143336",
+            "Frame 2053143340",
+            "Frame 2053143342",
+            "Frame 2053143345",
+            "Frame 2053143347"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "10043:480",
+          "key": "2672ab1ad0efc836874d04d580d3c01470c7c7db",
+          "name": "Property 1=Frame 2053143336",
+          "type": "COMPONENT",
+          "page": "      ↳ File-uploader 文件上传器钮 🟢",
+          "path": "      ↳ File-uploader 文件上传器钮 🟢 / 文件上传器-一排两个 / Property 1=Frame 2053143336",
+          "componentSetId": "10043:481",
+          "componentSetKey": "b5674fa610cdc4616876885c58a545b24cd4e6e4",
+          "componentSetName": "文件上传器-一排两个",
+          "variantProperties": {
+            "Property 1": "Frame 2053143336"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Frame 2053143336"
+          }
+        },
+        {
+          "id": "10043:476",
+          "key": "0c2ab9b803ffe7e62d8a82cc33982e1b622a68df",
+          "name": "Property 1=Frame 2053143342",
+          "type": "COMPONENT",
+          "page": "      ↳ File-uploader 文件上传器钮 🟢",
+          "path": "      ↳ File-uploader 文件上传器钮 🟢 / 文件上传器-一排两个 / Property 1=Frame 2053143342",
+          "componentSetId": "10043:481",
+          "componentSetKey": "b5674fa610cdc4616876885c58a545b24cd4e6e4",
+          "componentSetName": "文件上传器-一排两个",
+          "variantProperties": {
+            "Property 1": "Frame 2053143342"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Frame 2053143342"
+          }
+        },
+        {
+          "id": "10043:477",
+          "key": "48e2927ad955e162badc03a2bd43c90a24555b13",
+          "name": "Property 1=Frame 2053143340",
+          "type": "COMPONENT",
+          "page": "      ↳ File-uploader 文件上传器钮 🟢",
+          "path": "      ↳ File-uploader 文件上传器钮 🟢 / 文件上传器-一排两个 / Property 1=Frame 2053143340",
+          "componentSetId": "10043:481",
+          "componentSetKey": "b5674fa610cdc4616876885c58a545b24cd4e6e4",
+          "componentSetName": "文件上传器-一排两个",
+          "variantProperties": {
+            "Property 1": "Frame 2053143340"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Frame 2053143340"
+          }
+        },
+        {
+          "id": "10043:473",
+          "key": "43b534c3d2422a89f8aa2317f2b48ee02caac9ae",
+          "name": "Property 1=Frame 2053143345",
+          "type": "COMPONENT",
+          "page": "      ↳ File-uploader 文件上传器钮 🟢",
+          "path": "      ↳ File-uploader 文件上传器钮 🟢 / 文件上传器-一排两个 / Property 1=Frame 2053143345",
+          "componentSetId": "10043:481",
+          "componentSetKey": "b5674fa610cdc4616876885c58a545b24cd4e6e4",
+          "componentSetName": "文件上传器-一排两个",
+          "variantProperties": {
+            "Property 1": "Frame 2053143345"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Frame 2053143345"
+          }
+        },
+        {
+          "id": "10043:479",
+          "key": "f65400f43c606c39a63343fb7253d4f2c071de65",
+          "name": "Property 1=Frame 2053143347",
+          "type": "COMPONENT",
+          "page": "      ↳ File-uploader 文件上传器钮 🟢",
+          "path": "      ↳ File-uploader 文件上传器钮 🟢 / 文件上传器-一排两个 / Property 1=Frame 2053143347",
+          "componentSetId": "10043:481",
+          "componentSetKey": "b5674fa610cdc4616876885c58a545b24cd4e6e4",
+          "componentSetName": "文件上传器-一排两个",
+          "variantProperties": {
+            "Property 1": "Frame 2053143347"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Frame 2053143347"
+          }
+        }
+      ]
+    },
+    {
+      "id": "12657:3904",
+      "key": "27c17d0a508c846f56f80b88d3dbca4cb8c817cb",
+      "name": "Upload_List",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ File-uploader 文件上传器钮 🟢",
+      "path": "      ↳ File-uploader 文件上传器钮 🟢 / Upload_List",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "Upload_Item_Uploading",
+          "variantOptions": [
+            "Upload_Item_Failed",
+            "Upload_Item_Success",
+            "Upload_Item_Uploading"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "12657:3905",
+          "key": "c1e3388e38a95822d1c69a5c85405d3235a28b6a",
+          "name": "Property 1=Upload_Item_Uploading",
+          "type": "COMPONENT",
+          "page": "      ↳ File-uploader 文件上传器钮 🟢",
+          "path": "      ↳ File-uploader 文件上传器钮 🟢 / Upload_List / Property 1=Upload_Item_Uploading",
+          "componentSetId": "12657:3904",
+          "componentSetKey": "27c17d0a508c846f56f80b88d3dbca4cb8c817cb",
+          "componentSetName": "Upload_List",
+          "variantProperties": {
+            "Property 1": "Upload_Item_Uploading"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Upload_Item_Uploading"
+          }
+        },
+        {
+          "id": "12657:3927",
+          "key": "f6cbc1d7a029a86de996adcc7e74b7ba3ed4c088",
+          "name": "Property 1=Upload_Item_Success",
+          "type": "COMPONENT",
+          "page": "      ↳ File-uploader 文件上传器钮 🟢",
+          "path": "      ↳ File-uploader 文件上传器钮 🟢 / Upload_List / Property 1=Upload_Item_Success",
+          "componentSetId": "12657:3904",
+          "componentSetKey": "27c17d0a508c846f56f80b88d3dbca4cb8c817cb",
+          "componentSetName": "Upload_List",
+          "variantProperties": {
+            "Property 1": "Upload_Item_Success"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Upload_Item_Success"
+          }
+        },
+        {
+          "id": "12657:3949",
+          "key": "19a428201721e88babce0eb7e152f5befd62a516",
+          "name": "Property 1=Upload_Item_Failed",
+          "type": "COMPONENT",
+          "page": "      ↳ File-uploader 文件上传器钮 🟢",
+          "path": "      ↳ File-uploader 文件上传器钮 🟢 / Upload_List / Property 1=Upload_Item_Failed",
+          "componentSetId": "12657:3904",
+          "componentSetKey": "27c17d0a508c846f56f80b88d3dbca4cb8c817cb",
+          "componentSetName": "Upload_List",
+          "variantProperties": {
+            "Property 1": "Upload_Item_Failed"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Upload_Item_Failed"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [
+    {
+      "id": "12657:3895",
+      "key": "90c8d3edfe3da12b7d1cfd4d4455e3db93b6558f",
+      "name": "Frame 2036081350",
+      "type": "COMPONENT",
+      "page": "      ↳ File-uploader 文件上传器钮 🟢",
+      "path": "      ↳ File-uploader 文件上传器钮 🟢 / Group 2 / Frame 2036081402 / Group 3 / Upload_DropZone / Frame 2036081350"
+    }
+  ],
+  "indexes": {
+    "componentSetByKey": {
+      "ea1581170e5089e3e12976ce92ab33220c1ef68e": {
+        "id": "10043:353",
+        "name": "文件上传器-一排一个",
+        "componentKeys": [
+          "a6220ad291410dbf374134ab3ab1b0c6b3b737eb",
+          "f2da24203a885803a947596cc1f3f674fafdfeb0",
+          "d5e38c758d7f5a582693e5c9332e5283a0e73a0d",
+          "41a1f0dcdde111dd529345e9e1080e17ae710b68",
+          "178556c15ff152b0c535dbcd9ac51f750fb7deab"
+        ]
+      },
+      "b5674fa610cdc4616876885c58a545b24cd4e6e4": {
+        "id": "10043:481",
+        "name": "文件上传器-一排两个",
+        "componentKeys": [
+          "2672ab1ad0efc836874d04d580d3c01470c7c7db",
+          "0c2ab9b803ffe7e62d8a82cc33982e1b622a68df",
+          "48e2927ad955e162badc03a2bd43c90a24555b13",
+          "43b534c3d2422a89f8aa2317f2b48ee02caac9ae",
+          "f65400f43c606c39a63343fb7253d4f2c071de65"
+        ]
+      },
+      "27c17d0a508c846f56f80b88d3dbca4cb8c817cb": {
+        "id": "12657:3904",
+        "name": "Upload_List",
+        "componentKeys": [
+          "c1e3388e38a95822d1c69a5c85405d3235a28b6a",
+          "f6cbc1d7a029a86de996adcc7e74b7ba3ed4c088",
+          "19a428201721e88babce0eb7e152f5befd62a516"
+        ]
+      }
+    },
+    "componentByKey": {
+      "a6220ad291410dbf374134ab3ab1b0c6b3b737eb": {
+        "id": "10043:352",
+        "name": "Property 1=Default",
+        "componentSetKey": "ea1581170e5089e3e12976ce92ab33220c1ef68e",
+        "componentSetName": "文件上传器-一排一个",
+        "variantProperties": {
+          "Property 1": "Default"
+        }
+      },
+      "f2da24203a885803a947596cc1f3f674fafdfeb0": {
+        "id": "10043:373",
+        "name": "Property 1=Frame 2053143339",
+        "componentSetKey": "ea1581170e5089e3e12976ce92ab33220c1ef68e",
+        "componentSetName": "文件上传器-一排一个",
+        "variantProperties": {
+          "Property 1": "Frame 2053143339"
+        }
+      },
+      "d5e38c758d7f5a582693e5c9332e5283a0e73a0d": {
+        "id": "10043:374",
+        "name": "Property 1=Frame 2053143344",
+        "componentSetKey": "ea1581170e5089e3e12976ce92ab33220c1ef68e",
+        "componentSetName": "文件上传器-一排一个",
+        "variantProperties": {
+          "Property 1": "Frame 2053143344"
+        }
+      },
+      "41a1f0dcdde111dd529345e9e1080e17ae710b68": {
+        "id": "10043:447",
+        "name": "Property 1=Variant4",
+        "componentSetKey": "ea1581170e5089e3e12976ce92ab33220c1ef68e",
+        "componentSetName": "文件上传器-一排一个",
+        "variantProperties": {
+          "Property 1": "Variant4"
+        }
+      },
+      "178556c15ff152b0c535dbcd9ac51f750fb7deab": {
+        "id": "10043:459",
+        "name": "Property 1=Variant5",
+        "componentSetKey": "ea1581170e5089e3e12976ce92ab33220c1ef68e",
+        "componentSetName": "文件上传器-一排一个",
+        "variantProperties": {
+          "Property 1": "Variant5"
+        }
+      },
+      "2672ab1ad0efc836874d04d580d3c01470c7c7db": {
+        "id": "10043:480",
+        "name": "Property 1=Frame 2053143336",
+        "componentSetKey": "b5674fa610cdc4616876885c58a545b24cd4e6e4",
+        "componentSetName": "文件上传器-一排两个",
+        "variantProperties": {
+          "Property 1": "Frame 2053143336"
+        }
+      },
+      "0c2ab9b803ffe7e62d8a82cc33982e1b622a68df": {
+        "id": "10043:476",
+        "name": "Property 1=Frame 2053143342",
+        "componentSetKey": "b5674fa610cdc4616876885c58a545b24cd4e6e4",
+        "componentSetName": "文件上传器-一排两个",
+        "variantProperties": {
+          "Property 1": "Frame 2053143342"
+        }
+      },
+      "48e2927ad955e162badc03a2bd43c90a24555b13": {
+        "id": "10043:477",
+        "name": "Property 1=Frame 2053143340",
+        "componentSetKey": "b5674fa610cdc4616876885c58a545b24cd4e6e4",
+        "componentSetName": "文件上传器-一排两个",
+        "variantProperties": {
+          "Property 1": "Frame 2053143340"
+        }
+      },
+      "43b534c3d2422a89f8aa2317f2b48ee02caac9ae": {
+        "id": "10043:473",
+        "name": "Property 1=Frame 2053143345",
+        "componentSetKey": "b5674fa610cdc4616876885c58a545b24cd4e6e4",
+        "componentSetName": "文件上传器-一排两个",
+        "variantProperties": {
+          "Property 1": "Frame 2053143345"
+        }
+      },
+      "f65400f43c606c39a63343fb7253d4f2c071de65": {
+        "id": "10043:479",
+        "name": "Property 1=Frame 2053143347",
+        "componentSetKey": "b5674fa610cdc4616876885c58a545b24cd4e6e4",
+        "componentSetName": "文件上传器-一排两个",
+        "variantProperties": {
+          "Property 1": "Frame 2053143347"
+        }
+      },
+      "c1e3388e38a95822d1c69a5c85405d3235a28b6a": {
+        "id": "12657:3905",
+        "name": "Property 1=Upload_Item_Uploading",
+        "componentSetKey": "27c17d0a508c846f56f80b88d3dbca4cb8c817cb",
+        "componentSetName": "Upload_List",
+        "variantProperties": {
+          "Property 1": "Upload_Item_Uploading"
+        }
+      },
+      "f6cbc1d7a029a86de996adcc7e74b7ba3ed4c088": {
+        "id": "12657:3927",
+        "name": "Property 1=Upload_Item_Success",
+        "componentSetKey": "27c17d0a508c846f56f80b88d3dbca4cb8c817cb",
+        "componentSetName": "Upload_List",
+        "variantProperties": {
+          "Property 1": "Upload_Item_Success"
+        }
+      },
+      "19a428201721e88babce0eb7e152f5befd62a516": {
+        "id": "12657:3949",
+        "name": "Property 1=Upload_Item_Failed",
+        "componentSetKey": "27c17d0a508c846f56f80b88d3dbca4cb8c817cb",
+        "componentSetName": "Upload_List",
+        "variantProperties": {
+          "Property 1": "Upload_Item_Failed"
+        }
+      },
+      "90c8d3edfe3da12b7d1cfd4d4455e3db93b6558f": {
+        "id": "12657:3895",
+        "name": "Frame 2036081350",
+        "componentSetKey": null,
+        "componentSetName": null,
+        "variantProperties": {}
+      }
+    }
+  }
+}

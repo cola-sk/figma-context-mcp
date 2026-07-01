@@ -1,14 +1,16 @@
 import { NextResponse } from 'next/server';
 import { normalizeTargetLibrary } from '@/lib/mapping-constants';
-import { loadComponentMap, mapToViewData, saveComponentMap, updateMapEntry, type MappingKind, type MappingStatus } from '@/lib/map-data';
+import { loadComponentMap, mapToViewData, normalizeMapSystem, saveComponentMap, updateMapEntry, type MappingKind, type MappingStatus } from '@/lib/map-data';
 
 type PatchBody = {
+  system?: string;
   kind?: MappingKind;
   key?: string;
   status?: MappingStatus;
   target?: {
     library?: string;
     component?: string;
+    props?: Record<string, string>;
   } | null;
 };
 
@@ -33,8 +35,8 @@ export async function PATCH(request: Request) {
     return badRequest('key is required.');
   }
 
-  if (body.status !== 'mapped' && body.status !== 'unresolved') {
-    return badRequest('status must be mapped or unresolved.');
+  if (body.status !== 'mapped' && body.status !== 'unresolved' && body.status !== 'internal') {
+    return badRequest('status must be mapped, unresolved, or internal.');
   }
 
   if (body.status === 'mapped') {
@@ -49,8 +51,9 @@ export async function PATCH(request: Request) {
   }
 
   try {
+    const system = normalizeMapSystem(body.system);
     const library = body.status === 'mapped' ? normalizeTargetLibrary(body.target?.library) : null;
-    const map = loadComponentMap();
+    const map = loadComponentMap(system);
     updateMapEntry({
       map,
       kind: body.kind,
@@ -61,12 +64,13 @@ export async function PATCH(request: Request) {
           ? {
               library: library!,
               component: body.target!.component!,
+              props: body.target?.props,
             }
           : null,
     });
-    saveComponentMap(map);
+    saveComponentMap(map, system);
 
-    return NextResponse.json(mapToViewData(map));
+    return NextResponse.json(mapToViewData(map, system));
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Failed to update map entry.';
     return NextResponse.json({ error: message }, { status: 500 });

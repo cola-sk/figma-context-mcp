@@ -1,0 +1,297 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "【内部公开版】 Titan Design System",
+    "fileKey": "GwYZpatr4RGoRtPMEFONwk",
+    "currentPage": "Cover",
+    "scope": "page",
+    "page": "      ↳ TextArea 文本域 🟣"
+  },
+  "exportedAt": "2026-07-01T09:58:55.860Z",
+  "stats": {
+    "componentSetCount": 2,
+    "looseComponentCount": 0,
+    "componentCount": 8
+  },
+  "componentSets": [
+    {
+      "id": "8517:387",
+      "key": "7229ff05e841412ebf3981b05822b29da23db110",
+      "name": "TextArea",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ TextArea 文本域 🟣",
+      "path": "      ↳ TextArea 文本域 🟣 / TextArea",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "default",
+          "variantOptions": [
+            "只读状态",
+            "default",
+            "hover",
+            "输入中",
+            "超长出滚动条"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "8517:386",
+          "key": "56b94bf12d8a7d29460986e2179845e67bcfa297",
+          "name": "Property 1=default",
+          "type": "COMPONENT",
+          "page": "      ↳ TextArea 文本域 🟣",
+          "path": "      ↳ TextArea 文本域 🟣 / TextArea / Property 1=default",
+          "componentSetId": "8517:387",
+          "componentSetKey": "7229ff05e841412ebf3981b05822b29da23db110",
+          "componentSetName": "TextArea",
+          "variantProperties": {
+            "Property 1": "default"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "default"
+          }
+        },
+        {
+          "id": "8517:384",
+          "key": "7fee5e21beb75aaaa98e5a8969f0342ec686b206",
+          "name": "Property 1=hover",
+          "type": "COMPONENT",
+          "page": "      ↳ TextArea 文本域 🟣",
+          "path": "      ↳ TextArea 文本域 🟣 / TextArea / Property 1=hover",
+          "componentSetId": "8517:387",
+          "componentSetKey": "7229ff05e841412ebf3981b05822b29da23db110",
+          "componentSetName": "TextArea",
+          "variantProperties": {
+            "Property 1": "hover"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "hover"
+          }
+        },
+        {
+          "id": "8517:385",
+          "key": "e9cc1dc107a700c979cbac9e176012251126f669",
+          "name": "Property 1=输入中",
+          "type": "COMPONENT",
+          "page": "      ↳ TextArea 文本域 🟣",
+          "path": "      ↳ TextArea 文本域 🟣 / TextArea / Property 1=输入中",
+          "componentSetId": "8517:387",
+          "componentSetKey": "7229ff05e841412ebf3981b05822b29da23db110",
+          "componentSetName": "TextArea",
+          "variantProperties": {
+            "Property 1": "输入中"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "输入中"
+          }
+        },
+        {
+          "id": "8517:383",
+          "key": "1c4ca1dadcc8ba7d1f879d7c8a0fd34541d45b77",
+          "name": "Property 1=超长出滚动条",
+          "type": "COMPONENT",
+          "page": "      ↳ TextArea 文本域 🟣",
+          "path": "      ↳ TextArea 文本域 🟣 / TextArea / Property 1=超长出滚动条",
+          "componentSetId": "8517:387",
+          "componentSetKey": "7229ff05e841412ebf3981b05822b29da23db110",
+          "componentSetName": "TextArea",
+          "variantProperties": {
+            "Property 1": "超长出滚动条"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "超长出滚动条"
+          }
+        },
+        {
+          "id": "8517:381",
+          "key": "284dcbf596930971c4781a39ba230cc5503c1d11",
+          "name": "Property 1=只读状态",
+          "type": "COMPONENT",
+          "page": "      ↳ TextArea 文本域 🟣",
+          "path": "      ↳ TextArea 文本域 🟣 / TextArea / Property 1=只读状态",
+          "componentSetId": "8517:387",
+          "componentSetKey": "7229ff05e841412ebf3981b05822b29da23db110",
+          "componentSetName": "TextArea",
+          "variantProperties": {
+            "Property 1": "只读状态"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "只读状态"
+          }
+        }
+      ]
+    },
+    {
+      "id": "14216:2559",
+      "key": "2f1f7644365c9b14e5727eeb9fdd4dccc3bd19e6",
+      "name": "TextArea输入长度限制",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ TextArea 文本域 🟣",
+      "path": "      ↳ TextArea 文本域 🟣 / TextArea输入长度限制",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "number-default",
+          "variantOptions": [
+            "number-default",
+            "number-input",
+            "number-max"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "14216:2556",
+          "key": "f8afcbd83aa29297163f12caa7818cec03bfb406",
+          "name": "Property 1=number-default",
+          "type": "COMPONENT",
+          "page": "      ↳ TextArea 文本域 🟣",
+          "path": "      ↳ TextArea 文本域 🟣 / TextArea输入长度限制 / Property 1=number-default",
+          "componentSetId": "14216:2559",
+          "componentSetKey": "2f1f7644365c9b14e5727eeb9fdd4dccc3bd19e6",
+          "componentSetName": "TextArea输入长度限制",
+          "variantProperties": {
+            "Property 1": "number-default"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "number-default"
+          }
+        },
+        {
+          "id": "14216:2557",
+          "key": "b18e9baec95762ab61bfff3d1e967c03e6b88ab4",
+          "name": "Property 1=number-input",
+          "type": "COMPONENT",
+          "page": "      ↳ TextArea 文本域 🟣",
+          "path": "      ↳ TextArea 文本域 🟣 / TextArea输入长度限制 / Property 1=number-input",
+          "componentSetId": "14216:2559",
+          "componentSetKey": "2f1f7644365c9b14e5727eeb9fdd4dccc3bd19e6",
+          "componentSetName": "TextArea输入长度限制",
+          "variantProperties": {
+            "Property 1": "number-input"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "number-input"
+          }
+        },
+        {
+          "id": "14216:2558",
+          "key": "5243ab1dea95b5ce849c54380deb79fb4a292aba",
+          "name": "Property 1=number-max",
+          "type": "COMPONENT",
+          "page": "      ↳ TextArea 文本域 🟣",
+          "path": "      ↳ TextArea 文本域 🟣 / TextArea输入长度限制 / Property 1=number-max",
+          "componentSetId": "14216:2559",
+          "componentSetKey": "2f1f7644365c9b14e5727eeb9fdd4dccc3bd19e6",
+          "componentSetName": "TextArea输入长度限制",
+          "variantProperties": {
+            "Property 1": "number-max"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "number-max"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "7229ff05e841412ebf3981b05822b29da23db110": {
+        "id": "8517:387",
+        "name": "TextArea",
+        "componentKeys": [
+          "56b94bf12d8a7d29460986e2179845e67bcfa297",
+          "7fee5e21beb75aaaa98e5a8969f0342ec686b206",
+          "e9cc1dc107a700c979cbac9e176012251126f669",
+          "1c4ca1dadcc8ba7d1f879d7c8a0fd34541d45b77",
+          "284dcbf596930971c4781a39ba230cc5503c1d11"
+        ]
+      },
+      "2f1f7644365c9b14e5727eeb9fdd4dccc3bd19e6": {
+        "id": "14216:2559",
+        "name": "TextArea输入长度限制",
+        "componentKeys": [
+          "f8afcbd83aa29297163f12caa7818cec03bfb406",
+          "b18e9baec95762ab61bfff3d1e967c03e6b88ab4",
+          "5243ab1dea95b5ce849c54380deb79fb4a292aba"
+        ]
+      }
+    },
+    "componentByKey": {
+      "56b94bf12d8a7d29460986e2179845e67bcfa297": {
+        "id": "8517:386",
+        "name": "Property 1=default",
+        "componentSetKey": "7229ff05e841412ebf3981b05822b29da23db110",
+        "componentSetName": "TextArea",
+        "variantProperties": {
+          "Property 1": "default"
+        }
+      },
+      "7fee5e21beb75aaaa98e5a8969f0342ec686b206": {
+        "id": "8517:384",
+        "name": "Property 1=hover",
+        "componentSetKey": "7229ff05e841412ebf3981b05822b29da23db110",
+        "componentSetName": "TextArea",
+        "variantProperties": {
+          "Property 1": "hover"
+        }
+      },
+      "e9cc1dc107a700c979cbac9e176012251126f669": {
+        "id": "8517:385",
+        "name": "Property 1=输入中",
+        "componentSetKey": "7229ff05e841412ebf3981b05822b29da23db110",
+        "componentSetName": "TextArea",
+        "variantProperties": {
+          "Property 1": "输入中"
+        }
+      },
+      "1c4ca1dadcc8ba7d1f879d7c8a0fd34541d45b77": {
+        "id": "8517:383",
+        "name": "Property 1=超长出滚动条",
+        "componentSetKey": "7229ff05e841412ebf3981b05822b29da23db110",
+        "componentSetName": "TextArea",
+        "variantProperties": {
+          "Property 1": "超长出滚动条"
+        }
+      },
+      "284dcbf596930971c4781a39ba230cc5503c1d11": {
+        "id": "8517:381",
+        "name": "Property 1=只读状态",
+        "componentSetKey": "7229ff05e841412ebf3981b05822b29da23db110",
+        "componentSetName": "TextArea",
+        "variantProperties": {
+          "Property 1": "只读状态"
+        }
+      },
+      "f8afcbd83aa29297163f12caa7818cec03bfb406": {
+        "id": "14216:2556",
+        "name": "Property 1=number-default",
+        "componentSetKey": "2f1f7644365c9b14e5727eeb9fdd4dccc3bd19e6",
+        "componentSetName": "TextArea输入长度限制",
+        "variantProperties": {
+          "Property 1": "number-default"
+        }
+      },
+      "b18e9baec95762ab61bfff3d1e967c03e6b88ab4": {
+        "id": "14216:2557",
+        "name": "Property 1=number-input",
+        "componentSetKey": "2f1f7644365c9b14e5727eeb9fdd4dccc3bd19e6",
+        "componentSetName": "TextArea输入长度限制",
+        "variantProperties": {
+          "Property 1": "number-input"
+        }
+      },
+      "5243ab1dea95b5ce849c54380deb79fb4a292aba": {
+        "id": "14216:2558",
+        "name": "Property 1=number-max",
+        "componentSetKey": "2f1f7644365c9b14e5727eeb9fdd4dccc3bd19e6",
+        "componentSetName": "TextArea输入长度限制",
+        "variantProperties": {
+          "Property 1": "number-max"
+        }
+      }
+    }
+  }
+}

@@ -113,7 +113,40 @@ code {
 
 .topActions {
   display: flex;
+  align-items: center;
   gap: 8px;
+}
+
+.systemSwitch {
+  display: inline-flex;
+  overflow: hidden;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.systemSwitch a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 64px;
+  padding: 0 12px;
+  border-right: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.systemSwitch a:last-child {
+  border-right: 0;
+}
+
+.systemSwitch a:hover,
+.systemSwitch a.active {
+  background: var(--accent);
+  color: #fff;
 }
 
 .statsGrid {
@@ -354,6 +387,11 @@ td:nth-child(6) {
   color: var(--bad);
 }
 
+.statusInternal {
+  background: var(--disabled-bg);
+  color: var(--disabled-text);
+}
+
 .detailPane {
   overflow: auto;
   max-height: calc(100vh - 220px);
@@ -525,6 +563,88 @@ td:nth-child(6) {
   grid-column: 1 / -1;
   justify-content: flex-end;
   gap: 8px;
+}
+
+.propsSection {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 6px;
+}
+
+.propsToggleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.propsToggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface-2);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.propsChevron {
+  font-size: 9px;
+  transition: transform 0.15s;
+}
+
+.propsChevronOpen {
+  transform: rotate(90deg);
+}
+
+.propsGrid {
+  display: grid;
+  gap: 4px;
+}
+
+.propsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 24px;
+  gap: 4px;
+  align-items: center;
+}
+
+.propsRow input {
+  height: 24px;
+  font-size: 12px;
+  padding: 0 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface-2);
+}
+
+.propsRemove {
+  height: 24px;
+  width: 24px;
+  font-size: 14px;
+  padding: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.propsAdd {
+  font-size: 12px;
+  height: 24px;
+  padding: 0 8px;
+}
+
+.targetProps {
+  display: inline;
+  margin-left: 6px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  background: var(--surface-2);
+  font-size: 11px;
 }
 
 pre {

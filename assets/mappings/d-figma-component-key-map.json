@@ -1,18 +1,20 @@
 {
   "schemaVersion": "figma-component-key-map/v1",
-  "generatedAt": "2026-06-29T03:24:17.354Z",
+  "generatedAt": "2026-07-01T10:08:26.181Z",
   "sourceRegistry": {
-    "directory": "figma-components",
+    "directory": "d-components",
     "schemaVersion": "figma-component-registry/v1",
     "source": {
       "fileName": "主题开发者平台 Design System",
+      "fileKey": "khgCmG4dhk4eEi7eGDhSTw",
+      "currentPage": "◆ Components",
       "scope": "selected-pages"
     },
     "files": [
       {
-        "fileName": "001-↳-Button-按钮-🟢.json",
+        "fileName": "pages/001-↳-Button-按钮-🟢.json",
         "page": "↳ Button 按钮 🟢",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 3,
           "looseComponentCount": 0,
@@ -20,9 +22,9 @@
         }
       },
       {
-        "fileName": "002-↳-Link-链接-🔵.json",
+        "fileName": "pages/002-↳-Link-链接-🔵.json",
         "page": "↳ Link 链接 🔵",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 1,
           "looseComponentCount": 0,
@@ -30,9 +32,9 @@
         }
       },
       {
-        "fileName": "003-↳-Radio-单选-🔵.json",
-        "page": "↳ Radio 单选  🔵",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "fileName": "pages/003-↳-Radio-单选-🔵.json",
+        "page": "↳ Radio 单选 🔵",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 3,
           "looseComponentCount": 0,
@@ -40,9 +42,9 @@
         }
       },
       {
-        "fileName": "004-↳-Checkbox多选-🔵.json",
+        "fileName": "pages/004-↳-Checkbox多选-🔵.json",
         "page": "↳ Checkbox多选 🔵",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 3,
           "looseComponentCount": 0,
@@ -50,9 +52,9 @@
         }
       },
       {
-        "fileName": "005-↳-Input-输入框-🟣.json",
+        "fileName": "pages/005-↳-Input-输入框-🟣.json",
         "page": "↳ Input 输入框 🟣",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 1,
           "looseComponentCount": 0,
@@ -60,9 +62,9 @@
         }
       },
       {
-        "fileName": "006-↳-Search-搜索框-🟣.json",
-        "page": "↳ Search 搜索框  🟣",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "fileName": "pages/006-↳-Search-搜索框-🟣.json",
+        "page": "↳ Search 搜索框 🟣",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 1,
           "looseComponentCount": 0,
@@ -70,9 +72,9 @@
         }
       },
       {
-        "fileName": "007-↳-TextArea-文本域-🟣.json",
+        "fileName": "pages/007-↳-TextArea-文本域-🟣.json",
         "page": "↳ TextArea 文本域 🟣",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 1,
           "looseComponentCount": 0,
@@ -80,9 +82,9 @@
         }
       },
       {
-        "fileName": "008-↳-Select-选择器-🟣.json",
+        "fileName": "pages/008-↳-Select-选择器-🟣.json",
         "page": "↳ Select 选择器 🟣",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 3,
           "looseComponentCount": 0,
@@ -90,9 +92,9 @@
         }
       },
       {
-        "fileName": "009-↳-Dropdown下拉菜单-🟠.json",
+        "fileName": "pages/009-↳-Dropdown下拉菜单-🟠.json",
         "page": "↳ Dropdown下拉菜单 🟠",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 7,
           "looseComponentCount": 0,
@@ -100,9 +102,9 @@
         }
       },
       {
-        "fileName": "010-↳-Transfer-穿梭框-🟠.json",
-        "page": "↳ Transfer 穿梭框  🟠",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "fileName": "pages/010-↳-Transfer-穿梭框-🟠.json",
+        "page": "↳ Transfer 穿梭框 🟠",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 1,
           "looseComponentCount": 0,
@@ -110,9 +112,9 @@
         }
       },
       {
-        "fileName": "011-↳-Switch-切换开关-🔵.json",
+        "fileName": "pages/011-↳-Switch-切换开关-🔵.json",
         "page": "↳ Switch 切换开关 🔵",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 1,
           "looseComponentCount": 0,
@@ -120,9 +122,9 @@
         }
       },
       {
-        "fileName": "012-↳-Slide-Bar-滚动条-⚫️.json",
+        "fileName": "pages/012-↳-Slide-Bar-滚动条-⚫️.json",
         "page": "↳ Slide Bar 滚动条 ⚫️",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 1,
           "looseComponentCount": 0,
@@ -130,9 +132,9 @@
         }
       },
       {
-        "fileName": "013-↳-Date-picker-日期选择器-🔵.json",
+        "fileName": "pages/013-↳-Date-picker-日期选择器-🔵.json",
         "page": "↳ Date-picker 日期选择器 🔵",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 1,
           "looseComponentCount": 1,
@@ -140,9 +142,9 @@
         }
       },
       {
-        "fileName": "014-↳-File-uploader-文件上传器-🟢.json",
+        "fileName": "pages/014-↳-File-uploader-文件上传器-🟢.json",
         "page": "↳ File-uploader 文件上传器 🟢",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 2,
           "looseComponentCount": 0,
@@ -150,9 +152,9 @@
         }
       },
       {
-        "fileName": "015-↳-Modal-模态窗口-⚫️.json",
+        "fileName": "pages/015-↳-Modal-模态窗口-⚫️.json",
         "page": "↳ Modal 模态窗口 ⚫️",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 1,
           "looseComponentCount": 0,
@@ -160,9 +162,9 @@
         }
       },
       {
-        "fileName": "016-↳-Notification-通知提示-🟡.json",
+        "fileName": "pages/016-↳-Notification-通知提示-🟡.json",
         "page": "↳ Notification 通知提示 🟡",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 1,
           "looseComponentCount": 0,
@@ -170,9 +172,9 @@
         }
       },
       {
-        "fileName": "017-↳-Alert-提示-🟡.json",
+        "fileName": "pages/017-↳-Alert-提示-🟡.json",
         "page": "↳ Alert 提示 🟡",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 1,
           "looseComponentCount": 0,
@@ -180,9 +182,9 @@
         }
       },
       {
-        "fileName": "018-↳-🤔-Table-表-🟠.json",
+        "fileName": "pages/018-↳-🤔-Table-表-🟠.json",
         "page": "↳ 🤔 Table 表 🟠",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 1,
           "looseComponentCount": 0,
@@ -190,9 +192,9 @@
         }
       },
       {
-        "fileName": "019-↳-Tabs-标签页-🔵.json",
+        "fileName": "pages/019-↳-Tabs-标签页-🔵.json",
         "page": "↳ Tabs 标签页 🔵",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 16,
           "looseComponentCount": 0,
@@ -200,9 +202,9 @@
         }
       },
       {
-        "fileName": "020-↳-Tag-标签-🟡.json",
+        "fileName": "pages/020-↳-Tag-标签-🟡.json",
         "page": "↳ Tag 标签 🟡",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 1,
           "looseComponentCount": 0,
@@ -210,9 +212,9 @@
         }
       },
       {
-        "fileName": "021-↳-Tooltip-提示-⚫️.json",
+        "fileName": "pages/021-↳-Tooltip-提示-⚫️.json",
         "page": "↳ Tooltip 提示 ⚫️",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 1,
           "looseComponentCount": 0,
@@ -220,9 +222,9 @@
         }
       },
       {
-        "fileName": "022-↳-Pagination-分页-🔵.json",
+        "fileName": "pages/022-↳-Pagination-分页-🔵.json",
         "page": "↳ Pagination 分页 🔵",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 3,
           "looseComponentCount": 0,
@@ -230,9 +232,9 @@
         }
       },
       {
-        "fileName": "023-↳-Side-Nav.-左侧菜单-🔵.json",
+        "fileName": "pages/023-↳-Side-Nav.-左侧菜单-🔵.json",
         "page": "↳ Side Nav. 左侧菜单 🔵",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 2,
           "looseComponentCount": 2,
@@ -240,9 +242,9 @@
         }
       },
       {
-        "fileName": "024-↳-Step-Bar-步骤条-🔵.json",
+        "fileName": "pages/024-↳-Step-Bar-步骤条-🔵.json",
         "page": "↳ Step Bar 步骤条 🔵",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 3,
           "looseComponentCount": 0,
@@ -250,9 +252,9 @@
         }
       },
       {
-        "fileName": "025-↳-Divider-分割线-⚫️.json",
+        "fileName": "pages/025-↳-Divider-分割线-⚫️.json",
         "page": "↳ Divider 分割线 ⚫️",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 0,
           "looseComponentCount": 1,
@@ -260,9 +262,19 @@
         }
       },
       {
-        "fileName": "026-↳-🤔-Tree-树形视图-🟠.json",
-        "page": "↳ 🤔 Tree 树形视图   🟠",
-        "exportedAt": "2026-06-29T03:12:55.937Z",
+        "fileName": "pages/026-↳-🤔-Tree-树形视图-🟠.json",
+        "page": "↳ 🤔 Tree 树形视图 🟠",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
+        "stats": {
+          "componentSetCount": 0,
+          "looseComponentCount": 2,
+          "componentCount": 2
+        }
+      },
+      {
+        "fileName": "pages/027-↳-Nav.Menu-顶部导航菜单-🔵.json",
+        "page": "↳ Nav.Menu 顶部导航菜单 🔵",
+        "exportedAt": "2026-07-01T09:55:40.797Z",
         "stats": {
           "componentSetCount": 0,
           "looseComponentCount": 2,
@@ -283,20 +295,20 @@
     ]
   },
   "stats": {
-    "sourcePageFileCount": 26,
     "componentSetCount": 59,
     "mappedComponentSetCount": 35,
     "unresolvedComponentSetCount": 22,
-    "looseComponentCount": 6,
+    "internalComponentSetCount": 2,
+    "looseComponentCount": 8,
     "mappedLooseComponentCount": 1,
-    "unresolvedLooseComponentCount": 5,
+    "unresolvedLooseComponentCount": 7,
+    "internalLooseComponentCount": 0,
     "mappedComponentCount": 133,
+    "internalComponentCount": 7,
     "unresolvedComponentCount": 71,
     "componentVariantCount": 211,
-    "totalExportedComponentCount": 217,
-    "internalComponentSetCount": 2,
-    "internalLooseComponentCount": 0,
-    "internalComponentCount": 7
+    "totalExportedComponentCount": 219,
+    "sourcePageFileCount": 27
   },
   "componentSets": {
     "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4": {
@@ -640,26 +652,7 @@
         "type": "COMPONENT_SET",
         "page": "↳ Button 按钮 🟢",
         "path": "      ↳ Button 按钮 🟢 / Button",
-        "componentCount": 5,
-        "componentPropertyDefinitions": {
-          "按钮": {
-            "type": "VARIANT",
-            "defaultValue": "Primary",
-            "variantOptions": [
-              "Default",
-              "Primary",
-              "secondary"
-            ]
-          },
-          "状态": {
-            "type": "VARIANT",
-            "defaultValue": "default",
-            "variantOptions": [
-              "default",
-              "disable"
-            ]
-          }
-        }
+        "componentCount": 5
       },
       "status": "mapped",
       "target": {
@@ -761,15 +754,15 @@
           "figma": {
             "id": "17051:535",
             "key": "0cf934837c1947d028412f8f890367c7ef0e10d8",
-            "name": "按钮=secondary, 状态=default",
+            "name": "按钮=Default, 状态=default",
             "type": "COMPONENT",
             "page": "↳ Button 按钮 🟢",
-            "path": "      ↳ Button 按钮 🟢 / Button / 按钮=secondary, 状态=default",
+            "path": "      ↳ Button 按钮 🟢 / Button / 按钮=Default, 状态=default",
             "componentSetId": "17051:518",
             "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
             "componentSetName": "Button",
             "variantProperties": {
-              "按钮": "secondary",
+              "按钮": "Default",
               "状态": "default"
             }
           },
@@ -907,7 +900,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -928,7 +920,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "41a487295049fd2cbc214f9e8c6b6faf9d40525e": {
@@ -947,7 +938,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "40884804f7e55cdbc4d6bc9a486d6ec0a32b9913": {
@@ -966,7 +956,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -977,7 +966,7 @@
         "key": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
         "name": "radio",
         "type": "COMPONENT_SET",
-        "page": "↳ Radio 单选  🔵",
+        "page": "↳ Radio 单选 🔵",
         "path": "      ↳ Radio 单选  🔵 / radio",
         "componentCount": 5,
         "componentPropertyDefinitions": {
@@ -995,7 +984,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -1006,7 +994,7 @@
             "key": "f71c5fb5190af7bd8ab4340ae53d657ff079a64c",
             "name": "Property 1=default",
             "type": "COMPONENT",
-            "page": "↳ Radio 单选  🔵",
+            "page": "↳ Radio 单选 🔵",
             "path": "      ↳ Radio 单选  🔵 / radio / Property 1=default",
             "componentSetId": "12441:1182",
             "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
@@ -1016,7 +1004,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "a1fbeff2d05fe7d79cedd97b629524dd35153282": {
@@ -1025,7 +1012,7 @@
             "key": "a1fbeff2d05fe7d79cedd97b629524dd35153282",
             "name": "Property 1=hover",
             "type": "COMPONENT",
-            "page": "↳ Radio 单选  🔵",
+            "page": "↳ Radio 单选 🔵",
             "path": "      ↳ Radio 单选  🔵 / radio / Property 1=hover",
             "componentSetId": "12441:1182",
             "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
@@ -1035,7 +1022,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "80327ceef7c3f7843d390aed2f857dbac1cbfe44": {
@@ -1044,7 +1030,7 @@
             "key": "80327ceef7c3f7843d390aed2f857dbac1cbfe44",
             "name": "Property 1=focus",
             "type": "COMPONENT",
-            "page": "↳ Radio 单选  🔵",
+            "page": "↳ Radio 单选 🔵",
             "path": "      ↳ Radio 单选  🔵 / radio / Property 1=focus",
             "componentSetId": "12441:1182",
             "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
@@ -1054,7 +1040,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "9e8ed3a688c2c9de6ff25254708bd0dcaf3e992a": {
@@ -1063,7 +1048,7 @@
             "key": "9e8ed3a688c2c9de6ff25254708bd0dcaf3e992a",
             "name": "Property 1=disable",
             "type": "COMPONENT",
-            "page": "↳ Radio 单选  🔵",
+            "page": "↳ Radio 单选 🔵",
             "path": "      ↳ Radio 单选  🔵 / radio / Property 1=disable",
             "componentSetId": "12441:1182",
             "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
@@ -1073,7 +1058,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "751d1886963606194da17c7a651f6418dc53292c": {
@@ -1082,7 +1066,7 @@
             "key": "751d1886963606194da17c7a651f6418dc53292c",
             "name": "Property 1=disable-select",
             "type": "COMPONENT",
-            "page": "↳ Radio 单选  🔵",
+            "page": "↳ Radio 单选 🔵",
             "path": "      ↳ Radio 单选  🔵 / radio / Property 1=disable-select",
             "componentSetId": "12441:1182",
             "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
@@ -1092,7 +1076,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -1103,7 +1086,7 @@
         "key": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
         "name": "radio+描述",
         "type": "COMPONENT_SET",
-        "page": "↳ Radio 单选  🔵",
+        "page": "↳ Radio 单选 🔵",
         "path": "      ↳ Radio 单选  🔵 / radio+描述",
         "componentCount": 5,
         "componentPropertyDefinitions": {
@@ -1121,7 +1104,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -1132,7 +1114,7 @@
             "key": "ec57ebbaf3a51a824920813a638c0233c2061469",
             "name": "Property 1=default",
             "type": "COMPONENT",
-            "page": "↳ Radio 单选  🔵",
+            "page": "↳ Radio 单选 🔵",
             "path": "      ↳ Radio 单选  🔵 / radio+描述 / Property 1=default",
             "componentSetId": "12441:1254",
             "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
@@ -1142,7 +1124,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "229549437b35f8711aba25d12266f2a0f2ef609b": {
@@ -1151,7 +1132,7 @@
             "key": "229549437b35f8711aba25d12266f2a0f2ef609b",
             "name": "Property 1=hover",
             "type": "COMPONENT",
-            "page": "↳ Radio 单选  🔵",
+            "page": "↳ Radio 单选 🔵",
             "path": "      ↳ Radio 单选  🔵 / radio+描述 / Property 1=hover",
             "componentSetId": "12441:1254",
             "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
@@ -1161,7 +1142,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "548b62e071037e1239406c351d3f6721755a4b84": {
@@ -1170,7 +1150,7 @@
             "key": "548b62e071037e1239406c351d3f6721755a4b84",
             "name": "Property 1=disable",
             "type": "COMPONENT",
-            "page": "↳ Radio 单选  🔵",
+            "page": "↳ Radio 单选 🔵",
             "path": "      ↳ Radio 单选  🔵 / radio+描述 / Property 1=disable",
             "componentSetId": "12441:1254",
             "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
@@ -1180,7 +1160,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "1e9b87e874a3bc7f0156fac39e0181d5fe949eaf": {
@@ -1189,7 +1168,7 @@
             "key": "1e9b87e874a3bc7f0156fac39e0181d5fe949eaf",
             "name": "Property 1=Variant5",
             "type": "COMPONENT",
-            "page": "↳ Radio 单选  🔵",
+            "page": "↳ Radio 单选 🔵",
             "path": "      ↳ Radio 单选  🔵 / radio+描述 / Property 1=Variant5",
             "componentSetId": "12441:1254",
             "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
@@ -1199,7 +1178,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "9d6a26e9fb6b666f8a77707fe6ddd7cda79badcc": {
@@ -1208,7 +1186,7 @@
             "key": "9d6a26e9fb6b666f8a77707fe6ddd7cda79badcc",
             "name": "Property 1=focus",
             "type": "COMPONENT",
-            "page": "↳ Radio 单选  🔵",
+            "page": "↳ Radio 单选 🔵",
             "path": "      ↳ Radio 单选  🔵 / radio+描述 / Property 1=focus",
             "componentSetId": "12441:1254",
             "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
@@ -1218,7 +1196,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -1229,7 +1206,7 @@
         "key": "bb7eb4ddb5c046fc64658866f74295c6d064baee",
         "name": "radio组合使用",
         "type": "COMPONENT_SET",
-        "page": "↳ Radio 单选  🔵",
+        "page": "↳ Radio 单选 🔵",
         "path": "      ↳ Radio 单选  🔵 / radio组合使用",
         "componentCount": 2,
         "componentPropertyDefinitions": {
@@ -1263,7 +1240,7 @@
             "key": "b129717a573d8e669748060b0dfb2e1768105778",
             "name": "Property 1=radio limit",
             "type": "COMPONENT",
-            "page": "↳ Radio 单选  🔵",
+            "page": "↳ Radio 单选 🔵",
             "path": "      ↳ Radio 单选  🔵 / radio组合使用 / Property 1=radio limit",
             "componentSetId": "12474:611",
             "componentSetKey": "bb7eb4ddb5c046fc64658866f74295c6d064baee",
@@ -1282,7 +1259,7 @@
             "key": "8cc2a8b2becb50b63fa7a422e5320a7e8473f342",
             "name": "Property 1=radio much",
             "type": "COMPONENT",
-            "page": "↳ Radio 单选  🔵",
+            "page": "↳ Radio 单选 🔵",
             "path": "      ↳ Radio 单选  🔵 / radio组合使用 / Property 1=radio much",
             "componentSetId": "12474:611",
             "componentSetKey": "bb7eb4ddb5c046fc64658866f74295c6d064baee",
@@ -1322,7 +1299,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -1343,7 +1319,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "37cca25ff1d42f07ffea4a9fccb544740cbdb946": {
@@ -1362,7 +1337,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "f79affe24d9f4fe9c9274396b10050ee8f012aa6": {
@@ -1381,7 +1355,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "3ba9d4b6eb7da2cdef2a2a227d2efdbb9e8824dd": {
@@ -1400,7 +1373,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "b81c6629b81d8499375ca55031cb262eb82008c1": {
@@ -1419,7 +1391,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "b64c42773ef90b25ee58d82c0d860898f8bb7bf2": {
@@ -1438,7 +1409,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -1467,7 +1437,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -1488,7 +1457,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "5bca3de321feb1728aca2271b46d24359db53647": {
@@ -1507,7 +1475,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "8ff51fa3f263e643369d195936f06a81a56ebc5c": {
@@ -1526,7 +1493,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "50baa2394ae6c99b8047cb78d49c17fc0fd3cb02": {
@@ -1545,7 +1511,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "1b62dfbee5594b8f4cb08c81baefaa94c4b91fc7": {
@@ -1564,7 +1529,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -1590,7 +1554,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -1611,7 +1574,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "308a21a50babe1879c82fec3a1e1fbd4a86ce4d7": {
@@ -1630,7 +1592,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -1657,7 +1618,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -1678,7 +1638,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "2bf9218f46e08b85345f3f052ff17492ef04d63d": {
@@ -1697,7 +1656,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "29e2cf637dc13447f0bbb0061845fb9b0c679b72": {
@@ -1716,7 +1674,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -1727,7 +1684,7 @@
         "key": "c262fc29c06bd614beaa0dfa1504056ddef532aa",
         "name": "Search 搜索框",
         "type": "COMPONENT_SET",
-        "page": "↳ Search 搜索框  🟣",
+        "page": "↳ Search 搜索框 🟣",
         "path": "      ↳ Search 搜索框  🟣 / Search 搜索框",
         "componentCount": 2,
         "componentPropertyDefinitions": {
@@ -1761,7 +1718,7 @@
             "key": "77c63aba5ace9a52e2dfd09c38575306e86e7743",
             "name": "Search=搜索",
             "type": "COMPONENT",
-            "page": "↳ Search 搜索框  🟣",
+            "page": "↳ Search 搜索框 🟣",
             "path": "      ↳ Search 搜索框  🟣 / Search 搜索框 / Search=搜索",
             "componentSetId": "16044:6746",
             "componentSetKey": "c262fc29c06bd614beaa0dfa1504056ddef532aa",
@@ -1780,7 +1737,7 @@
             "key": "90e43e0da6b9141a6f859375b810c4395e9b5554",
             "name": "Search=带切换的搜索",
             "type": "COMPONENT",
-            "page": "↳ Search 搜索框  🟣",
+            "page": "↳ Search 搜索框 🟣",
             "path": "      ↳ Search 搜索框  🟣 / Search 搜索框 / Search=带切换的搜索",
             "componentSetId": "16044:6746",
             "componentSetKey": "c262fc29c06bd614beaa0dfa1504056ddef532aa",
@@ -1974,7 +1931,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -1995,7 +1951,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "0bb315bb6964f7acc511c8828c7903c53e2358ed": {
@@ -2014,7 +1969,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "7dfeae13a6d62d29b766f2fb8ea874376601d40e": {
@@ -2033,7 +1987,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "b5f91a46c92ef6405e70bd2e36b1acb8232549e4": {
@@ -2052,7 +2005,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -2173,7 +2125,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -2194,7 +2145,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "3bb2dbff2df94445b1b8aa8d370c7069e6eb893c": {
@@ -2213,7 +2163,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "c541a6ccddba85cdc7dc2a1236a2a3740defaa82": {
@@ -2232,7 +2181,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -2258,7 +2206,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -2279,7 +2226,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "fd512542dd07a05b2dcdc267e1f83c9674d9cf34": {
@@ -2298,7 +2244,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -2324,7 +2269,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -2345,7 +2289,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "854ca384e15da3db75353de1b54efec76e715c8f": {
@@ -2364,7 +2307,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -2390,7 +2332,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -2411,7 +2352,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "2dd3fb12a066a35e5a9fc1a51f8c6b6576b85f2b": {
@@ -2430,7 +2370,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -2456,7 +2395,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -2477,7 +2415,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "387e40f064cbe4981ff5028bff464dce33af6e4f": {
@@ -2496,7 +2433,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -2522,7 +2458,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -2543,7 +2478,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "70555167178c74dc04f7d6bbf8ba437571332e7a": {
@@ -2562,7 +2496,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -2589,7 +2522,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -2610,7 +2542,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "4665bbcd423fdd9030f225d16f14e768abc812c4": {
@@ -2629,7 +2560,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "a60e7c8506776489b6f8032229d394d057d7369f": {
@@ -2648,7 +2578,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -2674,7 +2603,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -2695,7 +2623,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "a3cd4c6ac522814102ce41292a62dd2ccee4c4c7": {
@@ -2714,7 +2641,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -2725,7 +2651,7 @@
         "key": "9eae6ee156cefd39971b7b0ec13f56891388b7ea",
         "name": "Transfer",
         "type": "COMPONENT_SET",
-        "page": "↳ Transfer 穿梭框  🟠",
+        "page": "↳ Transfer 穿梭框 🟠",
         "path": "      ↳ Transfer 穿梭框  🟠 / Transfer",
         "componentCount": 2,
         "componentPropertyDefinitions": {
@@ -2759,7 +2685,7 @@
             "key": "77391c5271084beb894726f4454a0576fff53cbf",
             "name": "Transfer=2列",
             "type": "COMPONENT",
-            "page": "↳ Transfer 穿梭框  🟠",
+            "page": "↳ Transfer 穿梭框 🟠",
             "path": "      ↳ Transfer 穿梭框  🟠 / Transfer / Transfer=2列",
             "componentSetId": "16045:142",
             "componentSetKey": "9eae6ee156cefd39971b7b0ec13f56891388b7ea",
@@ -2778,7 +2704,7 @@
             "key": "3a66c62d2cbcb647900817e16f5e81c8c83b7c69",
             "name": "Transfer=1列",
             "type": "COMPONENT",
-            "page": "↳ Transfer 穿梭框  🟠",
+            "page": "↳ Transfer 穿梭框 🟠",
             "path": "      ↳ Transfer 穿梭框  🟠 / Transfer / Transfer=1列",
             "componentSetId": "16045:142",
             "componentSetKey": "9eae6ee156cefd39971b7b0ec13f56891388b7ea",
@@ -2907,7 +2833,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -2928,7 +2853,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "dc17dee9b3c187dbc60878bc0993329e62c3be4a": {
@@ -2947,7 +2871,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -3420,7 +3343,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -3441,7 +3363,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "fa80a16fe312480d85e0f42a0487e44f962fa128": {
@@ -3460,7 +3381,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "fa012f0ebfeb403daf329211ca35246f41a93487": {
@@ -3479,7 +3399,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -3565,8 +3484,7 @@
         "type": "COMPONENT_SET",
         "page": "↳ 🤔 Table 表 🟠",
         "path": "      ↳ 🤔 Table 表 🟠 / Table",
-        "componentCount": 2,
-        "componentPropertyDefinitions": {}
+        "componentCount": 2
       },
       "status": "mapped",
       "target": {
@@ -5449,8 +5367,8 @@
               "gray",
               "green",
               "orange",
-              "red",
-              "white"
+              "white",
+              "red"
             ]
           }
         }
@@ -5704,7 +5622,6 @@
         }
       },
       "status": "internal",
-      "target": null,
       "reason": "Marked as internal subcomponent manually in Component Map Viewer.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -5725,7 +5642,6 @@
             }
           },
           "status": "internal",
-          "targetRef": null,
           "reason": "Parent component set was marked as internal subcomponent manually."
         },
         "0ffe32fbcd0d6b9b87af6ec9a6e2e4e32392ef86": {
@@ -5744,7 +5660,6 @@
             }
           },
           "status": "internal",
-          "targetRef": null,
           "reason": "Parent component set was marked as internal subcomponent manually."
         },
         "712f92ce6ef19636d7165f6330aac90b73aff6ff": {
@@ -5763,7 +5678,6 @@
             }
           },
           "status": "internal",
-          "targetRef": null,
           "reason": "Parent component set was marked as internal subcomponent manually."
         }
       }
@@ -5791,7 +5705,6 @@
         }
       },
       "status": "internal",
-      "target": null,
       "reason": "Marked as internal subcomponent manually in Component Map Viewer.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -5812,7 +5725,6 @@
             }
           },
           "status": "internal",
-          "targetRef": null,
           "reason": "Parent component set was marked as internal subcomponent manually."
         },
         "f3544be97d5ed056877e22bc23de6e5dfcdc7995": {
@@ -5831,7 +5743,6 @@
             }
           },
           "status": "internal",
-          "targetRef": null,
           "reason": "Parent component set was marked as internal subcomponent manually."
         },
         "164649c3e56a640deecf32058e8d535f9ae52f89": {
@@ -5850,7 +5761,6 @@
             }
           },
           "status": "internal",
-          "targetRef": null,
           "reason": "Parent component set was marked as internal subcomponent manually."
         },
         "0a3dc45d5c638912abc13cb193bedc7de8b11849": {
@@ -5869,7 +5779,6 @@
             }
           },
           "status": "internal",
-          "targetRef": null,
           "reason": "Parent component set was marked as internal subcomponent manually."
         }
       }
@@ -5991,7 +5900,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -6012,7 +5920,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "4b138abbcd75c7034ed2489f536f6ff46f975919": {
@@ -6031,7 +5938,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "23bbcd9f3dbc82d1a0b18fd6980e181278fc1239": {
@@ -6050,7 +5956,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "27207e39af1055a3386d96d0a158ef42d7a9f1ea": {
@@ -6069,7 +5974,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "d9fe2c3f41bb56ed414397f05ae324dc434ebf9e": {
@@ -6088,7 +5992,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -6117,7 +6020,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -6138,7 +6040,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "1deb5d48b67014380079466cff101935eb66da1b": {
@@ -6157,7 +6058,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "490a7aa85dabd7a4e752bf29a8b134045a4af2af": {
@@ -6176,7 +6076,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "6216b97d5bb13e28a263a1f426c140efe7aff144": {
@@ -6195,7 +6094,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "ee852e52a9700958512e26fc780885476cee9591": {
@@ -6214,7 +6112,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -6241,7 +6138,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -6262,7 +6158,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "4f9d54be1ad5fa6721914bd2231b8ae53a99aadd": {
@@ -6281,7 +6176,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "7e2f06b78bafe0652bc76180b5796a9bbc297a23": {
@@ -6300,7 +6194,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -6326,7 +6219,6 @@
         }
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated",
       "variantToPropsReason": "This map records component identity only. Prop mapping from Figma variants requires a separate reviewed layer and is not guessed here.",
@@ -6347,7 +6239,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         },
         "b3ad281521550d360615a9f19e61d4bd214e73e1": {
@@ -6366,7 +6257,6 @@
             }
           },
           "status": "unresolved",
-          "targetRef": null,
           "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component set. Keep unresolved; do not generate a hand-rolled replacement from visuals alone."
         }
       }
@@ -6447,51 +6337,6 @@
     }
   },
   "looseComponents": {
-    "983d5a325f396644ac13d79f62689ee147fce755": {
-      "figma": {
-        "id": "17341:4542",
-        "key": "983d5a325f396644ac13d79f62689ee147fce755",
-        "name": "日历",
-        "type": "COMPONENT",
-        "page": "↳ Date-picker 日期选择器 🔵",
-        "path": "      ↳ Date-picker 日期选择器 🔵 / 日历",
-        "variantProperties": {}
-      },
-      "status": "unresolved",
-      "target": null,
-      "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma loose component. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
-      "variantToPropsStatus": "not-generated"
-    },
-    "c69e17885f95c89dda96041db987f7ff1f1dd1f4": {
-      "figma": {
-        "id": "16986:847",
-        "key": "c69e17885f95c89dda96041db987f7ff1f1dd1f4",
-        "name": "Nav-二层级",
-        "type": "COMPONENT",
-        "page": "↳ Side Nav. 左侧菜单 🔵",
-        "path": "      ↳ Side Nav. 左侧菜单 🔵 / Nav-二层级",
-        "variantProperties": {}
-      },
-      "status": "unresolved",
-      "target": null,
-      "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma loose component. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
-      "variantToPropsStatus": "not-generated"
-    },
-    "7b3ae393e829f04cde7d6e5cb0bd40160da06b9b": {
-      "figma": {
-        "id": "17375:1019",
-        "key": "7b3ae393e829f04cde7d6e5cb0bd40160da06b9b",
-        "name": "Nav-二层级",
-        "type": "COMPONENT",
-        "page": "↳ Side Nav. 左侧菜单 🔵",
-        "path": "      ↳ Side Nav. 左侧菜单 🔵 / Nav-二层级",
-        "variantProperties": {}
-      },
-      "status": "unresolved",
-      "target": null,
-      "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma loose component. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
-      "variantToPropsStatus": "not-generated"
-    },
     "8f1a6fd566ca7a42c17d996a62ed7fe33d08fc32": {
       "figma": {
         "id": "8546:600",
@@ -6499,8 +6344,7 @@
         "name": "Divider",
         "type": "COMPONENT",
         "page": "↳ Divider 分割线 ⚫️",
-        "path": "      ↳ Divider 分割线 ⚫️ / Divider",
-        "variantProperties": {}
+        "path": "      ↳ Divider 分割线 ⚫️ / Divider"
       },
       "status": "mapped",
       "target": {
@@ -6522,12 +6366,10 @@
         "key": "fdf21c7683083e910de38ccad1d982ce191a7165",
         "name": "Tree",
         "type": "COMPONENT",
-        "page": "↳ 🤔 Tree 树形视图   🟠",
-        "path": "      ↳ 🤔 Tree 树形视图   🟠  / Tree",
-        "variantProperties": {}
+        "page": "↳ 🤔 Tree 树形视图 🟠",
+        "path": "      ↳ 🤔 Tree 树形视图   🟠  / Tree"
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma loose component. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated"
     },
@@ -6537,1670 +6379,75 @@
         "key": "f0d140b29d9e2ab8e780c47c959f6531b938f28c",
         "name": "Select-tree",
         "type": "COMPONENT",
-        "page": "↳ 🤔 Tree 树形视图   🟠",
-        "path": "      ↳ 🤔 Tree 树形视图   🟠  / Select-tree",
-        "variantProperties": {}
+        "page": "↳ 🤔 Tree 树形视图 🟠",
+        "path": "      ↳ 🤔 Tree 树形视图   🟠  / Select-tree"
       },
       "status": "unresolved",
-      "target": null,
       "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma loose component. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
       "variantToPropsStatus": "not-generated"
-    }
-  },
-  "indexes": {
-    "componentKeyToSetKey": {
-      "566893f9c2f361b5804234328f1e657686079ebe": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-      "cb7f7cc9f109158b2b68720f1fb17bcbb28a1a60": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-      "098a5ee36081ba9501f8d8aeec22536facf6a69e": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-      "484f2e8cf2734b2fe05d979fb065f0f9c6dd03b6": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-      "2c7111723eff7fb3817c557c54c0122929958dbf": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-      "a8e31d6d51f59b7551542419942e80760c7d70ac": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-      "6d7db039d9178af70ecb7c5f7c81df1cb2f68eb9": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-      "08d6e81189d2c58c2a4b9ed4c3db1e496a61f2db": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-      "ce6dec8914c82d2eb4e7e7ce313cf4bf270ae70f": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-      "073faa5eb2fd258b331cc782ef9315816930bc7f": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-      "442a63f59152398cef363646194b7c8e4abf6d9e": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-      "ac5f6f5c94c44f14348f83aeb900c4dba422233f": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-      "e4bb5406f9848acd2ad0304f17140ba7e561129b": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-      "39ab35529ffe34c8b06b0e3d92024acf1c081443": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-      "a177a0904794057f0633541515ef7f79a0386355": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
-      "95764d0180784e21639bc72b7843ed84e113c578": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
-      "281f572e5b6cd11acb544b942168de329802b073": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
-      "bbc974b109783f4e5bee78e0e9ac732b45b15672": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
-      "0cf934837c1947d028412f8f890367c7ef0e10d8": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
-      "4ee87301f10a2b8d23de60cc15d14fa0b7d944d4": "e0ba1401c82a6a3c0733f89f3c2c940df3087159",
-      "6cadec5a6059a47194ed05c6159010bd1ad32d8f": "e0ba1401c82a6a3c0733f89f3c2c940df3087159",
-      "d5d08a59e846c40073c33bbf401651ae89678402": "e0ba1401c82a6a3c0733f89f3c2c940df3087159",
-      "fb7563894fd950a78cd6fac6328c7c7f40b09c78": "38967d429e5a8bb92642eb82a3728cadb5b30c65",
-      "41a487295049fd2cbc214f9e8c6b6faf9d40525e": "38967d429e5a8bb92642eb82a3728cadb5b30c65",
-      "40884804f7e55cdbc4d6bc9a486d6ec0a32b9913": "38967d429e5a8bb92642eb82a3728cadb5b30c65",
-      "f71c5fb5190af7bd8ab4340ae53d657ff079a64c": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
-      "a1fbeff2d05fe7d79cedd97b629524dd35153282": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
-      "80327ceef7c3f7843d390aed2f857dbac1cbfe44": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
-      "9e8ed3a688c2c9de6ff25254708bd0dcaf3e992a": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
-      "751d1886963606194da17c7a651f6418dc53292c": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
-      "ec57ebbaf3a51a824920813a638c0233c2061469": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
-      "229549437b35f8711aba25d12266f2a0f2ef609b": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
-      "548b62e071037e1239406c351d3f6721755a4b84": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
-      "1e9b87e874a3bc7f0156fac39e0181d5fe949eaf": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
-      "9d6a26e9fb6b666f8a77707fe6ddd7cda79badcc": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
-      "b129717a573d8e669748060b0dfb2e1768105778": "bb7eb4ddb5c046fc64658866f74295c6d064baee",
-      "8cc2a8b2becb50b63fa7a422e5320a7e8473f342": "bb7eb4ddb5c046fc64658866f74295c6d064baee",
-      "4bba8597f99a31e6c5a1d2f2e00b5969ea47492e": "b1a56b730653f2353dc31bb6946ae509f606c1cb",
-      "37cca25ff1d42f07ffea4a9fccb544740cbdb946": "b1a56b730653f2353dc31bb6946ae509f606c1cb",
-      "f79affe24d9f4fe9c9274396b10050ee8f012aa6": "b1a56b730653f2353dc31bb6946ae509f606c1cb",
-      "3ba9d4b6eb7da2cdef2a2a227d2efdbb9e8824dd": "b1a56b730653f2353dc31bb6946ae509f606c1cb",
-      "b81c6629b81d8499375ca55031cb262eb82008c1": "b1a56b730653f2353dc31bb6946ae509f606c1cb",
-      "b64c42773ef90b25ee58d82c0d860898f8bb7bf2": "b1a56b730653f2353dc31bb6946ae509f606c1cb",
-      "d237e4e9b24fe1200a4d7e2018944ce51b7e260d": "fdf21eb28715f782b896afde003fe1d6411267b3",
-      "5bca3de321feb1728aca2271b46d24359db53647": "fdf21eb28715f782b896afde003fe1d6411267b3",
-      "8ff51fa3f263e643369d195936f06a81a56ebc5c": "fdf21eb28715f782b896afde003fe1d6411267b3",
-      "50baa2394ae6c99b8047cb78d49c17fc0fd3cb02": "fdf21eb28715f782b896afde003fe1d6411267b3",
-      "1b62dfbee5594b8f4cb08c81baefaa94c4b91fc7": "fdf21eb28715f782b896afde003fe1d6411267b3",
-      "1a9a15bb005a9567754e87300582d576d610a39d": "42e3037b9a16b22e32856f959142455073fe7c4c",
-      "308a21a50babe1879c82fec3a1e1fbd4a86ce4d7": "42e3037b9a16b22e32856f959142455073fe7c4c",
-      "dc99b09ea9959bffa4716cca7248ed837dec7601": "3ea0d93cc2e65b3eca77767859eb223e89281ef1",
-      "2bf9218f46e08b85345f3f052ff17492ef04d63d": "3ea0d93cc2e65b3eca77767859eb223e89281ef1",
-      "29e2cf637dc13447f0bbb0061845fb9b0c679b72": "3ea0d93cc2e65b3eca77767859eb223e89281ef1",
-      "77c63aba5ace9a52e2dfd09c38575306e86e7743": "c262fc29c06bd614beaa0dfa1504056ddef532aa",
-      "90e43e0da6b9141a6f859375b810c4395e9b5554": "c262fc29c06bd614beaa0dfa1504056ddef532aa",
-      "f8b73f44b5909fb39ff350c571f01a80ead64cfc": "d1c2364544efa777d03ace20bbb94861d8a0cf07",
-      "71d3b92b70248e88ccc7fc9f34a68ede3a3772dc": "d1c2364544efa777d03ace20bbb94861d8a0cf07",
-      "42355273a30ab0bc2bb1ae72d46bc2d8640a5075": "d1c2364544efa777d03ace20bbb94861d8a0cf07",
-      "d40f2832011616aad6530afe8646be50ae8ee459": "d1c2364544efa777d03ace20bbb94861d8a0cf07",
-      "61632279ec6ae1ab9184410b7c3050574c85bc14": "d1c2364544efa777d03ace20bbb94861d8a0cf07",
-      "11dbdc1dadceaa43f96d4d5a818cdb266a3ce881": "d1c2364544efa777d03ace20bbb94861d8a0cf07",
-      "b7f32e0a93343d30335c17100cfb4b35aaee732d": "4317bbdc187251309e4ec4f252a2935741efe54b",
-      "0bb315bb6964f7acc511c8828c7903c53e2358ed": "4317bbdc187251309e4ec4f252a2935741efe54b",
-      "7dfeae13a6d62d29b766f2fb8ea874376601d40e": "4317bbdc187251309e4ec4f252a2935741efe54b",
-      "b5f91a46c92ef6405e70bd2e36b1acb8232549e4": "4317bbdc187251309e4ec4f252a2935741efe54b",
-      "c296b7cf3835458af803b11790ad0b558e2e1076": "f38d6172a93af1008e5540016f4dcb9ef9430684",
-      "983a8c0963d42969b3b1f950a699fa7330502209": "f38d6172a93af1008e5540016f4dcb9ef9430684",
-      "819aa725bd0cfff98f46a41a905343eea8feaab6": "f38d6172a93af1008e5540016f4dcb9ef9430684",
-      "2d3472d3b3394ebc1ee84cf0751d65cdaf6b83c6": "c2b8c36bcfb028b625203efb63e6f8b229d17cec",
-      "3bb2dbff2df94445b1b8aa8d370c7069e6eb893c": "c2b8c36bcfb028b625203efb63e6f8b229d17cec",
-      "c541a6ccddba85cdc7dc2a1236a2a3740defaa82": "c2b8c36bcfb028b625203efb63e6f8b229d17cec",
-      "c5f44410fc4ad2808c64e71b61d246633ecc93ff": "0ec224f6e82c2203d5d4afe281466ec35e0a44e2",
-      "fd512542dd07a05b2dcdc267e1f83c9674d9cf34": "0ec224f6e82c2203d5d4afe281466ec35e0a44e2",
-      "ec156757c5511b75bc123ff2eadba2311de42675": "214141bfeb16780c10937552b2459e6d1d5cf443",
-      "854ca384e15da3db75353de1b54efec76e715c8f": "214141bfeb16780c10937552b2459e6d1d5cf443",
-      "a3039d2ba8338758c19b9cbc0935c15831a635e2": "ab643c1d030160034fee4cb00f3edce746160b26",
-      "2dd3fb12a066a35e5a9fc1a51f8c6b6576b85f2b": "ab643c1d030160034fee4cb00f3edce746160b26",
-      "772a59d12a2221eaf458f1edb48967e56091ce28": "ed6b212830177a302f76fa552af30e07a248747b",
-      "387e40f064cbe4981ff5028bff464dce33af6e4f": "ed6b212830177a302f76fa552af30e07a248747b",
-      "e71ec695b92279163549346f94cb5d95ede29f7e": "48f7fd3018b3a13a51cfca33e0bda16cfff954a6",
-      "70555167178c74dc04f7d6bbf8ba437571332e7a": "48f7fd3018b3a13a51cfca33e0bda16cfff954a6",
-      "e79fe64be5261ec0e930d9c0c2d52f80b6086898": "248138185f0d744b34e7a2b5ba46993c5b8e2a07",
-      "4665bbcd423fdd9030f225d16f14e768abc812c4": "248138185f0d744b34e7a2b5ba46993c5b8e2a07",
-      "a60e7c8506776489b6f8032229d394d057d7369f": "248138185f0d744b34e7a2b5ba46993c5b8e2a07",
-      "7d3a9beb92450ebe723af85d8374febc0ba76b00": "f8d7314d3105cb1408ea9c5158dde7fdd220aba1",
-      "a3cd4c6ac522814102ce41292a62dd2ccee4c4c7": "f8d7314d3105cb1408ea9c5158dde7fdd220aba1",
-      "77391c5271084beb894726f4454a0576fff53cbf": "9eae6ee156cefd39971b7b0ec13f56891388b7ea",
-      "3a66c62d2cbcb647900817e16f5e81c8c83b7c69": "9eae6ee156cefd39971b7b0ec13f56891388b7ea",
-      "654e06308e8f2de6d1614e3a04d7efb39476f1d3": "228a73ca49a6f9c054ad950877551dc8647ad670",
-      "e8a80b9d0941cb394e38d8d83736127fce9268f7": "228a73ca49a6f9c054ad950877551dc8647ad670",
-      "00efed29f08fd44b95dd1977734dbc6740b79eac": "228a73ca49a6f9c054ad950877551dc8647ad670",
-      "e681fb8babb91123ccc6da8ddf954031abf01587": "65986f1004a458f9fa31d14877b5b700f170fc88",
-      "dc17dee9b3c187dbc60878bc0993329e62c3be4a": "65986f1004a458f9fa31d14877b5b700f170fc88",
-      "220aa55127dd2ddd8878b0c67cd22101ff3fe4d2": "1980089e0abd9e0831939d15dad5f16214473786",
-      "0e37ba90de9f8977e5dd6792547cbdba8c757680": "1980089e0abd9e0831939d15dad5f16214473786",
-      "4da3440f961a6905a3d20124df75f6ce79662e89": "1980089e0abd9e0831939d15dad5f16214473786",
-      "ee9691f8f4aad2997065189184b9c25165cfd312": "0bb0f125019ac41d66bdb0f1900c0a450eff782c",
-      "173c1d4f3cbab8febcd89da4d40381d80478dd86": "0bb0f125019ac41d66bdb0f1900c0a450eff782c",
-      "ed7b79404ab60848f532e1c8accf423717f4c055": "0bb0f125019ac41d66bdb0f1900c0a450eff782c",
-      "539b01de33ea3bca1ed8892155eacf7267a8f599": "0bb0f125019ac41d66bdb0f1900c0a450eff782c",
-      "03fce947bdf71566199887c8f98665fbb3c4d8eb": "0bb0f125019ac41d66bdb0f1900c0a450eff782c",
-      "99ba059caff2a4a0c09d8244f9206752aaed4a4a": "47b3b8d42458965afbdc6ef9f02e65224086701f",
-      "c794ca0502875a9f36abf6fd9eb65d7a062776ab": "47b3b8d42458965afbdc6ef9f02e65224086701f",
-      "b8adc58d0cb2834fa28a2c7745230234e06f02d5": "47b3b8d42458965afbdc6ef9f02e65224086701f",
-      "056a6cbb9cc2bc71b9e4cac2a7181045f6c51720": "47b3b8d42458965afbdc6ef9f02e65224086701f",
-      "63572dde3a78aaa68358d3d645f313e457f20a5d": "47b3b8d42458965afbdc6ef9f02e65224086701f",
-      "bc7ff067d0c749ee4843f93b8dc30864433a1cfe": "18514735b38f92d690c897b693807d2330e29683",
-      "1384e3233e5fc59729cc86b20e96b9c2b2f2515f": "18514735b38f92d690c897b693807d2330e29683",
-      "030ec146f20923af4a634c13d5ebb52cb91129b7": "dad80587c06688b44683e527f1a6e9e4a8d0a04e",
-      "fa80a16fe312480d85e0f42a0487e44f962fa128": "dad80587c06688b44683e527f1a6e9e4a8d0a04e",
-      "fa012f0ebfeb403daf329211ca35246f41a93487": "dad80587c06688b44683e527f1a6e9e4a8d0a04e",
-      "90c2dd11ec2135c7c3de59c7efc77382a56d87d2": "3f6e35098a00a4c8de07a13cacbe08d19887e906",
-      "f4d2ed642cd5f0375ab503fdb1db59826de5d516": "3f6e35098a00a4c8de07a13cacbe08d19887e906",
-      "480924288a59c4226d9ea1d0befdf932b4127d0a": "c93c96eacadd729ad3a585361dcb168063c1ba90",
-      "17b8948e6968a6b6ad46481f55baabe246abbb63": "c93c96eacadd729ad3a585361dcb168063c1ba90",
-      "708d5e39201e8b19a0f342fce70ec3e221ca58ff": "93e91b0aaefe583a560e92aaf5e4caf60e206018",
-      "db13dc6a862f847bbc406b16590771d6ccf37ef3": "93e91b0aaefe583a560e92aaf5e4caf60e206018",
-      "cb1a163c0fc3e45fd4e17f313c7a669258e85d35": "93e91b0aaefe583a560e92aaf5e4caf60e206018",
-      "c4e2300a0dbe73d3418b3db97519df6230f615a3": "913766cf16055ab1fdf2cdaa9074cc7adc4eb772",
-      "8d00f3ddb5efcebcc2e518d48f01c6480e8a8085": "913766cf16055ab1fdf2cdaa9074cc7adc4eb772",
-      "26d34f32fe81bfde22942cc8ed7016a863b58fbe": "913766cf16055ab1fdf2cdaa9074cc7adc4eb772",
-      "271c3dbb6451bc8c019c4dc1409641f0613e83c6": "c373c14b0cd6ce7fc617f3728e01fb503a890e72",
-      "cf7e00860571359fcb4c2f3b469d9e18adbb5a3e": "c373c14b0cd6ce7fc617f3728e01fb503a890e72",
-      "a496cbe2fca54cdc7a88b76a634a6666bc67a301": "c373c14b0cd6ce7fc617f3728e01fb503a890e72",
-      "a5f9e72227faba4821211d07a77f85678e1fc1b3": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-      "c70dc674a9de1e3f809726bbf59e5dd93c585105": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-      "207aa090794570a9a0f7de54987e833963c1086d": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-      "0aba6ea187ff1e7a581d85f253a83c6e25170955": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-      "95cde7b764cbf05ee85a4ba1c8e5dac5d5ea03ec": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-      "f64cafbd8566cfd269df897e988e5209c0d4e394": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-      "f5cefed602dee82b8155f9521fa44208cf3be0c1": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-      "75bc5f56449982870381f06b788a1be673277843": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-      "4c5c60e15c906e38d32e97f15482449f3d731e2b": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-      "d3d03334e150cda11f14c8e8539b7ea75d08aee2": "34ecc3938af39ba6762e6c665a71338e03bee55b",
-      "0995fcf396eb2e963f4aae82c055b53f2088ffe9": "34ecc3938af39ba6762e6c665a71338e03bee55b",
-      "c80d50b5fe0302f41bb7c4dd05d1762cd68ac933": "34ecc3938af39ba6762e6c665a71338e03bee55b",
-      "486694528ac40adfa42a67f600c84be57b55da38": "a70ee9a2b1d61d084d51152776d0c27240e7d36e",
-      "d2ab603b36118d633c5b2f94ab69063ab3c1d4ce": "a70ee9a2b1d61d084d51152776d0c27240e7d36e",
-      "264d859c85dfa598008b71dc77981d7ead4d1826": "a70ee9a2b1d61d084d51152776d0c27240e7d36e",
-      "e1e5e73141a81272954169697166156d3f4fd01b": "68f197a6a376c1ec9687cc88cf96d57e45265414",
-      "99d123bd1d8c4805da2d5b6b457a935070f82bf1": "68f197a6a376c1ec9687cc88cf96d57e45265414",
-      "d003a97801c9d13e8c663687ab6c05bd527067b6": "68f197a6a376c1ec9687cc88cf96d57e45265414",
-      "460132684dac60eaaadf777cd1baef0bba605e97": "fda31414647540d540129010c437843c0dcc41a3",
-      "6428560d4726990608637bb96fdc576d832f602d": "fda31414647540d540129010c437843c0dcc41a3",
-      "ab11ace3e2ef401428746a005a88c19e640ab5d3": "fda31414647540d540129010c437843c0dcc41a3",
-      "89ad6ad305579bd3077ad5ccab50562f1a89db37": "43a725240c07270d2cc8da0d48427e98404f1140",
-      "6893959faa7adfcbeecdb20d7c33d3dfd3efc594": "43a725240c07270d2cc8da0d48427e98404f1140",
-      "78c57d2dae7cccc0a21256e6d93b213aed9d86c1": "43a725240c07270d2cc8da0d48427e98404f1140",
-      "c6f6b2fd1d9deaf66ac6bc9bbd3bde772e5bfa2f": "e9246128dcf9cf81e444a12ec05006a903b2b6d2",
-      "aa077a4ebb889c7d9035fa6c108b8415b085a356": "e9246128dcf9cf81e444a12ec05006a903b2b6d2",
-      "84a444641cd5413e09d4303d9111263ce6f548ba": "e9246128dcf9cf81e444a12ec05006a903b2b6d2",
-      "3305efddb62e3335b13a57a7dfa41f105b01f76c": "2be79106c3667ffb1e9aa12677b0e380d98b3d1d",
-      "95d4a9f5320cedf0543b17bcea77bec2462e0e84": "2be79106c3667ffb1e9aa12677b0e380d98b3d1d",
-      "37ff2a909cdde0f036fc501fb85cb3a172bc4c80": "2be79106c3667ffb1e9aa12677b0e380d98b3d1d",
-      "7c078dccbbbf96be636ea30ab9ee6d18de58563f": "6f6707d3d3f7f875279b866162cf08df0c660687",
-      "5cd531775fbeed2cf1b7d83533220acf43e8471e": "6f6707d3d3f7f875279b866162cf08df0c660687",
-      "36a5c2f6a3ad0221f9a04231e1d253df8c57a53a": "6f6707d3d3f7f875279b866162cf08df0c660687",
-      "e13f81545ec3ac2200a207e5f9c83828abc6fe0a": "6f6707d3d3f7f875279b866162cf08df0c660687",
-      "d8fdf8151938fed025f677ccc85556adf2d2e843": "6f6707d3d3f7f875279b866162cf08df0c660687",
-      "61fdd92f5fa164fdcac2a958a4c9961230979bcc": "6f6707d3d3f7f875279b866162cf08df0c660687",
-      "df967747d4aeaeab2b87e1b66d469f1d091dac2b": "6f6707d3d3f7f875279b866162cf08df0c660687",
-      "93e83f4c6d8fcfe2aa36b0c89b577f4b76c898f6": "6f6707d3d3f7f875279b866162cf08df0c660687",
-      "6d91f987147785c975b9560c21e1d066112c7fa3": "6f6707d3d3f7f875279b866162cf08df0c660687",
-      "b8716a494a37e14a2d7f2e50c75c426e9a61c980": "7d9f99723e2115477d2758304c23870269423346",
-      "44478fe69fb575fe34ec84fcdff5f57b1ea6c98a": "7d9f99723e2115477d2758304c23870269423346",
-      "054ea0345ac53c5aedc4a625321f1c7f17ed76d5": "7d9f99723e2115477d2758304c23870269423346",
-      "799d346c7400fb61ab99e63330049e76bd026ecd": "82d14b691e35bcf20fb76e2ff72d986c77b13bf6",
-      "c991f0179647de4deb604c8402d83407df99965f": "82d14b691e35bcf20fb76e2ff72d986c77b13bf6",
-      "a417209da35a7494723844b2e2bf3ae1617f6a07": "82d14b691e35bcf20fb76e2ff72d986c77b13bf6",
-      "cd57404001aa6454b5ee855244827eeb2c05743f": "9e6f402f39aff47bc1e76eb6ce0a5a1ea2cda52d",
-      "95a1d3145672668e2911497582bc1b5a82ba6100": "9e6f402f39aff47bc1e76eb6ce0a5a1ea2cda52d",
-      "8c3ccb3a34164349099e93dc2edf140df2b3c24a": "9e6f402f39aff47bc1e76eb6ce0a5a1ea2cda52d",
-      "7047ca5862cf5f5ef7b8b15f2d4c0c7281ebc065": "8e5d2f56b6529a011b797ba455b57b0635a9545c",
-      "7999271c43698ead40dae4ff693c00f6b3b7fcb4": "8e5d2f56b6529a011b797ba455b57b0635a9545c",
-      "f0b8eee2580ffbf3adb92b7d90e43dba5ff48fe4": "8e5d2f56b6529a011b797ba455b57b0635a9545c",
-      "8fc6afa89ccdb4ffccd1956e25aa3abf76f04a73": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
-      "a38d61591de77a7af8a7e3364ee7293a048f97d2": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
-      "5d3cafadf5abec56ce34d2fbc6b8c72034186664": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
-      "31843047ca74b8251f153e8bf48da35ac85fdd7b": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
-      "4732a7ebd7065ba1794bb32c018fa77a2cc32290": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
-      "0609226f83594f3612ad89501718a442fd4f5c2c": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
-      "d582142c1f07a4f03329aa8bcf1766545561e404": "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3",
-      "c24420630ea5e5a921a579f1b321368b89b72236": "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3",
-      "7d1423d5afc01a54f8fd37ea1551fb62645593b3": "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3",
-      "7bea30b78e6ea1a46452365a37f81b8f1a9c7323": "e55eba2acab126c8fa2419b72d7fc918fe9f56df",
-      "0ffe32fbcd0d6b9b87af6ec9a6e2e4e32392ef86": "e55eba2acab126c8fa2419b72d7fc918fe9f56df",
-      "712f92ce6ef19636d7165f6330aac90b73aff6ff": "e55eba2acab126c8fa2419b72d7fc918fe9f56df",
-      "848d21f6238fab9c1ba24f457fe2b6deaac6fc32": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
-      "f3544be97d5ed056877e22bc23de6e5dfcdc7995": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
-      "164649c3e56a640deecf32058e8d535f9ae52f89": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
-      "0a3dc45d5c638912abc13cb193bedc7de8b11849": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
-      "67307a8b3b8e53deab6cf9fb873e6b906c540a6b": "aa2622af00f5a4e76e97bb3a969903fb3aa0a674",
-      "619d54ae880e3602c7c14941f7897c825c23b6e7": "aa2622af00f5a4e76e97bb3a969903fb3aa0a674",
-      "e49350fa3531b98d0b9beb42778dfc47f9a5f462": "aa2622af00f5a4e76e97bb3a969903fb3aa0a674",
-      "adcc00becb9e384e16e6e2ee4c563b4b19010c6a": "2ca7d7c5a6b76d4d39459a1d0de7baff865271d0",
-      "4b138abbcd75c7034ed2489f536f6ff46f975919": "2ca7d7c5a6b76d4d39459a1d0de7baff865271d0",
-      "23bbcd9f3dbc82d1a0b18fd6980e181278fc1239": "2ca7d7c5a6b76d4d39459a1d0de7baff865271d0",
-      "27207e39af1055a3386d96d0a158ef42d7a9f1ea": "2ca7d7c5a6b76d4d39459a1d0de7baff865271d0",
-      "d9fe2c3f41bb56ed414397f05ae324dc434ebf9e": "2ca7d7c5a6b76d4d39459a1d0de7baff865271d0",
-      "defd2e79f0de4cff72893693679d34fbf6d893d9": "6078553029b184e24cec87de1e17cd8ab7830ece",
-      "1deb5d48b67014380079466cff101935eb66da1b": "6078553029b184e24cec87de1e17cd8ab7830ece",
-      "490a7aa85dabd7a4e752bf29a8b134045a4af2af": "6078553029b184e24cec87de1e17cd8ab7830ece",
-      "6216b97d5bb13e28a263a1f426c140efe7aff144": "6078553029b184e24cec87de1e17cd8ab7830ece",
-      "ee852e52a9700958512e26fc780885476cee9591": "6078553029b184e24cec87de1e17cd8ab7830ece",
-      "b63a220617258129d9f49e079cecf0bf8cd1e553": "a1fa72a9e1a2ae6347379609323bdcf69e264a82",
-      "4f9d54be1ad5fa6721914bd2231b8ae53a99aadd": "a1fa72a9e1a2ae6347379609323bdcf69e264a82",
-      "7e2f06b78bafe0652bc76180b5796a9bbc297a23": "a1fa72a9e1a2ae6347379609323bdcf69e264a82",
-      "db7b3c7f23d0489f5cd678ea0ec6763ad5e6eb00": "b247f577343de9f7cb6a9556dff59249db2c9052",
-      "b3ad281521550d360615a9f19e61d4bd214e73e1": "b247f577343de9f7cb6a9556dff59249db2c9052",
-      "792e7a08c357db3d1299d2a75c2471f069b9555c": "a22bc6b0cb5b4695c1de6f3792c07df6066087c2",
-      "93329fa20356cbd70cde340f89c52eb92f069440": "a22bc6b0cb5b4695c1de6f3792c07df6066087c2"
     },
-    "componentKeyIndex": {
-      "566893f9c2f361b5804234328f1e657686079ebe": {
-        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "cb7f7cc9f109158b2b68720f1fb17bcbb28a1a60": {
-        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "098a5ee36081ba9501f8d8aeec22536facf6a69e": {
-        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "484f2e8cf2734b2fe05d979fb065f0f9c6dd03b6": {
-        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "2c7111723eff7fb3817c557c54c0122929958dbf": {
-        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "a8e31d6d51f59b7551542419942e80760c7d70ac": {
-        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "6d7db039d9178af70ecb7c5f7c81df1cb2f68eb9": {
-        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "08d6e81189d2c58c2a4b9ed4c3db1e496a61f2db": {
-        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "ce6dec8914c82d2eb4e7e7ce313cf4bf270ae70f": {
-        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "073faa5eb2fd258b331cc782ef9315816930bc7f": {
-        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "442a63f59152398cef363646194b7c8e4abf6d9e": {
-        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "ac5f6f5c94c44f14348f83aeb900c4dba422233f": {
-        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "e4bb5406f9848acd2ad0304f17140ba7e561129b": {
-        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "39ab35529ffe34c8b06b0e3d92024acf1c081443": {
-        "componentSetKey": "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "a177a0904794057f0633541515ef7f79a0386355": {
-        "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "95764d0180784e21639bc72b7843ed84e113c578": {
-        "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "281f572e5b6cd11acb544b942168de329802b073": {
-        "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "bbc974b109783f4e5bee78e0e9ac732b45b15672": {
-        "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "0cf934837c1947d028412f8f890367c7ef0e10d8": {
-        "componentSetKey": "a9efaa51fbcf5f081f8e524a79ef7a7769daf913",
-        "componentSetName": "Button",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "4ee87301f10a2b8d23de60cc15d14fa0b7d944d4": {
-        "componentSetKey": "e0ba1401c82a6a3c0733f89f3c2c940df3087159",
-        "componentSetName": "others",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "6cadec5a6059a47194ed05c6159010bd1ad32d8f": {
-        "componentSetKey": "e0ba1401c82a6a3c0733f89f3c2c940df3087159",
-        "componentSetName": "others",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "d5d08a59e846c40073c33bbf401651ae89678402": {
-        "componentSetKey": "e0ba1401c82a6a3c0733f89f3c2c940df3087159",
-        "componentSetName": "others",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-button"
-      },
-      "fb7563894fd950a78cd6fac6328c7c7f40b09c78": {
-        "componentSetKey": "38967d429e5a8bb92642eb82a3728cadb5b30c65",
-        "componentSetName": "Link",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "41a487295049fd2cbc214f9e8c6b6faf9d40525e": {
-        "componentSetKey": "38967d429e5a8bb92642eb82a3728cadb5b30c65",
-        "componentSetName": "Link",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "40884804f7e55cdbc4d6bc9a486d6ec0a32b9913": {
-        "componentSetKey": "38967d429e5a8bb92642eb82a3728cadb5b30c65",
-        "componentSetName": "Link",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "f71c5fb5190af7bd8ab4340ae53d657ff079a64c": {
-        "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
-        "componentSetName": "radio",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "a1fbeff2d05fe7d79cedd97b629524dd35153282": {
-        "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
-        "componentSetName": "radio",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "80327ceef7c3f7843d390aed2f857dbac1cbfe44": {
-        "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
-        "componentSetName": "radio",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "9e8ed3a688c2c9de6ff25254708bd0dcaf3e992a": {
-        "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
-        "componentSetName": "radio",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "751d1886963606194da17c7a651f6418dc53292c": {
-        "componentSetKey": "4b8bc4cde40aeb3f793354e60187b8c2f7505374",
-        "componentSetName": "radio",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "ec57ebbaf3a51a824920813a638c0233c2061469": {
-        "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
-        "componentSetName": "radio+描述",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "229549437b35f8711aba25d12266f2a0f2ef609b": {
-        "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
-        "componentSetName": "radio+描述",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "548b62e071037e1239406c351d3f6721755a4b84": {
-        "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
-        "componentSetName": "radio+描述",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "1e9b87e874a3bc7f0156fac39e0181d5fe949eaf": {
-        "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
-        "componentSetName": "radio+描述",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "9d6a26e9fb6b666f8a77707fe6ddd7cda79badcc": {
-        "componentSetKey": "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9",
-        "componentSetName": "radio+描述",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "b129717a573d8e669748060b0dfb2e1768105778": {
-        "componentSetKey": "bb7eb4ddb5c046fc64658866f74295c6d064baee",
-        "componentSetName": "radio组合使用",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiRadioGroup"
-      },
-      "8cc2a8b2becb50b63fa7a422e5320a7e8473f342": {
-        "componentSetKey": "bb7eb4ddb5c046fc64658866f74295c6d064baee",
-        "componentSetName": "radio组合使用",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiRadioGroup"
-      },
-      "4bba8597f99a31e6c5a1d2f2e00b5969ea47492e": {
-        "componentSetKey": "b1a56b730653f2353dc31bb6946ae509f606c1cb",
-        "componentSetName": "Checkbox",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "37cca25ff1d42f07ffea4a9fccb544740cbdb946": {
-        "componentSetKey": "b1a56b730653f2353dc31bb6946ae509f606c1cb",
-        "componentSetName": "Checkbox",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "f79affe24d9f4fe9c9274396b10050ee8f012aa6": {
-        "componentSetKey": "b1a56b730653f2353dc31bb6946ae509f606c1cb",
-        "componentSetName": "Checkbox",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "3ba9d4b6eb7da2cdef2a2a227d2efdbb9e8824dd": {
-        "componentSetKey": "b1a56b730653f2353dc31bb6946ae509f606c1cb",
-        "componentSetName": "Checkbox",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "b81c6629b81d8499375ca55031cb262eb82008c1": {
-        "componentSetKey": "b1a56b730653f2353dc31bb6946ae509f606c1cb",
-        "componentSetName": "Checkbox",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "b64c42773ef90b25ee58d82c0d860898f8bb7bf2": {
-        "componentSetKey": "b1a56b730653f2353dc31bb6946ae509f606c1cb",
-        "componentSetName": "Checkbox",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "d237e4e9b24fe1200a4d7e2018944ce51b7e260d": {
-        "componentSetKey": "fdf21eb28715f782b896afde003fe1d6411267b3",
-        "componentSetName": "Checkbox+描述",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "5bca3de321feb1728aca2271b46d24359db53647": {
-        "componentSetKey": "fdf21eb28715f782b896afde003fe1d6411267b3",
-        "componentSetName": "Checkbox+描述",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "8ff51fa3f263e643369d195936f06a81a56ebc5c": {
-        "componentSetKey": "fdf21eb28715f782b896afde003fe1d6411267b3",
-        "componentSetName": "Checkbox+描述",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "50baa2394ae6c99b8047cb78d49c17fc0fd3cb02": {
-        "componentSetKey": "fdf21eb28715f782b896afde003fe1d6411267b3",
-        "componentSetName": "Checkbox+描述",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "1b62dfbee5594b8f4cb08c81baefaa94c4b91fc7": {
-        "componentSetKey": "fdf21eb28715f782b896afde003fe1d6411267b3",
-        "componentSetName": "Checkbox+描述",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "1a9a15bb005a9567754e87300582d576d610a39d": {
-        "componentSetKey": "42e3037b9a16b22e32856f959142455073fe7c4c",
-        "componentSetName": "Checkbox 组合使用",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "308a21a50babe1879c82fec3a1e1fbd4a86ce4d7": {
-        "componentSetKey": "42e3037b9a16b22e32856f959142455073fe7c4c",
-        "componentSetName": "Checkbox 组合使用",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "dc99b09ea9959bffa4716cca7248ed837dec7601": {
-        "componentSetKey": "3ea0d93cc2e65b3eca77767859eb223e89281ef1",
-        "componentSetName": "Input",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "2bf9218f46e08b85345f3f052ff17492ef04d63d": {
-        "componentSetKey": "3ea0d93cc2e65b3eca77767859eb223e89281ef1",
-        "componentSetName": "Input",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "29e2cf637dc13447f0bbb0061845fb9b0c679b72": {
-        "componentSetKey": "3ea0d93cc2e65b3eca77767859eb223e89281ef1",
-        "componentSetName": "Input",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "77c63aba5ace9a52e2dfd09c38575306e86e7743": {
-        "componentSetKey": "c262fc29c06bd614beaa0dfa1504056ddef532aa",
-        "componentSetName": "Search 搜索框",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiSearchInput"
-      },
-      "90e43e0da6b9141a6f859375b810c4395e9b5554": {
-        "componentSetKey": "c262fc29c06bd614beaa0dfa1504056ddef532aa",
-        "componentSetName": "Search 搜索框",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiSearchInput"
-      },
-      "f8b73f44b5909fb39ff350c571f01a80ead64cfc": {
-        "componentSetKey": "d1c2364544efa777d03ace20bbb94861d8a0cf07",
-        "componentSetName": "TextArea",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "71d3b92b70248e88ccc7fc9f34a68ede3a3772dc": {
-        "componentSetKey": "d1c2364544efa777d03ace20bbb94861d8a0cf07",
-        "componentSetName": "TextArea",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "42355273a30ab0bc2bb1ae72d46bc2d8640a5075": {
-        "componentSetKey": "d1c2364544efa777d03ace20bbb94861d8a0cf07",
-        "componentSetName": "TextArea",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "d40f2832011616aad6530afe8646be50ae8ee459": {
-        "componentSetKey": "d1c2364544efa777d03ace20bbb94861d8a0cf07",
-        "componentSetName": "TextArea",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "61632279ec6ae1ab9184410b7c3050574c85bc14": {
-        "componentSetKey": "d1c2364544efa777d03ace20bbb94861d8a0cf07",
-        "componentSetName": "TextArea",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "11dbdc1dadceaa43f96d4d5a818cdb266a3ce881": {
-        "componentSetKey": "d1c2364544efa777d03ace20bbb94861d8a0cf07",
-        "componentSetName": "TextArea",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "b7f32e0a93343d30335c17100cfb4b35aaee732d": {
-        "componentSetKey": "4317bbdc187251309e4ec4f252a2935741efe54b",
-        "componentSetName": "Select ",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "0bb315bb6964f7acc511c8828c7903c53e2358ed": {
-        "componentSetKey": "4317bbdc187251309e4ec4f252a2935741efe54b",
-        "componentSetName": "Select ",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "7dfeae13a6d62d29b766f2fb8ea874376601d40e": {
-        "componentSetKey": "4317bbdc187251309e4ec4f252a2935741efe54b",
-        "componentSetName": "Select ",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "b5f91a46c92ef6405e70bd2e36b1acb8232549e4": {
-        "componentSetKey": "4317bbdc187251309e4ec4f252a2935741efe54b",
-        "componentSetName": "Select ",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "c296b7cf3835458af803b11790ad0b558e2e1076": {
-        "componentSetKey": "f38d6172a93af1008e5540016f4dcb9ef9430684",
-        "componentSetName": "Select_Multi",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiMultipleSelect"
-      },
-      "983a8c0963d42969b3b1f950a699fa7330502209": {
-        "componentSetKey": "f38d6172a93af1008e5540016f4dcb9ef9430684",
-        "componentSetName": "Select_Multi",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiMultipleSelect"
-      },
-      "819aa725bd0cfff98f46a41a905343eea8feaab6": {
-        "componentSetKey": "f38d6172a93af1008e5540016f4dcb9ef9430684",
-        "componentSetName": "Select_Multi",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiMultipleSelect"
-      },
-      "2d3472d3b3394ebc1ee84cf0751d65cdaf6b83c6": {
-        "componentSetKey": "c2b8c36bcfb028b625203efb63e6f8b229d17cec",
-        "componentSetName": "Select_Tag",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "3bb2dbff2df94445b1b8aa8d370c7069e6eb893c": {
-        "componentSetKey": "c2b8c36bcfb028b625203efb63e6f8b229d17cec",
-        "componentSetName": "Select_Tag",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "c541a6ccddba85cdc7dc2a1236a2a3740defaa82": {
-        "componentSetKey": "c2b8c36bcfb028b625203efb63e6f8b229d17cec",
-        "componentSetName": "Select_Tag",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "c5f44410fc4ad2808c64e71b61d246633ecc93ff": {
-        "componentSetKey": "0ec224f6e82c2203d5d4afe281466ec35e0a44e2",
-        "componentSetName": "Dropdown",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "fd512542dd07a05b2dcdc267e1f83c9674d9cf34": {
-        "componentSetKey": "0ec224f6e82c2203d5d4afe281466ec35e0a44e2",
-        "componentSetName": "Dropdown",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "ec156757c5511b75bc123ff2eadba2311de42675": {
-        "componentSetKey": "214141bfeb16780c10937552b2459e6d1d5cf443",
-        "componentSetName": "Dropdownex",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "854ca384e15da3db75353de1b54efec76e715c8f": {
-        "componentSetKey": "214141bfeb16780c10937552b2459e6d1d5cf443",
-        "componentSetName": "Dropdownex",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "a3039d2ba8338758c19b9cbc0935c15831a635e2": {
-        "componentSetKey": "ab643c1d030160034fee4cb00f3edce746160b26",
-        "componentSetName": "多选下拉框",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "2dd3fb12a066a35e5a9fc1a51f8c6b6576b85f2b": {
-        "componentSetKey": "ab643c1d030160034fee4cb00f3edce746160b26",
-        "componentSetName": "多选下拉框",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "772a59d12a2221eaf458f1edb48967e56091ce28": {
-        "componentSetKey": "ed6b212830177a302f76fa552af30e07a248747b",
-        "componentSetName": "多选下拉选择器",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "387e40f064cbe4981ff5028bff464dce33af6e4f": {
-        "componentSetKey": "ed6b212830177a302f76fa552af30e07a248747b",
-        "componentSetName": "多选下拉选择器",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "e71ec695b92279163549346f94cb5d95ede29f7e": {
-        "componentSetKey": "48f7fd3018b3a13a51cfca33e0bda16cfff954a6",
-        "componentSetName": "多选下拉框-带滚动条",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "70555167178c74dc04f7d6bbf8ba437571332e7a": {
-        "componentSetKey": "48f7fd3018b3a13a51cfca33e0bda16cfff954a6",
-        "componentSetName": "多选下拉框-带滚动条",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "e79fe64be5261ec0e930d9c0c2d52f80b6086898": {
-        "componentSetKey": "248138185f0d744b34e7a2b5ba46993c5b8e2a07",
-        "componentSetName": "带标题的下拉多选",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "4665bbcd423fdd9030f225d16f14e768abc812c4": {
-        "componentSetKey": "248138185f0d744b34e7a2b5ba46993c5b8e2a07",
-        "componentSetName": "带标题的下拉多选",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "a60e7c8506776489b6f8032229d394d057d7369f": {
-        "componentSetKey": "248138185f0d744b34e7a2b5ba46993c5b8e2a07",
-        "componentSetName": "带标题的下拉多选",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "7d3a9beb92450ebe723af85d8374febc0ba76b00": {
-        "componentSetKey": "f8d7314d3105cb1408ea9c5158dde7fdd220aba1",
-        "componentSetName": "带搜索功能的下拉",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "a3cd4c6ac522814102ce41292a62dd2ccee4c4c7": {
-        "componentSetKey": "f8d7314d3105cb1408ea9c5158dde7fdd220aba1",
-        "componentSetName": "带搜索功能的下拉",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "77391c5271084beb894726f4454a0576fff53cbf": {
-        "componentSetKey": "9eae6ee156cefd39971b7b0ec13f56891388b7ea",
-        "componentSetName": "Transfer",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTransferDialog"
-      },
-      "3a66c62d2cbcb647900817e16f5e81c8c83b7c69": {
-        "componentSetKey": "9eae6ee156cefd39971b7b0ec13f56891388b7ea",
-        "componentSetName": "Transfer",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTransferDialog"
-      },
-      "654e06308e8f2de6d1614e3a04d7efb39476f1d3": {
-        "componentSetKey": "228a73ca49a6f9c054ad950877551dc8647ad670",
-        "componentSetName": "开关",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "e8a80b9d0941cb394e38d8d83736127fce9268f7": {
-        "componentSetKey": "228a73ca49a6f9c054ad950877551dc8647ad670",
-        "componentSetName": "开关",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "00efed29f08fd44b95dd1977734dbc6740b79eac": {
-        "componentSetKey": "228a73ca49a6f9c054ad950877551dc8647ad670",
-        "componentSetName": "开关",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "e681fb8babb91123ccc6da8ddf954031abf01587": {
-        "componentSetKey": "65986f1004a458f9fa31d14877b5b700f170fc88",
-        "componentSetName": "滚动条",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "dc17dee9b3c187dbc60878bc0993329e62c3be4a": {
-        "componentSetKey": "65986f1004a458f9fa31d14877b5b700f170fc88",
-        "componentSetName": "滚动条",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "220aa55127dd2ddd8878b0c67cd22101ff3fe4d2": {
-        "componentSetKey": "1980089e0abd9e0831939d15dad5f16214473786",
-        "componentSetName": "Date-picker",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiDatePicker"
-      },
-      "0e37ba90de9f8977e5dd6792547cbdba8c757680": {
-        "componentSetKey": "1980089e0abd9e0831939d15dad5f16214473786",
-        "componentSetName": "Date-picker",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiDatePicker"
-      },
-      "4da3440f961a6905a3d20124df75f6ce79662e89": {
-        "componentSetKey": "1980089e0abd9e0831939d15dad5f16214473786",
-        "componentSetName": "Date-picker",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiDatePicker"
-      },
-      "ee9691f8f4aad2997065189184b9c25165cfd312": {
-        "componentSetKey": "0bb0f125019ac41d66bdb0f1900c0a450eff782c",
-        "componentSetName": "文件上传器-一排一个",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiFileUpload"
-      },
-      "173c1d4f3cbab8febcd89da4d40381d80478dd86": {
-        "componentSetKey": "0bb0f125019ac41d66bdb0f1900c0a450eff782c",
-        "componentSetName": "文件上传器-一排一个",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiFileUpload"
-      },
-      "ed7b79404ab60848f532e1c8accf423717f4c055": {
-        "componentSetKey": "0bb0f125019ac41d66bdb0f1900c0a450eff782c",
-        "componentSetName": "文件上传器-一排一个",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiFileUpload"
-      },
-      "539b01de33ea3bca1ed8892155eacf7267a8f599": {
-        "componentSetKey": "0bb0f125019ac41d66bdb0f1900c0a450eff782c",
-        "componentSetName": "文件上传器-一排一个",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiFileUpload"
-      },
-      "03fce947bdf71566199887c8f98665fbb3c4d8eb": {
-        "componentSetKey": "0bb0f125019ac41d66bdb0f1900c0a450eff782c",
-        "componentSetName": "文件上传器-一排一个",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiFileUpload"
-      },
-      "99ba059caff2a4a0c09d8244f9206752aaed4a4a": {
-        "componentSetKey": "47b3b8d42458965afbdc6ef9f02e65224086701f",
-        "componentSetName": "文件上传器-一排两个",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiFileUpload"
-      },
-      "c794ca0502875a9f36abf6fd9eb65d7a062776ab": {
-        "componentSetKey": "47b3b8d42458965afbdc6ef9f02e65224086701f",
-        "componentSetName": "文件上传器-一排两个",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiFileUpload"
-      },
-      "b8adc58d0cb2834fa28a2c7745230234e06f02d5": {
-        "componentSetKey": "47b3b8d42458965afbdc6ef9f02e65224086701f",
-        "componentSetName": "文件上传器-一排两个",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiFileUpload"
-      },
-      "056a6cbb9cc2bc71b9e4cac2a7181045f6c51720": {
-        "componentSetKey": "47b3b8d42458965afbdc6ef9f02e65224086701f",
-        "componentSetName": "文件上传器-一排两个",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiFileUpload"
-      },
-      "63572dde3a78aaa68358d3d645f313e457f20a5d": {
-        "componentSetKey": "47b3b8d42458965afbdc6ef9f02e65224086701f",
-        "componentSetName": "文件上传器-一排两个",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiFileUpload"
-      },
-      "bc7ff067d0c749ee4843f93b8dc30864433a1cfe": {
-        "componentSetKey": "18514735b38f92d690c897b693807d2330e29683",
-        "componentSetName": "Modal 模态窗口 ⚫️",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiDialog"
-      },
-      "1384e3233e5fc59729cc86b20e96b9c2b2f2515f": {
-        "componentSetKey": "18514735b38f92d690c897b693807d2330e29683",
-        "componentSetName": "Modal 模态窗口 ⚫️",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiDialog"
-      },
-      "030ec146f20923af4a634c13d5ebb52cb91129b7": {
-        "componentSetKey": "dad80587c06688b44683e527f1a6e9e4a8d0a04e",
-        "componentSetName": "Notification",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "fa80a16fe312480d85e0f42a0487e44f962fa128": {
-        "componentSetKey": "dad80587c06688b44683e527f1a6e9e4a8d0a04e",
-        "componentSetName": "Notification",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "fa012f0ebfeb403daf329211ca35246f41a93487": {
-        "componentSetKey": "dad80587c06688b44683e527f1a6e9e4a8d0a04e",
-        "componentSetName": "Notification",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "90c2dd11ec2135c7c3de59c7efc77382a56d87d2": {
-        "componentSetKey": "3f6e35098a00a4c8de07a13cacbe08d19887e906",
-        "componentSetName": "Alert",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "f4d2ed642cd5f0375ab503fdb1db59826de5d516": {
-        "componentSetKey": "3f6e35098a00a4c8de07a13cacbe08d19887e906",
-        "componentSetName": "Alert",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "480924288a59c4226d9ea1d0befdf932b4127d0a": {
-        "componentSetKey": "c93c96eacadd729ad3a585361dcb168063c1ba90",
-        "componentSetName": "Table",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTable"
-      },
-      "17b8948e6968a6b6ad46481f55baabe246abbb63": {
-        "componentSetKey": "c93c96eacadd729ad3a585361dcb168063c1ba90",
-        "componentSetName": "Table",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTable"
-      },
-      "708d5e39201e8b19a0f342fce70ec3e221ca58ff": {
-        "componentSetKey": "93e91b0aaefe583a560e92aaf5e4caf60e206018",
-        "componentSetName": "Basic Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "db13dc6a862f847bbc406b16590771d6ccf37ef3": {
-        "componentSetKey": "93e91b0aaefe583a560e92aaf5e4caf60e206018",
-        "componentSetName": "Basic Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "cb1a163c0fc3e45fd4e17f313c7a669258e85d35": {
-        "componentSetKey": "93e91b0aaefe583a560e92aaf5e4caf60e206018",
-        "componentSetName": "Basic Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "c4e2300a0dbe73d3418b3db97519df6230f615a3": {
-        "componentSetKey": "913766cf16055ab1fdf2cdaa9074cc7adc4eb772",
-        "componentSetName": "Closable Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "8d00f3ddb5efcebcc2e518d48f01c6480e8a8085": {
-        "componentSetKey": "913766cf16055ab1fdf2cdaa9074cc7adc4eb772",
-        "componentSetName": "Closable Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "26d34f32fe81bfde22942cc8ed7016a863b58fbe": {
-        "componentSetKey": "913766cf16055ab1fdf2cdaa9074cc7adc4eb772",
-        "componentSetName": "Closable Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "271c3dbb6451bc8c019c4dc1409641f0613e83c6": {
-        "componentSetKey": "c373c14b0cd6ce7fc617f3728e01fb503a890e72",
-        "componentSetName": "Tabs with Badges",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "cf7e00860571359fcb4c2f3b469d9e18adbb5a3e": {
-        "componentSetKey": "c373c14b0cd6ce7fc617f3728e01fb503a890e72",
-        "componentSetName": "Tabs with Badges",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "a496cbe2fca54cdc7a88b76a634a6666bc67a301": {
-        "componentSetKey": "c373c14b0cd6ce7fc617f3728e01fb503a890e72",
-        "componentSetName": "Tabs with Badges",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "a5f9e72227faba4821211d07a77f85678e1fc1b3": {
-        "componentSetKey": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "c70dc674a9de1e3f809726bbf59e5dd93c585105": {
-        "componentSetKey": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "207aa090794570a9a0f7de54987e833963c1086d": {
-        "componentSetKey": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "0aba6ea187ff1e7a581d85f253a83c6e25170955": {
-        "componentSetKey": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "95cde7b764cbf05ee85a4ba1c8e5dac5d5ea03ec": {
-        "componentSetKey": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "f64cafbd8566cfd269df897e988e5209c0d4e394": {
-        "componentSetKey": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "f5cefed602dee82b8155f9521fa44208cf3be0c1": {
-        "componentSetKey": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "75bc5f56449982870381f06b788a1be673277843": {
-        "componentSetKey": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "4c5c60e15c906e38d32e97f15482449f3d731e2b": {
-        "componentSetKey": "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "d3d03334e150cda11f14c8e8539b7ea75d08aee2": {
-        "componentSetKey": "34ecc3938af39ba6762e6c665a71338e03bee55b",
-        "componentSetName": "Flow Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "0995fcf396eb2e963f4aae82c055b53f2088ffe9": {
-        "componentSetKey": "34ecc3938af39ba6762e6c665a71338e03bee55b",
-        "componentSetName": "Flow Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "c80d50b5fe0302f41bb7c4dd05d1762cd68ac933": {
-        "componentSetKey": "34ecc3938af39ba6762e6c665a71338e03bee55b",
-        "componentSetName": "Flow Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "486694528ac40adfa42a67f600c84be57b55da38": {
-        "componentSetKey": "a70ee9a2b1d61d084d51152776d0c27240e7d36e",
-        "componentSetName": "Flow Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "d2ab603b36118d633c5b2f94ab69063ab3c1d4ce": {
-        "componentSetKey": "a70ee9a2b1d61d084d51152776d0c27240e7d36e",
-        "componentSetName": "Flow Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "264d859c85dfa598008b71dc77981d7ead4d1826": {
-        "componentSetKey": "a70ee9a2b1d61d084d51152776d0c27240e7d36e",
-        "componentSetName": "Flow Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "e1e5e73141a81272954169697166156d3f4fd01b": {
-        "componentSetKey": "68f197a6a376c1ec9687cc88cf96d57e45265414",
-        "componentSetName": "Capsule Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "99d123bd1d8c4805da2d5b6b457a935070f82bf1": {
-        "componentSetKey": "68f197a6a376c1ec9687cc88cf96d57e45265414",
-        "componentSetName": "Capsule Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "d003a97801c9d13e8c663687ab6c05bd527067b6": {
-        "componentSetKey": "68f197a6a376c1ec9687cc88cf96d57e45265414",
-        "componentSetName": "Capsule Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "460132684dac60eaaadf777cd1baef0bba605e97": {
-        "componentSetKey": "fda31414647540d540129010c437843c0dcc41a3",
-        "componentSetName": "Capsule Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "6428560d4726990608637bb96fdc576d832f602d": {
-        "componentSetKey": "fda31414647540d540129010c437843c0dcc41a3",
-        "componentSetName": "Capsule Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "ab11ace3e2ef401428746a005a88c19e640ab5d3": {
-        "componentSetKey": "fda31414647540d540129010c437843c0dcc41a3",
-        "componentSetName": "Capsule Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "89ad6ad305579bd3077ad5ccab50562f1a89db37": {
-        "componentSetKey": "43a725240c07270d2cc8da0d48427e98404f1140",
-        "componentSetName": "Basic Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "6893959faa7adfcbeecdb20d7c33d3dfd3efc594": {
-        "componentSetKey": "43a725240c07270d2cc8da0d48427e98404f1140",
-        "componentSetName": "Basic Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "78c57d2dae7cccc0a21256e6d93b213aed9d86c1": {
-        "componentSetKey": "43a725240c07270d2cc8da0d48427e98404f1140",
-        "componentSetName": "Basic Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "c6f6b2fd1d9deaf66ac6bc9bbd3bde772e5bfa2f": {
-        "componentSetKey": "e9246128dcf9cf81e444a12ec05006a903b2b6d2",
-        "componentSetName": "Closable Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "aa077a4ebb889c7d9035fa6c108b8415b085a356": {
-        "componentSetKey": "e9246128dcf9cf81e444a12ec05006a903b2b6d2",
-        "componentSetName": "Closable Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "84a444641cd5413e09d4303d9111263ce6f548ba": {
-        "componentSetKey": "e9246128dcf9cf81e444a12ec05006a903b2b6d2",
-        "componentSetName": "Closable Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "3305efddb62e3335b13a57a7dfa41f105b01f76c": {
-        "componentSetKey": "2be79106c3667ffb1e9aa12677b0e380d98b3d1d",
-        "componentSetName": "Tabs with Badges",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "95d4a9f5320cedf0543b17bcea77bec2462e0e84": {
-        "componentSetKey": "2be79106c3667ffb1e9aa12677b0e380d98b3d1d",
-        "componentSetName": "Tabs with Badges",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "37ff2a909cdde0f036fc501fb85cb3a172bc4c80": {
-        "componentSetKey": "2be79106c3667ffb1e9aa12677b0e380d98b3d1d",
-        "componentSetName": "Tabs with Badges",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "7c078dccbbbf96be636ea30ab9ee6d18de58563f": {
-        "componentSetKey": "6f6707d3d3f7f875279b866162cf08df0c660687",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "5cd531775fbeed2cf1b7d83533220acf43e8471e": {
-        "componentSetKey": "6f6707d3d3f7f875279b866162cf08df0c660687",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "36a5c2f6a3ad0221f9a04231e1d253df8c57a53a": {
-        "componentSetKey": "6f6707d3d3f7f875279b866162cf08df0c660687",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "e13f81545ec3ac2200a207e5f9c83828abc6fe0a": {
-        "componentSetKey": "6f6707d3d3f7f875279b866162cf08df0c660687",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "d8fdf8151938fed025f677ccc85556adf2d2e843": {
-        "componentSetKey": "6f6707d3d3f7f875279b866162cf08df0c660687",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "61fdd92f5fa164fdcac2a958a4c9961230979bcc": {
-        "componentSetKey": "6f6707d3d3f7f875279b866162cf08df0c660687",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "df967747d4aeaeab2b87e1b66d469f1d091dac2b": {
-        "componentSetKey": "6f6707d3d3f7f875279b866162cf08df0c660687",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "93e83f4c6d8fcfe2aa36b0c89b577f4b76c898f6": {
-        "componentSetKey": "6f6707d3d3f7f875279b866162cf08df0c660687",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "6d91f987147785c975b9560c21e1d066112c7fa3": {
-        "componentSetKey": "6f6707d3d3f7f875279b866162cf08df0c660687",
-        "componentSetName": "Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "b8716a494a37e14a2d7f2e50c75c426e9a61c980": {
-        "componentSetKey": "7d9f99723e2115477d2758304c23870269423346",
-        "componentSetName": "Flow Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "44478fe69fb575fe34ec84fcdff5f57b1ea6c98a": {
-        "componentSetKey": "7d9f99723e2115477d2758304c23870269423346",
-        "componentSetName": "Flow Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "054ea0345ac53c5aedc4a625321f1c7f17ed76d5": {
-        "componentSetKey": "7d9f99723e2115477d2758304c23870269423346",
-        "componentSetName": "Flow Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "799d346c7400fb61ab99e63330049e76bd026ecd": {
-        "componentSetKey": "82d14b691e35bcf20fb76e2ff72d986c77b13bf6",
-        "componentSetName": "Flow Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "c991f0179647de4deb604c8402d83407df99965f": {
-        "componentSetKey": "82d14b691e35bcf20fb76e2ff72d986c77b13bf6",
-        "componentSetName": "Flow Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "a417209da35a7494723844b2e2bf3ae1617f6a07": {
-        "componentSetKey": "82d14b691e35bcf20fb76e2ff72d986c77b13bf6",
-        "componentSetName": "Flow Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "cd57404001aa6454b5ee855244827eeb2c05743f": {
-        "componentSetKey": "9e6f402f39aff47bc1e76eb6ce0a5a1ea2cda52d",
-        "componentSetName": "Capsule Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "95a1d3145672668e2911497582bc1b5a82ba6100": {
-        "componentSetKey": "9e6f402f39aff47bc1e76eb6ce0a5a1ea2cda52d",
-        "componentSetName": "Capsule Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "8c3ccb3a34164349099e93dc2edf140df2b3c24a": {
-        "componentSetKey": "9e6f402f39aff47bc1e76eb6ce0a5a1ea2cda52d",
-        "componentSetName": "Capsule Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "7047ca5862cf5f5ef7b8b15f2d4c0c7281ebc065": {
-        "componentSetKey": "8e5d2f56b6529a011b797ba455b57b0635a9545c",
-        "componentSetName": "Capsule Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "7999271c43698ead40dae4ff693c00f6b3b7fcb4": {
-        "componentSetKey": "8e5d2f56b6529a011b797ba455b57b0635a9545c",
-        "componentSetName": "Capsule Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "f0b8eee2580ffbf3adb92b7d90e43dba5ff48fe4": {
-        "componentSetKey": "8e5d2f56b6529a011b797ba455b57b0635a9545c",
-        "componentSetName": "Capsule Tabs",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiTabs"
-      },
-      "8fc6afa89ccdb4ffccd1956e25aa3abf76f04a73": {
-        "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
-        "componentSetName": "Tag-不带点的",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-tag"
-      },
-      "a38d61591de77a7af8a7e3364ee7293a048f97d2": {
-        "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
-        "componentSetName": "Tag-不带点的",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-tag"
-      },
-      "5d3cafadf5abec56ce34d2fbc6b8c72034186664": {
-        "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
-        "componentSetName": "Tag-不带点的",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-tag"
-      },
-      "31843047ca74b8251f153e8bf48da35ac85fdd7b": {
-        "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
-        "componentSetName": "Tag-不带点的",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-tag"
-      },
-      "4732a7ebd7065ba1794bb32c018fa77a2cc32290": {
-        "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
-        "componentSetName": "Tag-不带点的",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-tag"
-      },
-      "0609226f83594f3612ad89501718a442fd4f5c2c": {
-        "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
-        "componentSetName": "Tag-不带点的",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-tag"
-      },
-      "d582142c1f07a4f03329aa8bcf1766545561e404": {
-        "componentSetKey": "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3",
-        "componentSetName": "Tooltip",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-tooltip"
-      },
-      "c24420630ea5e5a921a579f1b321368b89b72236": {
-        "componentSetKey": "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3",
-        "componentSetName": "Tooltip",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-tooltip"
-      },
-      "7d1423d5afc01a54f8fd37ea1551fb62645593b3": {
-        "componentSetKey": "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3",
-        "componentSetName": "Tooltip",
-        "status": "mapped-via-component-set",
-        "targetComponent": "el-tooltip"
-      },
-      "7bea30b78e6ea1a46452365a37f81b8f1a9c7323": {
-        "componentSetKey": "e55eba2acab126c8fa2419b72d7fc918fe9f56df",
-        "componentSetName": "翻页页码",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "0ffe32fbcd0d6b9b87af6ec9a6e2e4e32392ef86": {
-        "componentSetKey": "e55eba2acab126c8fa2419b72d7fc918fe9f56df",
-        "componentSetName": "翻页页码",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "712f92ce6ef19636d7165f6330aac90b73aff6ff": {
-        "componentSetKey": "e55eba2acab126c8fa2419b72d7fc918fe9f56df",
-        "componentSetName": "翻页页码",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "848d21f6238fab9c1ba24f457fe2b6deaac6fc32": {
-        "componentSetKey": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
-        "componentSetName": "翻页箭头",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "f3544be97d5ed056877e22bc23de6e5dfcdc7995": {
-        "componentSetKey": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
-        "componentSetName": "翻页箭头",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "164649c3e56a640deecf32058e8d535f9ae52f89": {
-        "componentSetKey": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
-        "componentSetName": "翻页箭头",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "0a3dc45d5c638912abc13cb193bedc7de8b11849": {
-        "componentSetKey": "24e7ea9129cf4429e9982bae84a4b7721d7e65d7",
-        "componentSetName": "翻页箭头",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "67307a8b3b8e53deab6cf9fb873e6b906c540a6b": {
-        "componentSetKey": "aa2622af00f5a4e76e97bb3a969903fb3aa0a674",
-        "componentSetName": "Pagination",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "619d54ae880e3602c7c14941f7897c825c23b6e7": {
-        "componentSetKey": "aa2622af00f5a4e76e97bb3a969903fb3aa0a674",
-        "componentSetName": "Pagination",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "e49350fa3531b98d0b9beb42778dfc47f9a5f462": {
-        "componentSetKey": "aa2622af00f5a4e76e97bb3a969903fb3aa0a674",
-        "componentSetName": "Pagination",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "adcc00becb9e384e16e6e2ee4c563b4b19010c6a": {
-        "componentSetKey": "2ca7d7c5a6b76d4d39459a1d0de7baff865271d0",
-        "componentSetName": "Component",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "4b138abbcd75c7034ed2489f536f6ff46f975919": {
-        "componentSetKey": "2ca7d7c5a6b76d4d39459a1d0de7baff865271d0",
-        "componentSetName": "Component",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "23bbcd9f3dbc82d1a0b18fd6980e181278fc1239": {
-        "componentSetKey": "2ca7d7c5a6b76d4d39459a1d0de7baff865271d0",
-        "componentSetName": "Component",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "27207e39af1055a3386d96d0a158ef42d7a9f1ea": {
-        "componentSetKey": "2ca7d7c5a6b76d4d39459a1d0de7baff865271d0",
-        "componentSetName": "Component",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "d9fe2c3f41bb56ed414397f05ae324dc434ebf9e": {
-        "componentSetKey": "2ca7d7c5a6b76d4d39459a1d0de7baff865271d0",
-        "componentSetName": "Component",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "defd2e79f0de4cff72893693679d34fbf6d893d9": {
-        "componentSetKey": "6078553029b184e24cec87de1e17cd8ab7830ece",
-        "componentSetName": "Component",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "1deb5d48b67014380079466cff101935eb66da1b": {
-        "componentSetKey": "6078553029b184e24cec87de1e17cd8ab7830ece",
-        "componentSetName": "Component",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "490a7aa85dabd7a4e752bf29a8b134045a4af2af": {
-        "componentSetKey": "6078553029b184e24cec87de1e17cd8ab7830ece",
-        "componentSetName": "Component",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "6216b97d5bb13e28a263a1f426c140efe7aff144": {
-        "componentSetKey": "6078553029b184e24cec87de1e17cd8ab7830ece",
-        "componentSetName": "Component",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "ee852e52a9700958512e26fc780885476cee9591": {
-        "componentSetKey": "6078553029b184e24cec87de1e17cd8ab7830ece",
-        "componentSetName": "Component",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "b63a220617258129d9f49e079cecf0bf8cd1e553": {
-        "componentSetKey": "a1fa72a9e1a2ae6347379609323bdcf69e264a82",
-        "componentSetName": "Step Number",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "4f9d54be1ad5fa6721914bd2231b8ae53a99aadd": {
-        "componentSetKey": "a1fa72a9e1a2ae6347379609323bdcf69e264a82",
-        "componentSetName": "Step Number",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "7e2f06b78bafe0652bc76180b5796a9bbc297a23": {
-        "componentSetKey": "a1fa72a9e1a2ae6347379609323bdcf69e264a82",
-        "componentSetName": "Step Number",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "db7b3c7f23d0489f5cd678ea0ec6763ad5e6eb00": {
-        "componentSetKey": "b247f577343de9f7cb6a9556dff59249db2c9052",
-        "componentSetName": "Step Line",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "b3ad281521550d360615a9f19e61d4bd214e73e1": {
-        "componentSetKey": "b247f577343de9f7cb6a9556dff59249db2c9052",
-        "componentSetName": "Step Line",
-        "status": "unresolved",
-        "targetComponent": null
-      },
-      "792e7a08c357db3d1299d2a75c2471f069b9555c": {
-        "componentSetKey": "a22bc6b0cb5b4695c1de6f3792c07df6066087c2",
-        "componentSetName": "Step Bar",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiSteps"
-      },
-      "93329fa20356cbd70cde340f89c52eb92f069440": {
-        "componentSetKey": "a22bc6b0cb5b4695c1de6f3792c07df6066087c2",
-        "componentSetName": "Step Bar",
-        "status": "mapped-via-component-set",
-        "targetComponent": "TiSteps"
-      }
+    "983d5a325f396644ac13d79f62689ee147fce755": {
+      "figma": {
+        "id": "17341:4542",
+        "key": "983d5a325f396644ac13d79f62689ee147fce755",
+        "name": "日历",
+        "type": "COMPONENT",
+        "page": "↳ Date-picker 日期选择器 🔵",
+        "path": "      ↳ Date-picker 日期选择器 🔵 / 日历"
+      },
+      "status": "unresolved",
+      "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma loose component. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
+      "variantToPropsStatus": "not-generated"
     },
-    "componentSetNameIndex": {
-      "Button": [
-        "9b37f9a8947d9dbffe82ce962e4b3161a6c200d4",
-        "a9efaa51fbcf5f081f8e524a79ef7a7769daf913"
-      ],
-      "others": [
-        "e0ba1401c82a6a3c0733f89f3c2c940df3087159"
-      ],
-      "Link": [
-        "38967d429e5a8bb92642eb82a3728cadb5b30c65"
-      ],
-      "radio": [
-        "4b8bc4cde40aeb3f793354e60187b8c2f7505374"
-      ],
-      "radio+描述": [
-        "2280f2a74a7b9092009ed895b02c5e7e07e4b0b9"
-      ],
-      "radio组合使用": [
-        "bb7eb4ddb5c046fc64658866f74295c6d064baee"
-      ],
-      "Checkbox": [
-        "b1a56b730653f2353dc31bb6946ae509f606c1cb"
-      ],
-      "Checkbox+描述": [
-        "fdf21eb28715f782b896afde003fe1d6411267b3"
-      ],
-      "Checkbox 组合使用": [
-        "42e3037b9a16b22e32856f959142455073fe7c4c"
-      ],
-      "Input": [
-        "3ea0d93cc2e65b3eca77767859eb223e89281ef1"
-      ],
-      "Search 搜索框": [
-        "c262fc29c06bd614beaa0dfa1504056ddef532aa"
-      ],
-      "TextArea": [
-        "d1c2364544efa777d03ace20bbb94861d8a0cf07"
-      ],
-      "Select ": [
-        "4317bbdc187251309e4ec4f252a2935741efe54b"
-      ],
-      "Select_Multi": [
-        "f38d6172a93af1008e5540016f4dcb9ef9430684"
-      ],
-      "Select_Tag": [
-        "c2b8c36bcfb028b625203efb63e6f8b229d17cec"
-      ],
-      "Dropdown": [
-        "0ec224f6e82c2203d5d4afe281466ec35e0a44e2"
-      ],
-      "Dropdownex": [
-        "214141bfeb16780c10937552b2459e6d1d5cf443"
-      ],
-      "多选下拉框": [
-        "ab643c1d030160034fee4cb00f3edce746160b26"
-      ],
-      "多选下拉选择器": [
-        "ed6b212830177a302f76fa552af30e07a248747b"
-      ],
-      "多选下拉框-带滚动条": [
-        "48f7fd3018b3a13a51cfca33e0bda16cfff954a6"
-      ],
-      "带标题的下拉多选": [
-        "248138185f0d744b34e7a2b5ba46993c5b8e2a07"
-      ],
-      "带搜索功能的下拉": [
-        "f8d7314d3105cb1408ea9c5158dde7fdd220aba1"
-      ],
-      "Transfer": [
-        "9eae6ee156cefd39971b7b0ec13f56891388b7ea"
-      ],
-      "开关": [
-        "228a73ca49a6f9c054ad950877551dc8647ad670"
-      ],
-      "滚动条": [
-        "65986f1004a458f9fa31d14877b5b700f170fc88"
-      ],
-      "Date-picker": [
-        "1980089e0abd9e0831939d15dad5f16214473786"
-      ],
-      "文件上传器-一排一个": [
-        "0bb0f125019ac41d66bdb0f1900c0a450eff782c"
-      ],
-      "文件上传器-一排两个": [
-        "47b3b8d42458965afbdc6ef9f02e65224086701f"
-      ],
-      "Modal 模态窗口 ⚫️": [
-        "18514735b38f92d690c897b693807d2330e29683"
-      ],
-      "Notification": [
-        "dad80587c06688b44683e527f1a6e9e4a8d0a04e"
-      ],
-      "Alert": [
-        "3f6e35098a00a4c8de07a13cacbe08d19887e906"
-      ],
-      "Table": [
-        "c93c96eacadd729ad3a585361dcb168063c1ba90"
-      ],
-      "Basic Tabs": [
-        "93e91b0aaefe583a560e92aaf5e4caf60e206018",
-        "43a725240c07270d2cc8da0d48427e98404f1140"
-      ],
-      "Closable Tabs": [
-        "913766cf16055ab1fdf2cdaa9074cc7adc4eb772",
-        "e9246128dcf9cf81e444a12ec05006a903b2b6d2"
-      ],
-      "Tabs with Badges": [
-        "c373c14b0cd6ce7fc617f3728e01fb503a890e72",
-        "2be79106c3667ffb1e9aa12677b0e380d98b3d1d"
-      ],
-      "Tabs": [
-        "ecd49ef0b64bf0a03ba51963bacdd812bc8d3748",
-        "6f6707d3d3f7f875279b866162cf08df0c660687"
-      ],
-      "Flow Tabs": [
-        "34ecc3938af39ba6762e6c665a71338e03bee55b",
-        "a70ee9a2b1d61d084d51152776d0c27240e7d36e",
-        "7d9f99723e2115477d2758304c23870269423346",
-        "82d14b691e35bcf20fb76e2ff72d986c77b13bf6"
-      ],
-      "Capsule Tabs": [
-        "68f197a6a376c1ec9687cc88cf96d57e45265414",
-        "fda31414647540d540129010c437843c0dcc41a3",
-        "9e6f402f39aff47bc1e76eb6ce0a5a1ea2cda52d",
-        "8e5d2f56b6529a011b797ba455b57b0635a9545c"
-      ],
-      "Tag-不带点的": [
-        "54b9dd6a1f7f627de94bb09adce298ef84ea81b0"
-      ],
-      "Tooltip": [
-        "a2459ff8bf0cdb6812092a6ad6612e97b551a0a3"
-      ],
-      "翻页页码": [
-        "e55eba2acab126c8fa2419b72d7fc918fe9f56df"
-      ],
-      "翻页箭头": [
-        "24e7ea9129cf4429e9982bae84a4b7721d7e65d7"
-      ],
-      "Pagination": [
-        "aa2622af00f5a4e76e97bb3a969903fb3aa0a674"
-      ],
-      "Component": [
-        "2ca7d7c5a6b76d4d39459a1d0de7baff865271d0",
-        "6078553029b184e24cec87de1e17cd8ab7830ece"
-      ],
-      "Step Number": [
-        "a1fa72a9e1a2ae6347379609323bdcf69e264a82"
-      ],
-      "Step Line": [
-        "b247f577343de9f7cb6a9556dff59249db2c9052"
-      ],
-      "Step Bar": [
-        "a22bc6b0cb5b4695c1de6f3792c07df6066087c2"
-      ]
+    "f0f1229bc1796925fe334b68ba9b117c275698cd": {
+      "figma": {
+        "id": "16998:8007",
+        "key": "f0f1229bc1796925fe334b68ba9b117c275698cd",
+        "name": "Step Bar",
+        "type": "COMPONENT",
+        "page": "↳ Nav.Menu 顶部导航菜单 🔵",
+        "path": "      ↳ Nav.Menu 顶部导航菜单 🔵 / Step Bar"
+      },
+      "status": "unresolved",
+      "reason": "Generated from Figma registry export; mapping not reviewed yet."
     },
-    "looseComponentNameIndex": {
-      "日历": [
-        "983d5a325f396644ac13d79f62689ee147fce755"
-      ],
-      "Nav-二层级": [
-        "c69e17885f95c89dda96041db987f7ff1f1dd1f4",
-        "7b3ae393e829f04cde7d6e5cb0bd40160da06b9b"
-      ],
-      "Divider": [
-        "8f1a6fd566ca7a42c17d996a62ed7fe33d08fc32"
-      ],
-      "Tree": [
-        "fdf21c7683083e910de38ccad1d982ce191a7165"
-      ],
-      "Select-tree": [
-        "f0d140b29d9e2ab8e780c47c959f6531b938f28c"
-      ]
+    "9545259d04300b276a732f5d62ee730231d8d92d": {
+      "figma": {
+        "id": "16998:8008",
+        "key": "9545259d04300b276a732f5d62ee730231d8d92d",
+        "name": "Global Top Navigation",
+        "type": "COMPONENT",
+        "page": "↳ Nav.Menu 顶部导航菜单 🔵",
+        "path": "      ↳ Nav.Menu 顶部导航菜单 🔵 / Global Top Navigation"
+      },
+      "status": "unresolved",
+      "reason": "Generated from Figma registry export; mapping not reviewed yet."
+    },
+    "c69e17885f95c89dda96041db987f7ff1f1dd1f4": {
+      "figma": {
+        "id": "16986:847",
+        "key": "c69e17885f95c89dda96041db987f7ff1f1dd1f4",
+        "name": "Nav-二层级",
+        "type": "COMPONENT",
+        "page": "↳ Side Nav. 左侧菜单 🔵",
+        "path": "      ↳ Side Nav. 左侧菜单 🔵 / Nav-二层级"
+      },
+      "status": "unresolved",
+      "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma loose component. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
+      "variantToPropsStatus": "not-generated"
+    },
+    "7b3ae393e829f04cde7d6e5cb0bd40160da06b9b": {
+      "figma": {
+        "id": "17375:1019",
+        "key": "7b3ae393e829f04cde7d6e5cb0bd40160da06b9b",
+        "name": "Nav-二层级",
+        "type": "COMPONENT",
+        "page": "↳ Side Nav. 左侧菜单 🔵",
+        "path": "      ↳ Side Nav. 左侧菜单 🔵 / Nav-二层级"
+      },
+      "status": "unresolved",
+      "reason": "No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma loose component. Keep unresolved; do not generate a hand-rolled replacement from visuals alone.",
+      "variantToPropsStatus": "not-generated"
     }
   }
 }

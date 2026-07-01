@@ -1,14 +1,16 @@
 import { NextResponse } from 'next/server';
 import { normalizeTargetLibrary } from '@/lib/mapping-constants';
-import { loadComponentMap, mapToViewData, saveComponentMap, updateVariantEntry, type VariantMode } from '@/lib/map-data';
+import { loadComponentMap, mapToViewData, normalizeMapSystem, saveComponentMap, updateVariantEntry, type VariantMode } from '@/lib/map-data';
 
 type PatchBody = {
+  system?: string;
   componentSetKey?: string;
   variantKey?: string;
   mode?: VariantMode;
   target?: {
     library?: string;
     component?: string;
+    props?: Record<string, string>;
   } | null;
 };
 
@@ -33,8 +35,8 @@ export async function PATCH(request: Request) {
     return badRequest('variantKey is required.');
   }
 
-  if (body.mode !== 'inherit' && body.mode !== 'override' && body.mode !== 'unresolved') {
-    return badRequest('mode must be inherit, override, or unresolved.');
+  if (body.mode !== 'inherit' && body.mode !== 'override' && body.mode !== 'unresolved' && body.mode !== 'internal') {
+    return badRequest('mode must be inherit, override, unresolved, or internal.');
   }
 
   if (body.mode === 'override') {
@@ -49,8 +51,9 @@ export async function PATCH(request: Request) {
   }
 
   try {
+    const system = normalizeMapSystem(body.system);
     const library = body.mode === 'override' ? normalizeTargetLibrary(body.target?.library) : null;
-    const map = loadComponentMap();
+    const map = loadComponentMap(system);
     updateVariantEntry({
       map,
       componentSetKey: body.componentSetKey,
@@ -61,12 +64,13 @@ export async function PATCH(request: Request) {
           ? {
               library: library!,
               component: body.target!.component!,
+              props: body.target?.props,
             }
           : null,
     });
-    saveComponentMap(map);
+    saveComponentMap(map, system);
 
-    return NextResponse.json(mapToViewData(map));
+    return NextResponse.json(mapToViewData(map, system));
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Failed to update variant entry.';
     return NextResponse.json({ error: message }, { status: 500 });

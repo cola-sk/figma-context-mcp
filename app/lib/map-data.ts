@@ -2,14 +2,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { normalizeTargetLibrary, type TargetLibrary } from './mapping-constants';
 
-export type MappingStatus = 'mapped' | 'unresolved';
+export type MappingStatus = 'mapped' | 'unresolved' | 'internal';
 export type MappingKind = 'component-set' | 'loose-component';
-export type VariantMode = 'inherit' | 'override' | 'unresolved';
+export type VariantMode = 'inherit' | 'override' | 'unresolved' | 'internal';
+export type MapSystem = 'd' | 'b';
 type VariantStatus = 'mapped-via-component-set' | 'mapped-override' | 'unresolved';
 
 type Target = {
   library?: string;
   component?: string;
+  props?: Record<string, string>;
   docs?: string | null;
   fallbackReason?: string;
   evidence?: string[];
@@ -78,6 +80,11 @@ export type ComponentMap = {
   looseComponents: Record<string, LooseComponentEntry>;
 };
 
+export const mapSystems: Array<{ id: MapSystem; label: string; mapFile: string }> = [
+  { id: 'd', label: 'D 端', mapFile: 'd-figma-component-key-map.json' },
+  { id: 'b', label: 'B 端', mapFile: 'b-figma-component-key-map.json' },
+];
+
 export type MapRow = {
   rowId: string;
   kind: MappingKind;
@@ -88,6 +95,7 @@ export type MapRow = {
   status: MappingStatus;
   targetLibrary: string;
   targetComponent: string;
+  targetProps: Record<string, string>;
   reason: string;
   evidence: string[];
   variantCount: number;
@@ -103,11 +111,15 @@ export type MapVariant = {
   mode: VariantMode;
   targetLibrary: string;
   targetComponent: string;
+  targetProps: Record<string, string>;
   reason: string;
   variantProperties: Record<string, string>;
 };
 
 export type MapViewData = {
+  system: MapSystem;
+  systemLabel: string;
+  mapFile: string;
   schemaVersion: string;
   generatedAt?: string;
   stats: Record<string, number>;
@@ -116,8 +128,16 @@ export type MapViewData = {
   targetComponents: string[];
 };
 
-export function getMapPath() {
-  return path.resolve(process.cwd(), '../assets/mappings/figma-component-key-map.json');
+export function normalizeMapSystem(value: unknown): MapSystem {
+  return value === 'b' ? 'b' : 'd';
+}
+
+export function getMapSystemMeta(system: MapSystem) {
+  return mapSystems.find((item) => item.id === system) ?? mapSystems[0];
+}
+
+export function getMapPath(system: MapSystem = 'd') {
+  return path.resolve(process.cwd(), `../assets/mappings/${getMapSystemMeta(system).mapFile}`);
 }
 
 function asText(value: unknown, fallback = '-') {
@@ -130,22 +150,31 @@ function targetLabel(target: Target, field: 'library' | 'component') {
   return target[field];
 }
 
+function targetProps(target: Target): Record<string, string> {
+  if (!target || typeof target.props !== 'object' || !target.props) return {};
+  return target.props;
+}
+
 function optionalTargetLabel(target: Target | undefined, field: 'library' | 'component') {
   return targetLabel(target ?? null, field);
+}
+
+function optionalTargetProps(target: Target | undefined): Record<string, string> {
+  return targetProps(target ?? null);
 }
 
 function getEvidence(target: Target) {
   return target && Array.isArray(target.evidence) ? target.evidence.filter((item): item is string => typeof item === 'string') : [];
 }
 
-export function loadComponentMap(): ComponentMap {
-  const mapPath = getMapPath();
+export function loadComponentMap(system: MapSystem = 'd'): ComponentMap {
+  const mapPath = getMapPath(system);
   const raw = fs.readFileSync(mapPath, 'utf8');
   return JSON.parse(raw) as ComponentMap;
 }
 
-export function saveComponentMap(map: ComponentMap) {
-  fs.writeFileSync(getMapPath(), `${JSON.stringify(map, null, 2)}\n`, 'utf8');
+export function saveComponentMap(map: ComponentMap, system: MapSystem = 'd') {
+  fs.writeFileSync(getMapPath(system), `${JSON.stringify(map, null, 2)}\n`, 'utf8');
 }
 
 function getVariantCount(entry: ComponentSetEntry) {
@@ -155,12 +184,13 @@ function getVariantCount(entry: ComponentSetEntry) {
 function getVariantMode(variant: ComponentVariantEntry): VariantMode {
   if (variant.status === 'mapped-override') return 'override';
   if (variant.status === 'unresolved') return 'unresolved';
+  if (variant.status === 'internal') return 'internal';
   return 'inherit';
 }
 
 function isVariantMapped(variant: ComponentVariantEntry, componentSet: ComponentSetEntry) {
   if (variant.status === 'mapped-override') return Boolean(optionalTargetLabel(variant.target, 'component') !== '-');
-  if (variant.status === 'unresolved') return false;
+  if (variant.status === 'unresolved' || variant.status === 'internal') return false;
   return componentSet.status === 'mapped';
 }
 
@@ -171,6 +201,10 @@ function recomputeStats(map: ComponentMap) {
     (total, entry) => total + Object.values(entry.components || {}).filter((variant) => isVariantMapped(variant, entry)).length,
     0,
   );
+  const internalComponentCount = componentSets.reduce(
+    (total, entry) => total + Object.values(entry.components || {}).filter((variant) => variant.status === 'internal').length,
+    0,
+  );
   const componentVariantCount = componentSets.reduce((total, entry) => total + getVariantCount(entry), 0);
 
   map.stats = {
@@ -178,11 +212,14 @@ function recomputeStats(map: ComponentMap) {
     componentSetCount: componentSets.length,
     mappedComponentSetCount: componentSets.filter((entry) => entry.status === 'mapped').length,
     unresolvedComponentSetCount: componentSets.filter((entry) => entry.status === 'unresolved').length,
+    internalComponentSetCount: componentSets.filter((entry) => entry.status === 'internal').length,
     looseComponentCount: looseComponents.length,
     mappedLooseComponentCount: looseComponents.filter((entry) => entry.status === 'mapped').length,
     unresolvedLooseComponentCount: looseComponents.filter((entry) => entry.status === 'unresolved').length,
+    internalLooseComponentCount: looseComponents.filter((entry) => entry.status === 'internal').length,
     mappedComponentCount,
-    unresolvedComponentCount: componentVariantCount - mappedComponentCount,
+    internalComponentCount,
+    unresolvedComponentCount: componentVariantCount - mappedComponentCount - internalComponentCount,
     componentVariantCount,
     totalExportedComponentCount: componentVariantCount + looseComponents.length,
   };
@@ -199,7 +236,7 @@ export function updateMapEntry({
   kind: MappingKind;
   key: string;
   status: MappingStatus;
-  target?: { library: TargetLibrary; component: string } | null;
+  target?: { library: TargetLibrary; component: string; props?: Record<string, string> } | null;
 }) {
   const entry = kind === 'component-set' ? map.componentSets?.[key] : map.looseComponents?.[key];
   if (!entry) {
@@ -215,6 +252,7 @@ export function updateMapEntry({
     entry.target = {
       library: target.library,
       component: target.component.trim(),
+      props: target.props && Object.keys(target.props).length > 0 ? target.props : undefined,
       docs: null,
       evidence: ['Manual mapping saved in Component Map Viewer.'],
     };
@@ -228,6 +266,22 @@ export function updateMapEntry({
           status: 'mapped-via-component-set',
           targetRef: `componentSets.${key}.target`,
           reason: 'Concrete variant inherits the manually saved component-set mapping.',
+        });
+      });
+    }
+  } else if (status === 'internal') {
+    entry.status = 'internal';
+    entry.target = null;
+    entry.reason = 'Marked as internal subcomponent manually in Component Map Viewer.';
+
+    if (kind === 'component-set') {
+      const componentSet = entry as ComponentSetEntry;
+      Object.values(componentSet.components || {}).forEach((component) => {
+        if (component.status === 'mapped-override') return;
+        Object.assign(component, {
+          status: 'internal',
+          targetRef: null,
+          reason: 'Parent component set was marked as internal subcomponent manually.',
         });
       });
     }
@@ -263,7 +317,7 @@ export function updateVariantEntry({
   componentSetKey: string;
   variantKey: string;
   mode: VariantMode;
-  target?: { library: TargetLibrary; component: string } | null;
+  target?: { library: TargetLibrary; component: string; props?: Record<string, string> } | null;
 }) {
   const componentSet = map.componentSets?.[componentSetKey];
   const variant = componentSet?.components?.[variantKey];
@@ -280,6 +334,7 @@ export function updateVariantEntry({
     variant.target = {
       library: target.library,
       component: target.component.trim(),
+      props: target.props && Object.keys(target.props).length > 0 ? target.props : undefined,
       docs: null,
       evidence: ['Manual variant override saved in Component Map Viewer.'],
     };
@@ -288,11 +343,18 @@ export function updateVariantEntry({
   } else if (mode === 'inherit') {
     delete variant.target;
     variant.targetRef = componentSet.status === 'mapped' ? `componentSets.${componentSetKey}.target` : null;
-    variant.status = componentSet.status === 'mapped' ? 'mapped-via-component-set' : 'unresolved';
+    variant.status = componentSet.status === 'mapped' ? 'mapped-via-component-set' : componentSet.status === 'internal' ? 'internal' : 'unresolved';
     variant.reason =
       componentSet.status === 'mapped'
         ? 'Concrete variant inherits the component-set mapping.'
-        : 'Concrete variant inherits an unresolved component-set mapping.';
+        : componentSet.status === 'internal'
+          ? 'Concrete variant inherits an internal component-set status.'
+          : 'Concrete variant inherits an unresolved component-set mapping.';
+  } else if (mode === 'internal') {
+    variant.status = 'internal';
+    variant.target = null;
+    variant.targetRef = null;
+    variant.reason = 'Marked as internal subcomponent manually in Component Map Viewer.';
   } else {
     variant.status = 'unresolved';
     variant.target = null;
@@ -315,12 +377,14 @@ function mapVariant(variant: ComponentVariantEntry, componentSet: ComponentSetEn
     mode,
     targetLibrary: optionalTargetLabel(target, 'library'),
     targetComponent: optionalTargetLabel(target, 'component'),
+    targetProps: optionalTargetProps(target),
     reason: asText(variant.reason),
     variantProperties: variant.figma.variantProperties ?? {},
   };
 }
 
-export function mapToViewData(parsed: ComponentMap): MapViewData {
+export function mapToViewData(parsed: ComponentMap, system: MapSystem = 'd'): MapViewData {
+  const meta = getMapSystemMeta(system);
   const componentSetRows: MapRow[] = Object.entries(parsed.componentSets || {}).map(([key, entry]) => ({
     rowId: `component-set:${key}`,
     kind: 'component-set',
@@ -331,6 +395,7 @@ export function mapToViewData(parsed: ComponentMap): MapViewData {
     status: entry.status,
     targetLibrary: targetLabel(entry.target, 'library'),
     targetComponent: targetLabel(entry.target, 'component'),
+    targetProps: targetProps(entry.target),
     reason: asText(entry.reason),
     evidence: getEvidence(entry.target),
     variantCount: entry.figma.componentCount ?? Object.keys(entry.components || {}).length,
@@ -348,6 +413,7 @@ export function mapToViewData(parsed: ComponentMap): MapViewData {
     status: entry.status,
     targetLibrary: targetLabel(entry.target, 'library'),
     targetComponent: targetLabel(entry.target, 'component'),
+    targetProps: targetProps(entry.target),
     reason: asText(entry.reason),
     evidence: getEvidence(entry.target),
     variantCount: 1,
@@ -362,6 +428,9 @@ export function mapToViewData(parsed: ComponentMap): MapViewData {
   });
 
   return {
+    system,
+    systemLabel: meta.label,
+    mapFile: meta.mapFile,
     schemaVersion: parsed.schemaVersion,
     generatedAt: parsed.generatedAt,
     stats: parsed.stats,
@@ -377,6 +446,6 @@ export function mapToViewData(parsed: ComponentMap): MapViewData {
   };
 }
 
-export function loadMapViewData(): MapViewData {
-  return mapToViewData(loadComponentMap());
+export function loadMapViewData(system: MapSystem = 'd'): MapViewData {
+  return mapToViewData(loadComponentMap(system), system);
 }

@@ -1,0 +1,241 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "【内部公开版】 Titan Design System",
+    "fileKey": "GwYZpatr4RGoRtPMEFONwk",
+    "currentPage": "Cover",
+    "scope": "page",
+    "page": "      ↳ Link 链接 🔵"
+  },
+  "exportedAt": "2026-07-01T09:58:55.860Z",
+  "stats": {
+    "componentSetCount": 2,
+    "looseComponentCount": 0,
+    "componentCount": 6
+  },
+  "componentSets": [
+    {
+      "id": "10183:711",
+      "key": "f53853de7d124fa2713cce566a790244eb5cb1ab",
+      "name": "Link",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Link 链接 🔵",
+      "path": "      ↳ Link 链接 🔵 / Link",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "disable"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "10183:710",
+          "key": "6083871ff8d95f3a6b91a961da83cbebe1171243",
+          "name": "Property 1=Default",
+          "type": "COMPONENT",
+          "page": "      ↳ Link 链接 🔵",
+          "path": "      ↳ Link 链接 🔵 / Link / Property 1=Default",
+          "componentSetId": "10183:711",
+          "componentSetKey": "f53853de7d124fa2713cce566a790244eb5cb1ab",
+          "componentSetName": "Link",
+          "variantProperties": {
+            "Property 1": "Default"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Default"
+          }
+        },
+        {
+          "id": "10183:709",
+          "key": "80ee99ec5358008429a58f238634032419b8c8e0",
+          "name": "Property 1=Hover",
+          "type": "COMPONENT",
+          "page": "      ↳ Link 链接 🔵",
+          "path": "      ↳ Link 链接 🔵 / Link / Property 1=Hover",
+          "componentSetId": "10183:711",
+          "componentSetKey": "f53853de7d124fa2713cce566a790244eb5cb1ab",
+          "componentSetName": "Link",
+          "variantProperties": {
+            "Property 1": "Hover"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Hover"
+          }
+        },
+        {
+          "id": "14502:768",
+          "key": "ec0e9b66ba4591591f8ea0af78470d1c9a0c458b",
+          "name": "Property 1=disable",
+          "type": "COMPONENT",
+          "page": "      ↳ Link 链接 🔵",
+          "path": "      ↳ Link 链接 🔵 / Link / Property 1=disable",
+          "componentSetId": "10183:711",
+          "componentSetKey": "f53853de7d124fa2713cce566a790244eb5cb1ab",
+          "componentSetName": "Link",
+          "variantProperties": {
+            "Property 1": "disable"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "disable"
+          }
+        }
+      ]
+    },
+    {
+      "id": "14502:773",
+      "key": "62131bf098d5af2080626b4b0bacff9cbdda7e9c",
+      "name": "特殊的",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Link 链接 🔵",
+      "path": "      ↳ Link 链接 🔵 / 特殊的",
+      "componentPropertyDefinitions": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Hover",
+            "disable",
+            "Default"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "14502:770",
+          "key": "758a63623b9d532cad195d7f273a231fd0a61ec8",
+          "name": "Property 1=Default",
+          "type": "COMPONENT",
+          "page": "      ↳ Link 链接 🔵",
+          "path": "      ↳ Link 链接 🔵 / 特殊的 / Property 1=Default",
+          "componentSetId": "14502:773",
+          "componentSetKey": "62131bf098d5af2080626b4b0bacff9cbdda7e9c",
+          "componentSetName": "特殊的",
+          "variantProperties": {
+            "Property 1": "Default"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Default"
+          }
+        },
+        {
+          "id": "14502:772",
+          "key": "767e4e1fd42dc4d772040b2dc32c50ec7f2795bf",
+          "name": "Property 1=disable",
+          "type": "COMPONENT",
+          "page": "      ↳ Link 链接 🔵",
+          "path": "      ↳ Link 链接 🔵 / 特殊的 / Property 1=disable",
+          "componentSetId": "14502:773",
+          "componentSetKey": "62131bf098d5af2080626b4b0bacff9cbdda7e9c",
+          "componentSetName": "特殊的",
+          "variantProperties": {
+            "Property 1": "disable"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "disable"
+          }
+        },
+        {
+          "id": "14502:771",
+          "key": "af47022db9cda54c40cb75f3501a11b754e16c92",
+          "name": "Property 1=Hover",
+          "type": "COMPONENT",
+          "page": "      ↳ Link 链接 🔵",
+          "path": "      ↳ Link 链接 🔵 / 特殊的 / Property 1=Hover",
+          "componentSetId": "14502:773",
+          "componentSetKey": "62131bf098d5af2080626b4b0bacff9cbdda7e9c",
+          "componentSetName": "特殊的",
+          "variantProperties": {
+            "Property 1": "Hover"
+          },
+          "variantPropertiesFromName": {
+            "Property 1": "Hover"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [],
+  "indexes": {
+    "componentSetByKey": {
+      "f53853de7d124fa2713cce566a790244eb5cb1ab": {
+        "id": "10183:711",
+        "name": "Link",
+        "componentKeys": [
+          "6083871ff8d95f3a6b91a961da83cbebe1171243",
+          "80ee99ec5358008429a58f238634032419b8c8e0",
+          "ec0e9b66ba4591591f8ea0af78470d1c9a0c458b"
+        ]
+      },
+      "62131bf098d5af2080626b4b0bacff9cbdda7e9c": {
+        "id": "14502:773",
+        "name": "特殊的",
+        "componentKeys": [
+          "758a63623b9d532cad195d7f273a231fd0a61ec8",
+          "767e4e1fd42dc4d772040b2dc32c50ec7f2795bf",
+          "af47022db9cda54c40cb75f3501a11b754e16c92"
+        ]
+      }
+    },
+    "componentByKey": {
+      "6083871ff8d95f3a6b91a961da83cbebe1171243": {
+        "id": "10183:710",
+        "name": "Property 1=Default",
+        "componentSetKey": "f53853de7d124fa2713cce566a790244eb5cb1ab",
+        "componentSetName": "Link",
+        "variantProperties": {
+          "Property 1": "Default"
+        }
+      },
+      "80ee99ec5358008429a58f238634032419b8c8e0": {
+        "id": "10183:709",
+        "name": "Property 1=Hover",
+        "componentSetKey": "f53853de7d124fa2713cce566a790244eb5cb1ab",
+        "componentSetName": "Link",
+        "variantProperties": {
+          "Property 1": "Hover"
+        }
+      },
+      "ec0e9b66ba4591591f8ea0af78470d1c9a0c458b": {
+        "id": "14502:768",
+        "name": "Property 1=disable",
+        "componentSetKey": "f53853de7d124fa2713cce566a790244eb5cb1ab",
+        "componentSetName": "Link",
+        "variantProperties": {
+          "Property 1": "disable"
+        }
+      },
+      "758a63623b9d532cad195d7f273a231fd0a61ec8": {
+        "id": "14502:770",
+        "name": "Property 1=Default",
+        "componentSetKey": "62131bf098d5af2080626b4b0bacff9cbdda7e9c",
+        "componentSetName": "特殊的",
+        "variantProperties": {
+          "Property 1": "Default"
+        }
+      },
+      "767e4e1fd42dc4d772040b2dc32c50ec7f2795bf": {
+        "id": "14502:772",
+        "name": "Property 1=disable",
+        "componentSetKey": "62131bf098d5af2080626b4b0bacff9cbdda7e9c",
+        "componentSetName": "特殊的",
+        "variantProperties": {
+          "Property 1": "disable"
+        }
+      },
+      "af47022db9cda54c40cb75f3501a11b754e16c92": {
+        "id": "14502:771",
+        "name": "Property 1=Hover",
+        "componentSetKey": "62131bf098d5af2080626b4b0bacff9cbdda7e9c",
+        "componentSetName": "特殊的",
+        "variantProperties": {
+          "Property 1": "Hover"
+        }
+      }
+    }
+  }
+}

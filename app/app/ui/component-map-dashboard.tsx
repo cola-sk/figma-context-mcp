@@ -1,9 +1,9 @@
 'use client';
 
 import { Copy } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { targetLibraries, type TargetLibrary } from '@/lib/mapping-constants';
-import type { MapRow, MapVariant, MapViewData, MappingKind, MappingStatus, VariantMode } from '@/lib/map-data';
+import type { MapRow, MapSystem, MapVariant, MapViewData, MappingKind, MappingStatus, VariantMode } from '@/lib/map-data';
 
 type StatusFilter = 'all' | MappingStatus;
 type KindFilter = 'all' | MappingKind;
@@ -18,6 +18,7 @@ type GroupedRow =
       total: number;
       mapped: number;
       unresolved: number;
+      internal: number;
     }
   | {
       type: 'row';
@@ -28,6 +29,7 @@ const statusLabels: Record<StatusFilter, string> = {
   all: '全部',
   mapped: '已映射',
   unresolved: '未映射',
+  internal: '内部组件',
 };
 
 const kindLabels: Record<KindFilter, string> = {
@@ -52,7 +54,77 @@ const variantModeLabels: Record<VariantMode, string> = {
   inherit: '继承父级',
   override: '单独覆盖',
   unresolved: '未映射',
+  internal: '内部组件',
 };
+
+const systemOptions: Array<{ id: MapSystem; label: string }> = [
+  { id: 'd', label: 'D 端' },
+  { id: 'b', label: 'B 端' },
+];
+
+function PropsEditor({ value, onChange, disabled }: { value: Record<string, string>; onChange: (props: Record<string, string>) => void; disabled?: boolean }) {
+  const [expanded, setExpanded] = useState(Object.keys(value).length > 0);
+  const entries = Object.entries(value);
+
+  function addEntry() {
+    onChange({ ...value, '': '' });
+    setExpanded(true);
+  }
+
+  function updateEntry(index: number, field: 'key' | 'value', text: string) {
+    const next: Record<string, string> = {};
+    entries.forEach(([k, v], i) => {
+      if (i === index) {
+        const entryKey = field === 'key' ? text : k;
+        const entryVal = field === 'value' ? text : v;
+        next[entryKey] = entryVal;
+      } else {
+        next[k] = v;
+      }
+    });
+    onChange(next);
+  }
+
+  function removeEntry(index: number) {
+    const next = { ...value };
+    delete next[entries[index][0]];
+    onChange(next);
+  }
+
+  return (
+    <div className="propsSection">
+      <div className="propsToggleRow">
+        <button type="button" className="propsToggle" disabled={disabled} onClick={() => setExpanded(!expanded)}>
+          <span className={`propsChevron ${expanded ? 'propsChevronOpen' : ''}`}>▶</span>
+          Props {entries.length > 0 ? `(${entries.length})` : ''}
+        </button>
+        {!expanded && !disabled && (
+          <button type="button" className="secondaryButton propsAdd" onClick={addEntry}>
+            + Add prop
+          </button>
+        )}
+      </div>
+      {expanded && (
+        <div className="propsGrid">
+          {entries.map(([k, v], i) => (
+            <div key={`prop-${i}`} className="propsRow">
+              <input disabled={disabled} value={k} placeholder="key" onChange={(e) => updateEntry(i, 'key', e.target.value)} />
+              <input disabled={disabled} value={v} placeholder="value" onChange={(e) => updateEntry(i, 'value', e.target.value)} />
+              <button type="button" className="secondaryButton propsRemove" disabled={disabled} onClick={() => removeEntry(i)}>
+                ×
+              </button>
+            </div>
+          ))}
+          {!disabled && (
+            <button type="button" className="secondaryButton propsAdd" onClick={addEntry}>
+              + Add prop
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function formatDate(value?: string) {
   if (!value) return '-';
@@ -66,7 +138,9 @@ function copyText(value: string) {
 }
 
 function statusClass(status: MappingStatus) {
-  return status === 'mapped' ? 'statusMapped' : 'statusUnresolved';
+  if (status === 'mapped') return 'statusMapped';
+  if (status === 'internal') return 'statusInternal';
+  return 'statusUnresolved';
 }
 
 export function ComponentMapDashboard({ data }: { data: MapViewData }) {
@@ -79,6 +153,24 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
   const [target, setTarget] = useState('all');
   const [query, setQuery] = useState('');
   const [selectedId, setSelectedId] = useState(data.rows[0]?.rowId ?? '');
+  const detailPaneRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    setViewData(data);
+    setSelectedId(data.rows[0]?.rowId ?? '');
+    setStatus('all');
+    setKind('all');
+    setCategory('all');
+    setPage('all');
+    setTarget('all');
+    setQuery('');
+  }, [data]);
+
+  useEffect(() => {
+    if (detailPaneRef.current) {
+      detailPaneRef.current.scrollTop = 0;
+    }
+  }, [selectedId]);
 
   const filteredRows = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -100,6 +192,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
   const selected = filteredRows.find((row) => row.rowId === selectedId) ?? filteredRows[0] ?? viewData.rows[0];
   const mappedRows = viewData.rows.filter((row) => row.status === 'mapped').length;
   const unresolvedRows = viewData.rows.filter((row) => row.status === 'unresolved').length;
+  const internalRows = viewData.rows.filter((row) => row.status === 'internal').length;
   const groupedRows = useMemo<GroupedRow[]>(() => {
     if (groupBy === 'none') {
       return filteredRows.map((row) => ({ type: 'row', row }));
@@ -122,6 +215,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
         total: rows.length,
         mapped: rows.filter((row) => row.status === 'mapped').length,
         unresolved: rows.filter((row) => row.status === 'unresolved').length,
+        internal: rows.filter((row) => row.status === 'internal').length,
       },
       ...rows.map((row) => ({ type: 'row' as const, row })),
     ]);
@@ -133,16 +227,23 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
         <div>
           <h1>Component Map Viewer</h1>
           <p>
-            {viewData.schemaVersion} · generated {formatDate(viewData.generatedAt)}
+            {viewData.systemLabel} · {viewData.schemaVersion} · generated {formatDate(viewData.generatedAt)}
           </p>
         </div>
         <div className="topActions">
+          <div className="systemSwitch" aria-label="component system">
+            {systemOptions.map((option) => (
+              <a key={option.id} className={viewData.system === option.id ? 'active' : ''} href={`?system=${option.id}`}>
+                {option.label}
+              </a>
+            ))}
+          </div>
           <button
             type="button"
             className="iconButton"
             title="Copy map path"
             aria-label="Copy map path"
-            onClick={() => copyText('mappings/figma-component-key-map.json')}
+            onClick={() => copyText(`mappings/${viewData.mapFile}`)}
           >
             <Copy size={16} aria-hidden="true" />
           </button>
@@ -152,9 +253,11 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
       <section className="statsGrid" aria-label="mapping stats">
         <Stat label="Component Sets" value={viewData.stats.componentSetCount} />
         <Stat label="Mapped Sets" value={viewData.stats.mappedComponentSetCount} tone="good" />
+        <Stat label="Internal Sets" value={viewData.stats.internalComponentSetCount} />
         <Stat label="Unresolved Sets" value={viewData.stats.unresolvedComponentSetCount} tone="bad" />
         <Stat label="Loose Components" value={viewData.stats.looseComponentCount} />
         <Stat label="Mapped Variants" value={viewData.stats.mappedComponentCount} tone="good" />
+        <Stat label="Internal Variants" value={viewData.stats.internalComponentCount} />
         <Stat label="Unresolved Variants" value={viewData.stats.unresolvedComponentCount} tone="bad" />
       </section>
 
@@ -232,7 +335,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
           <div className="tableHeader">
             <strong>{filteredRows.length}</strong>
             <span>
-              shown · {mappedRows} mapped · {unresolvedRows} unresolved · {groupByLabels[groupBy]}
+              shown · {mappedRows} mapped · {unresolvedRows} unresolved · {internalRows} internal · {groupByLabels[groupBy]}
             </span>
           </div>
           <div className="tableScroll">
@@ -255,7 +358,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
                         <div className="groupTitle">
                           <strong>{item.label}</strong>
                           <span>
-                            {item.total} total · {item.mapped} mapped · {item.unresolved} unresolved
+                            {item.total} total · {item.mapped} mapped · {item.unresolved} unresolved · {item.internal} internal
                           </span>
                         </div>
                       </td>
@@ -290,8 +393,8 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
           </div>
         </div>
 
-        <aside className="detailPane">
-          {selected ? <Detail row={selected} onSaved={setViewData} /> : <div className="emptyState">No rows match the current filters.</div>}
+        <aside ref={detailPaneRef} className="detailPane">
+          {selected ? <Detail row={selected} system={viewData.system} mapFile={viewData.mapFile} onSaved={setViewData} /> : <div className="emptyState">No rows match the current filters.</div>}
         </aside>
       </section>
     </main>
@@ -311,10 +414,11 @@ function toEditableLibrary(value: string): TargetLibrary {
   return value === 'Ti Component' ? 'Ti Component' : 'Element Plus';
 }
 
-function Detail({ row, onSaved }: { row: MapRow; onSaved: (data: MapViewData) => void }) {
+function Detail({ row, system, mapFile, onSaved }: { row: MapRow; system: MapSystem; mapFile: string; onSaved: (data: MapViewData) => void }) {
   const [draftStatus, setDraftStatus] = useState<MappingStatus>(row.status);
   const [draftLibrary, setDraftLibrary] = useState<TargetLibrary>(toEditableLibrary(row.targetLibrary));
   const [draftComponent, setDraftComponent] = useState(row.targetComponent === '-' ? '' : row.targetComponent);
+  const [draftProps, setDraftProps] = useState<Record<string, string>>(row.targetProps);
   const [saveState, setSaveState] = useState<SaveState>('idle');
   const [error, setError] = useState('');
 
@@ -322,14 +426,15 @@ function Detail({ row, onSaved }: { row: MapRow; onSaved: (data: MapViewData) =>
     setDraftStatus(row.status);
     setDraftLibrary(toEditableLibrary(row.targetLibrary));
     setDraftComponent(row.targetComponent === '-' ? '' : row.targetComponent);
+    setDraftProps(row.targetProps);
     setSaveState('idle');
     setError('');
   }, [row.rowId]);
 
   const originalLibrary = toEditableLibrary(row.targetLibrary);
   const originalComponent = row.targetComponent === '-' ? '' : row.targetComponent;
-  const isDirty = draftStatus !== row.status || draftLibrary !== originalLibrary || draftComponent.trim() !== originalComponent;
-  const canSave = saveState !== 'saving' && isDirty && (draftStatus === 'unresolved' || draftComponent.trim().length > 0);
+  const isDirty = draftStatus !== row.status || draftLibrary !== originalLibrary || draftComponent.trim() !== originalComponent || JSON.stringify(draftProps) !== JSON.stringify(row.targetProps);
+  const canSave = saveState !== 'saving' && isDirty && (draftStatus === 'unresolved' || draftStatus === 'internal' || draftComponent.trim().length > 0);
 
   async function saveMapping() {
     if (!canSave) return;
@@ -343,6 +448,7 @@ function Detail({ row, onSaved }: { row: MapRow; onSaved: (data: MapViewData) =>
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        system,
         kind: row.kind,
         key: row.key,
         status: draftStatus,
@@ -351,6 +457,7 @@ function Detail({ row, onSaved }: { row: MapRow; onSaved: (data: MapViewData) =>
             ? {
                 library: draftLibrary,
                 component: draftComponent.trim(),
+                props: draftProps,
               }
             : null,
       }),
@@ -406,6 +513,11 @@ function Detail({ row, onSaved }: { row: MapRow; onSaved: (data: MapViewData) =>
           <dt>Target</dt>
           <dd>
             {row.targetLibrary} / {row.targetComponent}
+            {Object.entries(row.targetProps).length > 0 && (
+              <code className="targetProps">
+                {Object.entries(row.targetProps).map(([k, v]) => `${k}="${v}"`).join(' ')}
+              </code>
+            )}
           </dd>
         </div>
         <div>
@@ -421,6 +533,7 @@ function Detail({ row, onSaved }: { row: MapRow; onSaved: (data: MapViewData) =>
             Status
             <select value={draftStatus} onChange={(event) => setDraftStatus(event.target.value as MappingStatus)}>
               <option value="mapped">已映射</option>
+              <option value="internal">内部组件</option>
               <option value="unresolved">未映射</option>
             </select>
           </label>
@@ -428,7 +541,7 @@ function Detail({ row, onSaved }: { row: MapRow; onSaved: (data: MapViewData) =>
             Category
             <select
               value={draftLibrary}
-              disabled={draftStatus === 'unresolved'}
+              disabled={draftStatus === 'unresolved' || draftStatus === 'internal'}
               onChange={(event) => setDraftLibrary(event.target.value as TargetLibrary)}
             >
               {targetLibraries.map((item) => (
@@ -442,11 +555,12 @@ function Detail({ row, onSaved }: { row: MapRow; onSaved: (data: MapViewData) =>
             Target Component
             <input
               value={draftComponent}
-              disabled={draftStatus === 'unresolved'}
+              disabled={draftStatus === 'unresolved' || draftStatus === 'internal'}
               placeholder="el-button / TiTable"
               onChange={(event) => setDraftComponent(event.target.value)}
             />
           </label>
+          <PropsEditor value={draftProps} onChange={setDraftProps} disabled={draftStatus === 'unresolved' || draftStatus === 'internal'} />
           <div className="editActions">
             <button
               type="button"
@@ -466,7 +580,7 @@ function Detail({ row, onSaved }: { row: MapRow; onSaved: (data: MapViewData) =>
               {saveState === 'saving' ? 'Saving' : 'Save'}
             </button>
           </div>
-          {saveState === 'saved' ? <p className="saveMessage">Saved to mappings/figma-component-key-map.json.</p> : null}
+          {saveState === 'saved' ? <p className="saveMessage">Saved to mappings/{mapFile}.</p> : null}
           {error ? <p className="errorMessage">{error}</p> : null}
         </div>
       </section>
@@ -476,7 +590,7 @@ function Detail({ row, onSaved }: { row: MapRow; onSaved: (data: MapViewData) =>
           <h3>Variants</h3>
           <div className="variantList">
             {row.variants.map((variant) => (
-              <VariantEditor key={variant.key} parent={row} variant={variant} onSaved={onSaved} />
+              <VariantEditor key={variant.key} parent={row} variant={variant} system={system} onSaved={onSaved} />
             ))}
           </div>
         </section>
@@ -514,24 +628,28 @@ function formatVariantProperties(variant: MapVariant) {
   return entries.map(([key, value]) => `${key}=${value}`).join(', ');
 }
 
-function VariantEditor({ parent, variant, onSaved }: { parent: MapRow; variant: MapVariant; onSaved: (data: MapViewData) => void }) {
+function VariantEditor({ parent, variant, system, onSaved }: { parent: MapRow; variant: MapVariant; system: MapSystem; onSaved: (data: MapViewData) => void }) {
   const [mode, setMode] = useState<VariantMode>(variant.mode);
   const [library, setLibrary] = useState<TargetLibrary>(toEditableLibrary(variant.targetLibrary));
   const [component, setComponent] = useState(variant.targetComponent === '-' ? '' : variant.targetComponent);
+  const [draftProps, setDraftProps] = useState<Record<string, string>>(variant.targetProps);
   const [saveState, setSaveState] = useState<SaveState>('idle');
   const [error, setError] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     setMode(variant.mode);
     setLibrary(toEditableLibrary(variant.targetLibrary));
     setComponent(variant.targetComponent === '-' ? '' : variant.targetComponent);
+    setDraftProps(variant.targetProps);
     setSaveState('idle');
     setError('');
-  }, [variant.key, variant.mode, variant.targetLibrary, variant.targetComponent]);
+    setIsEditing(false);
+  }, [variant.key, variant.mode, variant.targetLibrary, variant.targetComponent, variant.targetProps]);
 
   const originalLibrary = toEditableLibrary(variant.targetLibrary);
   const originalComponent = variant.targetComponent === '-' ? '' : variant.targetComponent;
-  const isDirty = mode !== variant.mode || library !== originalLibrary || component.trim() !== originalComponent;
+  const isDirty = mode !== variant.mode || library !== originalLibrary || component.trim() !== originalComponent || JSON.stringify(draftProps) !== JSON.stringify(variant.targetProps);
   const canSave = saveState !== 'saving' && isDirty && (mode !== 'override' || component.trim().length > 0);
   const fieldsDisabled = mode !== 'override';
 
@@ -547,6 +665,7 @@ function VariantEditor({ parent, variant, onSaved }: { parent: MapRow; variant: 
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        system,
         componentSetKey: parent.key,
         variantKey: variant.key,
         mode,
@@ -555,6 +674,7 @@ function VariantEditor({ parent, variant, onSaved }: { parent: MapRow; variant: 
             ? {
                 library,
                 component: component.trim(),
+                props: draftProps,
               }
             : null,
       }),
@@ -571,6 +691,7 @@ function VariantEditor({ parent, variant, onSaved }: { parent: MapRow; variant: 
     onSaved(nextData);
     setComponent(mode === 'override' ? component.trim() : '');
     setSaveState('saved');
+    setIsEditing(false);
   }
 
   return (
@@ -580,59 +701,80 @@ function VariantEditor({ parent, variant, onSaved }: { parent: MapRow; variant: 
           <strong>{variant.name}</strong>
           <p>{formatVariantProperties(variant)}</p>
         </div>
-        <span className={`statusPill ${variant.mode === 'unresolved' ? 'statusUnresolved' : 'statusMapped'}`}>
-          {variantModeLabels[variant.mode]}
-        </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+          <span
+            className={`statusPill ${variant.mode === 'unresolved' ? 'statusUnresolved' : variant.mode === 'internal' ? 'statusInternal' : 'statusMapped'}`}
+            style={{ whiteSpace: 'nowrap' }}
+          >
+            {variantModeLabels[variant.mode]}
+          </span>
+          <button
+            type="button"
+            className="secondaryButton"
+            style={{ height: '24px', padding: '0 8px', fontSize: '12px', whiteSpace: 'nowrap', flexShrink: 0 }}
+            onClick={() => setIsEditing(!isEditing)}
+          >
+            {isEditing ? '取消' : '编辑'}
+          </button>
+        </div>
       </div>
       <div className="variantTarget">
         <span>{variant.targetLibrary}</span>
         <span>{variant.targetComponent}</span>
+        {Object.entries(variant.targetProps).length > 0 && (
+          <code className="targetProps">
+            {Object.entries(variant.targetProps).map(([k, v]) => `${k}="${v}"`).join(' ')}
+          </code>
+        )}
       </div>
-      <div className="variantEditGrid">
-        <label>
-          Mode
-          <select value={mode} onChange={(event) => setMode(event.target.value as VariantMode)}>
-            {Object.entries(variantModeLabels).map(([value, label]) => (
-              <option key={value} value={value}>
-                {label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Category
-          <select disabled={fieldsDisabled} value={library} onChange={(event) => setLibrary(event.target.value as TargetLibrary)}>
-            {targetLibraries.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Target
-          <input disabled={fieldsDisabled} value={component} placeholder="el-button / TiTable" onChange={(event) => setComponent(event.target.value)} />
-        </label>
-        <div className="variantActions">
-          <button
-            type="button"
-            className="secondaryButton"
-            disabled={!isDirty || saveState === 'saving'}
-            onClick={() => {
-              setMode(variant.mode);
-              setLibrary(originalLibrary);
-              setComponent(originalComponent);
-              setSaveState('idle');
-              setError('');
-            }}
-          >
-            Reset
-          </button>
-          <button type="button" className="primaryButton" disabled={!canSave} onClick={saveVariant}>
-            {saveState === 'saving' ? 'Saving' : 'Save'}
-          </button>
+      {isEditing && (
+        <div className="variantEditGrid">
+          <label>
+            Mode
+            <select value={mode} onChange={(event) => setMode(event.target.value as VariantMode)}>
+              {Object.entries(variantModeLabels).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Category
+            <select disabled={fieldsDisabled} value={library} onChange={(event) => setLibrary(event.target.value as TargetLibrary)}>
+              {targetLibraries.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Target
+            <input disabled={fieldsDisabled} value={component} placeholder="el-button / TiTable" onChange={(event) => setComponent(event.target.value)} />
+          </label>
+          <PropsEditor value={draftProps} onChange={setDraftProps} disabled={fieldsDisabled} />
+          <div className="variantActions">
+            <button
+              type="button"
+              className="secondaryButton"
+              disabled={!isDirty || saveState === 'saving'}
+              onClick={() => {
+                setMode(variant.mode);
+                setLibrary(originalLibrary);
+                setComponent(originalComponent);
+                setSaveState('idle');
+                setError('');
+              }}
+            >
+              Reset
+            </button>
+            <button type="button" className="primaryButton" disabled={!canSave} onClick={saveVariant}>
+              {saveState === 'saving' ? 'Saving' : 'Save'}
+            </button>
+          </div>
         </div>
-      </div>
+      )}
       {variant.reason !== '-' ? <p className="variantReason">{variant.reason}</p> : null}
       {saveState === 'saved' ? <p className="saveMessage">Variant saved.</p> : null}
       {error ? <p className="errorMessage">{error}</p> : null}

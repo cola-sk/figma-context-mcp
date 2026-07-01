@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "figma-component-registry/v1",
+  "source": {
+    "fileName": "【内部公开版】 Titan Design System",
+    "fileKey": "GwYZpatr4RGoRtPMEFONwk",
+    "currentPage": "Cover",
+    "scope": "page",
+    "page": "      ↳ Modal 模态窗口 ⚫️"
+  },
+  "exportedAt": "2026-07-01T09:58:55.860Z",
+  "stats": {
+    "componentSetCount": 1,
+    "looseComponentCount": 2,
+    "componentCount": 5
+  },
+  "componentSets": [
+    {
+      "id": "12113:3165",
+      "key": "cbb1eb0fa82e44d96a50f377bc6b83ad822b2473",
+      "name": "Modal 模态窗口 ⚫️",
+      "type": "COMPONENT_SET",
+      "page": "      ↳ Modal 模态窗口 ⚫️",
+      "path": "      ↳ Modal 模态窗口 ⚫️ / Modal 模态窗口 ⚫️",
+      "componentPropertyDefinitions": {
+        "Modal": {
+          "type": "VARIANT",
+          "defaultValue": "default",
+          "variantOptions": [
+            "default",
+            "Modal"
+          ]
+        },
+        "内容": {
+          "type": "VARIANT",
+          "defaultValue": "文案",
+          "variantOptions": [
+            "组件",
+            "文案",
+            "带提示"
+          ]
+        }
+      },
+      "components": [
+        {
+          "id": "12113:3166",
+          "key": "f550a4c8e9a4d5da4290dc68ee7c2d0318f4b095",
+          "name": "Modal=default, 内容=文案",
+          "type": "COMPONENT",
+          "page": "      ↳ Modal 模态窗口 ⚫️",
+          "path": "      ↳ Modal 模态窗口 ⚫️ / Modal 模态窗口 ⚫️ / Modal=default, 内容=文案",
+          "componentSetId": "12113:3165",
+          "componentSetKey": "cbb1eb0fa82e44d96a50f377bc6b83ad822b2473",
+          "componentSetName": "Modal 模态窗口 ⚫️",
+          "variantProperties": {
+            "Modal": "default",
+            "内容": "文案"
+          },
+          "variantPropertiesFromName": {
+            "Modal": "default",
+            "内容": "文案"
+          }
+        },
+        {
+          "id": "12113:3845",
+          "key": "032c6335d796e49716cb595f104f3d04a5b3d626",
+          "name": "Modal=Modal, 内容=组件",
+          "type": "COMPONENT",
+          "page": "      ↳ Modal 模态窗口 ⚫️",
+          "path": "      ↳ Modal 模态窗口 ⚫️ / Modal 模态窗口 ⚫️ / Modal=Modal, 内容=组件",
+          "componentSetId": "12113:3165",
+          "componentSetKey": "cbb1eb0fa82e44d96a50f377bc6b83ad822b2473",
+          "componentSetName": "Modal 模态窗口 ⚫️",
+          "variantProperties": {
+            "Modal": "Modal",
+            "内容": "组件"
+          },
+          "variantPropertiesFromName": {
+            "Modal": "Modal",
+            "内容": "组件"
+          }
+        },
+        {
+          "id": "14480:654",
+          "key": "8ec0a0b11f353286476f71cd91d3344504597d5f",
+          "name": "Modal=default, 内容=带提示",
+          "type": "COMPONENT",
+          "page": "      ↳ Modal 模态窗口 ⚫️",
+          "path": "      ↳ Modal 模态窗口 ⚫️ / Modal 模态窗口 ⚫️ / Modal=default, 内容=带提示",
+          "componentSetId": "12113:3165",
+          "componentSetKey": "cbb1eb0fa82e44d96a50f377bc6b83ad822b2473",
+          "componentSetName": "Modal 模态窗口 ⚫️",
+          "variantProperties": {
+            "Modal": "default",
+            "内容": "带提示"
+          },
+          "variantPropertiesFromName": {
+            "Modal": "default",
+            "内容": "带提示"
+          }
+        }
+      ]
+    }
+  ],
+  "looseComponents": [
+    {
+      "id": "13540:1656",
+      "key": "9f2211ba474606ccc36af5e2196ac11419aaa34a",
+      "name": "Icon/business_video_play",
+      "type": "COMPONENT",
+      "page": "      ↳ Modal 模态窗口 ⚫️",
+      "path": "      ↳ Modal 模态窗口 ⚫️ / Dialog / Frame 2090055727 / _content / Frame 2053144372 / Frame 2036081385 / Frame 2053143915 / Frame 2036081410 / Frame 2053143911 / Frame 2036081419 / Frame 2090055673 / Frame 2090055844 / Frame 2090055733 / Input / Frame 2036081402 / Frame 2090055784 / Frame 2090055763 / Frame 2090055812 / Frame 2090055863 / Input / Frame 2053144379 / Frame 2053143509 / Frame 2090055818 / Frame 2090055819 / Frame 2053143333 / Icon/business_video_play"
+    },
+    {
+      "id": "13540:1683",
+      "key": "eef810bec8309b927a87eedcd67a711853c84bc9",
+      "name": "Icon/business_video_play",
+      "type": "COMPONENT",
+      "page": "      ↳ Modal 模态窗口 ⚫️",
+      "path": "      ↳ Modal 模态窗口 ⚫️ / Dialog / Frame 2090055727 / _content / Frame 2053144372 / Frame 2036081385 / Frame 2053143915 / Frame 2036081410 / Frame 2053143911 / Frame 2036081419 / Frame 2090055673 / Frame 2090055844 / Frame 2090055733 / Input / Frame 2036081402 / Frame 2090055784 / Frame 2090055763 / Frame 2090055812 / Frame 2090055863 / Input / Frame 2053144379 / Frame 2053143509 / Frame 2090055818 / Frame 2090055819 / Frame 2053143333 / Icon/business_video_play"
+    }
+  ],
+  "indexes": {
+    "componentSetByKey": {
+      "cbb1eb0fa82e44d96a50f377bc6b83ad822b2473": {
+        "id": "12113:3165",
+        "name": "Modal 模态窗口 ⚫️",
+        "componentKeys": [
+          "f550a4c8e9a4d5da4290dc68ee7c2d0318f4b095",
+          "032c6335d796e49716cb595f104f3d04a5b3d626",
+          "8ec0a0b11f353286476f71cd91d3344504597d5f"
+        ]
+      }
+    },
+    "componentByKey": {
+      "f550a4c8e9a4d5da4290dc68ee7c2d0318f4b095": {
+        "id": "12113:3166",
+        "name": "Modal=default, 内容=文案",
+        "componentSetKey": "cbb1eb0fa82e44d96a50f377bc6b83ad822b2473",
+        "componentSetName": "Modal 模态窗口 ⚫️",
+        "variantProperties": {
+          "Modal": "default",
+          "内容": "文案"
+        }
+      },
+      "032c6335d796e49716cb595f104f3d04a5b3d626": {
+        "id": "12113:3845",
+        "name": "Modal=Modal, 内容=组件",
+        "componentSetKey": "cbb1eb0fa82e44d96a50f377bc6b83ad822b2473",
+        "componentSetName": "Modal 模态窗口 ⚫️",
+        "variantProperties": {
+          "Modal": "Modal",
+          "内容": "组件"
+        }
+      },
+      "8ec0a0b11f353286476f71cd91d3344504597d5f": {
+        "id": "14480:654",
+        "name": "Modal=default, 内容=带提示",
+        "componentSetKey": "cbb1eb0fa82e44d96a50f377bc6b83ad822b2473",
+        "componentSetName": "Modal 模态窗口 ⚫️",
+        "variantProperties": {
+          "Modal": "default",
+          "内容": "带提示"
+        }
+      },
+      "9f2211ba474606ccc36af5e2196ac11419aaa34a": {
+        "id": "13540:1656",
+        "name": "Icon/business_video_play",
+        "componentSetKey": null,
+        "componentSetName": null,
+        "variantProperties": {}
+      },
+      "eef810bec8309b927a87eedcd67a711853c84bc9": {
+        "id": "13540:1683",
+        "name": "Icon/business_video_play",
+        "componentSetKey": null,
+        "componentSetName": null,
+        "variantProperties": {}
+      }
+    }
+  }
+}
