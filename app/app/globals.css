@@ -6,6 +6,9 @@
   --text: #17202c;
   --muted: #647086;
   --accent: #1769e0;
+  --disabled-bg: #edf2f7;
+  --disabled-border: #c7d1df;
+  --disabled-text: #475569;
   --good: #12805c;
   --good-bg: #e6f5ef;
   --bad: #b42318;
@@ -48,10 +51,10 @@ button:hover {
 
 button:disabled,
 button:disabled:hover {
-  border-color: var(--border);
-  color: var(--muted);
+  border-color: var(--disabled-border);
+  background: var(--disabled-bg);
+  color: var(--disabled-text);
   cursor: not-allowed;
-  opacity: 0.68;
 }
 
 .primaryButton {

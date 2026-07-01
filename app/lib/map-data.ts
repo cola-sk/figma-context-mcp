@@ -117,7 +117,7 @@ export type MapViewData = {
 };
 
 export function getMapPath() {
-  return path.resolve(process.cwd(), '../mappings/figma-component-key-map.json');
+  return path.resolve(process.cwd(), '../assets/mappings/figma-component-key-map.json');
 }
 
 function asText(value: unknown, fallback = '-') {
