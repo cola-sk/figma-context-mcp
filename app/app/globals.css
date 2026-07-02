@@ -5,8 +5,10 @@
   --border: #e2e8f0;
   --text: #0f172a;
   --muted: #64748b;
-  --accent: #10b981;
-  --accent-light: #d1fae5;
+  --accent: #0d9488;
+  --accent-strong: #0f766e;
+  --accent-cool: #0284c7;
+  --accent-light: #ccfbf1;
   --disabled-bg: #f8fafc;
   --disabled-border: #cbd5e1;
   --disabled-text: #64748b;
@@ -68,7 +70,7 @@ button:disabled:hover {
 }
 
 .primaryButton:hover {
-  background: #059669;
+  background: var(--accent-strong);
   color: #fff;
 }
 
@@ -121,31 +123,33 @@ code {
 .logoArea {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
+  min-width: 0;
 }
 
 .logoIcon {
   flex-shrink: 0;
-  filter: drop-shadow(0 1px 2px rgba(16, 185, 129, 0.25));
+  filter: drop-shadow(0 5px 10px rgba(15, 118, 110, 0.22));
 }
 
 .logoText {
-  font-size: 16px;
-  font-weight: 850;
-  background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+  font-size: 17px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #0f766e 0%, #0e7490 50%, #0369a1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.5px;
+  letter-spacing: 0;
+  white-space: nowrap;
 }
 
 .logoBadge {
   font-size: 11px;
-  font-weight: 600;
-  padding: 1px 6px;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
+  font-weight: 700;
+  padding: 2px 7px;
+  background: linear-gradient(135deg, rgba(13, 148, 136, 0.1), rgba(2, 132, 199, 0.1));
+  border: 1px solid rgba(13, 148, 136, 0.2);
   border-radius: 999px;
-  color: var(--muted);
+  color: var(--accent-strong);
 }
 
 .navActions {
@@ -316,7 +320,7 @@ code {
 .variantEditGrid select:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.12);
 }
 
 .editForm input:disabled,
@@ -395,12 +399,12 @@ tbody tr {
 }
 
 tbody tr:hover {
-  background: rgba(79, 70, 229, 0.03);
+  background: rgba(13, 148, 136, 0.04);
 }
 
 .selectedRow,
 .selectedRow:hover {
-  background: rgba(79, 70, 229, 0.08);
+  background: rgba(13, 148, 136, 0.09);
 }
 
 .groupRow,
@@ -480,7 +484,7 @@ td:nth-child(7) {
 
 .previewButton:hover {
   border-color: var(--accent);
-  background: #eef6ff;
+  background: var(--accent-light);
 }
 
 .previewThumb img {
@@ -589,7 +593,7 @@ td:nth-child(7) {
 }
 
 .previewPanelButton:hover {
-  background: #eef6ff;
+  background: var(--accent-light);
 }
 
 .previewPanelButton img {
@@ -709,7 +713,7 @@ td:nth-child(7) {
 
 .variantPreview:hover {
   border-color: var(--accent);
-  background: #eef6ff;
+  background: var(--accent-light);
 }
 
 .variantPreview img {
@@ -815,7 +819,7 @@ td:nth-child(7) {
 .imageLightboxRail button.active,
 .imageLightboxRail button:hover {
   border-color: var(--accent);
-  background: #eef6ff;
+  background: var(--accent-light);
 }
 
 .imageLightboxRail img {
