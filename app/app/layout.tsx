@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Component Map Viewer',
+  title: 'FE/D Bridge',
   description: 'Inspect Figma component mapping coverage.',
 };
 

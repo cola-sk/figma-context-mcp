@@ -105,7 +105,7 @@ function PropsEditor({ value, onChange, disabled }: { value: Record<string, stri
         </button>
         {!expanded && !disabled && (
           <button type="button" className="secondaryButton propsAdd" onClick={addEntry}>
-            + Add prop
+            + 添加 prop
           </button>
         )}
       </div>
@@ -122,7 +122,7 @@ function PropsEditor({ value, onChange, disabled }: { value: Record<string, stri
           ))}
           {!disabled && (
             <button type="button" className="secondaryButton propsAdd" onClick={addEntry}>
-              + Add prop
+              + 添加 prop
             </button>
           )}
         </div>
@@ -270,7 +270,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
 
   return (
     <div className="layoutWrapper">
-      <nav className="navBar" aria-label="Main Navigation">
+      <nav className="navBar" aria-label="主导航">
         <div className="navContainer">
           <div className="logoArea">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="logoIcon" aria-hidden="true">
@@ -300,7 +300,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
           </div>
 
           <div className="navActions">
-            <div className="systemSwitch" aria-label="Component system">
+            <div className="systemSwitch" aria-label="组件系统">
               {systemOptions.map((option) => (
                 <a key={option.id} className={viewData.system === option.id ? 'active' : ''} href={`?system=${option.id}`}>
                   {option.label}
@@ -314,29 +314,29 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
       <main className="appShell">
         <header className="metadataBar">
           <div className="metadataLeft">
-            <h2>{viewData.systemLabel} Component Map</h2>
-            <p>Schema: <code>{viewData.schemaVersion}</code> · Generated at {formatDate(viewData.generatedAt)}</p>
+            <h2>{viewData.systemLabel} 组件映射</h2>
+            <p>Schema：<code>{viewData.schemaVersion}</code> · 生成时间 {formatDate(viewData.generatedAt)}</p>
           </div>
         </header>
 
-        <section className="statsGrid" aria-label="mapping stats">
+        <section className="statsGrid" aria-label="映射统计">
           <Stat label="Component Sets" value={viewData.stats.componentSetCount} />
-          <Stat label="Mapped Sets" value={viewData.stats.mappedComponentSetCount} tone="good" />
-          <Stat label="Internal Sets" value={viewData.stats.internalComponentSetCount} />
-          <Stat label="Unresolved Sets" value={viewData.stats.unresolvedComponentSetCount} tone="bad" />
+          <Stat label="已映射 Sets" value={viewData.stats.mappedComponentSetCount} tone="good" />
+          <Stat label="内部 Sets" value={viewData.stats.internalComponentSetCount} />
+          <Stat label="未映射 Sets" value={viewData.stats.unresolvedComponentSetCount} tone="bad" />
           <Stat label="Loose Components" value={viewData.stats.looseComponentCount} />
-          <Stat label="Mapped Variants" value={viewData.stats.mappedComponentCount} tone="good" />
-          <Stat label="Internal Variants" value={viewData.stats.internalComponentCount} />
-          <Stat label="Unresolved Variants" value={viewData.stats.unresolvedComponentCount} tone="bad" />
+          <Stat label="已映射 Variants" value={viewData.stats.mappedComponentCount} tone="good" />
+          <Stat label="内部 Variants" value={viewData.stats.internalComponentCount} />
+          <Stat label="未映射 Variants" value={viewData.stats.unresolvedComponentCount} tone="bad" />
         </section>
 
-        <section className="toolbar" aria-label="filters">
+        <section className="toolbar" aria-label="筛选">
           <label>
-            Search
-            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="name / key / target / reason" />
+            搜索
+            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="名称 / key / 目标 / 原因" />
           </label>
           <label>
-            Status
+            状态
             <select value={status} onChange={(event) => setStatus(event.target.value as StatusFilter)}>
               {Object.entries(statusLabels).map(([value, label]) => (
                 <option key={value} value={value}>
@@ -346,7 +346,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
             </select>
           </label>
           <label>
-            Type
+            类型
             <select value={kind} onChange={(event) => setKind(event.target.value as KindFilter)}>
               {Object.entries(kindLabels).map(([value, label]) => (
                 <option key={value} value={value}>
@@ -356,7 +356,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
             </select>
           </label>
           <label>
-            Category
+            分类
             <select value={category} onChange={(event) => setCategory(event.target.value as CategoryFilter)}>
               {Object.entries(categoryLabels).map(([value, label]) => (
                 <option key={value} value={value}>
@@ -366,7 +366,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
             </select>
           </label>
           <label>
-            Group By
+            分组
             <select value={groupBy} onChange={(event) => setGroupBy(event.target.value as GroupBy)}>
               {Object.entries(groupByLabels).map(([value, label]) => (
                 <option key={value} value={value}>
@@ -387,7 +387,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
             </select>
           </label>
           <label>
-            Target
+            目标
             <select value={target} onChange={(event) => setTarget(event.target.value)}>
               <option value="all">全部组件</option>
               {viewData.targetComponents.map((item) => (
@@ -404,18 +404,18 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
             <div className="tableHeader">
               <strong>{filteredRows.length}</strong>
               <span>
-                shown · {mappedRows} mapped · {unresolvedRows} unresolved · {internalRows} internal · {groupByLabels[groupBy]}
+                条 · 已映射 {mappedRows} · 未映射 {unresolvedRows} · 内部 {internalRows} · {groupByLabels[groupBy]}
               </span>
             </div>
             <div className="tableScroll">
               <table>
                 <thead>
                 <tr>
-                  <th>Preview</th>
-                  <th>Status</th>
+                  <th>预览</th>
+                  <th>状态</th>
                   <th>Figma Component</th>
                   <th>Page</th>
-                    <th>Target</th>
+                    <th>目标</th>
                     <th>Variants</th>
                     <th>Key</th>
                   </tr>
@@ -428,7 +428,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
                           <div className="groupTitle">
                             <strong>{item.label}</strong>
                             <span>
-                              {item.total} total · {item.mapped} mapped · {item.unresolved} unresolved · {item.internal} internal
+                              共 {item.total} · 已映射 {item.mapped} · 未映射 {item.unresolved} · 内部 {item.internal}
                             </span>
                           </div>
                         </td>
@@ -467,7 +467,7 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
           </div>
 
           <aside ref={detailPaneRef} className="detailPane">
-            {selected ? <Detail row={selected} system={viewData.system} mapFile={viewData.mapFile} onSaved={setViewData} onPreview={openPreview} /> : <div className="emptyState">No rows match the current filters.</div>}
+            {selected ? <Detail row={selected} system={viewData.system} mapFile={viewData.mapFile} onSaved={setViewData} onPreview={openPreview} /> : <div className="emptyState">当前筛选条件下没有匹配数据。</div>}
           </aside>
         </section>
       </main>
@@ -478,20 +478,20 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
 
 function PreviewThumb({ url, name, onOpen }: { url?: string; name: string; onOpen: () => void }) {
   if (!url) {
-    return <div className="previewThumb previewEmpty" aria-label="No preview" />;
+    return <div className="previewThumb previewEmpty" aria-label="无预览" />;
   }
 
   return (
     <button
       type="button"
       className="previewThumb previewButton"
-      title="Open preview"
+      title="打开预览"
       onClick={(event) => {
         event.stopPropagation();
         onOpen();
       }}
     >
-      <img src={url} alt={`${name} preview`} loading="lazy" />
+      <img src={url} alt={`${name} 预览`} loading="lazy" />
     </button>
   );
 }
@@ -590,7 +590,7 @@ function ImageLightbox({ preview, onClose }: { preview: { items: ImagePreviewIte
   }
 
   return (
-    <div className="imageLightbox" role="dialog" aria-modal="true" aria-label={`${active.name} preview`} onClick={onClose}>
+    <div className="imageLightbox" role="dialog" aria-modal="true" aria-label={`${active.name} 预览`} onClick={onClose}>
       <div className="imageLightboxInner" onClick={(event) => event.stopPropagation()}>
         <div className="imageLightboxHeader">
           <div>
@@ -609,10 +609,10 @@ function ImageLightbox({ preview, onClose }: { preview: { items: ImagePreviewIte
               100%
             </button>
             <button type="button" className="secondaryButton" onClick={fitToStage}>
-              Fit
+              适应
             </button>
             <button type="button" className="secondaryButton" onClick={onClose}>
-              Close
+              关闭
             </button>
           </div>
         </div>
@@ -626,7 +626,7 @@ function ImageLightbox({ preview, onClose }: { preview: { items: ImagePreviewIte
                 title={item.name}
                 onClick={() => selectImage(index)}
               >
-                <img src={item.url} alt={`${item.name} thumbnail`} />
+                <img src={item.url} alt={`${item.name} 缩略图`} />
                 <span>{item.kind}</span>
               </button>
             ))}
@@ -643,7 +643,7 @@ function ImageLightbox({ preview, onClose }: { preview: { items: ImagePreviewIte
             <img
               ref={imageRef}
               src={active.url}
-              alt={`${active.name} preview`}
+              alt={`${active.name} 预览`}
               draggable={false}
               onLoad={fitToStage}
               style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}
@@ -731,7 +731,7 @@ function Detail({
 
     if (!response.ok) {
       const body = (await response.json().catch(() => null)) as { error?: string } | null;
-      setError(body?.error ?? 'Save failed.');
+      setError(body?.error ?? '保存失败。');
       setSaveState('error');
       return;
     }
@@ -749,7 +749,7 @@ function Detail({
           <span className={`statusPill ${statusClass(row.status)}`}>{statusLabels[row.status]}</span>
           <h2>{row.name}</h2>
         </div>
-        <button type="button" className="iconButton" title="Copy stable key" aria-label="Copy stable key" onClick={() => copyText(row.key)}>
+        <button type="button" className="iconButton" title="复制稳定 key" aria-label="复制稳定 key" onClick={() => copyText(row.key)}>
           <Copy size={16} aria-hidden="true" />
         </button>
       </div>
@@ -758,7 +758,7 @@ function Detail({
 
       <dl className="kv">
         <div>
-          <dt>Kind</dt>
+          <dt>类型</dt>
           <dd>{kindLabels[row.kind]}</dd>
         </div>
         <div>
@@ -772,13 +772,13 @@ function Detail({
           </dd>
         </div>
         <div>
-          <dt>Stable Key</dt>
+          <dt>稳定 Key</dt>
           <dd>
             <code>{row.key}</code>
           </dd>
         </div>
         <div>
-          <dt>Target</dt>
+          <dt>目标</dt>
           <dd>
             {row.targetLibrary} / {row.targetComponent}
             {Object.entries(row.targetProps).length > 0 && (
@@ -795,10 +795,10 @@ function Detail({
       </dl>
 
       <section className="editorPanel">
-        <h3>Edit Mapping</h3>
+        <h3>编辑映射</h3>
         <div className="editForm">
           <label>
-            Status
+            状态
             <select value={draftStatus} onChange={(event) => setDraftStatus(event.target.value as MappingStatus)}>
               <option value="mapped">已映射</option>
               <option value="internal">内部组件</option>
@@ -806,7 +806,7 @@ function Detail({
             </select>
           </label>
           <label>
-            Category
+            分类
             <select
               value={draftLibrary}
               disabled={draftStatus === 'unresolved' || draftStatus === 'internal'}
@@ -820,7 +820,7 @@ function Detail({
             </select>
           </label>
           <label>
-            Target Component
+            目标组件
             <input
               value={draftComponent}
               disabled={draftStatus === 'unresolved' || draftStatus === 'internal'}
@@ -842,13 +842,13 @@ function Detail({
                 setError('');
               }}
             >
-              Reset
+              重置
             </button>
             <button type="button" className="primaryButton" disabled={!canSave} onClick={saveMapping}>
-              {saveState === 'saving' ? 'Saving' : 'Save'}
+              {saveState === 'saving' ? '保存中' : '保存'}
             </button>
           </div>
-          {saveState === 'saved' ? <p className="saveMessage">Saved to mappings/{mapFile}.</p> : null}
+          {saveState === 'saved' ? <p className="saveMessage">已保存到 mappings/{mapFile}。</p> : null}
           {error ? <p className="errorMessage">{error}</p> : null}
         </div>
       </section>
@@ -865,12 +865,12 @@ function Detail({
       ) : null}
 
       <section>
-        <h3>Reason</h3>
+        <h3>原因</h3>
         <p>{row.reason}</p>
       </section>
 
       <section>
-        <h3>Evidence</h3>
+        <h3>依据</h3>
         {row.evidence.length > 0 ? (
           <ul>
             {row.evidence.map((item) => (
@@ -878,12 +878,12 @@ function Detail({
             ))}
           </ul>
         ) : (
-          <p>No explicit evidence recorded.</p>
+          <p>未记录显式依据。</p>
         )}
       </section>
 
       <section>
-        <h3>Raw Entry</h3>
+        <h3>原始数据</h3>
         <pre>{JSON.stringify(row.raw, null, 2)}</pre>
       </section>
     </div>
@@ -895,10 +895,10 @@ function PreviewPanel({ row, onOpen }: { row: MapRow; onOpen: () => void }) {
     <div className="previewPanel">
       {row.previewUrl ? (
         <button type="button" className="previewPanelButton" onClick={onOpen}>
-          <img src={row.previewUrl} alt={`${row.name} design preview`} />
+          <img src={row.previewUrl} alt={`${row.name} 设计预览`} />
         </button>
       ) : (
-        <div className="previewPlaceholder">No preview exported</div>
+        <div className="previewPlaceholder">未导出预览</div>
       )}
     </div>
   );
@@ -976,7 +976,7 @@ function VariantEditor({
 
     if (!response.ok) {
       const body = (await response.json().catch(() => null)) as { error?: string } | null;
-      setError(body?.error ?? 'Save failed.');
+      setError(body?.error ?? '保存失败。');
       setSaveState('error');
       return;
     }
@@ -1037,7 +1037,7 @@ function VariantEditor({
       {isEditing && (
         <div className="variantEditGrid">
           <label>
-            Mode
+            模式
             <select value={mode} onChange={(event) => setMode(event.target.value as VariantMode)}>
               {Object.entries(variantModeLabels).map(([value, label]) => (
                 <option key={value} value={value}>
@@ -1047,7 +1047,7 @@ function VariantEditor({
             </select>
           </label>
           <label>
-            Category
+            分类
             <select disabled={fieldsDisabled} value={library} onChange={(event) => setLibrary(event.target.value as TargetLibrary)}>
               {targetLibraries.map((item) => (
                 <option key={item} value={item}>
@@ -1057,7 +1057,7 @@ function VariantEditor({
             </select>
           </label>
           <label>
-            Target
+            目标
             <input disabled={fieldsDisabled} value={component} placeholder="el-button / TiTable" onChange={(event) => setComponent(event.target.value)} />
           </label>
           <PropsEditor value={draftProps} onChange={setDraftProps} disabled={fieldsDisabled} />
@@ -1074,16 +1074,16 @@ function VariantEditor({
                 setError('');
               }}
             >
-              Reset
+              重置
             </button>
             <button type="button" className="primaryButton" disabled={!canSave} onClick={saveVariant}>
-              {saveState === 'saving' ? 'Saving' : 'Save'}
+              {saveState === 'saving' ? '保存中' : '保存'}
             </button>
           </div>
         </div>
       )}
       {variant.reason !== '-' ? <p className="variantReason">{variant.reason}</p> : null}
-      {saveState === 'saved' ? <p className="saveMessage">Variant saved.</p> : null}
+      {saveState === 'saved' ? <p className="saveMessage">Variant 已保存。</p> : null}
       {error ? <p className="errorMessage">{error}</p> : null}
     </div>
   );
