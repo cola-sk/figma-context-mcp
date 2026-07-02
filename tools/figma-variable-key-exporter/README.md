@@ -10,7 +10,7 @@ Run this plugin in the Design System source file, not in a business design file.
 ## Install
 
 1. Open Figma Desktop.
-2. Open the Design System file, for example `主题开发者平台 Design System`.
+2. Open the Design System file, for example `Example Design System`.
 3. Go to `Plugins -> Development -> Import plugin from manifest...`.
 4. Select:
 
@@ -41,8 +41,8 @@ Each exported variable should include `key`:
 
 ```json
 {
-  "id": "VariableID:10043:856",
-  "key": "85f839c64425cdf0b65919dc124a3e196f393170",
+  "id": "VariableID:11111:222",
+  "key": "abcdef0123456789abcdef0123456789abcdef01",
   "name": "Token name",
   "type": "COLOR",
   "valuesByMode": {}
@@ -52,10 +52,10 @@ Each exported variable should include `key`:
 After rebuilding, the MCP can resolve:
 
 ```text
-VariableID:85f839c64425cdf0b65919dc124a3e196f393170/14001:176
-  -> key 85f839c64425cdf0b65919dc124a3e196f393170
-  -> VariableID:10043:856
-  -> var(--ti-d-...)
+VariableID:abcdef0123456789abcdef0123456789abcdef01/33333:444
+  -> key abcdef0123456789abcdef0123456789abcdef01
+  -> VariableID:11111:222
+  -> var(--token-...)
 ```
 
 > 备注：当前 MCP 暂未接入该解析链路，上述为预期设计。

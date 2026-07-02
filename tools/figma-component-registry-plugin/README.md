@@ -32,23 +32,23 @@
 
 ```json
 {
-  "componentSetKey": "c93c96eacadd729ad3a585361dcb168063c1ba90",
+  "componentSetKey": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0",
   "componentSetName": "Table",
   "target": {
-    "component": "TiTable",
-    "source": "TiComponents"
+    "component": "ExampleTable",
+    "source": "ExampleComponents"
   }
 }
 ```
 
 ```json
 {
-  "componentSetKey": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
-  "componentSetName": "Tag-不带点的",
+  "componentSetKey": "0123456789abcdef0123456789abcdef01234567",
+  "componentSetName": "Tag-Sample",
   "target": {
     "component": "el-tag",
     "source": "element-plus",
-    "fallbackReason": "TiComponents 无独立 Tag"
+    "fallbackReason": "ExampleComponents has no standalone Tag"
   }
 }
 ```
@@ -61,7 +61,7 @@
 {
   "schemaVersion": "figma-component-registry/v1",
   "source": {
-    "fileName": "主题开发者平台 Design System",
+    "fileName": "Example Design System",
     "fileKey": "FIGMA_FILE_KEY",
     "currentPage": "Components",
     "scope": "selected-pages"
@@ -86,7 +86,7 @@
 {
   "schemaVersion": "figma-component-design-spec/v1",
   "source": {
-    "fileName": "主题开发者平台 Design System",
+    "fileName": "Example Design System",
     "fileKey": "FIGMA_FILE_KEY",
     "currentPage": "Components",
     "scope": "selected-pages"
@@ -98,11 +98,11 @@
   },
   "componentSets": [
     {
-      "key": "54b9dd6a1f7f627de94bb09adce298ef84ea81b0",
-      "name": "Tag-不带点的",
+      "key": "0123456789abcdef0123456789abcdef01234567",
+      "name": "Tag-Sample",
       "components": [
         {
-          "key": "8fc6afa89ccdb4ffccd1956e25aa3abf76f04a73",
+          "key": "fedcba9876543210fedcba9876543210fedcba98",
           "name": "Property 1=green",
           "variantProperties": {
             "Property 1": "green"

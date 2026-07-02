@@ -15,3 +15,6 @@ figma-component-assets-private/
 # Legacy locations for business-sensitive generated assets.
 assets/
 app/public/previews/
+
+# TypeScript incremental build cache.
+*.tsbuildinfo
