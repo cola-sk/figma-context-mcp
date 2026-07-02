@@ -8,15 +8,42 @@ Figma Context MCP extracts Figma node context for AI agents. The active runtime 
 2. Fetch Figma node JSON through the Figma API.
 3. Fetch a rendered image URL through the Figma image API.
 4. Simplify the node JSON by trimming invalid, empty, hidden, or default fields.
-5. Return the simplified JSON and image URL to the agent.
+5. Optionally inject `tiComponent` hints for Figma INSTANCE nodes when a local component map is configured.
+6. Return the simplified JSON and image URL to the agent.
 
-Automatic component matching is not implemented in the MCP runtime yet. Agents should use the returned structure together with project skills or component catalogs.
+Component hints are identity-only. They tell the agent which TiComponents or Element Plus component to use, but they do not infer prop mappings from Figma variants.
 
 ## Active Tool
 
 | Tool | Purpose |
 | --- | --- |
 | `convert-figma-to-code` | Fetch a Figma node, render a preview image, and return simplified node JSON using literal design values. |
+
+## Component Hints
+
+Business projects can enable component hints with a `.figma-context-mcp.json` file in the project root:
+
+```json
+{
+  "componentMap": {
+    "source": "d",
+    "inject": true
+  }
+}
+```
+
+Supported sources are `b`, `d`, `auto`, and `none`. When enabled, each Figma INSTANCE with a `componentId` receives a `tiComponent` field:
+
+```json
+{
+  "status": "mapped",
+  "library": "Element Plus",
+  "component": "el-button",
+  "variantProps": null
+}
+```
+
+`status: "unmapped"` means the agent must surface the missing mapping and must not hand-roll a look-alike component from visuals. Use `figma://component-map/summary` to inspect the configured map.
 
 ## Simplified JSON
 
@@ -33,7 +60,7 @@ The tool does not return raw Figma API JSON. It trims empty/default values and n
 
 ## Component Mapping Assets
 
-The repository also contains component mapping assets and scripts. These support the Dashboard and future mapping workflows, but are separate from the active MCP node-extraction path.
+The repository also contains component mapping assets and scripts. The MCP runtime can consume generated maps locally when `.figma-context-mcp.json` enables a source.
 
 Generated map files:
 

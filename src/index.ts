@@ -7,6 +7,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { ComponentMap, ComponentMapResolution } from './component-map.js';
 
 // Get __dirname equivalent in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -199,8 +200,83 @@ const getDataPath = (relativePath: string): string => {
   }
 };
 
+const formatComponentMapSection = (resolution: ComponentMapResolution): string => {
+  if (resolution.status === 'disabled') {
+    return '';
+  }
+
+  const warnings = resolution.configContext.warnings.length > 0
+    ? `\n- **Warnings**: ${resolution.configContext.warnings.join('; ')}`
+    : '';
+
+  if (resolution.status === 'loaded' && resolution.componentMap) {
+    const summary = resolution.componentMap.summary;
+    const configStatus = resolution.configContext.configPath ? 'found' : 'not found; auto-detected from requested library file';
+    const fileName = summary.fileName ? ` (${summary.fileName})` : '';
+    return `\n## Component Map\n- **Source**: ${summary.source}${fileName}\n- **Library fileKey**: ${summary.fileKey ?? 'unknown'}\n- **Coverage**: ${summary.mapped} mapped / ${summary.unmapped} unmapped / ${summary.internal} internal\n- **Config**: ${configStatus}\n- **Policy**: ${summary.policy}${warnings}\n`;
+  }
+
+  if (resolution.status === 'auto-unmatched') {
+    return `\n## Component Map Notice\n${resolution.message} tiComponent hints are NOT injected.\n\nTo enable component hints, create .figma-context-mcp.json in your project root:\n\n\`\`\`json\n{ "componentMap": { "source": "b" } }\n\`\`\`\n\nor:\n\n\`\`\`json\n{ "componentMap": { "source": "d" } }\n\`\`\`${warnings}\n`;
+  }
+
+  return `\n## Component Map Notice\n${resolution.message} tiComponent hints are NOT injected.${warnings}\n`;
+};
+
+const formatComponentMapSummaryResource = (resolution: ComponentMapResolution): string => {
+  if (resolution.status === 'loaded' && resolution.componentMap) {
+    const summary = resolution.componentMap.summary;
+    return `# Component Map Summary\n\n- Source: ${summary.source}\n- Library fileKey: ${summary.fileKey ?? 'unknown'}\n- Library fileName: ${summary.fileName ?? 'unknown'}\n- Coverage: ${summary.mapped} mapped / ${summary.unmapped} unmapped / ${summary.internal} internal\n- Config: ${resolution.configContext.configPath ? 'found' : 'not found; auto-detected only for library-file requests'}\n- Policy: ${summary.policy}\n`;
+  }
+
+  if (resolution.status === 'disabled') {
+    return '# Component Map Summary\n\nComponent map injection is disabled by project configuration.\n';
+  }
+
+  return `# Component Map Summary\n\nNo component map is currently loaded.\n\nStatus: ${resolution.status}\nReason: ${resolution.message}\n`;
+};
+
 // Function to setup all resources and tools
 const setupServer = (server: McpServer) => {
+
+    const resolveProjectCandidates = async (): Promise<string[]> => {
+      const candidates: string[] = [];
+
+      // 1) MCP roots — the client tells us the active workspace(s).
+      try {
+        const result = await server.server.listRoots();
+        for (const root of result?.roots ?? []) {
+          if (!root?.uri) continue;
+          try {
+            const url = new URL(root.uri);
+            if (url.protocol !== 'file:') continue;
+            const path = fileURLToPath(url);
+            if (!candidates.includes(path)) {
+              candidates.push(path);
+            }
+          } catch {
+            // ignore malformed root URIs
+          }
+        }
+      } catch {
+        // Client doesn't support roots or isn't connected yet — fall through.
+      }
+
+      // 2) Explicit env override (useful when roots unavailable).
+      if (process.env.FIGMA_CONTEXT_MCP_PROJECT_ROOT) {
+        if (!candidates.includes(process.env.FIGMA_CONTEXT_MCP_PROJECT_ROOT)) {
+          candidates.push(process.env.FIGMA_CONTEXT_MCP_PROJECT_ROOT);
+        }
+      }
+
+      // 3) Fallback to process.cwd() (works when client launches MCP from project root).
+      const cwd = process.cwd();
+      if (!candidates.includes(cwd)) {
+        candidates.push(cwd);
+      }
+
+      return candidates;
+    };
 
     server.resource(
       "figma_overview",
@@ -241,6 +317,33 @@ const setupServer = (server: McpServer) => {
             {
               uri: uri.href,
               text: quickstartContent,
+              mimeType: "text/markdown",
+            },
+          ],
+        };
+      }
+    );
+
+    server.resource(
+      "figma_component_map_summary",
+      "figma://component-map/summary",
+      {
+        description: "Summary of the configured Figma component map used for tiComponent hints.",
+        title: "Component Map Summary",
+        mimeType: "text/markdown",
+      },
+      async (uri) => {
+        const candidates = await resolveProjectCandidates();
+        const resolution = ComponentMap.resolveForRequest({
+          cwd: candidates,
+          requestFileKey: null,
+        });
+
+        return {
+          contents: [
+            {
+              uri: uri.href,
+              text: formatComponentMapSummaryResource(resolution),
               mimeType: "text/markdown",
             },
           ],
@@ -339,6 +442,13 @@ Provided URL: ${figmaNodeUrl}`,
             };
           }
 
+          const componentMapResolution = ComponentMap.resolveForRequest({
+            cwd: await resolveProjectCandidates(),
+            requestFileKey: fileKey,
+          });
+          const componentMap = componentMapResolution.componentMap;
+          const componentMapSection = formatComponentMapSection(componentMapResolution);
+
           // API headers
           const headers = {
             'X-Figma-Token': figmaAccessToken,
@@ -393,8 +503,14 @@ Node data was retrieved successfully.`,
           const imageUrl = imageData.images?.[nodeId] || imageData.images?.[Object.keys(imageData.images)[0]] || null;
 
           // Helper function to simplify Figma node data - extracts only essential info for code conversion
-          const simplifyNode = (node: any, parentBounds?: any, parentLayoutMode?: string): any => {
+          const simplifyNode = (
+            node: any,
+            parentBounds?: any,
+            parentLayoutMode?: string,
+            componentsById?: Record<string, any>,
+          ): any => {
             if (!node) return null;
+            if (node.visible === false) return null;
             
             const simplified: any = {
               id: node.id,
@@ -411,9 +527,6 @@ Node data was retrieved successfully.`,
               });
             };
 
-            if (node.visible === false) {
-              simplified.visible = false;
-            }
             if (node.locked === true) {
               simplified.locked = true;
             }
@@ -445,6 +558,19 @@ Node data was retrieved successfully.`,
               'componentPropertyReferences',
               'styles',
             ]);
+
+            if (
+              node.type === 'INSTANCE'
+              && typeof node.componentId === 'string'
+              && componentMap
+            ) {
+              const rawKey = typeof componentsById === 'object' && componentsById !== null
+                ? componentsById[node.componentId]?.key
+                : undefined;
+              const figmaKey = typeof rawKey === 'string' && rawKey.length > 0 ? rawKey : null;
+              const lookupKey = figmaKey ?? node.componentId;
+              simplified.tiComponent = componentMap.resolveByComponentKey(lookupKey);
+            }
 
             if (shouldIncludeVariables) {
               copyFields(['boundVariables', 'explicitVariableModes']);
@@ -610,7 +736,7 @@ Node data was retrieved successfully.`,
             // Recursively process children
             if (node.children && node.children.length > 0) {
               simplified.children = node.children
-                .map((child: any) => simplifyNode(child, node.absoluteBoundingBox, node.layoutMode))
+                .map((child: any) => simplifyNode(child, node.absoluteBoundingBox, node.layoutMode, componentsById))
                 .filter(Boolean);
             }
 
@@ -653,17 +779,17 @@ Node data was retrieved successfully.`,
           };
 
           // Simplify the node data
-          const simplifiedNodeData = nodeData.nodes ? 
+          const simplifiedNodeData = nodeData.nodes ?
             Object.keys(nodeData.nodes).reduce((acc: any, key: string) => {
               const node = nodeData.nodes[key];
               acc[key] = cleanObject({
-                document: simplifyNode(node.document),
+                document: simplifyNode(node.document, undefined, undefined, node.components),
                 components: slimComponents(node.components),
                 componentSets: slimComponentSets(node.componentSets),
                 styles: slimStyles(node.styles),
               });
               return acc;
-            }, {}) 
+            }, {})
             : simplifyNode(nodeData);
 
           const prettyNodeData = JSON.stringify(simplifiedNodeData, null, 2);
@@ -677,6 +803,7 @@ Node data was retrieved successfully.`,
               {
                 type: 'text',
                 text: `# Figma Design Data
+${componentMapSection}
 
 ## Context
 You are an AI agent. Convert the following Figma design into high-quality, production-ready code.
@@ -713,7 +840,8 @@ ${nodeDataJson}
    - Ensure the code is responsive and accessible.
 4. **Output Format**:
    - Output the complete implementation shape required by the target project, such as Vue/React component code, styles, i18n keys, or supporting configuration when needed.
-   - Do not introduce Tailwind CSS, CDN assets, or external imports unless the target project already uses them or the user explicitly requests them.`,
+   - Do not introduce Tailwind CSS, CDN assets, or external imports unless the target project already uses them or the user explicitly requests them.
+5. **Component Hints**: If a node carries \`tiComponent\`, you MUST use that exact component (\`tiComponent.library\` / \`tiComponent.component\`). Invoke the \`ti-component-skills\` skill to look up its API/props. Map Figma \`componentProperties\` to the component props yourself; the map intentionally does not provide prop mapping. If \`tiComponent.status\` is \`"unmapped"\` or \`"internal"\`, declare the node as unmapped to the user and do not hand-roll a look-alike. If no \`tiComponent\` field appears on any node, see the Component Map / Component Map Notice section at the top of this output.`,
               },
             ],
           };

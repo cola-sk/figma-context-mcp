@@ -2,7 +2,7 @@
 
 一个 MCP server，用于把 Figma 节点提取成适合 AI Agent 使用的设计上下文。
 
-当前运行时只做一件稳定的事：根据 Figma node URL 拉取节点 JSON 和渲染图，清理无效、默认、隐藏或噪声字段，然后返回简化 JSON。Agent 再结合目标项目自己的组件库、技能或代码规范生成页面。
+当前运行时根据 Figma node URL 拉取节点 JSON 和渲染图，清理无效、默认、隐藏或噪声字段，然后返回简化 JSON。业务项目配置组件映射后，MCP 会在 Figma INSTANCE 节点上注入 `tiComponent` 组件身份 hint，Agent 再结合目标项目自己的组件库、技能或代码规范生成页面。
 
 组件映射数据、Figma 插件导出 JSON、组件截图都属于业务资产，统一放在本地目录 `figma-component-assets-private/`。该目录已被 gitignore，未来可以直接替换成 private submodule。
 
@@ -11,7 +11,7 @@
 ```text
 Figma node URL
   -> convert-figma-to-code
-  -> 简化 JSON + 渲染图 URL
+  -> 简化 JSON + tiComponent hint + 渲染图 URL
   -> Agent 根据项目组件库生成 UI
 ```
 
@@ -34,54 +34,9 @@ tools/figma-component-registry-plugin 导出 registry ZIP
 
 | Tool | 作用 |
 | --- | --- |
-| `convert-figma-to-code` | 拉取 Figma 节点、渲染预览图，并返回简化后的节点 JSON。 |
+| `convert-figma-to-code` | 拉取 Figma 节点、渲染预览图，并返回简化后的节点 JSON；配置组件映射后注入 `tiComponent` hint。 |
 
-当前运行时不在 MCP 内做自动组件匹配。组件选择由下游 Agent 根据项目技能、组件目录或业务约定完成。
-
-### `convert-figma-to-code` 参数
-
-| 参数 | 类型 | 必填 | 默认值 | 说明 |
-| --- | --- | --- | --- | --- |
-| `figmaNodeUrl` | `string` | 是 | 无 | Figma 节点 URL，支持 `https://www.figma.com/file/{fileKey}/...?node-id=...` 和 `https://www.figma.com/design/{fileKey}/...?node-id=...`。 |
-| `includeVariables` | `boolean` | 否 | 读取 `FIGMA_INCLUDE_VARIABLES`，未配置时为 `false` | 是否在简化 JSON 中保留精简后的原始 `boundVariables`，主要用于调试变量绑定。 |
-| `includeVectorPaths` | `boolean` | 否 | 读取 `FIGMA_INCLUDE_VECTOR_PATHS`，未配置时为 `false` | 是否请求并返回原始 vector path。开启后会向 Figma Nodes API 增加 `geometry=paths`，输出体积会明显变大。 |
-
-调用示例：
-
-```json
-{
-  "figmaNodeUrl": "https://www.figma.com/design/{fileKey}/My-Design?node-id=123-456",
-  "includeVariables": false,
-  "includeVectorPaths": false
-}
-```
-
-### MCP 启动参数
-
-| 参数 | 默认值 | 说明 |
-| --- | --- | --- |
-| `--mode <stdio\|http>` | `stdio` | MCP transport 模式。也可以用 `MCP_TRANSPORT_MODE` 配置。 |
-| `--port <number>` | `3000` | HTTP 模式监听端口。也可以用 `MCP_PORT` 配置。 |
-| `--version` / `-v` | 无 | 输出当前包版本。 |
-| `--help` / `-h` | 无 | 输出命令帮助。 |
-
-示例：
-
-```bash
-figma-context-mcp --mode stdio
-figma-context-mcp --mode http --port 3000
-```
-
-### 环境变量
-
-| 环境变量 | 默认值 | 说明 |
-| --- | --- | --- |
-| `FIGMA_ACCESS_TOKEN` | 无 | Figma Personal Access Token。调用 `convert-figma-to-code` 和导出 preview image 时必填。 |
-| `FIGMA_INCLUDE_VARIABLES` | `false` | 当值为 `1` 或 `true` 时，`convert-figma-to-code` 默认包含精简后的 `boundVariables`。可被 tool 入参 `includeVariables` 覆盖。 |
-| `FIGMA_INCLUDE_VECTOR_PATHS` | `false` | 当值为 `1` 或 `true` 时，`convert-figma-to-code` 默认包含 vector path。可被 tool 入参 `includeVectorPaths` 覆盖。 |
-| `MCP_TRANSPORT_MODE` | `stdio` | MCP transport 模式。可被命令行 `--mode` 覆盖。 |
-| `MCP_PORT` | `3000` | HTTP 模式端口。可被命令行 `--port` 覆盖。 |
-| `FIGMA_COMPONENT_ASSETS_DIR` | `figma-component-assets-private` | 私有业务资产目录。影响 map 生成、preview 导出和 Dashboard 读取。 |
+当前运行时不启用 design token 解析。组件映射只做身份识别，不推断 variant 到 props 的映射；具体 API 仍由下游 Agent 通过项目技能或组件目录查询。
 
 ## MCP 配置
 
@@ -133,6 +88,44 @@ Claude Desktop / Cursor：
   }
 }
 ```
+
+当前不要在 MCP config 中配置 `TI_DESIGN_TOKEN_DIR` 或 `TI_TOKEN_SET`。组件映射通过业务项目根目录的 `.figma-context-mcp.json` 配置。
+
+## 业务项目组件映射配置
+
+在业务项目根目录创建：
+
+```json
+{
+  "componentMap": {
+    "source": "d",
+    "inject": true
+  }
+}
+```
+
+字段说明：
+
+- `source: "b"`：使用【内部公开版】Titan Design System 映射。
+- `source: "d"`：使用主题开发者平台 Design System 映射。
+- `source: "auto"`：仅当请求的 Figma fileKey 正好是 b/d 库文件时自动识别；普通业务文件建议显式配置 b 或 d。
+- `source: "none"` 或 `inject: false`：关闭 `tiComponent` 注入。
+- `overridePath`：可选，自定义 map 文件路径；相对路径按业务项目根目录解析。
+
+启用后，INSTANCE 节点会出现：
+
+```json
+{
+  "tiComponent": {
+    "status": "mapped",
+    "library": "Element Plus",
+    "component": "el-button",
+    "variantProps": null
+  }
+}
+```
+
+`status: "unmapped"` 或 `"internal"` 时，Agent 应向用户说明该节点未映射，不应根据视觉 JSON 手写一个仿制组件。可读取 `figma://component-map/summary` 查看当前配置摘要。
 
 ## 私有业务资产
 

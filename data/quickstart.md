@@ -21,6 +21,7 @@ The tool returns:
 
 - rendered image URL;
 - simplified node JSON;
+- `tiComponent` hints for INSTANCE nodes when a component map is configured;
 - compact component / component set / style metadata when Figma returns it.
 
 Optional debug flags:
@@ -47,6 +48,40 @@ Use the simplified JSON to understand:
 | `components` / `componentSets` | Figma component metadata useful for component reasoning. |
 
 Then let the agent combine this context with project skills or component catalogs to generate implementation code.
+
+## Enable Component Hints
+
+Create `.figma-context-mcp.json` in the business project root:
+
+```json
+{
+  "componentMap": {
+    "source": "d",
+    "inject": true
+  }
+}
+```
+
+The MCP discovers the project root in this order, no `cwd` configuration required on supporting clients (Claude Code, Cursor, etc.):
+
+1. **MCP `roots`** — the client advertises the active workspace, and the server queries it on each request.
+2. **`FIGMA_CONTEXT_MCP_PROJECT_ROOT` env var** — use this when the client does not support `roots`.
+3. **`process.cwd()`** — fallback when the MCP is launched from the project root.
+
+For clients without `roots` support, set `FIGMA_CONTEXT_MCP_PROJECT_ROOT` or launch the MCP with the business project as the working directory.
+
+Use `"source": "b"` for the internal public Titan Design System, `"source": "d"` for the theme developer platform Design System, `"source": "none"` to disable hints, or `"source": "auto"` to auto-detect only when the requested Figma file is one of the library files.
+
+When hints are enabled, INSTANCE nodes include:
+
+| Field | Meaning |
+| --- | --- |
+| `tiComponent.status` | `mapped`, `unmapped`, or `internal`. |
+| `tiComponent.library` / `component` | The component library and component name to use when mapped. |
+| `tiComponent.sourceStatus` | Original map status, such as `unresolved` or `not-found`. |
+| `tiComponent.variantProps` | Always `null`; prop mapping is intentionally not inferred. |
+
+If `status` is `unmapped` or `internal`, the agent should surface that result and avoid inventing a look-alike component.
 
 ## Component Mapping Data
 
