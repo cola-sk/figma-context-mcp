@@ -1,0 +1,324 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        color: #1d2129;
+        background: #fff;
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        padding: 12px;
+        border-bottom: 1px solid #e5e6eb;
+      }
+
+      button,
+      select {
+        min-height: 30px;
+        border: 1px solid #c9cdd4;
+        border-radius: 6px;
+        background: #fff;
+        color: #1d2129;
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      button.primary {
+        border-color: #165dff;
+        background: #165dff;
+        color: #fff;
+      }
+
+      .status {
+        padding: 10px 12px;
+        color: #4e5969;
+        font-size: 12px;
+        border-bottom: 1px solid #e5e6eb;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        height: 620px;
+      }
+
+      .side {
+        border-right: 1px solid #e5e6eb;
+        padding: 12px;
+        overflow: auto;
+      }
+
+      .side h2 {
+        margin: 0 0 8px;
+        font-size: 13px;
+      }
+
+      .item {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 8px;
+        border-radius: 6px;
+        color: #4e5969;
+        font-size: 12px;
+      }
+
+      .item.active {
+        background: #f2f3f5;
+        color: #1d2129;
+      }
+
+      .count {
+        color: #86909c;
+      }
+
+      textarea {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        outline: 0;
+        padding: 12px;
+        font: 11px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        resize: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <button class="primary" id="export">Export Variables</button>
+      <button id="copy">Copy Current</button>
+      <button id="download-current">Download Current</button>
+      <button id="download-all">Download All Collections</button>
+      <button id="download-bundle">Download Bundle</button>
+      <button id="close">Close</button>
+    </div>
+    <div class="status" id="status">Reading local variables...</div>
+    <div class="layout">
+      <div class="side">
+        <h2>Collections</h2>
+        <div id="collections"></div>
+      </div>
+      <textarea id="output" spellcheck="false"></textarea>
+    </div>
+
+    <script>
+      const output = document.getElementById('output');
+      const status = document.getElementById('status');
+      const collections = document.getElementById('collections');
+      let payload = null;
+      let currentName = null;
+
+      const fileNameFor = (name) => `${name}.json`;
+
+      const renderCurrent = () => {
+        if (!payload || !currentName) return;
+        output.value = JSON.stringify(payload.collections[currentName], null, 2);
+      };
+
+      const renderCollections = () => {
+        collections.innerHTML = '';
+        Object.entries(payload.collections).forEach(([name, collection]) => {
+          const item = document.createElement('button');
+          item.type = 'button';
+          item.className = `item${name === currentName ? ' active' : ''}`;
+          item.innerHTML = `<span>${name}</span><span class="count">${collection.variables.length}</span>`;
+          item.onclick = () => {
+            currentName = name;
+            renderCollections();
+            renderCurrent();
+          };
+          collections.appendChild(item);
+        });
+      };
+
+      const downloadBlob = (filename, blob) => {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        link.click();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+      };
+
+      const download = (filename, data) => {
+        const blob = new Blob([JSON.stringify(data, null, 2) + '\n'], { type: 'application/json' });
+        downloadBlob(filename, blob);
+      };
+
+      const crcTable = (() => {
+        const table = new Uint32Array(256);
+        for (let n = 0; n < 256; n += 1) {
+          let c = n;
+          for (let k = 0; k < 8; k += 1) {
+            c = (c & 1) ? (0xedb88320 ^ (c >>> 1)) : (c >>> 1);
+          }
+          table[n] = c >>> 0;
+        }
+        return table;
+      })();
+
+      const crc32 = (bytes) => {
+        let crc = 0xffffffff;
+        for (let i = 0; i < bytes.length; i += 1) {
+          crc = crcTable[(crc ^ bytes[i]) & 0xff] ^ (crc >>> 8);
+        }
+        return (crc ^ 0xffffffff) >>> 0;
+      };
+
+      const dosDateTime = (date) => {
+        const year = Math.max(date.getFullYear(), 1980);
+        return {
+          date: ((year - 1980) << 9) | ((date.getMonth() + 1) << 5) | date.getDate(),
+          time: (date.getHours() << 11) | (date.getMinutes() << 5) | Math.floor(date.getSeconds() / 2),
+        };
+      };
+
+      const pushUint16 = (bytes, value) => {
+        bytes.push(value & 0xff, (value >>> 8) & 0xff);
+      };
+
+      const pushUint32 = (bytes, value) => {
+        bytes.push(
+          value & 0xff,
+          (value >>> 8) & 0xff,
+          (value >>> 16) & 0xff,
+          (value >>> 24) & 0xff
+        );
+      };
+
+      const pushBytes = (bytes, value) => {
+        for (let i = 0; i < value.length; i += 1) {
+          bytes.push(value[i]);
+        }
+      };
+
+      const createZipBlob = (files) => {
+        const encoder = new TextEncoder();
+        const now = dosDateTime(new Date());
+        const outputBytes = [];
+        const centralDirectory = [];
+
+        files.forEach((file) => {
+          const nameBytes = encoder.encode(file.name);
+          const contentBytes = encoder.encode(file.content);
+          const checksum = crc32(contentBytes);
+          const localHeaderOffset = outputBytes.length;
+
+          pushUint32(outputBytes, 0x04034b50);
+          pushUint16(outputBytes, 20);
+          pushUint16(outputBytes, 0);
+          pushUint16(outputBytes, 0);
+          pushUint16(outputBytes, now.time);
+          pushUint16(outputBytes, now.date);
+          pushUint32(outputBytes, checksum);
+          pushUint32(outputBytes, contentBytes.length);
+          pushUint32(outputBytes, contentBytes.length);
+          pushUint16(outputBytes, nameBytes.length);
+          pushUint16(outputBytes, 0);
+          pushBytes(outputBytes, nameBytes);
+          pushBytes(outputBytes, contentBytes);
+
+          pushUint32(centralDirectory, 0x02014b50);
+          pushUint16(centralDirectory, 20);
+          pushUint16(centralDirectory, 20);
+          pushUint16(centralDirectory, 0);
+          pushUint16(centralDirectory, 0);
+          pushUint16(centralDirectory, now.time);
+          pushUint16(centralDirectory, now.date);
+          pushUint32(centralDirectory, checksum);
+          pushUint32(centralDirectory, contentBytes.length);
+          pushUint32(centralDirectory, contentBytes.length);
+          pushUint16(centralDirectory, nameBytes.length);
+          pushUint16(centralDirectory, 0);
+          pushUint16(centralDirectory, 0);
+          pushUint16(centralDirectory, 0);
+          pushUint16(centralDirectory, 0);
+          pushUint32(centralDirectory, 0);
+          pushUint32(centralDirectory, localHeaderOffset);
+          pushBytes(centralDirectory, nameBytes);
+        });
+
+        const centralDirectoryOffset = outputBytes.length;
+        pushBytes(outputBytes, centralDirectory);
+        pushUint32(outputBytes, 0x06054b50);
+        pushUint16(outputBytes, 0);
+        pushUint16(outputBytes, 0);
+        pushUint16(outputBytes, files.length);
+        pushUint16(outputBytes, files.length);
+        pushUint32(outputBytes, centralDirectory.length);
+        pushUint32(outputBytes, centralDirectoryOffset);
+        pushUint16(outputBytes, 0);
+
+        return new Blob([new Uint8Array(outputBytes)], { type: 'application/zip' });
+      };
+
+      document.getElementById('export').onclick = () => {
+        status.textContent = 'Reading local variables...';
+        parent.postMessage({ pluginMessage: { type: 'export' } }, '*');
+      };
+
+      document.getElementById('copy').onclick = async () => {
+        await navigator.clipboard.writeText(output.value);
+        status.textContent = `Copied ${currentName || 'current'} JSON.`;
+      };
+
+      document.getElementById('download-current').onclick = () => {
+        if (!payload || !currentName) return;
+        download(fileNameFor(currentName), payload.collections[currentName]);
+      };
+
+      document.getElementById('download-all').onclick = () => {
+        if (!payload) return;
+        const files = Object.entries(payload.collections).map(([name, collection]) => ({
+          name: fileNameFor(name),
+          content: JSON.stringify(collection, null, 2) + '\n',
+        }));
+        downloadBlob('ti-figma-variable-collections.zip', createZipBlob(files));
+        status.textContent = `Downloaded ${files.length} collections as a zip.`;
+      };
+
+      document.getElementById('download-bundle').onclick = () => {
+        if (!payload) return;
+        download('ti-figma-variable-key-export.json', payload);
+      };
+
+      document.getElementById('close').onclick = () => {
+        parent.postMessage({ pluginMessage: { type: 'close' } }, '*');
+      };
+
+      onmessage = (event) => {
+        const message = event.data.pluginMessage;
+        if (!message) return;
+
+        if (message.type === 'error') {
+          status.textContent = message.message;
+          return;
+        }
+
+        if (message.type === 'export') {
+          payload = message.payload;
+          currentName = Object.keys(payload.collections)[0] || null;
+          status.textContent = `Exported ${payload.collectionCount} collections, ${payload.variableCount} variables.`;
+          renderCollections();
+          renderCurrent();
+        }
+      };
+    </script>
+  </body>
+</html>

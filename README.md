@@ -143,7 +143,8 @@ figma-component-assets-private/
 ├── d-components/
 ├── b-components/
 ├── mappings/
-└── previews/
+├── previews/
+└── tokens/
 ```
 
 说明：
@@ -151,6 +152,7 @@ figma-component-assets-private/
 - `d-components/`、`b-components/`：Figma 插件导出的组件 JSON。
 - `mappings/`：生成后的组件映射 JSON。
 - `previews/`：组件截图缓存。
+- `tokens/`：`figma-variable-key-exporter` 导出的 variable collection JSON，MCP 暂不消费。
 - 该目录已加入 `.gitignore`，不会提交到当前仓库。
 - 未来可以把该目录替换为 private submodule。
 
