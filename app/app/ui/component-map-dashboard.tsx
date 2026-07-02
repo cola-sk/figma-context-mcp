@@ -307,9 +307,6 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
             <h2>{viewData.systemLabel} Component Map</h2>
             <p>Schema: <code>{viewData.schemaVersion}</code> · Generated at {formatDate(viewData.generatedAt)}</p>
           </div>
-          <div className="metadataRight">
-            <span className="fileBadge"><code>mappings/{viewData.mapFile}</code></span>
-          </div>
         </header>
 
         <section className="statsGrid" aria-label="mapping stats">
