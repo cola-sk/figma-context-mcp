@@ -282,22 +282,17 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
                 </linearGradient>
               </defs>
               <g fillOpacity="0.95">
-                <path d="M 16.00 3.86 L 20.62 6.53 L 16.00 9.20 L 11.38 6.53 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
-                <path d="M 21.25 6.89 L 25.87 9.56 L 21.25 12.23 L 16.63 9.56 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
-                <path d="M 16.00 9.92 L 20.62 12.59 L 16.00 15.26 L 11.38 12.59 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
-                <path d="M 10.75 6.89 L 15.37 9.56 L 10.75 12.23 L 6.13 9.56 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+                <path d="M 10.75 6.95 L 15.27 9.56 L 10.75 12.17 L 6.24 9.56 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+                <path d="M 16.00 3.92 L 20.52 6.53 L 16.00 9.14 L 11.48 6.53 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+                <path d="M 5.87 10.19 L 10.38 12.80 L 10.38 17.99 L 5.87 15.38 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+                <path d="M 5.87 16.22 L 10.38 18.83 L 10.38 24.02 L 5.87 21.41 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+                <path d="M 11.12 19.25 L 15.63 21.86 L 15.63 27.05 L 11.12 24.44 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
               </g>
-              <g fillOpacity="0.60">
-                <path d="M 5.81 10.10 L 10.44 12.77 L 10.44 18.08 L 5.81 15.41 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
-                <path d="M 11.06 13.13 L 15.69 15.80 L 15.69 21.11 L 11.06 18.44 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
-                <path d="M 11.06 19.16 L 15.69 21.83 L 15.69 27.14 L 11.06 24.47 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
-                <path d="M 5.81 16.13 L 10.44 18.80 L 10.44 24.11 L 5.81 21.44 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
-              </g>
-              <g fillOpacity="0.80">
-                <path d="M 26.18 10.10 L 26.18 15.41 L 21.57 18.08 L 21.57 12.77 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
-                <path d="M 26.18 16.13 L 26.18 21.44 L 21.57 24.11 L 21.57 18.80 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
-                <path d="M 20.93 19.16 L 20.93 24.47 L 16.32 27.14 L 16.32 21.83 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
-                <path d="M 20.93 13.13 L 20.93 18.44 L 16.32 21.11 L 16.32 15.80 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+              <g fillOpacity="0.75">
+                <path d="M 21.25 6.95 L 25.77 9.56 L 21.25 12.17 L 16.73 9.56 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+                <path d="M 26.13 10.19 L 26.13 15.38 L 21.62 17.99 L 21.62 12.80 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+                <path d="M 26.13 16.22 L 26.13 21.44 L 21.62 24.02 L 21.62 18.83 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+                <path d="M 20.88 19.25 L 20.88 24.44 L 16.37 27.05 L 16.37 21.86 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
               </g>
             </svg>
             <span className="logoText">FE/D Bridge</span>
