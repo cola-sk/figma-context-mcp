@@ -1,100 +1,144 @@
 # Component Map Viewer Dashboard
 
-Dashboard for reviewing and editing Figma component mappings. It reads generated mapping JSON from `assets/mappings/` and displays offline preview images from `app/public/previews/`.
+用于查看和编辑 Figma 组件到 Vue 组件库的映射关系。
 
-## Start
+Dashboard 只负责可视化和人工校验。业务 JSON、映射文件和组件截图统一从仓库根目录的 `figma-component-assets-private/` 读取，该目录已被 gitignore，未来可以替换为 private submodule。
+
+## 启动
 
 ```bash
 pnpm map-viewer:dev
 ```
 
-Open:
+打开：
 
 ```text
 http://localhost:3217/?system=d
 http://localhost:3217/?system=b
 ```
 
-Use `localhost` during local development. IP access can cause Next dev origin / hydration issues.
+本地开发建议使用 `localhost`。用 IP 访问时，Next dev 的 origin / hydration 行为可能不一致。
 
-## Update Plugin JSON
+## 业务资产目录
 
-1. Export D-side or B-side component JSON from the Figma plugin.
-2. Unzip and replace the matching directory:
+默认目录：
 
 ```text
-assets/d-components/
-assets/b-components/
+figma-component-assets-private/
+├── d-components/
+├── b-components/
+├── mappings/
+└── previews/
 ```
 
-3. Confirm `all.json` contains `source.fileKey`.
-4. Regenerate maps from the repository root:
+如果资产目录不在默认位置，可以在启动前设置：
+
+```bash
+export FIGMA_COMPONENT_ASSETS_DIR="/path/to/figma-component-assets-private"
+```
+
+## 更新插件 JSON
+
+组件 JSON 来自仓库里的 Figma 插件：
+
+```text
+tools/figma-component-registry-plugin/
+```
+
+在 Figma 中执行：
+
+1. 进入 `Plugins > Development > Import plugin from manifest...`。
+2. 选择 `tools/figma-component-registry-plugin/manifest.json`。
+3. 打开 Design System 文件后运行 `Component Registry Exporter`。
+4. 导出类型选择 `组件注册表 registry`。
+5. 勾选要导出的组件 page。
+6. 如果界面显示 `fileKey: unavailable`，手动填入当前 Figma 文件链接或 fileKey。
+7. 点击 `导出 ZIP`。
+
+ZIP 解压后会包含：
+
+```text
+index.json
+all.json
+pages/*.json
+```
+
+将解压后的内容替换到对应目录：
+
+```text
+figma-component-assets-private/d-components/
+figma-component-assets-private/b-components/
+```
+
+确认 `all.json` 中包含 `source.fileKey`。后续导出截图会用这个 fileKey 调 Figma Images API。
+
+回到仓库根目录重新生成映射：
 
 ```bash
 pnpm map:generate
 ```
 
-Generated files:
+生成文件：
 
 ```text
-assets/mappings/d-figma-component-key-map.json
-assets/mappings/b-figma-component-key-map.json
+figma-component-assets-private/mappings/d-figma-component-key-map.json
+figma-component-assets-private/mappings/b-figma-component-key-map.json
 ```
 
-Existing reviewed mapping data is preserved when entries can be matched by `figma.key`, `figma.id`, or `page + name`.
+重新生成时会按 `figma.key`、`figma.id`、`page + name` 继承已有映射，避免丢失已经确认过的 mapping。
 
-## Update Preview Images
+## 更新截图
 
-Preview files:
+截图目录：
 
 ```text
-app/public/previews/{system}/
-app/public/previews/{system}/index.json
+figma-component-assets-private/previews/{system}/
+figma-component-assets-private/previews/{system}/index.json
 ```
 
-Set a Figma token in the current shell:
+设置 Figma token：
 
 ```bash
 export FIGMA_ACCESS_TOKEN="YOUR_FIGMA_TOKEN"
 ```
 
-D-side full serial export:
+D 端全量串行导出：
 
 ```bash
 pnpm previews:export -- --system d --all --delay-ms 500
 ```
 
-Export by component name:
+按组件名导出：
 
 ```bash
 pnpm previews:export -- --system d --name Button
 ```
 
-Export by component key:
+按 component key 导出：
 
 ```bash
 pnpm previews:export -- --system d --key <componentKey>
 ```
 
-Only export the component set image, without variants:
+只导出 component set，不导出 variants：
 
 ```bash
 pnpm previews:export -- --system d --name Button --variants false
 ```
 
-The export script batches Figma image API requests. If a batch fails, it retries node-by-node and prints failed node ids.
+脚本会批量调用 Figma image API。如果批量请求失败，会自动按单个节点重试并打印失败节点。
 
-## Verify
+## 验证
 
 ```bash
 pnpm --dir app build
 pnpm map-viewer:dev
 ```
 
-In the Dashboard, check:
+在 Dashboard 中检查：
 
-- list thumbnails render;
-- detail preview renders;
-- preview lightbox opens;
-- all component images are visible in the lightbox;
-- drag pan, button zoom, and Command + wheel zoom work.
+- 列表缩略图可以加载；
+- 详情区预览图可以加载；
+- 点击图片可以打开大图弹窗；
+- 大图弹窗里组件及 variants 都可见；
+- 拖拽平移、按钮缩放、Command + 滚轮缩放可用。

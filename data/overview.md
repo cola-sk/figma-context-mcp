@@ -38,15 +38,15 @@ The repository also contains component mapping assets and scripts. These support
 Generated map files:
 
 ```text
-assets/mappings/d-figma-component-key-map.json
-assets/mappings/b-figma-component-key-map.json
+figma-component-assets-private/mappings/d-figma-component-key-map.json
+figma-component-assets-private/mappings/b-figma-component-key-map.json
 ```
 
 Offline preview files:
 
 ```text
-app/public/previews/{system}/
-app/public/previews/{system}/index.json
+figma-component-assets-private/previews/{system}/
+figma-component-assets-private/previews/{system}/index.json
 ```
 
 ## Archived Token Work

@@ -21,7 +21,8 @@ if (!allFilter && !nameFilter && !keyFilter) {
 }
 
 const root = process.cwd();
-const mapPath = path.join(root, `assets/mappings/${system}-figma-component-key-map.json`);
+const assetsRoot = path.resolve(root, process.env.FIGMA_COMPONENT_ASSETS_DIR || 'figma-component-assets-private');
+const mapPath = path.join(assetsRoot, `mappings/${system}-figma-component-key-map.json`);
 const map = readJson(mapPath);
 const fileKey = map.sourceRegistry?.source?.fileKey;
 
@@ -65,10 +66,10 @@ if (targetGroups.length === 0) {
   throw new Error(`No component matched ${keyFilter || nameFilter || 'all'} in ${mapPath}.`);
 }
 
-const publicDir = path.join(root, 'app/public/previews', system);
-fs.mkdirSync(publicDir, { recursive: true });
+const previewDir = path.join(assetsRoot, 'previews', system);
+fs.mkdirSync(previewDir, { recursive: true });
 
-const indexPath = path.join(publicDir, 'index.json');
+const indexPath = path.join(previewDir, 'index.json');
 const existingIndex = fs.existsSync(indexPath) ? readJson(indexPath) : { system, previews: {} };
 const previews = existingIndex.previews && typeof existingIndex.previews === 'object' ? existingIndex.previews : {};
 
@@ -147,7 +148,7 @@ async function exportBatch(batch, allowFallback = true) {
 
     const bytes = Buffer.from(await image.arrayBuffer());
     const fileName = `${safeFileName(item.key)}.png`;
-    fs.writeFileSync(path.join(publicDir, fileName), bytes);
+    fs.writeFileSync(path.join(previewDir, fileName), bytes);
     previews[item.key] = {
       nodeId: item.nodeId,
       fileName,

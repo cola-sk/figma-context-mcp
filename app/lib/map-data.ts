@@ -138,8 +138,16 @@ export function getMapSystemMeta(system: MapSystem) {
   return mapSystems.find((item) => item.id === system) ?? mapSystems[0];
 }
 
+export function getComponentAssetsRoot() {
+  if (process.env.FIGMA_COMPONENT_ASSETS_DIR) {
+    return path.resolve(process.env.FIGMA_COMPONENT_ASSETS_DIR);
+  }
+
+  return path.join(process.cwd(), '..', 'figma-component-assets-private');
+}
+
 export function getMapPath(system: MapSystem = 'd') {
-  return path.resolve(process.cwd(), `../assets/mappings/${getMapSystemMeta(system).mapFile}`);
+  return path.join(getComponentAssetsRoot(), 'mappings', getMapSystemMeta(system).mapFile);
 }
 
 function asText(value: unknown, fallback = '-') {
@@ -170,7 +178,7 @@ function getEvidence(target: Target) {
 }
 
 function loadPreviewIndex(system: MapSystem): Record<string, string> {
-  const indexPath = path.resolve(process.cwd(), `public/previews/${system}/index.json`);
+  const indexPath = path.join(getComponentAssetsRoot(), 'previews', system, 'index.json');
   if (!fs.existsSync(indexPath)) return {};
 
   try {

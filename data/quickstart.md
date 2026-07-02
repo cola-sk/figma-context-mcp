@@ -55,8 +55,8 @@ The repository also includes component mapping scripts and Dashboard assets. The
 Place plugin exports in:
 
 ```text
-assets/d-components/
-assets/b-components/
+figma-component-assets-private/d-components/
+figma-component-assets-private/b-components/
 ```
 
 Regenerate maps:

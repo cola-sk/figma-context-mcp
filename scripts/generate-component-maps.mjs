@@ -2,31 +2,32 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
-const mappingsDir = path.join(root, 'assets/mappings');
+const assetsRoot = path.resolve(root, process.env.FIGMA_COMPONENT_ASSETS_DIR || 'figma-component-assets-private');
+const mappingsDir = path.join(assetsRoot, 'mappings');
 const seedMapPath = path.join(mappingsDir, 'figma-component-key-map.json');
 
 const systems = [
   {
     id: 'd',
-    registryDir: 'assets/d-components',
-    output: 'assets/mappings/d-figma-component-key-map.json',
+    registryDir: 'd-components',
+    output: 'mappings/d-figma-component-key-map.json',
   },
   {
     id: 'b',
-    registryDir: 'assets/b-components',
-    output: 'assets/mappings/b-figma-component-key-map.json',
+    registryDir: 'b-components',
+    output: 'mappings/b-figma-component-key-map.json',
   },
 ];
 
 for (const system of systems) {
-  const registry = readJson(path.join(root, system.registryDir, 'all.json'));
-  const registryIndex = readJson(path.join(root, system.registryDir, 'index.json'));
-  const outputPath = path.join(root, system.output);
+  const registry = readJson(path.join(assetsRoot, system.registryDir, 'all.json'));
+  const registryIndex = readJson(path.join(assetsRoot, system.registryDir, 'index.json'));
+  const outputPath = path.join(assetsRoot, system.output);
   const seedMap = fs.existsSync(outputPath) ? readJson(outputPath) : readJson(seedMapPath);
   const nextMap = buildMap({ system, registry, registryIndex, seedMap });
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, `${JSON.stringify(nextMap, null, 2)}\n`, 'utf8');
-  console.log(`${system.id}: wrote ${system.output}`);
+  console.log(`${system.id}: wrote ${path.relative(root, outputPath)}`);
 }
 
 function readJson(file) {
@@ -52,7 +53,7 @@ function buildMap({ system, registry, registryIndex, seedMap }) {
     schemaVersion: seedMap.schemaVersion || 'figma-component-key-map/v1',
     generatedAt: new Date().toISOString(),
     sourceRegistry: {
-      directory: system.registryDir.replace(/^assets\//, ''),
+      directory: system.registryDir,
       schemaVersion: registry.schemaVersion,
       source: registry.source,
       files: (registryIndex.files || []).map((file) => ({
