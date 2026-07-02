@@ -1,36 +1,16 @@
 #!/usr/bin/env node
 import { z } from 'zod';
-import { isInitializeRequest, CallToolResult } from "@modelcontextprotocol/sdk/types.js"
+import { CallToolResult } from "@modelcontextprotocol/sdk/types.js"
 import { ExpressHttpStreamableMcpServer } from "./server-runner.js";
 import { readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import {
-  FIGMA_CONTEXT_CONFIG_FILE,
-  loadFigmaContextConfig,
-  TokenDetail,
-} from './config-utils.js';
-import {
-  createStyleValue,
-  createTokenUsageSummary,
-  extractNodeTokenContext,
-  findBindingForPath,
-  findGapForPath,
-  formatFigmaColor,
-  loadTokenRegistry,
-  StyleStrategy,
-} from './token-utils.js';
 
 // Get __dirname equivalent in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
-const getDefaultStyleStrategy = (): StyleStrategy => {
-  const value = process.env.FIGMA_STYLE_STRATEGY;
-  return value === 'tokensOnly' || value === 'preferTokens' ? value : 'preferTokens';
-};
 
 const getDefaultIncludeVariables = (): boolean =>
   process.env.FIGMA_INCLUDE_VARIABLES === '1'
@@ -39,38 +19,6 @@ const getDefaultIncludeVariables = (): boolean =>
 const getDefaultIncludeVectorPaths = (): boolean =>
   process.env.FIGMA_INCLUDE_VECTOR_PATHS === '1'
   || process.env.FIGMA_INCLUDE_VECTOR_PATHS === 'true';
-
-const getDefaultTokenDetail = (): TokenDetail => {
-  const value = process.env.FIGMA_TOKEN_DETAIL;
-  return value === 'full' ? 'full' : 'compact';
-};
-
-const getWorkspaceRootUris = async (server: McpServer): Promise<{
-  rootUris: string[];
-  warnings: string[];
-}> => {
-  if (!server.server.getClientCapabilities()?.roots) {
-    return {
-      rootUris: [],
-      warnings: [],
-    };
-  }
-
-  try {
-    const result = await server.server.listRoots(undefined, { timeout: 1000 });
-    return {
-      rootUris: result.roots.map((root) => root.uri),
-      warnings: [],
-    };
-  } catch (error) {
-    return {
-      rootUris: [],
-      warnings: [
-        `Unable to list MCP workspace roots while searching ${FIGMA_CONTEXT_CONFIG_FILE}; falling back to server cwd: ${error instanceof Error ? error.message : String(error)}`,
-      ],
-    };
-  }
-};
 
 const isEmptyValue = (value: unknown): boolean =>
   value === undefined
@@ -173,6 +121,18 @@ const stripVariableFields = (value: unknown): unknown => {
 const normalizeDesignValue = (value: unknown, includeVariables: boolean): unknown => {
   const normalized = maybeCompactVariableFields(normalizeColorFields(value));
   return includeVariables ? normalized : stripVariableFields(normalized);
+};
+
+const formatFigmaColor = (color: any): string | undefined => {
+  if (!color || typeof color !== 'object') return undefined;
+  if (typeof color.r !== 'number' || typeof color.g !== 'number' || typeof color.b !== 'number') return undefined;
+
+  const r = Math.round(color.r * 255);
+  const g = Math.round(color.g * 255);
+  const b = Math.round(color.b * 255);
+  const a = typeof color.a === 'number' ? Math.round(color.a * 100) / 100 : 1;
+
+  return a < 1 ? `rgba(${r}, ${g}, ${b}, ${a})` : `#${[r, g, b].map((value) => value.toString(16).padStart(2, '0')).join('')}`;
 };
 
 // Get transport mode from environment or command-line args
@@ -290,41 +250,20 @@ const setupServer = (server: McpServer) => {
 
     server.tool(
       'convert-figma-to-code',
-      'Fetches a Figma node and rendered image from the Figma API, resolves bound Figma variables through the configured token file, and returns token-aware code generation context.',
+      'Fetches a Figma node and rendered image from the Figma API and returns simplified code generation context.',
       {
         figmaNodeUrl: z.string().describe('The URL of the Figma node (e.g., https://www.figma.com/design/fileKey/fileName?node-id=123-456)'),
-        styleStrategy: z.enum(['preferTokens', 'tokensOnly']).optional().describe('Controls generated style guidance. preferTokens uses token variables when available and falls back to literals. tokensOnly requires token variables and reports token gaps instead of allowing literal style values. Defaults to .figma-context-mcp.json, then FIGMA_STYLE_STRATEGY, then preferTokens.'),
-        tokenDetail: z.enum(['compact', 'full']).optional().describe('Controls token metadata verbosity in the returned JSON. compact keeps code-generation essentials; full includes references, resolved values, and token chains for debugging. Defaults to .figma-context-mcp.json, then FIGMA_TOKEN_DETAIL, then compact.'),
-        designTokenDir: z.string().optional().describe('Optional absolute path to the ti-d-design-token repository. Defaults to .figma-context-mcp.json, then TI_DESIGN_TOKEN_DIR.'),
-        tokenSetId: z.string().optional().describe('Optional token set id such as d or b. Defaults to .figma-context-mcp.json, then TI_TOKEN_SET, then d.'),
-        includeVariables: z.boolean().optional().describe('Includes compact raw Figma boundVariables in the simplified JSON for debugging. Defaults to .figma-context-mcp.json, then FIGMA_INCLUDE_VARIABLES.'),
-        includeVectorPaths: z.boolean().optional().describe('Whether to request and include raw vector path data. Defaults to .figma-context-mcp.json, then FIGMA_INCLUDE_VECTOR_PATHS.'),
-        variablesTokenFile: z.string().optional().describe('Advanced override: absolute path to packages/d/dist/ti-d-variables-token.json. Defaults to .figma-context-mcp.json, then FIGMA_VARIABLES_TOKEN_FILE, then TI_DESIGN_TOKEN_DIR + tokenSetId.'),
-        cssVariablesFile: z.string().optional().describe('Advanced override: absolute path to packages/d/dist/ti-d-css-variables.json or packages/d/mappings/css-variable-map.json. Defaults to .figma-context-mcp.json, then FIGMA_CSS_VARIABLES_FILE, then TI_DESIGN_TOKEN_DIR + tokenSetId.'),
-        variableAliasFile: z.string().optional().describe('Advanced override: absolute path to remote-variable-aliases.json. Defaults to .figma-context-mcp.json, then FIGMA_VARIABLE_ALIAS_FILE, then TI_DESIGN_TOKEN_DIR + tokenSetId.'),
+        includeVariables: z.boolean().optional().describe('Includes compact raw Figma boundVariables in the simplified JSON for debugging. Defaults to FIGMA_INCLUDE_VARIABLES.'),
+        includeVectorPaths: z.boolean().optional().describe('Whether to request and include raw vector path data. Defaults to FIGMA_INCLUDE_VECTOR_PATHS.'),
       },
       async ({
         figmaNodeUrl,
-        styleStrategy,
-        tokenDetail,
-        designTokenDir,
-        tokenSetId,
         includeVariables,
         includeVectorPaths,
-        variablesTokenFile,
-        cssVariablesFile,
-        variableAliasFile,
       }: {
         figmaNodeUrl: string;
-        styleStrategy?: StyleStrategy;
-        tokenDetail?: TokenDetail;
-        designTokenDir?: string;
-        tokenSetId?: string;
         includeVariables?: boolean;
         includeVectorPaths?: boolean;
-        variablesTokenFile?: string;
-        cssVariablesFile?: string;
-        variableAliasFile?: string;
       }): Promise<CallToolResult> => {
         try {
           // Get Figma access token from environment variables
@@ -354,52 +293,8 @@ Example for your MCP config:
             };
           }
 
-          const workspaceRoots = await getWorkspaceRootUris(server);
-          const figmaContextConfig = loadFigmaContextConfig(workspaceRoots.rootUris);
-          const projectConfig = figmaContextConfig.config;
-          const configWarnings = [
-            ...workspaceRoots.warnings,
-            ...figmaContextConfig.warnings,
-          ];
-          const effectiveStyleStrategy = styleStrategy || projectConfig.styleStrategy || getDefaultStyleStrategy();
-          const effectiveTokenDetail = tokenDetail || projectConfig.tokenDetail || getDefaultTokenDetail();
-          const shouldIncludeVariables = includeVariables ?? projectConfig.includeVariables ?? getDefaultIncludeVariables();
-          const shouldIncludeVectorPaths = includeVectorPaths ?? projectConfig.includeVectorPaths ?? getDefaultIncludeVectorPaths();
-          const tokenLoadResult = loadTokenRegistry({
-            designTokenDir: designTokenDir || projectConfig.designTokenDir,
-            tokenSetId: tokenSetId || projectConfig.tokenSetId,
-            variablesTokenFile: variablesTokenFile || projectConfig.variablesTokenFile,
-            cssVariablesFile: cssVariablesFile || projectConfig.cssVariablesFile,
-            variableAliasFile: variableAliasFile || projectConfig.variableAliasFile,
-          });
-          const tokenWarnings = [
-            ...configWarnings,
-            ...tokenLoadResult.warnings,
-          ];
-          const tokenRegistry = tokenLoadResult.registry;
-
-          if (!tokenRegistry && effectiveStyleStrategy === 'tokensOnly') {
-            return {
-              content: [
-                {
-                  type: 'text',
-                  text: `Error: tokensOnly strategy requires a configured token file.
-
-Set TI_DESIGN_TOKEN_DIR to the absolute path of the token repository:
-/path/to/ti-d-design-token
-
-Optional:
-TI_TOKEN_SET=d
-
-Advanced override:
-FIGMA_VARIABLES_TOKEN_FILE=/path/to/ti-d-design-token/packages/d/dist/ti-d-variables-token.json
-
-Details:
-${tokenWarnings.map((warning) => `- ${warning}`).join('\n')}`,
-                },
-              ],
-            };
-          }
+          const shouldIncludeVariables = includeVariables ?? getDefaultIncludeVariables();
+          const shouldIncludeVectorPaths = includeVectorPaths ?? getDefaultIncludeVectorPaths();
 
           // Parse Figma URL to extract fileKey and nodeId
           // URL formats:
@@ -498,48 +393,8 @@ Node data was retrieved successfully.`,
           const imageUrl = imageData.images?.[nodeId] || imageData.images?.[Object.keys(imageData.images)[0]] || null;
 
           // Helper function to simplify Figma node data - extracts only essential info for code conversion
-          const summarizeBinding = (binding: ReturnType<typeof findBindingForPath>) => {
-            if (!binding) return undefined;
-            if (effectiveTokenDetail === 'compact') {
-              return {
-                sourcePath: binding.sourcePath,
-                property: binding.property,
-                cssVariable: binding.cssVariable,
-                codeValue: binding.codeValue,
-              };
-            }
-            return {
-              sourcePath: binding.sourcePath,
-              property: binding.property,
-              reference: binding.reference,
-              cssVariable: binding.cssVariable,
-              codeValue: binding.codeValue,
-              resolvedValue: binding.resolvedValue,
-            };
-          };
-
-          const summarizeGap = (gap: ReturnType<typeof findGapForPath>) => {
-            if (!gap) return undefined;
-            const compactGap = {
-              sourcePath: gap.sourcePath,
-              property: gap.property,
-              reason: gap.reason,
-            };
-            return effectiveTokenDetail === 'compact'
-              ? compactGap
-              : {
-                  ...compactGap,
-                  variableName: gap.variableName,
-                  collection: gap.collection,
-                };
-          };
-
           const simplifyNode = (node: any, parentBounds?: any, parentLayoutMode?: string): any => {
             if (!node) return null;
-
-            const tokenContext = tokenRegistry
-              ? extractNodeTokenContext(node, tokenRegistry, effectiveStyleStrategy)
-              : { strategy: effectiveStyleStrategy, bindings: [], gaps: [] };
             
             const simplified: any = {
               id: node.id,
@@ -595,48 +450,6 @@ Node data was retrieved successfully.`,
               copyFields(['boundVariables', 'explicitVariableModes']);
             }
 
-            if (tokenContext.bindings.length > 0) {
-              simplified.tokenBindings = tokenContext.bindings.map((binding) => {
-                if (effectiveTokenDetail === 'compact') {
-                  return {
-                    sourcePath: binding.sourcePath,
-                    property: binding.property,
-                    cssVariable: binding.cssVariable,
-                    codeValue: binding.codeValue,
-                  };
-                }
-
-                return {
-                  sourcePath: binding.sourcePath,
-                  property: binding.property,
-                  reference: binding.reference,
-                  cssVariable: binding.cssVariable,
-                  codeValue: binding.codeValue,
-                  resolvedType: binding.resolvedType,
-                  resolvedValue: binding.resolvedValue,
-                  chain: binding.chain.map((item) => item.name),
-                };
-              });
-            }
-
-            if (tokenContext.gaps.length > 0) {
-              simplified.tokenGaps = tokenContext.gaps.map((gap) => {
-                const compactGap = {
-                  sourcePath: gap.sourcePath,
-                  property: gap.property,
-                  reason: gap.reason,
-                };
-
-                return effectiveTokenDetail === 'compact'
-                  ? compactGap
-                  : {
-                      ...compactGap,
-                      variableName: gap.variableName,
-                      collection: gap.collection,
-                    };
-              });
-            }
-
             // Add dimensions if available
             if (node.absoluteBoundingBox) {
               simplified.size = {
@@ -665,12 +478,12 @@ Node data was retrieved successfully.`,
                   node.paddingBottom,
                   node.paddingLeft,
                 ].some((padding) => typeof padding === 'number') ? {
-                  top: createStyleValue(node.paddingTop, tokenContext, 'paddingTop'),
-                  right: createStyleValue(node.paddingRight, tokenContext, 'paddingRight'),
-                  bottom: createStyleValue(node.paddingBottom, tokenContext, 'paddingBottom'),
-                  left: createStyleValue(node.paddingLeft, tokenContext, 'paddingLeft'),
+                  top: node.paddingTop,
+                  right: node.paddingRight,
+                  bottom: node.paddingBottom,
+                  left: node.paddingLeft,
                 } : undefined,
-                gap: createStyleValue(node.itemSpacing, tokenContext, 'itemSpacing'),
+                gap: node.itemSpacing,
                 primaryAxisAlign: node.primaryAxisAlignItems,
                 counterAxisAlign: node.counterAxisAlignItems,
                 primaryAxisSizing: node.primaryAxisSizingMode,
@@ -711,9 +524,9 @@ Node data was retrieved successfully.`,
 
             // Add corner radius
             if (typeof node.cornerRadius === 'number') {
-              simplified.borderRadius = createStyleValue(node.cornerRadius, tokenContext, 'cornerRadius');
+              simplified.borderRadius = node.cornerRadius;
             } else if (node.rectangleCornerRadii) {
-              simplified.borderRadius = createStyleValue(node.rectangleCornerRadii, tokenContext, 'rectangleCornerRadii');
+              simplified.borderRadius = node.rectangleCornerRadii;
             }
             if (node.cornerSmoothing !== undefined && node.cornerSmoothing !== 0) {
               simplified.cornerSmoothing = node.cornerSmoothing;
@@ -723,19 +536,13 @@ Node data was retrieved successfully.`,
             if (node.fills && node.fills.length > 0) {
               simplified.fills = node.fills
                 .filter((fill: any) => fill.visible !== false)
-                .map((fill: any, index: number) => {
-                  const sourcePath = `fills[${index}]`;
-                  const binding = findBindingForPath(tokenContext, sourcePath);
-                  const gap = findGapForPath(tokenContext, sourcePath);
+                .map((fill: any) => {
                   const literalColor = formatFigmaColor(fill.color);
                   const normalizedFill = normalizeDesignValue(fill, shouldIncludeVariables) as Record<string, unknown>;
 
                   return cleanObject({
                     ...normalizedFill,
-                    value: createStyleValue(literalColor, tokenContext, sourcePath),
-                    token: summarizeBinding(binding),
-                    tokenGap: summarizeGap(gap),
-                    literalFallback: effectiveStyleStrategy === 'preferTokens' ? literalColor : undefined,
+                    value: literalColor,
                   });
                 });
             }
@@ -744,23 +551,17 @@ Node data was retrieved successfully.`,
             if (node.strokes && node.strokes.length > 0) {
               simplified.strokes = node.strokes
                 .filter((stroke: any) => stroke.visible !== false)
-                .map((stroke: any, index: number) => {
-                  const sourcePath = `strokes[${index}]`;
-                  const binding = findBindingForPath(tokenContext, sourcePath);
-                  const gap = findGapForPath(tokenContext, sourcePath);
+                .map((stroke: any) => {
                   const literalColor = formatFigmaColor(stroke.color);
                   const normalizedStroke = normalizeDesignValue(stroke, shouldIncludeVariables) as Record<string, unknown>;
 
                   return cleanObject({
                     ...normalizedStroke,
-                    value: createStyleValue(literalColor, tokenContext, sourcePath),
-                    token: summarizeBinding(binding),
-                    tokenGap: summarizeGap(gap),
-                    literalFallback: effectiveStyleStrategy === 'preferTokens' ? literalColor : undefined,
+                    value: literalColor,
                   });
                 });
               if (typeof node.strokeWeight === 'number') {
-                simplified.strokeWeight = createStyleValue(node.strokeWeight, tokenContext, 'strokeWeight');
+                simplified.strokeWeight = node.strokeWeight;
               }
               copyFields(['strokeAlign', 'strokeDashes', 'individualStrokeWeights']);
             }
@@ -774,8 +575,8 @@ Node data was retrieved successfully.`,
 
                   return cleanObject({
                     ...normalizedEffect,
-                    radius: createStyleValue(effect.radius, tokenContext, `effects[${index}].radius`),
-                    color: createStyleValue(formatFigmaColor(effect.color), tokenContext, `effects[${index}].color`),
+                    radius: effect.radius,
+                    color: formatFigmaColor(effect.color),
                   });
                 });
             }
@@ -787,10 +588,10 @@ Node data was retrieved successfully.`,
                 simplified.textStyle = cleanObject({
                   ...(normalizeDesignValue(node.style, shouldIncludeVariables) as Record<string, unknown>),
                   fontFamily: node.style.fontFamily,
-                  fontWeight: createStyleValue(node.style.fontWeight, tokenContext, 'fontWeight'),
-                  fontSize: createStyleValue(node.style.fontSize, tokenContext, 'fontSize'),
-                  lineHeight: createStyleValue(node.style.lineHeightPx, tokenContext, 'lineHeight'),
-                  letterSpacing: createStyleValue(node.style.letterSpacing, tokenContext, 'letterSpacing'),
+                  fontWeight: node.style.fontWeight,
+                  fontSize: node.style.fontSize,
+                  lineHeight: node.style.lineHeightPx,
+                  letterSpacing: node.style.letterSpacing,
                   textAlign: node.style.textAlignHorizontal,
                   textAlignVertical: node.style.textAlignVertical,
                   textCase: node.style.textCase,
@@ -865,68 +666,10 @@ Node data was retrieved successfully.`,
             }, {}) 
             : simplifyNode(nodeData);
 
-          const tokenUsageSummary = createTokenUsageSummary(
-            simplifiedNodeData,
-            tokenWarnings,
-          );
           const prettyNodeData = JSON.stringify(simplifiedNodeData, null, 2);
           const nodeDataJson = prettyNodeData.length > 200000
             ? JSON.stringify(simplifiedNodeData)
             : prettyNodeData;
-          const hasTokenGaps = tokenUsageSummary.gapCount > 0;
-          const canGenerateCode = effectiveStyleStrategy !== 'tokensOnly' || !hasTokenGaps;
-          const canGenerateTokenPureCode = !hasTokenGaps;
-
-          const strategyInstructions = effectiveStyleStrategy === 'tokensOnly'
-            ? `- Strategy is \`tokensOnly\`: every generated style value that corresponds to color, radius, spacing, stroke, shadow, or typography must come from a Semantic or Component token.
-   - Use \`codeValue\` from \`tokenBindings\` whenever present.
-   - If any \`tokenGap\` exists, do not generate final page code yet. Report the missing token coverage first.
-   - Never replace a \`tokenGap\` with a literal color, px value, or guessed variable.
-   - Do not use \`literalFallback\` values in final code.`
-            : `- Strategy is \`preferTokens\`: use \`codeValue\` from \`tokenBindings\` whenever present.
-   - Only use \`literalFallback\` when no usable Semantic or Component token is bound to that property.
-   - Prefer CSS variables when \`cssVariable\` is present; otherwise preserve the token reference shown in \`codeValue\`.`;
-
-          const tokenMetadataLines = tokenRegistry
-            ? `- **Token Detail**: ${effectiveTokenDetail}
-- **Project Config**: ${figmaContextConfig.configPath || 'Not found'}
-- **Token Set**: ${tokenRegistry.tokenSetId || 'Not configured'}
-- **Design Token Dir**: ${tokenRegistry.designTokenDir || 'Not configured'}
-- **Token File**: ${tokenRegistry.sourceFile || 'Not configured'}
-- **CSS Variable Metadata**: ${tokenRegistry.cssVariablesFile || 'Not configured'}
-- **Remote Variable Alias Map**: ${tokenRegistry.variableAliasFile || 'Not configured'}`
-            : `- **Token Resolution**: disabled
-- **Project Config**: ${figmaContextConfig.configPath || 'Not found'}
-- **Reason**: no usable design token registry is configured`;
-
-          const tokenGuidanceSection = tokenRegistry
-            ? `### Token Usage Summary
-- **Resolved token bindings**: ${tokenUsageSummary.bindingCount}
-- **Token gaps**: ${tokenUsageSummary.gapCount}
-- **Can generate code**: ${canGenerateCode ? 'yes' : 'no'}
-- **Can generate token-pure code**: ${canGenerateTokenPureCode ? 'yes' : 'no'}
-${tokenUsageSummary.warnings.length > 0 ? `- **Warnings**:
-${tokenUsageSummary.warnings.map((warning) => `  - ${warning}`).join('\n')}` : '- **Warnings**: none'}
-
-### Token/CSS Variable Contract
-- Treat \`value\`, \`codeValue\`, layout padding/gap values, border radius values, and text style values that contain \`var(--...)\` as the implementation-ready CSS values.
-- When a field has \`token\` or \`tokenBindings\`, use the emitted \`codeValue\` / \`value\` exactly in generated styles.
-- Do not replace token-backed \`var(--...)\` values with \`color\`, \`resolvedValue\`, \`literalFallback\`, or hard-coded hex/px values.
-- Use \`literalFallback\` only when there is no token-backed \`value\`, no matching \`token\`, and no usable \`tokenBindings\` entry for that property.
-- Raw \`color\` objects and \`resolvedValue\` are for visual understanding only; they are not the preferred code output when a CSS variable is available.`
-            : `### Token Resolution
-- Token resolution is disabled because no usable design token registry is configured.
-- The JSON omits \`tokenBindings\` and \`tokenGaps\`; generate from the simplified design structure and literal style values.`;
-
-          const designTokenInstructions = tokenRegistry
-            ? `2. **Use Design Tokens**:
-   ${strategyInstructions}`
-            : `2. **Use Design Values**: Token resolution is disabled, so use the simplified JSON style values directly.`;
-
-          const styleGenerationInstruction = tokenRegistry
-            ? `   - For design-system values, use token-backed \`var(--...)\` values from \`value\`, \`codeValue\`, or \`tokenBindings\`; do not use hard-coded Figma literals when a token-backed value exists.
-   - If a property includes both a literal field such as \`color\` / \`literalFallback\` and a token-backed \`value\`, generate CSS from the token-backed \`value\`.`
-            : `   - Token resolution is disabled for this response; do not invent token names or CSS variables.`;
 
           // Return combined result with simplified instructions for AI agent
           return {
@@ -942,12 +685,8 @@ You are an AI agent. Convert the following Figma design into high-quality, produ
 - **File Key**: ${fileKey}
 - **Node ID**: ${nodeId}
 - **Source URL**: ${figmaNodeUrl}
-- **Style Strategy**: ${effectiveStyleStrategy}
 - **Include Raw Bound Variables**: ${shouldIncludeVariables ? 'yes' : 'no'}
 - **Include Vector Paths**: ${shouldIncludeVectorPaths ? 'yes' : 'no'}
-${tokenMetadataLines}
-
-${tokenGuidanceSection}
 
 ### Rendered Design Image
 ${imageUrl ? `
@@ -967,10 +706,10 @@ ${nodeDataJson}
 ## Instructions
 
 1. **Analyze Design**: Use the image and JSON data to understand the hierarchy, layout, and intent.
-${designTokenInstructions}
+2. **Use Design Values**: Use the simplified JSON style values directly.
 3. **Generate Code**:
    - Generate code using the component library, framework, styling system, and coding conventions already present in the target project or loaded agent skills.
-${styleGenerationInstruction}
+   - Preserve spacing, sizing, color, radius, typography, and interaction states from the simplified data.
    - Ensure the code is responsive and accessible.
 4. **Output Format**:
    - Output the complete implementation shape required by the target project, such as Vue/React component code, styles, i18n keys, or supporting configuration when needed.

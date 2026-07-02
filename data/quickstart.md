@@ -1,92 +1,86 @@
 # Quickstart Guide
 
-This guide explains how to use the `convert-figma-to-code` tool together with a component-library agent skill to produce page code from a Figma design.
+This guide covers the active Figma Context MCP workflow.
 
 ## Prerequisites
 
-- `FIGMA_ACCESS_TOKEN` environment variable set (Figma personal access token)
-- Optional `TI_DESIGN_TOKEN_DIR` environment variable set to the absolute path of the `ti-d-design-token` repository when token-backed CSS variable output is needed
-- Optional `TI_TOKEN_SET` environment variable set to `d`; defaults to `d`
-- Optional `FIGMA_STYLE_STRATEGY` environment variable set to `tokensOnly` while testing token coverage
-- Optional `FIGMA_TOKEN_DETAIL` environment variable set to `compact` or `full`; defaults to `compact`
-- Optional `FIGMA_INCLUDE_VARIABLES` environment variable set to `true` while debugging raw Figma `boundVariables`
-- Optional `FIGMA_INCLUDE_VECTOR_PATHS` environment variable set to `true` only when vector path data is needed
-- Advanced override: `FIGMA_VARIABLES_TOKEN_FILE` and `FIGMA_CSS_VARIABLES_FILE` can still point directly to generated dist files
-- A component-library skill loaded into the agent (e.g., `ti-component-skills`)
+- `FIGMA_ACCESS_TOKEN` for Figma API access.
+- Local dependencies installed.
 
-## Step-by-Step Workflow
+## Call The MCP Tool
 
-### 1. Get a Figma Node URL
+Use `convert-figma-to-code` with a Figma node URL:
 
-Open Figma, right-click on a frame or component, and copy the share link. It should look like:
-
-```
-https://www.figma.com/design/{fileKey}/My-Design?node-id=123-456
+```json
+{
+  "figmaNodeUrl": "https://www.figma.com/design/{fileKey}/My-Design?node-id=123-456"
+}
 ```
 
-### 2. Call the Tool
+The tool returns:
 
-Invoke `convert-figma-to-code` with the URL. The tool returns:
+- rendered image URL;
+- simplified node JSON;
+- compact component / component set / style metadata when Figma returns it.
 
-- **Image preview** — a rendered PNG of the selected node
-- **Simplified JSON** — layout mode, dimensions, children, text content, token-aware style values, and fill info
-- **Token bindings** — resolved Semantic or Component variables from Figma `boundVariables`, only when a token source is configured
-- **Token gaps** — style properties that do not have a usable Semantic or Component variable, only when token resolution is enabled
-
-Default token-first mode:
+Optional debug flags:
 
 ```json
 {
   "figmaNodeUrl": "https://www.figma.com/design/{fileKey}/My-Design?node-id=123-456",
-  "styleStrategy": "preferTokens",
-  "tokenDetail": "compact"
+  "includeVariables": true,
+  "includeVectorPaths": false
 }
 ```
 
-Strict token-only mode:
+## Use The Result
 
-```json
-{
-  "figmaNodeUrl": "https://www.figma.com/design/{fileKey}/My-Design?node-id=123-456",
-  "styleStrategy": "tokensOnly"
-}
-```
-
-### 3. Analyze the Design Context
-
-Use the returned data to understand the structure:
+Use the simplified JSON to understand:
 
 | Signal | Meaning |
-|--------|---------|
-| `layoutMode: HORIZONTAL` | Row / flex-row container |
-| `layoutMode: VERTICAL` | Column / flex-col container |
-| `type: TEXT` | Label, heading, or paragraph |
-| `tokenBindings[].codeValue` | The value the generated code should use for token-backed styles |
-| `tokenGaps[]` | Missing Semantic or Component variable coverage; do not replace with hard-coded literals in `tokensOnly` mode |
-| `type: RECTANGLE` + fills | Background card or image placeholder |
-| `type: VECTOR` / `BOOLEAN_OPERATION` | Icon |
+| --- | --- |
+| `layout.mode` | Auto-layout direction. |
+| `layout.padding` / `layout.gap` | Spacing information. |
+| `size` | Rounded node dimensions. |
+| `fills` / `strokes` / `effects` | Visible paints and effects. |
+| `textStyle` | Text style data for text nodes. |
+| `components` / `componentSets` | Figma component metadata useful for component reasoning. |
 
-### 4. Map to Component Skill
+Then let the agent combine this context with project skills or component catalogs to generate implementation code.
 
-With a skill like `ti-component-skills` active, match design elements to components
+## Component Mapping Data
 
-### 5. Generate Page Code
+The repository also includes component mapping scripts and Dashboard assets. They are not required for basic MCP node extraction.
 
-Produce framework-specific code (Vue 3 SFC, etc.) using matched components and token-backed style values.
+Place plugin exports in:
 
-Rules:
+```text
+assets/d-components/
+assets/b-components/
+```
 
-- Prefer `codeValue` from `tokenBindings`.
-- If `cssVariable` is present, `codeValue` is already shaped like `var(--ti-d-*)`.
-- If no CSS variable mapping exists yet, MCP reports a `tokenGap` so the agent does not silently invent a variable name.
-- In `tokensOnly` mode, report `tokenGaps` before generating final code and do not substitute raw colors, px values, or guessed CSS variables.
-- `Can generate code` means the active strategy allows code generation; `Can generate token-pure code` is `yes` only when there are zero `tokenGaps`.
-- If no token source is configured, token resolution is disabled and MCP omits `tokenBindings` / `tokenGaps` entirely.
-- Use `tokenDetail: "full"` only when debugging token reference, resolved value, or chain data; the default `compact` mode keeps CSS variable generation values while reducing prompt size.
+Regenerate maps:
 
-## Important Notes
+```bash
+pnpm map:generate
+```
 
-- This MCP tool provides **design context only**. Component implementations come entirely from the agent skill.
-- When the Figma design contains elements with no direct component match, use the closest available component and adapt via props.
-- Always prefer the component library's layout primitives (grid, stack, etc.) over writing raw CSS.
-- Business code should use Semantic or Component token-backed CSS variables only.
+Export D-side previews:
+
+```bash
+export FIGMA_ACCESS_TOKEN="YOUR_FIGMA_TOKEN"
+pnpm previews:export -- --system d --all --delay-ms 500
+```
+
+## Dashboard
+
+```bash
+pnpm map-viewer:dev
+```
+
+```text
+http://localhost:3217/?system=d
+http://localhost:3217/?system=b
+```
+
+See `app/README.md` for Dashboard-specific workflows.
