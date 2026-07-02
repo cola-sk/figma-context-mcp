@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import 'dotenv/config';
 
 const args = parseArgs(process.argv.slice(2));
 const system = args.system === 'b' ? 'b' : 'd';
@@ -87,7 +88,7 @@ for (const [groupIndex, group] of targetGroups.entries()) {
 
 fs.writeFileSync(
   indexPath,
-  `${JSON.stringify({ system, fileKey, generatedAt: new Date().toISOString(), previews }, null, 2)}\n`,
+  `${JSON.stringify(createIndexPayload(), null, 2)}\n`,
   'utf8',
 );
 
@@ -100,44 +101,91 @@ if (failures.length > 0) {
 }
 
 async function exportBatch(batch, allowFallback = true) {
-  const ids = batch.map((item) => item.nodeId).join(',');
+  const pending = batch.filter((item) => {
+    const fileName = `${safeFileName(item.key)}.png`;
+    const filePath = path.join(previewDir, fileName);
+    if (!fs.existsSync(filePath)) return true;
+
+    const stat = fs.statSync(filePath);
+    previews[item.key] = {
+      nodeId: item.nodeId,
+      fileName,
+      kind: item.kind,
+      name: item.name,
+      scale: Number(scale),
+      exportedAt: previews[item.key]?.exportedAt || stat.mtime.toISOString(),
+    };
+    writeIndex();
+    console.log(`${system}: exists ${fileName}, skipped`);
+    return false;
+  });
+
+  if (pending.length === 0) return;
+
+  const ids = pending.map((item) => item.nodeId).join(',');
   const apiUrl = `https://api.figma.com/v1/images/${fileKey}?ids=${encodeURIComponent(ids)}&format=png&scale=${encodeURIComponent(scale)}`;
-  const response = await fetch(apiUrl, { headers: { 'X-Figma-Token': token } });
-  if (!response.ok) {
-    const error = `Figma image API failed: ${response.status} ${response.statusText} ${await response.text()}`;
-    if (allowFallback && batch.length > 1) {
-      console.warn(`${system}: batch failed, retrying ${batch.length} target(s) one by one.`);
-      for (const item of batch) {
+  let response;
+  try {
+    response = await fetch(apiUrl, { headers: { 'X-Figma-Token': token } });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (allowFallback && pending.length > 1) {
+      console.warn(`${system}: batch request failed, retrying ${pending.length} target(s) one by one: ${message}`);
+      for (const item of pending) {
         await exportBatch([item], false);
       }
       return;
     }
-    failures.push(...batch.map((item) => ({ ...item, error })));
+    failures.push(...pending.map((item) => ({ ...item, error: `Figma image API request failed: ${message}` })));
+    return;
+  }
+
+  if (!response.ok) {
+    const error = `Figma image API failed: ${response.status} ${response.statusText} ${await response.text()}`;
+    if (allowFallback && pending.length > 1) {
+      console.warn(`${system}: batch failed, retrying ${pending.length} target(s) one by one.`);
+      for (const item of pending) {
+        await exportBatch([item], false);
+      }
+      return;
+    }
+    failures.push(...pending.map((item) => ({ ...item, error })));
     return;
   }
 
   const payload = await response.json();
   if (payload.err) {
     const error = `Figma image API returned error: ${payload.err}`;
-    if (allowFallback && batch.length > 1) {
-      console.warn(`${system}: batch failed, retrying ${batch.length} target(s) one by one.`);
-      for (const item of batch) {
+    if (allowFallback && pending.length > 1) {
+      console.warn(`${system}: batch failed, retrying ${pending.length} target(s) one by one.`);
+      for (const item of pending) {
         await exportBatch([item], false);
       }
       return;
     }
-    failures.push(...batch.map((item) => ({ ...item, error })));
+    failures.push(...pending.map((item) => ({ ...item, error })));
     return;
   }
 
-  for (const item of batch) {
+  for (const item of pending) {
     const imageUrl = payload.images?.[item.nodeId];
     if (!imageUrl) {
       console.warn(`skip ${item.nodeId}: no image URL`);
       continue;
     }
 
-    const image = await fetch(imageUrl);
+    let image;
+    try {
+      image = await fetch(imageUrl);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      failures.push({
+        ...item,
+        error: `Image download request failed: ${message}`,
+      });
+      continue;
+    }
+
     if (!image.ok) {
       failures.push({
         ...item,
@@ -157,8 +205,22 @@ async function exportBatch(batch, allowFallback = true) {
       scale: Number(scale),
       exportedAt: new Date().toISOString(),
     };
+    writeIndex();
     console.log(`${system}: wrote ${fileName} (${bytes.length} bytes)`);
   }
+}
+
+function createIndexPayload() {
+  return {
+    system,
+    fileKey,
+    generatedAt: new Date().toISOString(),
+    previews,
+  };
+}
+
+function writeIndex() {
+  fs.writeFileSync(indexPath, `${JSON.stringify(createIndexPayload(), null, 2)}\n`, 'utf8');
 }
 
 function readJson(file) {
