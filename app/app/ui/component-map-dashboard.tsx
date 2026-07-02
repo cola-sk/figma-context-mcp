@@ -274,15 +274,13 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
         <div className="navContainer">
           <div className="logoArea">
             <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="logoIcon">
-              <rect x="2" y="2" width="28" height="28" rx="5" fill="url(#logoGrad)" />
-              {/* Abstract Symmetrical Tech Core */}
-              <path d="M16 11L21 16L16 21L11 16Z" fill="white" />
-              <path d="M9 10L5 16L9 22" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <path d="M23 10L27 16L23 22" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              <rect x="2" y="2" width="28" height="28" rx="6" fill="url(#logoGrad)" />
+              <polyline points="9,22 16,10 23,22" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              <line x1="12" y1="16" x2="20" y2="16" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.55" />
               <defs>
                 <linearGradient id="logoGrad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#6366f1" />
-                  <stop offset="1" stopColor="#ec4899" />
+                  <stop stopColor="#064e3b" />
+                  <stop offset="1" stopColor="#34d399" />
                 </linearGradient>
               </defs>
             </svg>

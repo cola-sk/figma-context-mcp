@@ -5,8 +5,8 @@
   --border: #e2e8f0;
   --text: #0f172a;
   --muted: #64748b;
-  --accent: #4f46e5;
-  --accent-light: #e0e7ff;
+  --accent: #10b981;
+  --accent-light: #d1fae5;
   --disabled-bg: #f8fafc;
   --disabled-border: #cbd5e1;
   --disabled-text: #64748b;
@@ -68,7 +68,7 @@ button:disabled:hover {
 }
 
 .primaryButton:hover {
-  background: #4338ca;
+  background: #059669;
   color: #fff;
 }
 
@@ -126,13 +126,13 @@ code {
 
 .logoIcon {
   flex-shrink: 0;
-  filter: drop-shadow(0 2px 4px rgba(99, 102, 241, 0.15));
+  filter: drop-shadow(0 1px 2px rgba(16, 185, 129, 0.25));
 }
 
 .logoText {
   font-size: 16px;
   font-weight: 850;
-  background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+  background: linear-gradient(135deg, #047857 0%, #10b981 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -0.5px;
