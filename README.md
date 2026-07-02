@@ -147,17 +147,31 @@ Claude Desktop / Cursor：
 
 ### 变种（Variant）属性与 Props 映射设计
 
-本 MCP Server 采用 **Identity-Only（仅身份识别）** 设计。这意味着：
+本 MCP Server 采用 **Identity-Only（仅身份识别）** 设计。默认规则是：
+
+> **Component Map 只负责组件身份识别，不负责 Variant 到 Props 的自动映射。先 identity-only，后 exception-based props mapping。**
+
+这意味着：
 * **MCP 职责**：仅负责定位组件的身份（例如将 Figma 节点映射到 `el-button`），并在节点上注入身份 Hint，而具体的 `variantProps` 默认为 `null`。
-* **Agent 职责**：下游 AI Agent 在接收到简化后的节点 JSON 后，结合原始属性，负责**手动**将 Figma 的变种属性（如 `size = "small"`）转换为组件库对应的 Props（如 `:size="small"`）。
-* **为什么不需要在映射 Scheme 中声明 Props？**
-  组件库（如 Element Plus）的 API 庞大且多变，在静态映射表里强行定义所有 Variant-to-Props 的规则，会导致映射表极其臃肿且难以维护。AI Agent 可以通过上下文、项目组件规范或专用技能动态映射，因此 MCP 仅需确保组件身份识别正确。
+* **MCP 输出**：保留 Figma 原始 `componentProperties`，让下游仍然能看到设计稿中的 Variant 信息。
+* **Agent 职责**：下游 AI Agent 结合 `tiComponent`、`componentProperties`、项目组件规范或 `ti-component-skills` 查询到的组件 API，将 Figma 变种属性转换为目标组件 Props。
+* **为什么不默认在 Mapping Scheme 中声明 Props？**
+  组件库（如 Element Plus）的 API 庞大且多变，在静态映射表里全量定义 Variant-to-Props 规则，会导致映射表臃肿且维护成本高。多数普通 Variant 可由 Agent 结合组件 API 动态映射，因此 MCP 默认只确保组件身份识别正确。
 
 #### 什么时候需要在 Mapping 中声明 Props？
-在未来的功能扩展或特殊场景中，以下情况可能需要我们在 Mapping 结构中显式声明/注入 `variantProps`：
-1. **Agent 缺乏相关背景知识**：下游使用的 LLM 基础能力较弱，或没有挂载相关的组件库 API 技能，导致其无法自主、准确地将 Figma 变种推断为代码 Props。
-2. **非常规/非标准的复杂属性转换**：某些 Figma 属性或特殊取值，无法直接一对一转换为 Props，而是需要经过复杂的逻辑计算、条件过滤或转换为特定的 CSS 类名。
-3. **强确定性的低代码编译（Rule-based Codegen）**：在不依赖 LLM 推理的自动化低代码/无代码编译器中，所有的节点及属性翻译必须是 100% 确定且基于静态规则的，此时必须在 Scheme 中写死所有的映射规则。
+
+默认不声明 Props；只有在需要确定性、复杂转换或修正高频错误时，才为少量例外声明 `variantProps`。
+
+| 判断场景 | 是否需要声明 Props | 处理原则 |
+| :--- | :--- | :--- |
+| 普通组件变种，例如 `size`、`type`、`status` | 不需要 | 保留 `componentProperties`，由 Agent 结合组件 API 映射。 |
+| Figma 变种名和目标组件 API 基本一致 | 不需要 | 直接依赖 Agent 推断，避免把重复规则写进 Map。 |
+| 只需要告诉 Agent 使用哪个组件 | 不需要 | Map 只声明组件身份，例如 `Button` -> `el-button`。 |
+| 需要 100% 确定性代码生成 | 需要 | 低代码或规则编译场景不能依赖 Agent 推理，需要静态规则。 |
+| Figma 语义和组件 Props 差异很大 | 需要 | 例如一个 Figma 变种需要拆成多个 props、slot 或 class。 |
+| 多个 Figma 属性需要组合成一个 prop/class/slot | 需要 | 属于复杂转换，应显式声明转换规则。 |
+| 高频组件经常被 Agent 映射错 | 需要 | 只为这些错误高发的例外补规则，提高稳定性。 |
+| 下游 Agent 没有组件 API 背景或无法使用组件技能 | 需要 | 缺少 API 查询能力时，需要由 Map 提供更强约束。 |
 
 `status: "unmapped"` 或 `"internal"` 时，Agent 应向用户说明该节点未映射，不应根据视觉 JSON 手写一个仿制组件。可读取 `figma://component-map/summary` 查看当前配置摘要。
 
