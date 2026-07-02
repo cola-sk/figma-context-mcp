@@ -1,29 +1,29 @@
 # TI Variable Key Exporter
 
-Local Figma plugin for exporting Design System Variables with both:
+本地 Figma 插件，用于导出 Design System Variables，同时带：
 
-- `id`, for local token/CSS variable mapping
-- `key`, for matching business-file remote bound variable ids such as `VariableID:<key>/<suffix>`
+- `id`，用于本地 token / CSS 变量映射
+- `key`，用于匹配业务文件中的远程 bound variable id，例如 `VariableID:<key>/<suffix>`
 
-Run this plugin in the Design System source file, not in a business design file.
+请在 Design System 源文件中运行本插件，不要在业务设计文件中运行。
 
-## Install
+## 安装
 
-1. Open Figma Desktop.
-2. Open the Design System file, for example `Example Design System`.
-3. Go to `Plugins -> Development -> Import plugin from manifest...`.
-4. Select:
+1. 打开 Figma Desktop。
+2. 打开 Design System 文件，例如 `Example Design System`。
+3. 进入 `Plugins -> Development -> Import plugin from manifest...`。
+4. 选择：
 
    ```text
    tools/figma-variable-key-exporter/manifest.json
    ```
 
-## Export
+## 导出
 
-1. Run `Plugins -> Development -> TI Variable Key Exporter`.
-2. Click `Download All Collections`.
-3. Unzip `ti-figma-variable-collections.zip`.
-4. Save/replace the files under:
+1. 运行 `Plugins -> Development -> TI Variable Key Exporter`。
+2. 点击 `Download All Collections`。
+3. 解压 `ti-figma-variable-collections.zip`。
+4. 将文件保存/替换到：
 
    ```text
    figma-component-assets-private/tokens/
@@ -31,13 +31,13 @@ Run this plugin in the Design System source file, not in a business design file.
 
    包含 `Primitive.json` / `Semantic.json` / `Component.json`。当前 MCP 不消费这些 JSON，仅作为本地参考数据归档。
 
-`Download All Collections` intentionally downloads a single zip. Figma Desktop can block repeated file downloads from one plugin click, which may otherwise leave you with only `Primitive.json`.
+`Download All Collections` 故意下载单个 zip。Figma Desktop 会拦截同一插件点击中的多次文件下载，否则可能只拿到 `Primitive.json`。
 
-Use `Download Current` only when you want to replace one selected collection. Use `Download Bundle` only for debugging; the build currently expects the three collection JSON files above.
+仅在替换某个选中 collection 时使用 `Download Current`。`Download Bundle` 仅用于调试；构建当前只期望上述三个 collection JSON 文件。
 
-## Expected Variable Shape
+## 导出 Variable 形状
 
-Each exported variable should include `key`:
+每个导出的 variable 应包含 `key`：
 
 ```json
 {
@@ -49,7 +49,7 @@ Each exported variable should include `key`:
 }
 ```
 
-After rebuilding, the MCP can resolve:
+rebuild 之后，MCP 可以解析：
 
 ```text
 VariableID:abcdef0123456789abcdef0123456789abcdef01/33333:444
