@@ -1,7 +1,7 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
   "name": "io.github.cola-sk/figma-context-mcp",
-  "description": "MCP server that converts Figma designs to token-aware code generation context for AI agents",
+  "description": "MCP server that extracts simplified Figma design context for AI agents",
   "websiteUrl": "https://github.com/cola-sk/figma-context-mcp",
   "repository": {
     "url": "https://github.com/cola-sk/figma-context-mcp",
@@ -23,69 +23,6 @@
           "format": "string",
           "isSecret": true,
           "name": "FIGMA_ACCESS_TOKEN"
-        },
-        {
-          "description": "Absolute path to the ti-d-design-token repository. Used to infer token files from manifest.json.",
-          "isRequired": false,
-          "format": "string",
-          "isSecret": false,
-          "name": "TI_DESIGN_TOKEN_DIR"
-        },
-        {
-          "description": "Token set id to consume from the design token repository, such as d or b. Defaults to d.",
-          "isRequired": false,
-          "format": "string",
-          "isSecret": false,
-          "name": "TI_TOKEN_SET"
-        },
-        {
-          "description": "Default style strategy when the tool call does not pass styleStrategy. Use tokensOnly to report token gaps instead of falling back to literals.",
-          "isRequired": false,
-          "format": "string",
-          "isSecret": false,
-          "name": "FIGMA_STYLE_STRATEGY"
-        },
-        {
-          "description": "Token metadata verbosity. compact keeps code-generation essentials; full includes references, resolved values, and chains for debugging. Defaults to compact.",
-          "isRequired": false,
-          "format": "string",
-          "isSecret": false,
-          "name": "FIGMA_TOKEN_DETAIL"
-        },
-        {
-          "description": "Set to true while debugging to include compact raw Figma boundVariables in the returned node JSON.",
-          "isRequired": false,
-          "format": "string",
-          "isSecret": false,
-          "name": "FIGMA_INCLUDE_VARIABLES"
-        },
-        {
-          "description": "Set to true to request and include raw vector path data. This can make responses much larger.",
-          "isRequired": false,
-          "format": "string",
-          "isSecret": false,
-          "name": "FIGMA_INCLUDE_VECTOR_PATHS"
-        },
-        {
-          "description": "Advanced override: absolute path to ti-d-variables-token.json",
-          "isRequired": false,
-          "format": "string",
-          "isSecret": false,
-          "name": "FIGMA_VARIABLES_TOKEN_FILE"
-        },
-        {
-          "description": "Advanced override: absolute path to generated CSS variable metadata, e.g. ti-d-css-variables.json",
-          "isRequired": false,
-          "format": "string",
-          "isSecret": false,
-          "name": "FIGMA_CSS_VARIABLES_FILE"
-        },
-        {
-          "description": "Advanced override: absolute path to remote-variable-aliases.json",
-          "isRequired": false,
-          "format": "string",
-          "isSecret": false,
-          "name": "FIGMA_VARIABLE_ALIAS_FILE"
         }
       ]
     }
