@@ -273,14 +273,15 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
       <nav className="navBar" aria-label="Main Navigation">
         <div className="navContainer">
           <div className="logoArea">
-            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="logoIcon">
-              <rect x="2" y="2" width="28" height="28" rx="6" fill="url(#logoGrad)" />
-              <polyline points="9,22 16,10 23,22" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <line x1="12" y1="16" x2="20" y2="16" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.55" />
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="logoIcon" aria-hidden="true">
+              <path d="M16 4L25.5 9.5L16 15L6.5 9.5Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.8" strokeOpacity="0.2" />
+              <path d="M5 12L14.5 17.5L14.5 28L5 22.5Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.8" strokeOpacity="0.2" />
+              <path d="M17.5 17.5L27 12L27 22.5L17.5 28Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.8" strokeOpacity="0.2" />
               <defs>
-                <linearGradient id="logoGrad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#064e3b" />
-                  <stop offset="1" stopColor="#34d399" />
+                <linearGradient id="logoGrad" x1="3" y1="3" x2="29" y2="29" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#0F766E" />
+                  <stop offset="0.56" stopColor="#0D9488" />
+                  <stop offset="1" stopColor="#0284C7" />
                 </linearGradient>
               </defs>
             </svg>
@@ -296,15 +297,6 @@ export function ComponentMapDashboard({ data }: { data: MapViewData }) {
                 </a>
               ))}
             </div>
-            <button
-              type="button"
-              className="iconButton"
-              title="Copy map path"
-              aria-label="Copy map path"
-              onClick={() => copyText(`mappings/${viewData.mapFile}`)}
-            >
-              <Copy size={16} aria-hidden="true" />
-            </button>
           </div>
         </div>
       </nav>
