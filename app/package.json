@@ -1,0 +1,23 @@
+{
+  "name": "component-map-viewer",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 3217",
+    "build": "next build",
+    "start": "next start -p 3217"
+  },
+  "dependencies": {
+    "lucide-react": "^1.21.0",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "typescript": "latest"
+  }
+}

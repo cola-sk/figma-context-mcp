@@ -1,7 +1,7 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
   "name": "io.github.cola-sk/figma-context-mcp",
-  "description": "MCP server that converts Figma designs to production-ready HTML + Tailwind CSS code",
+  "description": "MCP server that extracts simplified Figma design context for AI agents",
   "websiteUrl": "https://github.com/cola-sk/figma-context-mcp",
   "repository": {
     "url": "https://github.com/cola-sk/figma-context-mcp",

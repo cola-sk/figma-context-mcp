@@ -1,66 +1,86 @@
 # Quickstart Guide
 
-This guide explains how to use the `convert-figma-to-code` tool together with a component-library agent skill to produce page code from a Figma design.
+This guide covers the active Figma Context MCP workflow.
 
 ## Prerequisites
 
-- `FIGMA_ACCESS_TOKEN` environment variable set (Figma personal access token)
-- A component-library skill loaded into the agent (e.g., `ti-component-skills`)
+- `FIGMA_ACCESS_TOKEN` for Figma API access.
+- Local dependencies installed.
 
-## Step-by-Step Workflow
+## Call The MCP Tool
 
-### 1. Get a Figma Node URL
+Use `convert-figma-to-code` with a Figma node URL:
 
-Open Figma, right-click on a frame or component, and copy the share link. It should look like:
-
+```json
+{
+  "figmaNodeUrl": "https://www.figma.com/design/{fileKey}/My-Design?node-id=123-456"
+}
 ```
-https://www.figma.com/design/{fileKey}/My-Design?node-id=123-456
+
+The tool returns:
+
+- rendered image URL;
+- simplified node JSON;
+- compact component / component set / style metadata when Figma returns it.
+
+Optional debug flags:
+
+```json
+{
+  "figmaNodeUrl": "https://www.figma.com/design/{fileKey}/My-Design?node-id=123-456",
+  "includeVariables": true,
+  "includeVectorPaths": false
+}
 ```
 
-### 2. Call the Tool
+## Use The Result
 
-Invoke `convert-figma-to-code` with the URL. The tool returns:
-
-- **Image preview** — a rendered PNG of the selected node
-- **Simplified JSON** — layout mode, dimensions, children, text content, colors, and fill info
-
-### 3. Analyze the Design Context
-
-Use the returned data to understand the structure:
+Use the simplified JSON to understand:
 
 | Signal | Meaning |
-|--------|---------|
-| `layoutMode: HORIZONTAL` | Row / flex-row container |
-| `layoutMode: VERTICAL` | Column / flex-col container |
-| `type: TEXT` | Label, heading, or paragraph |
-| `type: RECTANGLE` + fills | Background card or image placeholder |
-| `type: VECTOR` / `BOOLEAN_OPERATION` | Icon |
+| --- | --- |
+| `layout.mode` | Auto-layout direction. |
+| `layout.padding` / `layout.gap` | Spacing information. |
+| `size` | Rounded node dimensions. |
+| `fills` / `strokes` / `effects` | Visible paints and effects. |
+| `textStyle` | Text style data for text nodes. |
+| `components` / `componentSets` | Figma component metadata useful for component reasoning. |
 
-### 4. Map to Component Skill
+Then let the agent combine this context with project skills or component catalogs to generate implementation code.
 
-With a skill like `ti-component-skills` active, match design elements to components
+## Component Mapping Data
 
-### 5. Generate Page Code
+The repository also includes component mapping scripts and Dashboard assets. They are not required for basic MCP node extraction.
 
-Produce framework-specific code (Vue 3 SFC, etc.) using only the matched components. Do not invent styles — rely on the component's built-in props and slots.
+Place plugin exports in:
 
-## Important Notes
-
-- This MCP tool provides **design context only**. Component implementations come entirely from the agent skill.
-- When the Figma design contains elements with no direct component match, use the closest available component and adapt via props.
-- Always prefer the component library's layout primitives (grid, stack, etc.) over writing raw CSS.
-
-Check out the JavaScript behaviour section of each component's page to learn how you can use this.
-
-### TypeScript
-
-Flowbite supports type declarations for the interactive UI components including object interfaces and parameter types. Check out the following examples to learn how you can use types with Flowbite.
-
-Additionally to our code above, we will now import some relevant types from the Flowbite package, namely the `ModalOptions` and `ModalInterface`:
-
-```javascript
-import { Modal } from 'flowbite'
-import type { ModalOptions, ModalInterface } from 'flowbite'
-
-// other code
+```text
+figma-component-assets-private/d-components/
+figma-component-assets-private/b-components/
 ```
+
+Regenerate maps:
+
+```bash
+pnpm map:generate
+```
+
+Export D-side previews:
+
+```bash
+export FIGMA_ACCESS_TOKEN="YOUR_FIGMA_TOKEN"
+pnpm previews:export -- --system d --all --delay-ms 500
+```
+
+## Dashboard
+
+```bash
+pnpm map-viewer:dev
+```
+
+```text
+http://localhost:3217/?system=d
+http://localhost:3217/?system=b
+```
+
+See `app/README.md` for Dashboard-specific workflows.

@@ -1,0 +1,22 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGrad" x1="3" y1="3" x2="29" y2="29" gradientUnits="userSpaceOnUse">
+      <stop stopColor="#0F766E" />
+      <stop offset="0.56" stopColor="#0D9488" />
+      <stop offset="1" stopColor="#0284C7" />
+    </linearGradient>
+  </defs>
+  <g fillOpacity="0.95">
+    <path d="M 10.75 6.95 L 15.27 9.56 L 10.75 12.17 L 6.24 9.56 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+    <path d="M 16.00 3.92 L 20.52 6.53 L 16.00 9.14 L 11.48 6.53 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+    <path d="M 5.87 10.19 L 10.38 12.80 L 10.38 17.99 L 5.87 15.38 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+    <path d="M 5.87 16.22 L 10.38 18.83 L 10.38 24.02 L 5.87 21.41 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+    <path d="M 11.12 19.25 L 15.63 21.86 L 15.63 27.05 L 11.12 24.44 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+  </g>
+  <g fillOpacity="0.75">
+    <path d="M 21.25 6.95 L 25.77 9.56 L 21.25 12.17 L 16.73 9.56 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+    <path d="M 26.13 10.19 L 26.13 15.38 L 21.62 17.99 L 21.62 12.80 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+    <path d="M 26.13 16.22 L 26.13 21.44 L 21.62 24.02 L 21.62 18.83 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+    <path d="M 20.88 19.25 L 20.88 24.44 L 16.37 27.05 L 16.37 21.86 Z" fill="url(#logoGrad)" stroke="white" strokeWidth="0.6" strokeOpacity="0.15" />
+  </g>
+</svg>

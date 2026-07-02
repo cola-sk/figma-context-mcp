@@ -1,28 +1,60 @@
-# Flowbite MCP Server Overview
+# Figma Context MCP Overview
 
-This MCP server is a **Figma-to-code bridge** for AI agents. It extracts structured design data from Figma and provides it as context so the agent can generate production-ready UI code using a company-specific component library (via agent `skills`).
+Figma Context MCP extracts Figma node context for AI agents. The active runtime fetches node JSON and rendered images, removes noisy/default fields, and returns simplified JSON for page generation or component-library reasoning.
 
-## How It Works
+## Active Runtime Flow
 
-1. **Design Extraction** — The `convert-figma-to-code` tool fetches a Figma node's structure (layout, dimensions, text, colors) and renders a visual preview image.
-2. **Context Delivery** — The simplified JSON and image are passed to the agent as tool output, giving it a precise understanding of the design intent.
-3. **Skill-Driven Code Generation** — The agent maps the extracted design elements to components defined in its loaded skill (e.g., `TiComponents`), and generates clean, framework-specific code.
+1. Receive a Figma node URL.
+2. Fetch Figma node JSON through the Figma API.
+3. Fetch a rendered image URL through the Figma image API.
+4. Simplify the node JSON by trimming invalid, empty, hidden, or default fields.
+5. Return the simplified JSON and image URL to the agent.
 
-This server does **not** bundle component source code. Component implementations are owned by the agent's skill layer.
+Automatic component matching is not implemented in the MCP runtime yet. Agents should use the returned structure together with project skills or component catalogs.
 
-## Key Capability
+## Active Tool
 
 | Tool | Purpose |
-|------|---------|
-| `convert-figma-to-code` | Extract Figma node data + render preview image, return structured context for code generation |
+| --- | --- |
+| `convert-figma-to-code` | Fetch a Figma node, render a preview image, and return simplified node JSON using literal design values. |
 
-## Agent Integration
+## Simplified JSON
 
-When an agent has a component-library skill installed (e.g., `ti-component-skills`), the workflow is:
+The tool does not return raw Figma API JSON. It trims empty/default values and normalizes common fields so the output is easier to inspect.
 
-- Agent receives Figma node context from this MCP tool
-- Agent reads design structure (layout mode, spacing, element types)
-- Agent selects matching components from the skill's component catalog
-- Agent produces complete, runnable page code (Vue 3, HTML, etc.)
+| Type | Rule |
+| --- | --- |
+| Empty/default values | Remove `null`, `undefined`, empty arrays, empty objects, and default values such as `opacity: 1`. |
+| Paint arrays | Remove hidden fills, strokes, and effects. |
+| Colors | Convert Figma 0-1 RGB values into hex or rgba strings where useful. |
+| Raw variables | Strip `boundVariables` and `explicitVariableModes` by default. |
+| Vector paths | Omit by default unless `includeVectorPaths` is enabled. |
+| Top-level maps | Keep only compact component, component set, and style metadata. |
 
-No manual component lookup is needed — the design data and skill knowledge are combined automatically.
+## Component Mapping Assets
+
+The repository also contains component mapping assets and scripts. These support the Dashboard and future mapping workflows, but are separate from the active MCP node-extraction path.
+
+Generated map files:
+
+```text
+figma-component-assets-private/mappings/d-figma-component-key-map.json
+figma-component-assets-private/mappings/b-figma-component-key-map.json
+```
+
+Offline preview files:
+
+```text
+figma-component-assets-private/previews/{system}/
+figma-component-assets-private/previews/{system}/index.json
+```
+
+## Archived Token Work
+
+The previous design token implementation has been archived under:
+
+```text
+docs/future-token-capability/
+```
+
+It is intentionally not compiled into the current runtime.

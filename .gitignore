@@ -1,6 +1,20 @@
 node_modules/
 build/
+.next/
 *.log
 .env*
 .DS_Store
 .npmrc
+.claude
+.waypoint-attachments
+
+# Business-sensitive Figma exports, mappings, and preview images.
+# This directory is expected to be provided separately, such as by submodule.
+figma-component-assets-private/
+
+# Legacy locations for business-sensitive generated assets.
+assets/
+app/public/previews/
+
+# TypeScript incremental build cache.
+*.tsbuildinfo
