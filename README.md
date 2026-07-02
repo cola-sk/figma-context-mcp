@@ -145,6 +145,20 @@ Claude Desktop / Cursor：
 }
 ```
 
+### 变种（Variant）属性与 Props 映射设计
+
+本 MCP Server 采用 **Identity-Only（仅身份识别）** 设计。这意味着：
+* **MCP 职责**：仅负责定位组件的身份（例如将 Figma 节点映射到 `el-button`），并在节点上注入身份 Hint，而具体的 `variantProps` 默认为 `null`。
+* **Agent 职责**：下游 AI Agent 在接收到简化后的节点 JSON 后，结合原始属性，负责**手动**将 Figma 的变种属性（如 `size = "small"`）转换为组件库对应的 Props（如 `:size="small"`）。
+* **为什么不需要在映射 Scheme 中声明 Props？**
+  组件库（如 Element Plus）的 API 庞大且多变，在静态映射表里强行定义所有 Variant-to-Props 的规则，会导致映射表极其臃肿且难以维护。AI Agent 可以通过上下文、项目组件规范或专用技能动态映射，因此 MCP 仅需确保组件身份识别正确。
+
+#### 什么时候需要在 Mapping 中声明 Props？
+在未来的功能扩展或特殊场景中，以下情况可能需要我们在 Mapping 结构中显式声明/注入 `variantProps`：
+1. **Agent 缺乏相关背景知识**：下游使用的 LLM 基础能力较弱，或没有挂载相关的组件库 API 技能，导致其无法自主、准确地将 Figma 变种推断为代码 Props。
+2. **非常规/非标准的复杂属性转换**：某些 Figma 属性或特殊取值，无法直接一对一转换为 Props，而是需要经过复杂的逻辑计算、条件过滤或转换为特定的 CSS 类名。
+3. **强确定性的低代码编译（Rule-based Codegen）**：在不依赖 LLM 推理的自动化低代码/无代码编译器中，所有的节点及属性翻译必须是 100% 确定且基于静态规则的，此时必须在 Scheme 中写死所有的映射规则。
+
 `status: "unmapped"` 或 `"internal"` 时，Agent 应向用户说明该节点未映射，不应根据视觉 JSON 手写一个仿制组件。可读取 `figma://component-map/summary` 查看当前配置摘要。
 
 ## 私有业务资产
