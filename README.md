@@ -26,6 +26,33 @@ tools/figma-component-registry-plugin 导出 registry ZIP
   -> figma-component-assets-private/previews/{d,b}/
 ```
 
+## 节点 JSON 简化与优化
+
+通过清理无效、默认、隐藏或噪声字段，MCP Server 能够极大程度地压缩节点 JSON 体积。以下以一个包含隐藏 Tab 页的 Tabs 节点（`node-id=3078-3670`）为例，展示在引入 `visible:false` 子树整棵过滤前后的优化对比及收益。
+
+### 优化效果对比
+
+| 版本 | Compact JSON 大小 | Pretty JSON 大小 | 节点数量 |
+|---|---|---|---|
+| Figma 原始 API 完整响应 | 27,524 bytes | 55,359 bytes | - |
+| Figma 原始节点数据 | 26,989 bytes | 51,449 bytes | - |
+| MCP 简化 JSON（visible 优化前） | 16,244 bytes | 29,627 bytes | 17 |
+| MCP 简化 JSON（visible 优化后） | 5,599 bytes (降幅 65.53%) | 9,784 bytes (降幅 66.98%) | 5 |
+
+### `visible:false` 优化收益
+
+| 格式 | 优化前大小 | 优化后大小 | 减少大小 | 降幅 |
+|---|---|---|---|---|
+| Compact JSON | 16,244 bytes | 5,599 bytes | -10,645 bytes | -65.53% |
+| Pretty JSON | 29,627 bytes | 9,784 bytes | -19,843 bytes | -66.98% |
+
+### Compact 与 Pretty 格式的区别
+
+| 格式 | 定义/特征 | 适用场景 | 优缺点 |
+| --- | --- | --- | --- |
+| **Compact JSON**<br>(紧凑格式) | 去除所有不必要的空格、换行和缩进，将 JSON 压缩为单行。 | 网络传输、API 传输、最大限度节省 LLM/Agent Context Token 占用的场景。 | **优点**：体积最小，极高节省带宽和 Token 消耗。<br>**缺点**：人类或 Agent 直接阅读和 Debug 的难度极高。 |
+| **Pretty JSON**<br>(美化格式) | 带有结构化的缩进（如 2 个空格）和换行排版。 | 开发人员调试、UI 界面展示、Agent 在 Context 中直接阅读和理解节点层级结构的场景。 | **优点**：易读性极佳，层级关系一目而然，利于理解和生成代码。<br>**缺点**：体积较紧凑格式翻倍，消耗更多 Token。 |
+
 ## MCP Server
 
 当前 MCP 名称保持不变：`Figma Context MCP`。
