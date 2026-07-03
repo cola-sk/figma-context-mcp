@@ -2,9 +2,9 @@
 
 ## 一、目标
 
-让 `convert-figma-to-code` MCP 工具的输出从「裸 Figma 节点 JSON」升级为「带组件库 hint 的 Figma 节点 JSON」：每个 INSTANCE 节点上挂一个 `tiComponent` 字段，告诉下游 agent 该用什么组件（TiComponents / Element Plus），未映射的显式标 `unmapped`，再由 agent 调用 `ti-component-skills` 查 API、把 Figma `componentProperties` 自行映射到组件 props，产出最终 Vue 代码。
+让 `convert-figma-to-code` MCP 工具的输出从「裸 Figma 节点 JSON」升级为「带组件库 hint 的 Figma 节点 JSON」：每个 INSTANCE 节点上挂一个 `tiComponent` 字段，告诉下游 agent 该用什么组件（TiComponents / Element Plus），未映射的显式标 `unmapped`。如果 map 中人工配置了 `target.props`，运行时会把它注入到 `tiComponent.variantProps`；`variantProps` 是显式覆盖项，不是完整 props 白名单。未覆盖的 props 再由 agent 调用 `ti-component-skills` 查 API、结合 Figma `componentProperties` 自行映射，产出最终 Vue 代码。
 
-**不猜测 prop 映射**（沿用 map 的 `strictNoGuessing` 原则）。
+**不猜测 prop 映射**（沿用 map 的 `strictNoGuessing` 原则）。只有人工配置的 `target.props` 会作为显式例外规则进入运行时。
 
 ## 二、现状
 
@@ -30,9 +30,10 @@
 - `target.library`：`TiComponents` | `Element Plus` | `null`
 - `target.component`：`el-button` | `TiRadioGroup` | `null`
 - `target.fallbackReason`、`target.evidence`
-- `variantToPropsStatus: "not-generated"` — identity-only，不猜 prop 映射
+- `target.props` — 可选，Dashboard 人工配置的显式 props；运行时会输出到 `tiComponent.variantProps`
+- `variantToPropsStatus: "not-generated"` — 不自动生成 props 映射，只消费人工配置的显式 props
 
-具体 variant 的 `component.key` 位于每个 `componentSets[setKey].components` 对象内；消费侧需要遍历 `componentSets` 构建 `componentKey → setKey` 索引。`looseComponents` 仍以具体 `component.key` 为键，优先直接命中。
+具体 variant 的 `component.key` 位于每个 `componentSets[setKey].components` 对象内；消费侧需要遍历 `componentSets` 构建 `componentKey → variant / setKey` 索引。具体 variant 配置了 override 时，优先消费 variant 自己的 `target` / `target.props`；否则继承 component set 的 `target` / `target.props`。`looseComponents` 仍以具体 `component.key` 为键，优先直接命中。
 
 ### 当前 MCP 输出
 
@@ -121,7 +122,7 @@ export interface TiComponentHint {
   sourceStatus?: 'mapped' | 'unresolved' | 'internal' | 'not-found';
   evidence?: string[];
   fallbackReason?: string | null;
-  variantProps: null;            // identity-only map，永远 null
+  variantProps: Record<string, string> | null; // 人工配置的 target.props；未配置时为 null
   hint: string;                  // 给 agent 的指令文本
 }
 
@@ -145,8 +146,8 @@ export class ComponentMap {
 
 ### 内存索引构建（启动时或首次请求时一次性）
 
-- `setKey → target`（从 `componentSets[setKey].target` + `status` + `evidence` + `fallbackReason`）
-- `componentKey → target`：先查 `looseComponents[componentKey]`；否则遍历 `componentSets[*].components` 生成 `componentKey → setKey`，再走 set 级。
+- `setKey → target`（从 `componentSets[setKey].target` + `status` + `evidence` + `fallbackReason` + `props`）
+- `componentKey → variant / target`：先查 `looseComponents[componentKey]`；否则遍历 `componentSets[*].components` 生成 `componentKey → variant`。variant 有 override target 时使用 variant target；否则继承 set 级 target。
 
 `b` 和 `d` 互不混用：一次请求只载入其中一份。`overridePath` 命中时单独加载自定义文件（结构需与 b/d 一致）。
 
@@ -155,7 +156,7 @@ export class ComponentMap {
 按 `status` 生成：
 
 - `mapped`：
-  > Use `<component>` (`<library>`). Query the `ti-component-skills` skill for prop API. Map Figma `componentProperties` to the component's props manually — identity-only map, no auto prop mapping.
+  > Use `<component>` (`<library>`). If `tiComponent.variantProps` is non-null, apply those map-configured props first; they are explicit overrides, not an exhaustive prop whitelist. Query the `ti-component-skills` skill for remaining prop API decisions.
 - `unmapped`：
   > No mapping in `<source>` map. Declare this node as unmapped to the user; do NOT hand-roll a look-alike from visuals.
 - `internal`：
@@ -199,8 +200,10 @@ INSTANCE 节点输出示例：
       "ti-component-skills/references/component-catalog.md only lists TiWeightButtonGroup for button groups, not a standalone Button component."
     ],
     "fallbackReason": null,
-    "variantProps": null,
-    "hint": "Use el-button (Element Plus). Query the `ti-component-skills` skill for prop API. Map Figma componentProperties to the component's props manually — identity-only map, no auto prop mapping."
+    "variantProps": {
+      "type": "primary"
+    },
+    "hint": "Use el-button (Element Plus). Apply tiComponent.variantProps as explicit map-configured props; they are not an exhaustive prop whitelist. Then query the ti-component-skills skill for any remaining API/prop decisions."
   }
 }
 ```
@@ -260,7 +263,7 @@ To enable, create .figma-context-mcp.json in your project root:
 
 `src/index.ts:706` 的 Instructions 段加一条（放在现有 4 条之后）：
 
-> 5. **Component Hints**: If a node carries `tiComponent`, you MUST use that exact component (`tiComponent.library` / `tiComponent.component`). Invoke the `ti-component-skills` skill to look up its API/props. Map Figma `componentProperties` to the component's props yourself — the map intentionally does not provide prop mapping. If `tiComponent.status` is `"unmapped"` or `"internal"`, declare the node as unmapped to the user and do not hand-roll a look-alike. If no `tiComponent` field appears on any node, see the Component Map / Component Map Notice section at the top of this output.
+> 5. **Component Hints**: If a node carries `tiComponent`, you MUST use that exact component (`tiComponent.library` / `tiComponent.component`). If `tiComponent.variantProps` is non-null, apply those map-configured props first; they are explicit overrides, not an exhaustive prop whitelist. Invoke the `ti-component-skills` skill to look up any remaining API/props, and use Figma `componentProperties` to map any other props or values not already covered by `variantProps`. If `tiComponent.status` is `"unmapped"` or `"internal"`, declare the node as unmapped to the user and do not hand-roll a look-alike. If no `tiComponent` field appears on any node, see the Component Map / Component Map Notice section at the top of this output.
 
 ## 八、新增 resource
 
@@ -294,7 +297,7 @@ To enable, create .figma-context-mcp.json in your project root:
 
 ## 十二、不做的事
 
-- **不**生成 `variantToProps`（identity-only map 的核心克制）。
+- **不**自动生成 `variantToProps`（只消费 Dashboard 人工配置的 `target.props`）。
 - **不**自动回退到 el-*（map 已显式标注 `target.library`；未标注的 `unresolved` 不暗中降级）。
 - **不**改 map 文件本身（只读消费）。
 - **不**新增 MCP tool 入参或环境变量（全部由 `.figma-context-mcp.json` 驱动）。

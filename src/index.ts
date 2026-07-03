@@ -841,7 +841,7 @@ ${nodeDataJson}
 4. **Output Format**:
    - Output the complete implementation shape required by the target project, such as Vue/React component code, styles, i18n keys, or supporting configuration when needed.
    - Do not introduce Tailwind CSS, CDN assets, or external imports unless the target project already uses them or the user explicitly requests them.
-5. **Component Hints**: If a node carries \`tiComponent\`, you MUST use that exact component (\`tiComponent.library\` / \`tiComponent.component\`). Invoke the \`ti-component-skills\` skill to look up its API/props. Map Figma \`componentProperties\` to the component props yourself; the map intentionally does not provide prop mapping. If \`tiComponent.status\` is \`"unmapped"\` or \`"internal"\`, declare the node as unmapped to the user and do not hand-roll a look-alike. If no \`tiComponent\` field appears on any node, see the Component Map / Component Map Notice section at the top of this output.`,
+5. **Component Hints**: If a node carries \`tiComponent\`, you MUST use that exact component (\`tiComponent.library\` / \`tiComponent.component\`). If \`tiComponent.variantProps\` is non-null, apply those map-configured props first; they are explicit overrides, not an exhaustive prop whitelist. Invoke the \`ti-component-skills\` skill to look up any remaining API/props, and use Figma \`componentProperties\` to map any other props or values not already covered by \`variantProps\`. If \`tiComponent.status\` is \`"unmapped"\` or \`"internal"\`, declare the node as unmapped to the user and do not hand-roll a look-alike. If no \`tiComponent\` field appears on any node, see the Component Map / Component Map Notice section at the top of this output.`,
               },
             ],
           };

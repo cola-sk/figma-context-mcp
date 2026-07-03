@@ -9,6 +9,7 @@ const packageRoot = join(__dirname, '..');
 export type MapSource = 'b' | 'd' | 'none' | 'auto';
 export type TiComponentStatus = 'mapped' | 'unmapped' | 'internal';
 export type TiComponentSourceStatus = 'mapped' | 'unresolved' | 'internal' | 'not-found';
+export type TiComponentVariantProps = Record<string, string> | null;
 export type ComponentMapResolutionStatus =
   | 'loaded'
   | 'disabled'
@@ -43,7 +44,7 @@ export interface TiComponentHint {
   figmaKey?: string;
   evidence: string[];
   fallbackReason: string | null;
-  variantProps: null;
+  variantProps: TiComponentVariantProps;
   hint: string;
 }
 
@@ -92,20 +93,29 @@ interface RawMapEntry {
     name?: unknown;
   };
   status?: unknown;
-  target?: {
-    library?: unknown;
-    component?: unknown;
-    fallbackReason?: unknown;
-    evidence?: unknown;
-  };
+  target?: RawMapTarget;
+  reason?: unknown;
   components?: Record<string, RawComponentVariant>;
+}
+
+interface RawMapTarget {
+  library?: unknown;
+  component?: unknown;
+  props?: unknown;
+  fallbackReason?: unknown;
+  evidence?: unknown;
 }
 
 interface RawComponentVariant {
   figma?: {
     key?: unknown;
+    name?: unknown;
     componentSetKey?: unknown;
   };
+  status?: unknown;
+  target?: RawMapTarget | null;
+  targetRef?: unknown;
+  reason?: unknown;
 }
 
 const validSources = new Set<MapSource>(['b', 'd', 'none', 'auto']);
@@ -126,6 +136,16 @@ const asString = (value: unknown): string | null =>
 
 const asStringArray = (value: unknown): string[] =>
   Array.isArray(value) ? value.filter((item): item is string => typeof item === 'string') : [];
+
+const asStringRecord = (value: unknown): Record<string, string> | null => {
+  if (!isRecord(value)) return null;
+
+  const entries = Object.entries(value).filter((entry): entry is [string, string] =>
+    typeof entry[0] === 'string' && entry[0].length > 0 && typeof entry[1] === 'string',
+  );
+
+  return entries.length > 0 ? Object.fromEntries(entries) : null;
+};
 
 const countEntriesByStatus = (entries: Record<string, RawMapEntry> | undefined, status: string): number =>
   Object.values(entries ?? {}).filter((entry) => entry.status === status).length;
@@ -200,6 +220,7 @@ const getSourceFileKey = (mapPath: string): string | null => {
 
 export class ComponentMap {
   private readonly setEntries = new Map<string, RawMapEntry>();
+  private readonly variantEntries = new Map<string, { variant: RawComponentVariant; parent: RawMapEntry }>();
   private readonly componentKeyToSetKey = new Map<string, string>();
   private readonly looseEntries = new Map<string, RawMapEntry>();
 
@@ -213,10 +234,12 @@ export class ComponentMap {
 
       for (const [componentKey, variant] of Object.entries(entry.components ?? {})) {
         this.componentKeyToSetKey.set(componentKey, setKey);
+        this.variantEntries.set(componentKey, { variant, parent: entry });
 
         const figmaKey = asString(variant.figma?.key);
         if (figmaKey) {
           this.componentKeyToSetKey.set(figmaKey, setKey);
+          this.variantEntries.set(figmaKey, { variant, parent: entry });
         }
 
         const componentSetKey = asString(variant.figma?.componentSetKey);
@@ -381,6 +404,11 @@ export class ComponentMap {
       return this.createHint(looseEntry);
     }
 
+    const variantEntry = this.variantEntries.get(componentKey);
+    if (variantEntry) {
+      return this.createVariantHint(variantEntry.variant, variantEntry.parent);
+    }
+
     const setKey = this.componentKeyToSetKey.get(componentKey);
     if (setKey) {
       return this.resolveBySetKey(setKey);
@@ -418,17 +446,45 @@ export class ComponentMap {
       unmapped,
       internal,
       policy: this.rawMap.mappingPolicy?.strictNoGuessing === true
-        ? 'identity-only; do not hand-roll components for unmapped nodes.'
+        ? 'identity-first; use configured variantProps when present; do not hand-roll components for unmapped nodes.'
         : 'component map policy unavailable; do not infer prop mappings automatically.',
     };
+  }
+
+  private createVariantHint(variant: RawComponentVariant, parent: RawMapEntry): TiComponentHint {
+    const sourceStatus = this.normalizeVariantSourceStatus(variant.status);
+    const target = isRecord(variant.target) ? variant.target : null;
+    const hasVariantTarget = Boolean(asString(target?.library) && asString(target?.component));
+    const isOverride = variant.status === 'mapped-override' || (hasVariantTarget && !asString(variant.targetRef));
+
+    if (isOverride && target) {
+      return this.createHint({
+        figma: variant.figma,
+        status: 'mapped',
+        target,
+        reason: variant.reason,
+      });
+    }
+
+    if (sourceStatus === 'internal' || sourceStatus === 'unresolved') {
+      return this.createHint({
+        figma: variant.figma,
+        status: sourceStatus,
+        target: target ?? undefined,
+        reason: variant.reason,
+      });
+    }
+
+    return this.createHint(parent);
   }
 
   private createHint(entry: RawMapEntry): TiComponentHint {
     const sourceStatus = this.normalizeSourceStatus(entry.status);
     const library = asString(entry.target?.library);
     const component = asString(entry.target?.component);
+    const variantProps = asStringRecord(entry.target?.props);
     const evidence = asStringArray(entry.target?.evidence);
-    const fallbackReason = asString(entry.target?.fallbackReason) ?? asString(entry.status === 'unresolved' ? entry.target?.fallbackReason : null);
+    const fallbackReason = asString(entry.target?.fallbackReason) ?? (sourceStatus === 'mapped' ? null : asString(entry.reason));
     const status: TiComponentStatus = sourceStatus === 'mapped' && library && component
       ? 'mapped'
       : sourceStatus === 'internal'
@@ -447,8 +503,8 @@ export class ComponentMap {
       fallbackReason: fallbackReason ?? (status === 'unmapped'
         ? 'No explicit TiComponents catalog entry, Element Plus fallback-table entry, or user-confirmed mapping was found for this Figma component.'
         : null),
-      variantProps: null,
-      hint: this.createHintText(status, library, component),
+      variantProps: status === 'mapped' ? variantProps : null,
+      hint: this.createHintText(status, library, component, variantProps),
     };
   }
 
@@ -474,9 +530,23 @@ export class ComponentMap {
     return 'not-found';
   }
 
-  private createHintText(status: TiComponentStatus, library: string | null, component: string | null): string {
+  private normalizeVariantSourceStatus(status: unknown): TiComponentSourceStatus {
+    if (status === 'mapped-override' || status === 'mapped-via-component-set' || status === 'mapped') return 'mapped';
+    return this.normalizeSourceStatus(status);
+  }
+
+  private createHintText(
+    status: TiComponentStatus,
+    library: string | null,
+    component: string | null,
+    variantProps: TiComponentVariantProps,
+  ): string {
     if (status === 'mapped' && library && component) {
-      return `Use ${component} (${library}). Query the ti-component-skills skill for prop API. Map Figma componentProperties to the component props manually; this is an identity-only map with no automatic prop mapping.`;
+      if (variantProps) {
+        return `Use ${component} (${library}). Apply tiComponent.variantProps as explicit map-configured props; they are not an exhaustive prop whitelist. Then query the ti-component-skills skill for any remaining API/prop decisions.`;
+      }
+
+      return `Use ${component} (${library}). Query the ti-component-skills skill for prop API. Map Figma componentProperties to the component props manually when no tiComponent.variantProps are provided.`;
     }
 
     if (status === 'internal') {

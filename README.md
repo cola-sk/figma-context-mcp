@@ -145,33 +145,52 @@ Claude Desktop / Cursor：
 }
 ```
 
+如果 Dashboard 中为组件或具体变种配置了 props，运行时会输出：
+
+```json
+{
+  "tiComponent": {
+    "status": "mapped",
+    "library": "Element Plus",
+    "component": "el-button",
+    "variantProps": {
+      "type": "primary"
+    }
+  }
+}
+```
+
 ### 变种（Variant）属性与 Props 映射设计
 
 本 MCP Server 采用 **Identity-Only（仅身份识别）** 设计。默认规则是：
 
-> **Component Map 只负责组件身份识别，不负责 Variant 到 Props 的自动映射。先 identity-only，后 exception-based props mapping。**
+> **Component Map 默认只负责组件身份识别；只有 Dashboard 中人工配置过的 `target.props` 会作为显式例外注入到 `tiComponent.variantProps`。**
 
 这意味着：
-* **MCP 职责**：仅负责定位组件的身份（例如将 Figma 节点映射到 `el-button`），并在节点上注入身份 Hint，而具体的 `variantProps` 默认为 `null`。
+* **MCP 职责**：负责定位组件的身份（例如将 Figma 节点映射到 `el-button`），并在节点上注入身份 Hint。未配置 props 时，`variantProps` 为 `null`。
 * **MCP 输出**：保留 Figma 原始 `componentProperties`，让下游仍然能看到设计稿中的 Variant 信息。
-* **Agent 职责**：下游 AI Agent 结合 `tiComponent`、`componentProperties`、项目组件规范或 `ti-component-skills` 查询到的组件 API，将 Figma 变种属性转换为目标组件 Props。
-* **为什么不默认在 Mapping Scheme 中声明 Props？**
-  组件库（如 Element Plus）的 API 庞大且多变，在静态映射表里全量定义 Variant-to-Props 规则，会导致映射表臃肿且维护成本高。多数普通 Variant 可由 Agent 结合组件 API 动态映射，因此 MCP 默认只确保组件身份识别正确。
+* **Agent 职责**：下游 AI Agent 先使用 `tiComponent.variantProps` 中的显式配置；这些配置不是完整 props 白名单，Agent 仍可结合 `componentProperties`、项目组件规范或 `ti-component-skills` 查询到的组件 API，补充未覆盖的 Props。
+* **Dashboard 中的 Props 设置**：组件映射管理页面可以在组件或具体变种上保存 `target.props`，用于人工记录目标组件的补充属性。
+* **运行时消费边界**：`convert-figma-to-code` 会读取组件级 `target.props`；如果具体变种配置了 override，则优先读取该变种自己的 `target.props`，并输出到 `tiComponent.variantProps`。
+* **为什么不默认在运行时做 Variant-to-Props 自动映射？**
+  组件库（如 Element Plus）的 API 庞大且多变，在静态映射表里全量定义 Variant-to-Props 规则，会导致映射表臃肿且维护成本高。多数普通 Variant 可由 Agent 结合组件 API 动态映射，因此只有人工配置过的 props 会作为例外规则进入运行时。
 
-#### 什么时候需要在 Mapping 中声明 Props？
+> 注意：`variantProps` 只表示人工配置的显式 props，不是精确 props 集合或完整白名单，也不表示 MCP 会自动推断所有 Figma Variant。未配置的 Variant 仍由 Agent 基于 `componentProperties` 和组件 API 判断。
 
-默认不声明 Props；只有在需要确定性、复杂转换或修正高频错误时，才为少量例外声明 `variantProps`。
+#### 什么时候才考虑声明 Props？
 
-| 判断场景 | 是否需要声明 Props | 处理原则 |
+原则是：**先 identity-only，后 exception-based props mapping**。只有在需要确定性、复杂转换或修正稳定复现的高频错误时，才为少量例外配置 `target.props`。
+
+| 判断场景 | 是否建议配置 Props | 处理原则 |
 | :--- | :--- | :--- |
 | 普通组件变种，例如 `size`、`type`、`status` | 不需要 | 保留 `componentProperties`，由 Agent 结合组件 API 映射。 |
 | Figma 变种名和目标组件 API 基本一致 | 不需要 | 直接依赖 Agent 推断，避免把重复规则写进 Map。 |
 | 只需要告诉 Agent 使用哪个组件 | 不需要 | Map 只声明组件身份，例如 `Button` -> `el-button`。 |
-| 需要 100% 确定性代码生成 | 需要 | 低代码或规则编译场景不能依赖 Agent 推理，需要静态规则。 |
-| Figma 语义和组件 Props 差异很大 | 需要 | 例如一个 Figma 变种需要拆成多个 props、slot 或 class。 |
-| 多个 Figma 属性需要组合成一个 prop/class/slot | 需要 | 属于复杂转换，应显式声明转换规则。 |
-| 高频组件经常被 Agent 映射错 | 需要 | 只为这些错误高发的例外补规则，提高稳定性。 |
-| 下游 Agent 没有组件 API 背景或无法使用组件技能 | 需要 | 缺少 API 查询能力时，需要由 Map 提供更强约束。 |
+| 需要 100% 确定性代码生成 | 需要 | 将确定 props 配到组件级或具体变种 override，运行时会注入到 `variantProps`。 |
+| Figma 语义和组件 Props 差异很大 | 需要 | 例如一个 Figma 变种需要拆成多个 props、slot 或 class 对应的显式 props。 |
+| 多个 Figma 属性需要组合成一个 prop/class/slot | 需要 | 属于复杂转换，应显式配置 props，减少 Agent 自行推断的不稳定性。 |
+| 高频组件经常被 Agent 映射错 | 需要 | 只有稳定复现且影响高频生成时，才沉淀为例外 props 规则。 |
+| 下游 Agent 没有组件 API 背景或无法使用组件技能 | 需要 | 通过 `variantProps` 给出更强约束，减少对外部 API 查询的依赖。 |
 
 `status: "unmapped"` 或 `"internal"` 时，Agent 应向用户说明该节点未映射，不应根据视觉 JSON 手写一个仿制组件。可读取 `figma://component-map/summary` 查看当前配置摘要。
 
