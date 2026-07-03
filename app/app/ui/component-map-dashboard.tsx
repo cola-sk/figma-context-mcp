@@ -883,8 +883,27 @@ function Detail({
       </section>
 
       <section>
-        <h3>原始数据</h3>
-        <pre>{JSON.stringify(row.raw, null, 2)}</pre>
+        <h3>原始数据 &amp; 映射对照</h3>
+        <div className="rawSummary">
+          <div className="rawSummaryItem">
+            <span className="rawSummaryLabel">Figma</span>
+            <code className="rawSummaryKey">{row.key}</code>
+            <span className="rawSummaryValue">{row.variantCount} 变种</span>
+          </div>
+          <div className="rawSummaryItem">
+            <span className="rawSummaryLabel">映射</span>
+            <span className={`statusBadge statusBadge-${row.status}`}>{row.status}</span>
+            <span className="rawSummaryValue">{row.targetLibrary} / {row.targetComponent}</span>
+          </div>
+          <a
+            className="rawSummaryLink"
+            href={`/detail?system=${system}&kind=${row.kind}&key=${encodeURIComponent(row.key)}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            查看详情 →
+          </a>
+        </div>
       </section>
     </div>
   );

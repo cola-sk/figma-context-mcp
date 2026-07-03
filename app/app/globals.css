@@ -1079,3 +1079,395 @@ pre {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== Component Map Detail Page ===== */
+
+.detailPage {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 32px 32px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.detailHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+}
+
+.detailBackLink {
+  align-self: flex-start;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.detailBackLink:hover {
+  color: var(--accent);
+}
+
+.detailTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.detailTitle {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.detailSubtitle {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.detailMetaLabel {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.detailMetaItem code {
+  font-size: 11px;
+  background: var(--surface-2);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.detailCompareSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.detailCompareCol {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+
+.detailColumnTitle,
+.detailColumnSubtitle {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detailColumnSubtitle {
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.detailKvList {
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.detailKvList > div {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 12px;
+  align-items: start;
+  font-size: 13px;
+}
+
+.detailKvList dt {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.detailKvList dd {
+  margin: 0;
+  word-break: break-all;
+}
+
+.detailKvList code {
+  font-size: 12px;
+  background: var(--surface-2);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.detailPath {
+  font-size: 12px;
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.detailCpdRow {
+  grid-template-columns: 160px 1fr;
+}
+
+.detailCpdList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detailCpdList li {
+  font-size: 12px;
+}
+
+.detailCpdType {
+  color: var(--muted);
+}
+
+.detailCpdOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.detailCpdOption {
+  display: inline-flex;
+  align-items: center;
+  background: var(--accent-light);
+  color: var(--accent-strong);
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.detailCpdDefault {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.detailMuted {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 12px;
+}
+
+.detailPropsCode {
+  display: inline-block;
+  background: var(--accent-light);
+  color: var(--accent-strong);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.detailEvidenceList {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.detailVariantsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detailSectionTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.detailVariantList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detailVariantCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detailVariantHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.detailVariantName {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.detailVariantMode {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.detailVariantBody {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.detailVariantBody .detailCompareCol {
+  background: var(--surface);
+}
+
+.detailRawSection {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+.detailRawSummary {
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+  user-select: none;
+}
+
+.detailRawSummary:hover {
+  color: var(--accent);
+}
+
+.detailRawPre {
+  margin: 12px 0 0;
+  padding: 16px;
+  background: var(--surface-2);
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow: auto;
+  max-height: 600px;
+}
+
+/* ===== Dashboard inline raw summary ===== */
+
+.rawSummary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.rawSummaryItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.rawSummaryLabel {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.rawSummaryKey {
+  font-size: 11px;
+  background: var(--surface);
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+.rawSummaryValue {
+  color: var(--text);
+}
+
+.rawSummaryLink {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.rawSummaryLink:hover {
+  color: var(--accent-strong);
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .detailCompareSection,
+  .detailVariantBody {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Detail page: JSON compare panels ===== */
+
+.detailCompareColJson {
+  padding: 0;
+  overflow: hidden;
+}
+
+.detailColumnTitle {
+  margin: 0 0 8px;
+  padding: 10px 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detailColumnSubtitle {
+  margin: 0 0 8px;
+  padding: 10px 10px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detailColumnHint,
+.detailSectionHint {
+  margin: 0 0 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.detailColumnHint {
+  padding: 0 10px;
+}
+
+.detailJsonPre {
+  margin: 0;
+  padding: 10px 10px 12px;
+  background: var(--surface-2);
+  font-size: 12px;
+  line-height: 1.55;
+  overflow: auto;
+  max-height: 720px;
+  white-space: pre;
+  color: var(--text);
+}
+
+.detailJsonPreMapped {
+  background: #ecfdf5;
+  border-top: 1px solid #a7f3d0;
+}
+

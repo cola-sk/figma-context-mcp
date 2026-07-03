@@ -18,3 +18,4 @@ app/public/previews/
 
 # TypeScript incremental build cache.
 *.tsbuildinfo
+.playwright-mcp
